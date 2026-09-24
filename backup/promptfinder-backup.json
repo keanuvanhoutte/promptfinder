@@ -1,7 +1,7 @@
 {
  "app": "PromptFinder",
  "version": 1,
- "exportedAt": "2026-09-24T09:24:36Z",
+ "exportedAt": "2026-09-24T09:53:23Z",
  "tabs": [
   {
    "color": "#5A6874",
@@ -28,7 +28,8 @@
    "kind": "html",
    "name": "HTML",
    "order": 3,
-   "id": "html"
+   "id": "html",
+   "section": "Web design"
   },
   {
    "color": "#7A4FD0",
@@ -37,7 +38,8 @@
    "kind": "",
    "name": "CSS",
    "order": 3.3,
-   "id": "css"
+   "id": "css",
+   "section": "Web design"
   },
   {
    "color": "#B3407A",
@@ -46,7 +48,8 @@
    "kind": "",
    "name": "PHP",
    "order": 3.6,
-   "id": "php"
+   "id": "php",
+   "section": "Web design"
   },
   {
    "color": "#1E8A5A",
@@ -55,7 +58,8 @@
    "kind": "pymol",
    "name": "PyMOL",
    "order": 4,
-   "id": "pymol"
+   "id": "pymol",
+   "section": "Struc. bio"
   },
   {
    "color": "#0B7A83",
@@ -64,7 +68,8 @@
    "kind": "concept",
    "name": "Structurele biologie",
    "order": 5,
-   "id": "structbio"
+   "id": "structbio",
+   "section": "Struc. bio"
   }
  ],
  "prompts": [
