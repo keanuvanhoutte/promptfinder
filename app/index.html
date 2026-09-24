@@ -1128,7 +1128,7 @@ async function onFiles(files){
   const tab=activeTab()?.id||"";
   const mine=files.map(f=>{ const id=uid("q_"); const deck=isPptx(f); memBlobs.set(id,f); if(!deck) thumbURLs.set(id,URL.createObjectURL(f));
     const u={id,name:f.name||(deck?"presentatie":"screenshot"),status:"upload",type:deck?"deck":"shot",note:deck?"Presentatie wordt gelezen…":"Screenshot wordt bewaard…"}; uploads.push(u); return u; });
-  renderQueue(); $("#queue").scrollIntoView({behavior:"smooth",block:"start"});
+  renderQueue(); // geen automatisch scrollen: de pagina blijft staan waar je was
   let pos=Math.max(Date.now(), ...state.queue.map(j=>(j.pos??j.createdAt)+1));
   for(const u of mine){
     const now=Date.now();
