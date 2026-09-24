@@ -59,6 +59,19 @@ button{cursor:pointer}
 .tab .dot{width:9px;height:9px;border-radius:50%;background:var(--c,var(--accent));flex:0 0 auto}
 .tab .count{font-size:11px;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
 .tab.add{color:var(--muted);font-weight:500;padding-inline:12px}
+.subtabs{display:flex;align-items:center;gap:6px;padding:8px 16px;max-width:1100px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+.subtabs::-webkit-scrollbar{display:none}
+.subtabs[hidden]{display:none!important}
+.subbar{background:var(--surface);border-top:1px solid var(--line)}
+.stab{flex:0 0 auto;display:flex;align-items:center;gap:7px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);font-weight:600;font-size:13px;white-space:nowrap}
+.stab:hover{color:var(--ink);border-color:var(--c,var(--accent))}
+.stab[aria-selected="true"]{background:color-mix(in srgb,var(--c,var(--accent)) 14%,transparent);border-color:var(--c,var(--accent));color:var(--ink)}
+.stab .dot{width:8px;height:8px;border-radius:50%;background:var(--c,var(--accent))}
+.stab .count{font-size:11px;font-weight:500;color:var(--muted)}
+.stab.add{border-style:dashed;font-weight:500}
+.stab.dragging,.tab.dragging{opacity:.4}
+.stab.dropbefore{box-shadow:-3px 0 0 var(--accent)}
+.subhint{font-size:12px;color:var(--muted);white-space:nowrap;margin-left:4px}
 
 /* ---------- Main ---------- */
 main{max-width:1100px;margin:0 auto;padding-inline:16px;padding-block:18px 60px;display:flex;flex-direction:column;gap:16px}
@@ -67,6 +80,7 @@ main{max-width:1100px;margin:0 auto;padding-inline:16px;padding-block:18px 60px;
 .search:focus-within{border-color:var(--accent)}
 .search svg{flex:0 0 auto;color:var(--muted)}
 .search input{flex:1;min-width:0;border:none;background:transparent;outline:none;font-size:16px;padding:12px 0}
+.search input::-webkit-search-cancel-button{display:none}
 .search .clear{border:none;background:transparent;color:var(--muted);padding:6px 8px;border-radius:999px}
 .searchopts{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .chk{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);user-select:none}
@@ -215,12 +229,14 @@ mark{background:color-mix(in srgb,var(--accent) 28%,transparent);color:inherit;b
       <button data-act="add-manual">Prompt handmatig toevoegen</button>
       <button data-act="remove-samples">Voorbeelden verwijderen</button>
       <button data-act="remove-local">Lokaal gelezen lesitems verwijderen…</button>
+      <button data-act="ocr-test">Tekstherkenning testen</button>
       <button data-act="backup">Back-up downloaden (.json)</button>
       <button data-act="restore">Back-up terugzetten…</button>
       <button data-act="export">Alles kopiëren als tekst</button>
     </div>
   </div>
-  <nav class="tabs" id="tabs" role="tablist" aria-label="Werkmethodes"></nav>
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Hoofdcategorieën"></nav>
+  <div class="subbar" id="subbar" hidden><nav class="subtabs" id="subtabs" role="tablist" aria-label="Onderdelen"></nav></div>
 </div>
 
 <main>
@@ -527,13 +543,44 @@ async function saveTabOrder(ids){
   state.tabs=state.tabs.map(t=>({...t,order:ids.indexOf(t.id)+1})); renderTabs();
   for(const t of state.tabs){ try{ await state.store.update("tabs",t.id,{order:t.order}); }catch{ toast("Volgorde bewaren mislukt."); return; } }
 }
-function moveTab(id,dir){ const ids=sortedTabs().map(t=>t.id); const i=ids.indexOf(id), k=i+dir; if(i<0||k<0||k>=ids.length) return; [ids[i],ids[k]]=[ids[k],ids[i]]; saveTabOrder(ids); }
-function renderTabs(){
-  const el=$("#tabs"); const tabs=sortedTabs(); const act=activeTab();
-  const counts={}; state.prompts.forEach(p=>counts[p.tab]=(counts[p.tab]||0)+1);
-  el.innerHTML = tabs.map(t=>`<button class="tab" role="tab" draggable="true" title="Sleep om te verplaatsen" aria-selected="${act&&t.id===act.id}" data-tab="${esc(t.id)}" style="--c:${esc(t.color||"#0B7A83")}"><span class="dot"></span>${esc(t.name)}<span class="count">${counts[t.id]||0}</span></button>`).join("")
-    + `<button class="tab add" data-act="new-tab" title="Nieuwe tab toevoegen">+ Tab</button>`;
+function moveTab(id,dir){ const t=tabById(id); if(!t) return; const g=sections().find(x=>x.tabs.some(y=>y.id===id));
+  if(g&&g.tabs.length>1){ const sib=g.tabs.map(x=>x.id); const i=sib.indexOf(id), k=i+dir; if(k<0||k>=sib.length) return; [sib[i],sib[k]]=[sib[k],sib[i]]; return saveSectionOrder(sections().map(x=>x.name===g.name?{...x,tabs:sib.map(tabById)}:x)); }
+  moveSection(secOf(t),dir); }
+function moveSection(name,dir){ const secs=sections(); const i=secs.findIndex(x=>x.name===name), k=i+dir; if(i<0||k<0||k>=secs.length) return; [secs[i],secs[k]]=[secs[k],secs[i]]; saveSectionOrder(secs); }
+function saveSectionOrder(secs){ return saveTabOrder(secs.flatMap(g=>g.tabs.map(t=>t.id))); }
+/* Hoofdcategorieën: tabs met hetzelfde 'section' vormen één hoofdtab (bv. Web design = HTML + CSS + PHP).
+   Een tab zonder 'section' is zijn eigen hoofdtab. */
+const secOf = t => String(t?.section||"").trim() || String(t?.name||"");
+function sections(){
+  const m=new Map();
+  for(const t of sortedTabs()){ const k=secOf(t); if(!m.has(k)) m.set(k,{name:k,tabs:[],grouped:false}); const g=m.get(k); g.tabs.push(t); if(String(t.section||"").trim()) g.grouped=true; }
+  return [...m.values()];
 }
+function activeSection(){ const a=activeTab(); if(!a) return null; return sections().find(g=>g.tabs.some(t=>t.id===a.id))||null; }
+/* Tabs waarin gezocht wordt: de hele hoofdcategorie (of alles met 'in alle tabs') */
+function searchTabIds(){ if(state.allTabs) return null; const g=activeSection(); return g?new Set(g.tabs.map(t=>t.id)):null; }
+function searchScopeName(){ if(state.allTabs) return "alle tabs"; const g=activeSection(); return g?g.name:""; }
+function renderTabs(){
+  const el=$("#tabs"); const act=activeTab(); const secs=sections(); const cur=activeSection();
+  const counts={}; state.prompts.forEach(p=>counts[p.tab]=(counts[p.tab]||0)+1);
+  el.innerHTML = secs.map(g=>{ const n=g.tabs.reduce((a,t)=>a+(counts[t.id]||0),0); const c=g.tabs[0].color||"#0B7A83";
+      return `<button class="tab" role="tab" draggable="true" title="Sleep om te verplaatsen" aria-selected="${!!cur&&cur.name===g.name}" data-sec="${esc(g.name)}" style="--c:${esc(c)}"><span class="dot"></span>${esc(g.name)}<span class="count">${n}</span></button>`; }).join("")
+    + `<button class="tab add" data-act="new-tab" title="Nieuwe hoofdcategorie toevoegen">+ Tab</button>`;
+  const bar=$("#subbar"), sub=$("#subtabs");
+  if(cur&&(cur.grouped||cur.tabs.length>1)){
+    bar.hidden=false;
+    sub.innerHTML = cur.tabs.map(t=>`<button class="stab" role="tab" draggable="true" title="Sleep om te verplaatsen" aria-selected="${!!act&&t.id===act.id}" data-tab="${esc(t.id)}" style="--c:${esc(t.color||"#0B7A83")}"><span class="dot"></span>${esc(t.name)}<span class="count">${counts[t.id]||0}</span></button>`).join("")
+      + `<button class="stab add" data-act="new-subtab" title="Onderdeel toevoegen aan ${esc(cur.name)}">+ Onderdeel</button>`
+      + `<span class="subhint">Zoeken gebeurt in heel ${esc(cur.name)}</span>`;
+  } else { bar.hidden=true; sub.innerHTML=""; }
+}
+function openSection(name){
+  const g=sections().find(x=>x.name===name); if(!g) return;
+  const cur=activeTab(); if(cur) lsSet("pf.sec."+secOf(cur),cur.id);
+  const last=lsGet("pf.sec."+name,null); const t=g.tabs.find(x=>x.id===last)||g.tabs[0];
+  state.active=t.id; lsSet("pf.active",t.id); state.smart=null; renderAll();
+}
+function openTab(id){ const t=tabById(id); if(!t) return; state.active=id; lsSet("pf.active",id); lsSet("pf.sec."+secOf(t),id); state.smart=null; renderAll(); }
 
 /* ---------- Zoeken ---------- */
 function tokens(q){ return norm(q).split(/[^a-z0-9_.\-<>!/~+]+/).filter(Boolean); }
@@ -558,7 +605,8 @@ function scorePrompt(p, toks, rawq){
 }
 function searchResults(){
   const toks=tokens(state.q); const act=activeTab();
-  const pool=state.prompts.filter(p=>state.allTabs||!act||p.tab===act.id);
+  const ids=searchTabIds();
+  const pool=state.prompts.filter(p=>!ids||ids.has(p.tab));
   return pool.map(p=>({p,s:scorePrompt(p,toks,state.q)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).map(x=>x.p);
 }
 function hl(text){
@@ -623,7 +671,7 @@ function renderLib(){
   $("#smartBtn").hidden = !(state.q && state.sample);
   if(state.q){
     const res=searchResults();
-    el.innerHTML = `<div class="libhead"><h1>${res.length} resultaat${res.length===1?"":"en"}</h1><span class="hint">voor “${esc(state.q)}” ${state.allTabs?"in alle tabs":"in "+esc(act.name)} · Enter kopieert het bovenste</span></div>`
+    el.innerHTML = `<div class="libhead"><h1>${res.length} resultaat${res.length===1?"":"en"}</h1><span class="hint">voor “${esc(state.q)}” in ${esc(searchScopeName())} · Enter kopieert het bovenste</span></div>`
       + (res.length? `<div class="cards" style="margin-top:10px">${res.slice(0,60).map((p,i)=>cardHTML(p,i===0)).join("")}</div>`
         : `<div class="empty" style="margin-top:10px"><b>Niets gevonden</b>${state.sample?"Probeer andere woorden, of laat Claude op betekenis zoeken met <em>Slim zoeken</em>.":"Probeer andere woorden of zet “in alle tabs” aan."}</div>`);
     return;
@@ -705,15 +753,17 @@ function editPrompt(p){
   }
 }
 
-function editTab(t){
-  const isNew=!t; t=t||{name:"",hint:"",color:SWATCHES[(state.tabs.length)%SWATCHES.length],kind:""};
+function editTab(t,presetSection){
+  const isNew=!t; t=t||{name:"",hint:"",color:SWATCHES[(state.tabs.length)%SWATCHES.length],kind:"",section:presetSection||""};
+  const secNames=[...new Set(state.tabs.map(x=>String(x.section||"").trim()).filter(Boolean))];
   let color=t.color;
   const count=isNew?0:state.prompts.filter(p=>p.tab===t.id).length;
   openModal({
     title: isNew?"Nieuwe tab":"Tab bewerken",
     body:`<div class="field"><label for="tName">Naam</label><input id="tName" value="${esc(t.name)}" placeholder="bv. Python, R, Git, BLAST"></div>
+      <div class="field"><label for="tSec">Hoofdcategorie (leeg = eigen hoofdtab)</label><input id="tSec" list="tSecList" value="${esc(t.section||"")}" placeholder="bv. Web design"><datalist id="tSecList">${secNames.map(n=>`<option value="${esc(n)}">`).join("")}</datalist></div>
       <div class="field"><label for="tHint">Waarover gaat deze tab? (helpt Claude sorteren)</label><input id="tHint" value="${esc(t.hint||"")}" placeholder="bv. R-code voor statistiek in RStudio"></div>
-      ${isNew?"":`<div class="field"><label>Plaats</label><div style="display:flex;gap:8px"><button type="button" class="btn small" id="tLeft">← Naar links</button><button type="button" class="btn small" id="tRight">Naar rechts →</button></div></div>`}
+      ${isNew?"":`<div class="field"><label>Plaats</label><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn small" id="tLeft">← Naar links</button><button type="button" class="btn small" id="tRight">Naar rechts →</button></div><p class="tagline">Binnen een hoofdcategorie verschuift dit het onderdeel; anders de hele hoofdtab.</p></div>`}
       <div class="field"><label>Kleur</label><div class="swatches">${SWATCHES.map(c=>`<button type="button" style="--c:${c}" data-c="${c}" aria-pressed="${c===color}" aria-label="kleur ${c}"></button>`).join("")}</div></div>
       ${!isNew&&count?`<p class="tagline">Verwijderen wist ook de ${count} prompt${count===1?"":"s"} in deze tab.</p>`:""}`,
     danger: isNew?null:"Tab verwijderen",
@@ -722,8 +772,11 @@ function editTab(t){
     async onOk(){
       const name=$("#tName").value.trim(); if(!name){$("#tName").focus();return false;}
       const id=isNew? (norm(name).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,40)||"tab")+"-"+Math.random().toString(36).slice(2,6) : t.id;
-      const obj={name,hint:$("#tHint").value.trim(),color,kind:t.kind||"",order:tabById(id)?.order??(Math.max(0,...state.tabs.map(x=>x.order||0))+1),createdAt:t.createdAt||Date.now()};
-      const ok=await write("tabs",id,obj); if(ok&&isNew){state.active=id;lsSet("pf.active",id);renderAll();} return ok||false;
+      const section=$("#tSec").value.trim();
+      let order=tabById(id)?.order; const secTabs=section?state.tabs.filter(x=>x.id!==id&&String(x.section||"").trim()===section):[];
+      if(secTabs.length&&(isNew||String(t.section||"").trim()!==section)){ const mx=Math.max(...secTabs.map(x=>x.order||0)); const nxt=Math.min(...state.tabs.filter(x=>(x.order||0)>mx&&x.id!==id).map(x=>x.order||0),mx+1); order=(mx+nxt)/2; }
+      const obj={name,hint:$("#tHint").value.trim(),color,kind:t.kind||"",section,order:order??(Math.max(0,...state.tabs.map(x=>x.order||0))+1),createdAt:t.createdAt||Date.now()};
+      const ok=await write("tabs",id,obj); if(ok&&isNew){ openTab(id); } return ok||false;
     }
   });
 }
@@ -810,18 +863,41 @@ function explainHTML(cmd){
 
 /* ---------- Lokale OCR (Tesseract in de browser) ---------- */
 let ocrWorker=null;
-function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement("script"); s.src=src; s.onload=res; s.onerror=()=>rej(new Error("script")); document.head.appendChild(s); }); }
+function loadScript(src,cors){ return new Promise((res,rej)=>{ const s=document.createElement("script"); s.src=src; if(cors) s.crossOrigin="anonymous"; s.onload=res; s.onerror=()=>rej(new Error("script")); document.head.appendChild(s); }); }
+let ocrStep="";
+function seedOcrCache(raw){ return new Promise((res,rej)=>{ const r=indexedDB.open("keyval-store"); r.onupgradeneeded=()=>r.result.createObjectStore("keyval");
+  r.onsuccess=()=>{ const d=r.result; if(!d.objectStoreNames.contains("keyval")){ d.close(); rej(new Error("cache-opslag ontbreekt")); return; } const tx=d.transaction("keyval","readwrite"); tx.objectStore("keyval").put(raw,"./eng.traineddata"); tx.oncomplete=()=>{d.close();res();}; tx.onerror=()=>rej(tx.error); };
+  r.onerror=()=>rej(r.error); }); }
 async function getOcr(onStatus){
   if(ocrWorker) return ocrWorker;
+  ocrStep="script laden";
   onStatus("Tekstherkenning laden (eerste keer ± 5 MB)…");
-  if(!window.Tesseract) await loadScript("https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js");
-  onStatus("Taalbestand laden…");
+  if(!window.Tesseract) await loadScript("https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js",true);
+  ocrStep="taalbestand laden"; onStatus("Taalbestand laden…");
   const b64=await (await fetch("eng-traineddata.gz.b64.txt")).text();
   const gz=Uint8Array.from(atob(b64.trim()),c=>c.charCodeAt(0));
   const data=new Uint8Array(await new Response(new Blob([gz]).stream().pipeThrough(new DecompressionStream("gzip"))).arrayBuffer());
-  ocrWorker = await Tesseract.createWorker([{code:"eng",data}],1,{cacheMethod:"none",logger:m=>{ if(m.status==="recognizing text") onStatus(`Tekst herkennen… ${Math.round(m.progress*100)}%`); }});
+  /* De herkenner mag in deze weergave niets van internet ophalen; daarom zetten we het taalbestand
+     zelf in zijn cache (IndexedDB) en laten we hem alleen daaruit lezen. Rechtstreeks meegeven faalt. */
+  ocrStep="taalbestand klaarzetten"; await seedOcrCache(data);
+  ocrStep="herkenner starten";
+  ocrWorker = await Tesseract.createWorker("eng",1,{cacheMethod:"readOnly",logger:m=>{ if(m.status==="recognizing text") onStatus(`Tekst herkennen… ${Math.round(m.progress*100)}%`); }});
   await ocrWorker.setParameters({preserve_interword_spaces:"1"});
+  ocrStep="";
   return ocrWorker;
+}
+/* Test of de lokale tekstherkenning in deze weergave werkt (menu ⋯ → Tekstherkenning testen) */
+async function ocrSelfTest(){
+  openModal({title:"Tekstherkenning testen",ok:null,body:`<p id="ocrT" class="tagline">Bezig…</p>`});
+  const say=t=>{ const n=$("#ocrT"); if(n) n.textContent=t; };
+  const t0=Date.now();
+  try{
+    const c=document.createElement("canvas"); c.width=600; c.height=90; const g=c.getContext("2d");
+    g.fillStyle="#fff"; g.fillRect(0,0,600,90); g.fillStyle="#000"; g.font="28px monospace"; g.fillText("ls -la /home",20,55);
+    const w=await getOcr(say); say("Tekst herkennen…");
+    const r=await w.recognize(c); const txt=(r?.data?.text||"").trim();
+    say(`Werkt. Herkend: “${txt}” (verwacht: “ls -la /home”) · ${((Date.now()-t0)/1000).toFixed(1)} s`);
+  }catch(e){ console.warn("ocr test",ocrStep,e); say(`Werkt niet in deze weergave. Stap: ${ocrStep||"?"} · fout: ${String(e?.message||e?.type||e||"onbekend").slice(0,200)}`); }
 }
 async function preprocess(file){
   const bmp=await createImageBitmap(file);
@@ -1054,7 +1130,7 @@ async function runJob(job){
     else await runShot(job);
   }catch(e){
     const msg = e?.code==="blob_missing" ? "Het bestand is niet meer gevonden. Verwijder dit item en voeg het opnieuw toe."
-              : e?.code==="both" ? `Claude lukte niet (${e.claude}) en de lokale herkenning kon ook niet starten. Probeer later opnieuw.`
+              : e?.code==="both" ? `Claude lukte niet (${e.claude}) en de lokale herkenning ook niet${e.local?` (${e.local})`:""}. Probeer later opnieuw.`
               : sampleErr(e);
     await state.store.update("queue",job.id,{status:"fout",error:msg,updatedAt:Date.now()}).catch(()=>{});
   }finally{
@@ -1071,9 +1147,14 @@ async function runShot(job){
     catch(e){ if(e?.code==="cancelled") throw e; reason=sampleErr(e).split(".")[0]; }
   } else reason="Claude is niet beschikbaar in deze weergave";
   if(!res){ used="local"; rt[job.id].phase="local"; rt[job.id].t0=Date.now();
-    setRt(job.id,"Claude lukte niet; lokale herkenning wordt gebruikt…");
-    try{ res=await analyzeLocal(blob,job); }
-    catch(e){ throw {code:"both",claude:reason}; } }
+    setRt(job.id, state.sample&&!state.sampleImages ? "Tekst uit de screenshot lezen…" : "Claude lukte niet; lokale herkenning wordt gebruikt…");
+    try{ res=await analyzeLocal(blob,job);
+      /* Claude kan hier geen afbeeldingen bekijken, maar wel tekst: laat Claude de herkende tekst uitleggen */
+      if(state.sample&&res.ocrText&&res.ocrText.trim().length>2){
+        try{ rt[job.id].phase="claude"; const items=await analyzeOcrClaude(res.ocrText,job); res={items,ocrText:res.ocrText}; used="claude-tekst"; reason=""; state.sampleOk=true; renderClaudeStatus(); }
+        catch(e){ if(e?.code==="cancelled") throw e; reason=sampleErr(e).split(".")[0]; }
+      } }
+    catch(e){ console.warn("lokale herkenning",ocrStep,e); throw {code:"both",claude:reason,local:(ocrStep?ocrStep+": ":"")+String(e?.message||e?.type||e||"onbekend").slice(0,120)}; } }
   await state.store.update("queue",job.id,{status:"klaar",items:res.items,ocrText:res.ocrText??"",used,reason,error:"",finishedAt:Date.now(),updatedAt:Date.now()}).catch(()=>{});
 }
 async function loadDeck(job){
@@ -1120,8 +1201,9 @@ function claudeContext(){
   const tabs=sortedTabs().map(t=>({id:t.id,naam:t.name,over:t.hint||""}));
   const groups={}; tabs.forEach(t=>groups[t.id]=groupList(t.id));
   // korte lijst (snellere analyse): eerst je eigen items, dan die uit de lessen
-  let existing=""; const ordered=[...state.prompts].sort((a,b)=>(isLocalItem(a)?1:0)-(isLocalItem(b)?1:0));
-  for(const p of ordered){ const l=`${p.id} | ${p.command}`.slice(0,80)+"\n"; if(existing.length+l.length>12000) break; existing+=l; }
+  // alleen echte commando's (geen begrippen uit uitleg-tabs), kort, zodat de hele lijst past
+  let existing=""; const ordered=[...state.prompts].filter(p=>tabById(p.tab)?.kind!=="concept").sort((a,b)=>(isLocalItem(a)?1:0)-(isLocalItem(b)?1:0));
+  for(const p of ordered){ const l=`${p.id}|${String(p.command).replace(/\s+/g," ").slice(0,60)}\n`; if(existing.length+l.length>26000) break; existing+=l; }
   return {tabs,groups,existing};
 }
 const ITEM_FORMAT=`{"items":[{"command":"ls -la ~/data","tab":"linux","group":"Navigatie","title":"Toon alle bestanden in detail","explanation":"1-3 zinnen: wat het doet en wanneer je het gebruikt.","parts":[{"t":"ls","m":"toon inhoud van een map"},{"t":"-l","m":"lange weergave"}],"fout":"","uitvoer":"max 6 relevante regels uitvoer, of leeg","voorbeeld":"1 zin: wat dit concrete voorbeeld toont (bv. waarom het deze bestanden vond)","hoortBij":"id uit de lijst hieronder, of leeg"}]}`;
@@ -1132,7 +1214,7 @@ function cleanClaudeItems(res,extra){
   const items=Array.isArray(res?.items)?res.items:[];
   return items.filter(x=>x&&x.command).map(x=>toReviewItem({command:String(x.command),tab:String(x.tab||""),group:String(x.group||""),title:String(x.title||""),explanation:String(x.explanation||""),parts:Array.isArray(x.parts)?x.parts.filter(p=>p&&p.t).map(p=>({t:String(p.t),m:String(p.m||"")})):[],error:String(x.fout||""),
     output:String(x.uitvoer||"").split("\n").slice(0,6).join("\n").slice(0,600),note:String(x.voorbeeld||"").slice(0,300),
-    relatedId:state.prompts.some(p=>p.id===String(x.hoortBij||""))?String(x.hoortBij):"",...(extra?extra(x):{})}));
+    relatedId:state.prompts.some(p=>p.id===String(x.hoortBij||"")&&tabById(p.tab)?.kind!=="concept")?String(x.hoortBij):"",...(extra?extra(x):{})}));
 }
 async function analyzeClaude(blob,job){
   if(!state.sample||!state.sampleImages) throw {code:"no_claude"};
@@ -1159,6 +1241,35 @@ Staat er niets bruikbaars op: {"items":[]}`;
   setRt(job.id,"Claude bekijkt de screenshot…");
   const res=await state.sample.json(prompt,{images:[blob],modelTier:"quick",signal:abortCtl.signal,onText:({text})=>{ if(rt[job.id]){ rt[job.id].streaming=true; rt[job.id].text=`Claude schrijft… (${text.length} tekens)`; } }});
   return {items:cleanClaudeItems(res)};
+}
+/* Screenshot als tekst (lokaal herkend) door Claude laten uitleggen, voor weergaven waar Claude geen afbeeldingen mag bekijken */
+async function analyzeOcrClaude(text,job){
+  const {tabs,groups,existing}=claudeContext();
+  const prompt=`Je helpt een beginnende student bio-informatica. Hieronder staat de tekst die tekstherkenning (OCR) uit een screenshot van zijn werkscherm haalde (bv. terminal, code-editor, PyMOL). OCR maakt fouten: "1s" of "Is" is meestal "ls", "-1" na ls/wc is meestal "-l", "S" of "§" aan het einde van de prompt is meestal "$". Verbeter zulke leesfouten.
+Taak: haal ELKE opdracht / prompt / commando / stuk code eruit dat de student zelf heeft ingetypt, en leg het eenvoudig uit.
+Regels:
+- Terminal: het commando staat na de prompt (bv. "naam@pc:~$ "). De regels daarna zijn uitvoer.
+- Code-bestanden (bv. HTML): één item per betekenisvolle tag of constructie, niet elke tekstregel.
+- Negeer menu's en tekst die geen code is. Werd een commando afgebroken met ^C, sla het over.
+- Kies voor elk item de best passende tab-id uit deze lijst: ${JSON.stringify(tabs)}
+  Past niets? Zet dan in "tab" een korte naam voor een NIEUWE tab.
+- Groepen die al bestaan per tab (hergebruik ze waar het past): ${JSON.stringify(groups)}
+- Gaf een commando een foutmelding? Neem het op, zet de melding in "fout" en leg uit waarom het misliep. Anders "fout": "".
+- Jokertekens (*, ?, [..]) altijd apart uitleggen in "parts". Schrijf in eenvoudig Nederlands.
+${RELATE_RULES}
+Zijn lijst (id | commando):
+${existing||"(nog leeg)"}
+
+Herkende tekst:
+"""
+${String(text).slice(0,6000)}
+"""
+Antwoord met ALLEEN JSON in deze vorm:
+${ITEM_FORMAT}
+Staat er niets bruikbaars in: {"items":[]}`;
+  setRt(job.id,"Claude legt de herkende tekst uit…");
+  const res=await state.sample.json(prompt,{modelTier:"quick",signal:abortCtl.signal,onText:({text})=>{ if(rt[job.id]){ rt[job.id].streaming=true; rt[job.id].text=`Claude schrijft… (${text.length} tekens)`; } }});
+  return cleanClaudeItems(res);
 }
 async function analyzeDeckClaude(ch,deck,job){
   const {tabs,groups,existing}=claudeContext();
@@ -1273,7 +1384,7 @@ function jobHTML(j,ctx){
   else if(j.status==="wachtend"&&!j.blob&&!memBlobs.has(j.id)) status="Deze screenshot werd niet bewaard (pagina gesloten tijdens het plakken). Verwijder hem en plak opnieuw.";
   else if(j.status==="wachtend") status= reachable(j) ? `Plaats ${ctx.place} in de wachtrij${ctx.beforeDeck?" · komt vóór het volgende stuk van de presentatie":""}${prog}` : "Wacht op het toestel waar dit bestand werd toegevoegd";
   else if(j.status==="bezig") status= mine ? `<span class="spin"></span>${esc(rt[j.id].text)}` : `<span class="spin"></span>Bezig in een andere weergave; wordt hier hervat als die gesloten is`;
-  else if(j.status==="klaar") status= items.length? `${items.length} gevonden: ${nNew} nieuw, ${nDup} bij iets uit je lijst (wordt voorbeeld)${j.used==="local"?`. Lokaal gelezen (${esc(j.reason||"Claude niet beschikbaar")}), kijk ze goed na`:""}.` : `Geen commando's gevonden${deck?" in deze presentatie":" op deze screenshot"}.`;
+  else if(j.status==="klaar") status= items.length? `${items.length} gevonden: ${nNew} nieuw, ${nDup} bij iets uit je lijst (wordt voorbeeld)${j.used==="local"?`. Lokaal gelezen (${esc(j.reason||"Claude niet beschikbaar")}), kijk ze goed na`:j.used==="claude-tekst"?". Tekst lokaal herkend en door Claude uitgelegd; kijk de commando's na (herkenning kan letters verwarren)":""}.` : `Geen commando's gevonden${deck?" in deze presentatie":" op deze screenshot"}.`;
   else if(j.status==="fout"&&deck) status=`Onderbroken${prog}`;
   const acts=[];
   if(j.status==="wachtend"&&ctx.on>1){ acts.push(`<button class="btn small ghost" data-act="move" data-dir="-1" data-job="${j.id}" ${ctx.oi===0?"disabled":""} aria-label="Eerder in de wachtrij">↑</button>`); acts.push(`<button class="btn small ghost" data-act="move" data-dir="1" data-job="${j.id}" ${ctx.oi===ctx.on-1?"disabled":""} aria-label="Later in de wachtrij">↓</button>`); }
@@ -1376,12 +1487,12 @@ const saveMsg=r=>[`${r.added} nieuw opgeslagen`, r.examples&&`${r.examples} als 
 /* ---------- Slim zoeken (Claude) ---------- */
 async function smartSearch(){
   if(!state.sample||!state.q.trim()) return;
-  const act=activeTab(); const pool=state.prompts.filter(p=>state.allTabs||p.tab===act.id).slice(0,600);
+  const act=activeTab(); const sids=searchTabIds(); const pool=state.prompts.filter(p=>!sids||sids.has(p.tab)).slice(0,600);
   const list=pool.map(p=>`${p.id} | ${tabById(p.tab)?.name||""} | ${p.command} | ${p.title||""}`.slice(0,160)).join("\n");
   const ctl=new AbortController(); state.smart={busy:true,q:state.q,ctl}; renderSmart();
   try{
     const r=await state.sample.json(`Een beginnende student bio-informatica zoekt in zijn eigen lijst met commando's naar: "${state.q}"
-Tab: ${state.allTabs?"alle tabs":act.name+" ("+(act.hint||"")+")"}
+Gezocht in: ${state.allTabs?"alle tabs":searchScopeName()+" ("+(activeSection()?.tabs||[act]).map(t=>t.name+(t.hint?": "+t.hint:"")).join("; ")+")"}
 Zijn opgeslagen commando's (id | tab | commando | titel):
 ${list||"(leeg)"}
 Antwoord met ALLEEN JSON: {"ids":["ids van de best passende, beste eerst, max 6"],"tip":"optioneel: 1 korte Nederlandse zin","suggestie":null}
@@ -1433,6 +1544,8 @@ async function handleAct(act, node){
     case "edit": editPrompt(state.prompts.find(x=>x.id===id)); break;
     case "del": { if(node.dataset.armed){ await remove("prompts",id); } else { node.dataset.armed="1"; node.textContent="Zeker?"; setTimeout(()=>{ if(node.isConnected){ delete node.dataset.armed; node.textContent="Verwijderen"; } },3000); } break; }
     case "new-tab": editTab(null); break;
+    case "new-subtab": editTab(null,activeSection()?.name||""); break;
+    case "ocr-test": await ocrSelfTest(); break;
     case "edit-tab": { const t=activeTab(); if(t) editTab(t); break; }
     case "add-manual": editPrompt(null); break;
     case "remove-samples": { const s=state.prompts.filter(p=>p.sample); for(const p of s) await remove("prompts",p.id); toast(s.length?`${s.length} voorbeelden verwijderd.`:"Er zijn geen voorbeelden meer."); break; }
@@ -1481,19 +1594,26 @@ async function handleAct(act, node){
 }
 function bindUI(){
   document.addEventListener("click",e=>{
+    const secBtn=e.target.closest("[data-sec]");
+    if(secBtn){ openSection(secBtn.dataset.sec); return; }
     const tabBtn=e.target.closest("[data-tab]");
-    if(tabBtn){ state.active=tabBtn.dataset.tab; lsSet("pf.active",state.active); state.smart=null; renderAll(); return; }
+    if(tabBtn){ openTab(tabBtn.dataset.tab); return; }
     const a=e.target.closest("[data-act]");
     if(a){ $("#menu").hidden=true; $("#menuBtn").setAttribute("aria-expanded","false"); handleAct(a.dataset.act,a); return; }
     if(e.target.closest("#menuBtn")){ const m=$("#menu"); m.hidden=!m.hidden; $("#menuBtn").setAttribute("aria-expanded",String(!m.hidden)); return; }
     if(!e.target.closest("#menu")) $("#menu").hidden=true;
   });
-  let dragId=null; const tabsEl=$("#tabs");
-  tabsEl.addEventListener("dragstart",e=>{ const t=e.target.closest("[data-tab]"); if(!t) return; dragId=t.dataset.tab; e.dataTransfer.effectAllowed="move"; try{ e.dataTransfer.setData("text/plain",dragId); }catch{} t.classList.add("dragging"); });
-  tabsEl.addEventListener("dragover",e=>{ if(!dragId) return; e.preventDefault(); e.stopPropagation(); tabsEl.querySelectorAll(".dropbefore").forEach(n=>n.classList.remove("dropbefore")); const t=e.target.closest("[data-tab]"); if(t&&t.dataset.tab!==dragId) t.classList.add("dropbefore"); });
-  tabsEl.addEventListener("drop",e=>{ if(!dragId) return; e.preventDefault(); e.stopPropagation(); const t=e.target.closest("[data-tab]"); const ids=sortedTabs().map(x=>x.id).filter(x=>x!==dragId);
-    let at=t?ids.indexOf(t.dataset.tab):ids.length; if(at<0) at=ids.length; ids.splice(at,0,dragId); dragId=null; saveTabOrder(ids); });
-  tabsEl.addEventListener("dragend",()=>{ dragId=null; tabsEl.querySelectorAll(".dragging,.dropbefore").forEach(n=>n.classList.remove("dragging","dropbefore")); });
+  /* Slepen: hoofdtabs verplaatsen hele categorieën, onderdelen verplaatsen binnen hun categorie */
+  function dragZone(el,attr,getOrder,save){
+    let dragId=null;
+    el.addEventListener("dragstart",e=>{ const t=e.target.closest(`[${attr}]`); if(!t) return; dragId=t.getAttribute(attr); e.dataTransfer.effectAllowed="move"; try{ e.dataTransfer.setData("text/plain",dragId); }catch{} t.classList.add("dragging"); });
+    el.addEventListener("dragover",e=>{ if(!dragId) return; e.preventDefault(); e.stopPropagation(); el.querySelectorAll(".dropbefore").forEach(n=>n.classList.remove("dropbefore")); const t=e.target.closest(`[${attr}]`); if(t&&t.getAttribute(attr)!==dragId) t.classList.add("dropbefore"); });
+    el.addEventListener("drop",e=>{ if(!dragId) return; e.preventDefault(); e.stopPropagation(); const t=e.target.closest(`[${attr}]`); const ids=getOrder().filter(x=>x!==dragId);
+      let at=t?ids.indexOf(t.getAttribute(attr)):ids.length; if(at<0) at=ids.length; ids.splice(at,0,dragId); dragId=null; save(ids); });
+    el.addEventListener("dragend",()=>{ dragId=null; el.querySelectorAll(".dragging,.dropbefore").forEach(n=>n.classList.remove("dragging","dropbefore")); });
+  }
+  dragZone($("#tabs"),"data-sec",()=>sections().map(g=>g.name),names=>{ const secs=sections(); saveSectionOrder(names.map(n=>secs.find(g=>g.name===n)).filter(Boolean)); });
+  dragZone($("#subtabs"),"data-tab",()=>activeSection()?.tabs.map(t=>t.id)||[],ids=>{ const cur=activeSection(); if(!cur) return; saveSectionOrder(sections().map(g=>g.name===cur.name?{...g,tabs:ids.map(tabById).filter(Boolean)}:g)); });
   const q=$("#q");
   q.addEventListener("input",()=>{ state.q=q.value; $("#qClear").hidden=!q.value; renderLib(); renderSmart(); });
   q.addEventListener("keydown",e=>{ if(e.key==="Enter"){ const r=searchResults(); if(r[0]) copyText(r[0].command); } });
