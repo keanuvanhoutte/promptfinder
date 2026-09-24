@@ -2,13 +2,22 @@
 
 Persoonlijke app om commando's en begrippen uit screenshots en lesslides (PowerPoint) te halen, uit te leggen en per tab (Algemeen, Linux, HTML, PyMOL …) doorzoekbaar te bewaren.
 
-De app zelf draait als artifact op claude.ai. Deze repository is de **reservekopie**: de broncode van de app en een back-up van alle data.
+De app zelf draait als artifact op claude.ai. Deze repository is de **reservekopie** (broncode + back-up van alle data) én de **openbare leesversie**.
+
+## Online bekijken (zonder Claude)
+
+**https://keanuvanhoutte.github.io/promptfinder/**
+
+Iedereen met deze link kan de lijst doorzoeken, zonder account. Het is alleen lezen: toevoegen en screenshots laten uitleggen kan enkel in de Claude-versie.
+De pagina leest `backup/promptfinder-backup.json`. Wordt die back-up hier vernieuwd, dan toont de link binnen enkele minuten de nieuwe lijst.
 
 ## Inhoud
 
 | Map / bestand | Wat |
 |---|---|
+| `index.html` | De openbare leesversie (GitHub Pages). |
 | `app/index.html` | Broncode van de app (zoals gepubliceerd op claude.ai). |
+| `app/promptfinder-default.html` | Losse leesversie om door te sturen (momentopname, werkt zonder internet). |
 | `app/eng-traineddata.gz.b64.txt` | Taalbestand voor de lokale tekstherkenning (reserve als Claude niet beschikbaar is). |
 | `backup/promptfinder-backup.json` | Volledige back-up van alle tabs en prompts. Terug te zetten in de app. |
 | `backup/prompts-leesbaar.md` | Dezelfde data als leesbare lijst, handig om op GitHub te bekijken. |
@@ -26,6 +35,6 @@ Wat in de back-up staat wordt teruggezet. Wat er nu in de app staat en niet in d
 ## Back-up bijwerken
 
 1. In de app: menu **⋯** → **Back-up downloaden (.json)**.
-2. Op GitHub: open de map `backup` → **Add file** → **Upload files** → sleep het nieuwe bestand erin, hernoem het naar `promptfinder-backup.json` (of laat de datum in de naam staan) → **Commit changes**.
+2. Op GitHub: open de map `backup` → **Add file** → **Upload files** → sleep het nieuwe bestand erin → **Commit changes**. Het bestand moet exact `promptfinder-backup.json` heten, anders ziet de openbare link het niet.
 
 Zo heb je op GitHub ook de geschiedenis van al je vorige back-ups.
