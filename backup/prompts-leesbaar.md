@@ -1,5 +1,5 @@
 # PromptFinder – leesbare lijst
-Export: 2026-09-24T13:28:58Z · 939 items
+Export: 2026-09-24T14:12:04Z · 939 items
 
 
 ## Algemeen (143)
@@ -953,9 +953,12 @@ Export: 2026-09-24T13:28:58Z · 939 items
 - `<!DOCTYPE html>` — **Documenttype**: Staat helemaal bovenaan elk HTML-bestand en vertelt de browser dat het om moderne HTML gaat.
 - `! + Enter` — **HTML-basisstructuur invoegen (VS Code)**: In VS Code typ je in een leeg .html-bestand een uitroepteken en druk je op Enter (of Tab). Dan wordt de volledige HTML5-basisstructuur met doctype, html, head en body automatisch ingevuld. _(bron: 2. Introduction to HTML.pptx, dia 9)_
 - `<html lang="en"></html>` — **Begin en einde van document**: De <html>-tag en de sluitingstag </html> markeren het begin en einde van het HTML-document; alles staat hiertussen. Het lang-attribuut zegt in welke taal de pagina geschreven is. _(bron: 2. Introduction to HTML.pptx, dia 11)_
+  - voorbeelden: `</html>`
 - `<head></head>` — **Metadata van de pagina**: In de <head> zet je informatie over de pagina (metadata), zoals de titel en CSS-stijlen. Het is een omhulsel rond andere tags; de inhoud ervan verschijnt niet in het browservenster zelf. _(bron: 2. Introduction to HTML.pptx, dia 12)_
 - `<body></body>` — **Zichtbare inhoud van de pagina**: Alles tussen <body> en </body> wordt in het browservenster getoond. Het is een omhulsel rond alle andere inhoudstags zoals koppen, paragrafen en afbeeldingen. _(bron: 2. Introduction to HTML.pptx, dia 15)_
+  - voorbeelden: `</body>`
 - `<!-- commentaar -->` — **Commentaar in HTML**: Tekst tussen <!-- en --> is commentaar: de browser toont het niet. Je gebruikt het voor uitleg en notities in je code, zodat die makkelijker te begrijpen is. _(bron: 2. Introduction to HTML.pptx, dia 16)_
+  - voorbeelden: `<!--ander manier van schrijven-->`
 
 ### Head & koppelingen
 - `<title></title>` — **Titel van de webpagina**: Stelt de titel van de webpagina in; de browser toont die in het tabblad. Staat binnen de <head>. _(bron: 2. Introduction to HTML.pptx, dia 13)_
@@ -971,16 +974,18 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `<code></code>` — **Code-tekst binnen een regel**: Toont tekst in een monospaced lettertype, zoals <pre>, maar is een inline-element: de tekst blijft op dezelfde regel staan. _(bron: 2. Introduction to HTML.pptx, dia 30)_
 - `<em></em>` — **Tekst benadrukken (cursief)**: Legt nadruk op tekst; de browser toont die cursief. _(bron: 2. Introduction to HTML.pptx, dia 31)_
   - werkt ook: `<i></i>` — Zelfde resultaat (cursief); <em> geeft ook nadruk in de betekenis, <i> is puur opmaak.
-  - voorbeelden: `<i>enzym11111111</i>`
+  - werkt ook: `<i>tekst</i>` — Cursief
+  - voorbeelden: `<i>enzym11111111</i>`, `<i>tekst</i>`
 - `<small></small>` — **Kleinere tekst**: Toont tekst in een kleiner lettertype. Je kan small-tags in elkaar zetten (nesten): hoe meer small-tags, hoe kleiner de tekst. _(bron: 2. Introduction to HTML.pptx, dia 32)_
-  - voorbeelden: `<small>2222222</small>`
+  - voorbeelden: `<small>2222222</small>`, `<small>tekst</small>`
 - `<strike></strike>` — **Tekst doorstrepen**: Toont tekst met een lijn erdoor, bv. om een fout aan te duiden. _(bron: 2. Introduction to HTML.pptx, dia 33)_
   - werkt ook: `<del></del>` — Zelfde resultaat (doorgestreept); <strike> is verouderd, <del> of <s> is de moderne vorm.
   - voorbeelden: `<strike>4444444</strike>`
 - `<strong></strong>` — **Tekst vet maken**: Benadrukt tekst sterk; de browser toont die in het vet. _(bron: 2. Introduction to HTML.pptx, dia 34)_
   - werkt ook: `<b></b>` — Zelfde resultaat (vet); <strong> duidt ook belangrijkheid aan, <b> is puur opmaak.
-  - voorbeelden: `<strong>33333333</strong>`
+  - voorbeelden: `<strong>33333333</strong>`, `<strong>tekst</strong>`
 - `<q></q>` — **Kort citaat binnen regel**: Markeert een kort citaat binnen een regel tekst; de browser zet er automatisch aanhalingstekens rond. _(bron: 2. Introduction to HTML.pptx, dia 35)_
+  - voorbeelden: `<q>citaat</q>`
 
 ### Layout
 - `<div></div>` — **Algemene container (blok)**: Geen andere content mag getoond worden om diezelfde lijn. De div-tag heeft geen eigen betekenis en voegt, anders dan <p>, geen extra witruimte toe boven of onder. _(bron: 2. Introduction to HTML.pptx, dia 22)_
@@ -1028,14 +1033,17 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `enctype="multipart/form-data"` — **Formulier geschikt maken voor uploads**: Attribuut op de <form>-tag dat nodig is om bestanden te versturen. Het verpakt tekstvelden en bestanden in aparte delen, zodat de server ze correct kan verwerken; zonder dit werkt uploaden niet. _(bron: 5. Dynamic Web Pages.pptx, dia 47)_
 
 ### Lijsten
-- `<ul></ul>` — **Lijst met opsommingstekens**: Maakt een ongenummerde lijst met bolletjes. Elk item staat in een eigen <li>-tag binnen de <ul>. _(bron: 2. Introduction to HTML.pptx, dia 42)_
+- `<ul></ul>` — **Unordered list maken**: Maakt een ongenummerde lijst met bolletjes. Elk item staat in een eigen <li>-tag binnen de <ul>. _(bron: 2. Introduction to HTML.pptx, dia 42)_
   - voorbeelden: `<ul><li>Item</li></ul>`
 - `<li></li>` — **Eén item in een lijst**: Elk item van een lijst staat in een eigen <li>-tag, binnen <ul> of <ol>. Voeg meer li-tags toe voor meer items. _(bron: 2. Introduction to HTML.pptx, dia 42)_
+  - voorbeelden: `<li>item</li>`
 - `<ol></ol>` — **Genummerde lijst**: Maakt een lijst met nummers, handig als de volgorde belangrijk is. Elk item staat in een eigen <li>-tag binnen de <ol>. _(bron: 2. Introduction to HTML.pptx, dia 43)_
 
 ### Tabellen
 - `<table></table>` — **Tabel maken**: Maakt een tabel en is de buitenste laag die de hele tabel omsluit. Binnenin staan rijen (<tr>) met cellen (<td> of <th>). _(bron: 2. Introduction to HTML.pptx, dia 45)_
+  - voorbeelden: `<table>`, `</table>`
 - `<tr></tr>` — **Rij in een tabel**: Maakt één rij in een tabel. Voeg meer tr-tags toe voor meer rijen. _(bron: 2. Introduction to HTML.pptx, dia 46)_
+  - voorbeelden: `<tr><td>paco</td><td>ostend</td><td>BIT3.5.8</td></tr>`
 - `<td></td>` — **Cel in een tabelrij**: Maakt één gewone cel in een tabelrij. Voeg meer td-tags toe voor meer cellen (kolommen) in de rij. _(bron: 2. Introduction to HTML.pptx, dia 47)_
 - `<th></th>` — **Kopcel in een tabel**: Maakt een kopcel, meestal om kolommen of rijen te benoemen. Browsers tonen die standaard vet en gecentreerd. _(bron: 2. Introduction to HTML.pptx, dia 48)_
 

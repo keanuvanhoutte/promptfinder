@@ -1,7 +1,7 @@
 {
  "app": "PromptFinder",
  "version": 1,
- "exportedAt": "2026-09-24T13:28:58Z",
+ "exportedAt": "2026-09-24T14:12:04Z",
  "tabs": [
   {
    "color": "#5A6874",
@@ -11152,8 +11152,22 @@
   {
    "command": "<html lang=\"en\"></html>",
    "createdAt": 1790250000418,
+   "examples": [
+    {
+     "command": "</html>",
+     "date": 1790257528087,
+     "img": {
+      "id": "0ead74fbabdd742bf153ab78b9e75765",
+      "kind": "asset"
+     },
+     "note": "Dit is altijd de allerlaatste regel van je HTML-bestand.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "De <html>-tag en de sluitingstag </html> markeren het begin en einde van het HTML-document; alles staat hiertussen. Het lang-attribuut zegt in welke taal de pagina geschreven is.",
    "group": "Structuur",
+   "lastSeen": 1790257528087,
    "parts": [
     {
      "m": "openingstag: begin van het document",
@@ -11173,8 +11187,8 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Begin en einde van document",
-   "updatedAt": 1790250000418,
-   "uses": 1,
+   "updatedAt": 1790257528087,
+   "uses": 2,
    "id": "les_0419"
   },
   {
@@ -11301,8 +11315,22 @@
   {
    "command": "<body></body>",
    "createdAt": 1790250000424,
+   "examples": [
+    {
+     "command": "</body>",
+     "date": 1790257527808,
+     "img": {
+      "id": "0ead74fbabdd742bf153ab78b9e75765",
+      "kind": "asset"
+     },
+     "note": "Je sluit het body-gedeelte af, waarna nog alleen </html> volgt.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "Alles tussen <body> en </body> wordt in het browservenster getoond. Het is een omhulsel rond alle andere inhoudstags zoals koppen, paragrafen en afbeeldingen.",
    "group": "Structuur",
+   "lastSeen": 1790257527808,
    "parts": [
     {
      "m": "openingstag van de inhoud",
@@ -11318,15 +11346,29 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Zichtbare inhoud van de pagina",
-   "updatedAt": 1790250000424,
-   "uses": 1,
+   "updatedAt": 1790257527808,
+   "uses": 3,
    "id": "les_0425"
   },
   {
    "command": "<!-- commentaar -->",
    "createdAt": 1790250000425,
+   "examples": [
+    {
+     "command": "<!--ander manier van schrijven-->",
+     "date": 1790257527152,
+     "img": {
+      "id": "0ead74fbabdd742bf153ab78b9e75765",
+      "kind": "asset"
+     },
+     "note": "Je plaatst een opmerking tussen <!-- en --> om nader uit te leggen wat je code doet.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "Tekst tussen <!-- en --> is commentaar: de browser toont het niet. Je gebruikt het voor uitleg en notities in je code, zodat die makkelijker te begrijpen is.",
    "group": "Structuur",
+   "lastSeen": 1790257527152,
    "parts": [
     {
      "m": "begin van het commentaar",
@@ -11346,8 +11388,8 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Commentaar in HTML",
-   "updatedAt": 1790250000425,
-   "uses": 1,
+   "updatedAt": 1790257527152,
+   "uses": 2,
    "id": "les_0426"
   },
   {
@@ -11758,6 +11800,10 @@
     {
      "command": "<i></i>",
      "note": "Zelfde resultaat (cursief); <em> geeft ook nadruk in de betekenis, <i> is puur opmaak."
+    },
+    {
+     "command": "<i>tekst</i>",
+     "note": "Cursief"
     }
    ],
    "command": "<em></em>",
@@ -11773,11 +11819,22 @@
      "note": "De tekst 'enzym11111111' wordt tussen <i>-tags gezet om het schuingedrukt weer te geven.",
      "output": "",
      "source": "screenshot"
+    },
+    {
+     "command": "<i>tekst</i>",
+     "date": 1790256892157,
+     "img": {
+      "id": "a5e6f1101aa8d8d3b3403a9968f1640c",
+      "kind": "asset"
+     },
+     "note": "Tekst tussen <i>-tags wordt schuin weergegeven.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": "Legt nadruk op tekst; de browser toont die cursief.",
    "group": "Tekst",
-   "lastSeen": 1790254787749,
+   "lastSeen": 1790256892157,
    "parts": [
     {
      "m": "openingstag (emphasis)",
@@ -11793,8 +11850,8 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Tekst benadrukken (cursief)",
-   "updatedAt": 1790260000000,
-   "uses": 2,
+   "updatedAt": 1790256892157,
+   "uses": 3,
    "id": "les_0440"
   },
   {
@@ -11811,11 +11868,22 @@
      "note": "De tekst '2222222' wordt kleiner weergegeven met de <small>-tag.",
      "output": "",
      "source": "screenshot"
+    },
+    {
+     "command": "<small>tekst</small>",
+     "date": 1790256893038,
+     "img": {
+      "id": "a5e6f1101aa8d8d3b3403a9968f1640c",
+      "kind": "asset"
+     },
+     "note": "Tekst tussen <small>-tags verschijnt in een kleiner lettertype.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": "Toont tekst in een kleiner lettertype. Je kan small-tags in elkaar zetten (nesten): hoe meer small-tags, hoe kleiner de tekst.",
    "group": "Tekst",
-   "lastSeen": 1790254788172,
+   "lastSeen": 1790256893038,
    "parts": [
     {
      "m": "openingstag",
@@ -11831,8 +11899,8 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Kleinere tekst",
-   "updatedAt": 1790254788172,
-   "uses": 2,
+   "updatedAt": 1790256893038,
+   "uses": 3,
    "id": "les_0441"
   },
   {
@@ -11899,11 +11967,22 @@
      "note": "De tekst '33333333' wordt vet weergegeven en gemarkeerd als semantisch belangrijk.",
      "output": "",
      "source": "screenshot"
+    },
+    {
+     "command": "<strong>tekst</strong>",
+     "date": 1790256891847,
+     "img": {
+      "id": "a5e6f1101aa8d8d3b3403a9968f1640c",
+      "kind": "asset"
+     },
+     "note": "De woorden binnen <strong> verschijnen vetgedrukt in de browser.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": "Benadrukt tekst sterk; de browser toont die in het vet.",
    "group": "Tekst",
-   "lastSeen": 1790254788486,
+   "lastSeen": 1790256891847,
    "parts": [
     {
      "m": "openingstag",
@@ -11919,15 +11998,29 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Tekst vet maken",
-   "updatedAt": 1790260000000,
-   "uses": 2,
+   "updatedAt": 1790256891847,
+   "uses": 3,
    "id": "les_0443"
   },
   {
    "command": "<q></q>",
    "createdAt": 1790250000443,
+   "examples": [
+    {
+     "command": "<q>citaat</q>",
+     "date": 1790256892474,
+     "img": {
+      "id": "a5e6f1101aa8d8d3b3403a9968f1640c",
+      "kind": "asset"
+     },
+     "note": "De inhoud van <q> wordt automatisch omgeven met aanhalingstekens.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "Markeert een kort citaat binnen een regel tekst; de browser zet er automatisch aanhalingstekens rond.",
    "group": "Tekst",
+   "lastSeen": 1790256892474,
    "parts": [
     {
      "m": "openingstag (quote)",
@@ -11943,8 +12036,8 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Kort citaat binnen regel",
-   "updatedAt": 1790250000443,
-   "uses": 1,
+   "updatedAt": 1790256892474,
+   "uses": 2,
    "id": "les_0444"
   },
   {
@@ -12130,6 +12223,7 @@
    "id": "les_0451"
   },
   {
+   "alts": [],
    "command": "<ul></ul>",
    "createdAt": 1790250000451,
    "examples": [
@@ -12138,10 +12232,22 @@
      "note": "Lijst met bolletjes",
      "output": "",
      "source": "voorbeeld"
+    },
+    {
+     "command": "<ul></ul>",
+     "date": 1790256891203,
+     "img": {
+      "id": "a5e6f1101aa8d8d3b3403a9968f1640c",
+      "kind": "asset"
+     },
+     "note": "Hier wordt een ongeordende lijst gemaakt met twee items.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": "Maakt een ongenummerde lijst met bolletjes. Elk item staat in een eigen <li>-tag binnen de <ul>.",
    "group": "Lijsten",
+   "lastSeen": 1790256891203,
    "parts": [
     {
      "m": "unordered list: begin van de lijst",
@@ -12160,16 +12266,30 @@
    "source": "les",
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
-   "title": "Lijst met opsommingstekens",
-   "updatedAt": 1790260000000,
-   "uses": 1,
+   "title": "Unordered list maken",
+   "updatedAt": 1790257145282,
+   "uses": 2,
    "id": "les_0452"
   },
   {
    "command": "<li></li>",
    "createdAt": 1790250000452,
+   "examples": [
+    {
+     "command": "<li>item</li>",
+     "date": 1790256891503,
+     "img": {
+      "id": "a5e6f1101aa8d8d3b3403a9968f1640c",
+      "kind": "asset"
+     },
+     "note": "Elk <li>-element wordt weergegeven als één regel in de lijst.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "Elk item van een lijst staat in een eigen <li>-tag, binnen <ul> of <ol>. Voeg meer li-tags toe voor meer items.",
    "group": "Lijsten",
+   "lastSeen": 1790256891503,
    "parts": [
     {
      "m": "list item: openingstag",
@@ -12185,15 +12305,29 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Eén item in een lijst",
-   "updatedAt": 1790250000452,
-   "uses": 1,
+   "updatedAt": 1790256891503,
+   "uses": 2,
    "id": "les_0453"
   },
   {
    "command": "<ol></ol>",
    "createdAt": 1790250000453,
+   "examples": [
+    {
+     "command": "<ol></ol>",
+     "date": 1790256892756,
+     "img": {
+      "id": "a5e6f1101aa8d8d3b3403a9968f1640c",
+      "kind": "asset"
+     },
+     "note": "Hier wordt een genummerde lijst gemaakt met twee items.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "Maakt een lijst met nummers, handig als de volgorde belangrijk is. Elk item staat in een eigen <li>-tag binnen de <ol>.",
    "group": "Lijsten",
+   "lastSeen": 1790256892756,
    "parts": [
     {
      "m": "ordered list: begin van de lijst",
@@ -12213,15 +12347,40 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Genummerde lijst",
-   "updatedAt": 1790250000453,
-   "uses": 1,
+   "updatedAt": 1790256892756,
+   "uses": 2,
    "id": "les_0454"
   },
   {
    "command": "<table></table>",
    "createdAt": 1790250000454,
+   "examples": [
+    {
+     "command": "<table>",
+     "date": 1790257526540,
+     "img": {
+      "id": "0ead74fbabdd742bf153ab78b9e75765",
+      "kind": "asset"
+     },
+     "note": "Je opent een tabel waarin je rijen en cellen gaat plaatsen.",
+     "output": "",
+     "source": "screenshot"
+    },
+    {
+     "command": "</table>",
+     "date": 1790257527507,
+     "img": {
+      "id": "0ead74fbabdd742bf153ab78b9e75765",
+      "kind": "asset"
+     },
+     "note": "Je sluit de tabel af zodat geen inhoud meer aan deze tabel wordt toegevoegd.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "Maakt een tabel en is de buitenste laag die de hele tabel omsluit. Binnenin staan rijen (<tr>) met cellen (<td> of <th>).",
    "group": "Tabellen",
+   "lastSeen": 1790257527507,
    "parts": [
     {
      "m": "begin van de tabel",
@@ -12237,15 +12396,29 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Tabel maken",
-   "updatedAt": 1790250000454,
-   "uses": 1,
+   "updatedAt": 1790257527507,
+   "uses": 3,
    "id": "les_0455"
   },
   {
    "command": "<tr></tr>",
    "createdAt": 1790250000455,
+   "examples": [
+    {
+     "command": "<tr><td>paco</td><td>ostend</td><td>BIT3.5.8</td></tr>",
+     "date": 1790257526859,
+     "img": {
+      "id": "0ead74fbabdd742bf153ab78b9e75765",
+      "kind": "asset"
+     },
+     "note": "Dit concrete voorbeeld toont hoe je een rij met drie gegevenscellen maakt, elk met een waarde.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "Maakt één rij in een tabel. Voeg meer tr-tags toe voor meer rijen.",
    "group": "Tabellen",
+   "lastSeen": 1790257526859,
    "parts": [
     {
      "m": "table row: begin van de rij",
@@ -12261,8 +12434,8 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Rij in een tabel",
-   "updatedAt": 1790250000455,
-   "uses": 1,
+   "updatedAt": 1790257526859,
+   "uses": 2,
    "id": "les_0456"
   },
   {
