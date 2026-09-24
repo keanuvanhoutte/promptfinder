@@ -1,8 +1,8 @@
 # PromptFinder – leesbare lijst
-Export: 2026-09-24T15:00:00Z · 938 items
+Export: 2026-09-24T13:28:58Z · 939 items
 
 
-## Algemeen (142)
+## Algemeen (143)
 
 ### Computer & besturingssysteem
 - `Besturingssysteem (OS)` — **Software die je computer beheert**: Het basisprogramma dat de hardware (processor, geheugen, schijf) beheert en andere programma's laat draaien. Voorbeelden: Windows, macOS, Linux, Android.
@@ -163,6 +163,9 @@ Export: 2026-09-24T15:00:00Z · 938 items
 - `salmonella AND (hamburger OR eggs)` — **Zoektermen combineren met operatoren**: Booleaanse operatoren combineren zoektermen in PubMed. Ze worden van links naar rechts verwerkt; haakjes veranderen de volgorde. _(bron: SB-05-data-representation-databases.pptx, dia 50)_
 - `transcript* [ti]` — **Zoeken in titel met truncatie**: Zoekveldtags tussen vierkante haken beperken de zoekopdracht tot één veld. Met * zoek je alle woorden die met dat stuk beginnen (transcript, transcription, transcriptase …). _(bron: SB-05-data-representation-databases.pptx, dia 53)_
 - `2014:2018 [dp]` — **Zoeken binnen een periode**: Zoekt publicaties binnen een bereik van publicatiedatums. _(bron: SB-05-data-representation-databases.pptx, dia 53)_
+
+### Overig
+- `alt` — **Meerder lijnen tegelijk typen**: Alt ingedrukt houden en elke lijn aanduiden waarin je tegelijk wilt schrijven
 
 ## Linux (348)
 
@@ -573,288 +576,6 @@ Export: 2026-09-24T15:00:00Z · 938 items
 - `firefox bestand.html` — **HTML-bestand openen in Firefox**: Start de webbrowser Firefox en opent het opgegeven HTML-bestand erin, zodat je het resultaat van je HTML-code in een echte browser ziet.
   - voorbeelden: `firefox hello-world.html`, `firefox Block-elements.html`
 
-## HTML (60)
-
-### Structuur
-- `<!DOCTYPE html>` — **Documenttype**: Staat helemaal bovenaan elk HTML-bestand en vertelt de browser dat het om moderne HTML gaat.
-- `! + Enter` — **HTML-basisstructuur invoegen (VS Code)**: In VS Code typ je in een leeg .html-bestand een uitroepteken en druk je op Enter (of Tab). Dan wordt de volledige HTML5-basisstructuur met doctype, html, head en body automatisch ingevuld. _(bron: 2. Introduction to HTML.pptx, dia 9)_
-- `<html lang="en"></html>` — **Begin en einde van document**: De <html>-tag en de sluitingstag </html> markeren het begin en einde van het HTML-document; alles staat hiertussen. Het lang-attribuut zegt in welke taal de pagina geschreven is. _(bron: 2. Introduction to HTML.pptx, dia 11)_
-- `<head></head>` — **Metadata van de pagina**: In de <head> zet je informatie over de pagina (metadata), zoals de titel en CSS-stijlen. Het is een omhulsel rond andere tags; de inhoud ervan verschijnt niet in het browservenster zelf. _(bron: 2. Introduction to HTML.pptx, dia 12)_
-- `<body></body>` — **Zichtbare inhoud van de pagina**: Alles tussen <body> en </body> wordt in het browservenster getoond. Het is een omhulsel rond alle andere inhoudstags zoals koppen, paragrafen en afbeeldingen. _(bron: 2. Introduction to HTML.pptx, dia 15)_
-- `<!-- commentaar -->` — **Commentaar in HTML**: Tekst tussen <!-- en --> is commentaar: de browser toont het niet. Je gebruikt het voor uitleg en notities in je code, zodat die makkelijker te begrijpen is. _(bron: 2. Introduction to HTML.pptx, dia 16)_
-
-### Head & koppelingen
-- `<title></title>` — **Titel van de webpagina**: Stelt de titel van de webpagina in; de browser toont die in het tabblad. Staat binnen de <head>. _(bron: 2. Introduction to HTML.pptx, dia 13)_
-- `<style></style>` — **CSS-stijlen in de head**: Hiertussen zet je CSS-regels die de opmaak van de pagina bepalen (interne stijl). De <style>-tag staat in de <head>. _(bron: 2. Introduction to HTML.pptx, dia 14)_
-
-### Tekst
-- `<h1></h1> … <h6></h6>` — **Koppen (titels) van secties**: Koppen geven een titel aan een nieuwe sectie. Er zijn zes niveaus: h1 is de grootste, h6 de kleinste; de browser past de grootte automatisch aan. _(bron: 2. Introduction to HTML.pptx, dia 20)_
-- `<p></p>` — **Paragraaf maken**: Groepeert tekst die bij elkaar hoort in een paragraaf. De browser voegt automatisch witruimte toe boven en onder de paragraaf. Gelijkaardig aan <div> maar met extra witruimte _(bron: 2. Introduction to HTML.pptx, dia 21)_
-- `<pre></pre>` — **Tekst exact zoals getypt**: Toont tekst met alle spaties, tabs en regeleinden precies zoals in de code, in een monospaced lettertype. Ideaal voor sequenties van nucleotiden of aminozuren, of ASCII-art. _(bron: 2. Introduction to HTML.pptx, dia 23)_
-- `<blockquote></blockquote>` — **Blok citaat uit andere bron**: Markeert een blok tekst als citaat uit een andere bron. De browser voegt witruimte toe boven, onder en links van het citaat.
-Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2. Introduction to HTML.pptx, dia 25)_
-- `<br>` — **Nieuwe regel beginnen**: Voegt een regeleinde in: wat volgt komt op een nieuwe regel. Het is een self-closing tag. Anders dan <hr> tekent het geen lijn. _(bron: 2. Introduction to HTML.pptx, dia 29)_
-- `<code></code>` — **Code-tekst binnen een regel**: Toont tekst in een monospaced lettertype, zoals <pre>, maar is een inline-element: de tekst blijft op dezelfde regel staan. _(bron: 2. Introduction to HTML.pptx, dia 30)_
-- `<em></em>` — **Tekst benadrukken (cursief)**: Legt nadruk op tekst; de browser toont die cursief. _(bron: 2. Introduction to HTML.pptx, dia 31)_
-  - werkt ook: `<i></i>` — Zelfde resultaat (cursief); <em> geeft ook nadruk in de betekenis, <i> is puur opmaak.
-  - voorbeelden: `<i>enzym11111111</i>`
-- `<small></small>` — **Kleinere tekst**: Toont tekst in een kleiner lettertype. Je kan small-tags in elkaar zetten (nesten): hoe meer small-tags, hoe kleiner de tekst. _(bron: 2. Introduction to HTML.pptx, dia 32)_
-  - voorbeelden: `<small>2222222</small>`
-- `<strike></strike>` — **Tekst doorstrepen**: Toont tekst met een lijn erdoor, bv. om een fout aan te duiden. _(bron: 2. Introduction to HTML.pptx, dia 33)_
-  - werkt ook: `<del></del>` — Zelfde resultaat (doorgestreept); <strike> is verouderd, <del> of <s> is de moderne vorm.
-  - voorbeelden: `<strike>4444444</strike>`
-- `<strong></strong>` — **Tekst vet maken**: Benadrukt tekst sterk; de browser toont die in het vet. _(bron: 2. Introduction to HTML.pptx, dia 34)_
-  - werkt ook: `<b></b>` — Zelfde resultaat (vet); <strong> duidt ook belangrijkheid aan, <b> is puur opmaak.
-  - voorbeelden: `<strong>33333333</strong>`
-- `<q></q>` — **Kort citaat binnen regel**: Markeert een kort citaat binnen een regel tekst; de browser zet er automatisch aanhalingstekens rond. _(bron: 2. Introduction to HTML.pptx, dia 35)_
-
-### Layout
-- `<div></div>` — **Algemene container (blok)**: Geen andere content mag getoond worden om diezelfde lijn. De div-tag heeft geen eigen betekenis en voegt, anders dan <p>, geen extra witruimte toe boven of onder. _(bron: 2. Introduction to HTML.pptx, dia 22)_
-- `<hr>` — **Horizontale lijn**: Tekent een horizontale lijn om secties van elkaar te scheiden. Het is een self-closing tag: er is geen sluitingstag en geen inhoud. _(bron: 2. Introduction to HTML.pptx, dia 26)_
-- `<span></span>` — **Algemene container binnen regel**: Groepeert een stukje tekst binnen een regel zodat je het met CSS kan opmaken. Net als <div> heeft span geen eigen betekenis of effect, maar het is een inline-element. _(bron: 2. Introduction to HTML.pptx, dia 36)_
-
-### Links & media
-- `<a href="URL"></a>` — **Link naar andere website**: Maakt een klikbare hyperlink. In het href-attribuut zet je het adres (URL) van de pagina; de tekst tussen de tags is waarop je klikt. _(bron: 2. Introduction to HTML.pptx, dia 27)_
-- `<a href="info/contact.html"></a>` — **Link naar pagina op eigen site**: Verwijst naar een ander HTML-bestand van je eigen website. Staat het bestand in dezelfde map, dan volstaat de naam (about.html); in een submap zet je de mapnaam ervoor (info/contact.html). _(bron: 2. Introduction to HTML.pptx, dia 28)_
-  - voorbeelden: `<a href="pagina2.html">Volgende</a>`
-- `<img src="">` — **Afbeelding tonen**: Voegt een afbeelding in de pagina. Het src-attribuut is verplicht en geeft de locatie: een lokaal pad (bv. Mario.png in dezelfde map) of een volledige URL. _(bron: 2. Introduction to HTML.pptx, dia 37)_
-  - voorbeelden: `<img src="eiwit.png" alt="Eiwitstructuur">`
-- `<a href="#id"></a>` — **Link naar plek op pagina**: Een link met href="#" gevolgd door een id springt naar het element met dat id op dezelfde pagina. Handig voor een inhoudstafel. _(bron: 2. Introduction to HTML.pptx, dia 57)_
-- `<a href="mailto:adres">tekst</a>` — **Link die e-mail opstelt**: Een link met mailto: opent het e-mailprogramma van de gebruiker met het adres al ingevuld als ontvanger. _(bron: 5. Dynamic Web Pages.pptx, dia 9)_
-
-### Attributen
-- `<img src="" alt="">` — **Alternatieve tekst bij afbeelding**: Het alt-attribuut geeft tekst die getoond wordt als de afbeelding niet laadt, bv. door een typfout in het pad. _(bron: 2. Introduction to HTML.pptx, dia 38)_
-- `<img src="" width="500px">` — **Breedte of hoogte van afbeelding**: Met width en height stel je de afmetingen van een afbeelding in (in pixels). Geef je enkel de breedte of enkel de hoogte, dan past de andere zich aan zodat de afbeelding niet vervormt. _(bron: 2. Introduction to HTML.pptx, dia 39)_
-- `class=""` — **Klasse (label) aan element geven**: Geeft een element een label (klasse) zodat je het kan aanspreken, bv. met CSS. Meerdere elementen mogen dezelfde klasse hebben en één element kan meerdere klassen hebben, gescheiden door spaties. _(bron: 2. Introduction to HTML.pptx, dia 53)_
-- `id=""` — **Unieke naam aan element geven**: Geeft een element een unieke naam (id). Twee elementen mogen niet hetzelfde id hebben en elk element heeft maximaal één id. _(bron: 2. Introduction to HTML.pptx, dia 55)_
-- `style=""` — **CSS op één element**: Met het style-attribuut geef je CSS-opmaak aan één enkel element (inline stijl). _(bron: 2. Introduction to HTML.pptx, dia 58)_
-- `title=""` — **Tooltip bij element**: Geeft extra informatie die als tooltip verschijnt wanneer je met de muis over het element gaat. Niet verwarren met de <title>-tag, die de titel in het browsertabblad zet. _(bron: 2. Introduction to HTML.pptx, dia 59)_
-- `placeholder="tekst"` — **Hulptekst in leeg invoerveld**: Toont een lichtgrijze hint in een leeg invoerveld (bv. 'Provide your name'). De hint verdwijnt als je begint te typen en wordt niet verstuurd. _(bron: 5. Dynamic Web Pages.pptx, dia 11)_
-- `checked` — **Standaard aangevinkt bij laden**: Checkboxes en radioknoppen zijn standaard niet aangevinkt. Zet checked in de tag om ze vooraf aan te vinken: bij checkboxes mag dat bij meerdere, bij radioknoppen bij één knop per groep. _(bron: 5. Dynamic Web Pages.pptx, dia 31)_
-
-### Formulieren
-- `<fieldset></fieldset>` — **Kader met zichtbare rand**: Maakt een container met een zichtbare rand rond de inhoud. _(bron: 2. Introduction to HTML.pptx, dia 41)_
-- `<legend></legend>` — **Titel op rand van fieldset**: Zet een titel bovenaan op de rand van een <fieldset>. Werkt enkel binnen een fieldset-tag. _(bron: 2. Introduction to HTML.pptx, dia 41)_
-- `<form action="#" method="POST"></form>` — **Formulier voor invoervelden**: Een formulier bevat de invoervelden en bepaalt waar en hoe de gegevens na verzenden naartoe gaan. Alle invoervelden (<input>, <select>, <textarea>) moeten erin staan. _(bron: 5. Dynamic Web Pages.pptx, dia 13)_
-- `<input type="" name="" value="">` — **Invoerveld maken**: De belangrijkste tag voor invoervelden. Via name haal je de ingevulde waarde later op in PHP. _(bron: 5. Dynamic Web Pages.pptx, dia 19)_
-- `<input type="submit" name="submit" value="tekst">` — **Verzendknop voor formulier**: Maakt een knop die het formulier naar de PHP-server stuurt. value bepaalt de tekst op de knop (en de waarde in $_POST/$_GET); zonder value staat er 'Submit Query'. _(bron: 5. Dynamic Web Pages.pptx, dia 20)_
-- `<input type="text" name="">` — **Invoerveld voor korte tekst**: Een veld waarin de gebruiker een korte tekst typt. Met value kun je een standaardtekst meegeven. _(bron: 5. Dynamic Web Pages.pptx, dia 21)_
-- `<input type="number" name="">` — **Invoerveld voor getallen**: Een veld waarin alleen getallen ingevuld kunnen worden, bv. een leeftijd. Er bestaan ook min, max en step om het bereik te beperken (buiten de leerstof). _(bron: 5. Dynamic Web Pages.pptx, dia 23)_
-- `<input type="password" name="">` — **Verborgen invoer voor wachtwoorden**: De getypte tekens worden als bolletjes of sterretjes getoond. Gebruik voor gevoelige gegevens altijd method="POST", anders staat de waarde leesbaar in de URL. _(bron: 5. Dynamic Web Pages.pptx, dia 25)_
-- `<input type="email" name="">` — **Invoerveld voor e-mailadres**: Een veld voor een e-mailadres. Bij een ongeldig adres toont de browser meestal een foutmelding en wordt het formulier niet verstuurd. _(bron: 5. Dynamic Web Pages.pptx, dia 27)_
-- `<input type="hidden" name="" value="">` — **Onzichtbaar veld meesturen**: Een veld dat de gebruiker niet ziet, maar waarvan de value toch mee verstuurd wordt. Handig om extra informatie achter de schermen naar de PHP-server te sturen. _(bron: 5. Dynamic Web Pages.pptx, dia 29)_
-- `<input type="checkbox" name="">` — **Aanvinkvakje**: Een vakje dat je aan- of uitvinkt; je kunt er meerdere tegelijk aanvinken. Aangevinkt: de naam komt in $_POST/$_GET met waarde 'on' (of de eigen value). Niet aangevinkt: de naam ontbreekt helemaal. _(bron: 5. Dynamic Web Pages.pptx, dia 30)_
-- `<input type="radio" name="groep" value="">` — **Keuzerondje: één uit groep**: Radioknoppen met dezelfde name vormen een groep waarin je maar één optie kunt kiezen; elke knop heeft een eigen value. In $_POST/$_GET staat de groepsnaam met de value van de gekozen knop; is niets gekozen, dan ontbreekt de naam. _(bron: 5. Dynamic Web Pages.pptx, dia 33)_
-- `<textarea name=""></textarea>` — **Invoerveld voor meerdere regels**: Een groot tekstveld waarin je over meerdere regels kunt typen. Na verzenden is de inhoud één string, met \n op de plaats van de regeleinden. Tekst tussen de tags is de standaardinhoud. _(bron: 5. Dynamic Web Pages.pptx, dia 38)_
-- `<select name=""><option value="">tekst</option></select>` — **Keuzelijst (dropdown menu)**: Maakt een uitklapmenu waarin je één optie kiest. name staat op <select>, value op elke <option>; de tekst tussen de <option>-tags ziet de gebruiker. _(bron: 5. Dynamic Web Pages.pptx, dia 40)_
-- `<select name="naam[]" multiple>` — **Dropdown met meerdere keuzes**: Met het attribuut multiple kun je meerdere opties kiezen (Ctrl of Shift ingedrukt houden bij klikken). De [] achter de naam zorgt dat PHP de gekozen waarden als array ontvangt. _(bron: 5. Dynamic Web Pages.pptx, dia 42)_
-- `<optgroup label="">` — **Opties in dropdown groeperen**: Groepeert verwante <option>-tags in een <select> onder een kopje, zodat een lange lijst overzichtelijk blijft. Het kopje zelf kun je niet kiezen. _(bron: 5. Dynamic Web Pages.pptx, dia 44)_
-- `<input type="file" name="">` — **Bestand laten uploaden**: Maakt een knop waarmee de gebruiker een bestand kiest om te uploaden. Werkt alleen in een formulier met method="POST" en enctype="multipart/form-data". _(bron: 5. Dynamic Web Pages.pptx, dia 47)_
-- `enctype="multipart/form-data"` — **Formulier geschikt maken voor uploads**: Attribuut op de <form>-tag dat nodig is om bestanden te versturen. Het verpakt tekstvelden en bestanden in aparte delen, zodat de server ze correct kan verwerken; zonder dit werkt uploaden niet. _(bron: 5. Dynamic Web Pages.pptx, dia 47)_
-
-### Lijsten
-- `<ul></ul>` — **Lijst met opsommingstekens**: Maakt een ongenummerde lijst met bolletjes. Elk item staat in een eigen <li>-tag binnen de <ul>. _(bron: 2. Introduction to HTML.pptx, dia 42)_
-  - voorbeelden: `<ul><li>Item</li></ul>`
-- `<li></li>` — **Eén item in een lijst**: Elk item van een lijst staat in een eigen <li>-tag, binnen <ul> of <ol>. Voeg meer li-tags toe voor meer items. _(bron: 2. Introduction to HTML.pptx, dia 42)_
-- `<ol></ol>` — **Genummerde lijst**: Maakt een lijst met nummers, handig als de volgorde belangrijk is. Elk item staat in een eigen <li>-tag binnen de <ol>. _(bron: 2. Introduction to HTML.pptx, dia 43)_
-
-### Tabellen
-- `<table></table>` — **Tabel maken**: Maakt een tabel en is de buitenste laag die de hele tabel omsluit. Binnenin staan rijen (<tr>) met cellen (<td> of <th>). _(bron: 2. Introduction to HTML.pptx, dia 45)_
-- `<tr></tr>` — **Rij in een tabel**: Maakt één rij in een tabel. Voeg meer tr-tags toe voor meer rijen. _(bron: 2. Introduction to HTML.pptx, dia 46)_
-- `<td></td>` — **Cel in een tabelrij**: Maakt één gewone cel in een tabelrij. Voeg meer td-tags toe voor meer cellen (kolommen) in de rij. _(bron: 2. Introduction to HTML.pptx, dia 47)_
-- `<th></th>` — **Kopcel in een tabel**: Maakt een kopcel, meestal om kolommen of rijen te benoemen. Browsers tonen die standaard vet en gecentreerd. _(bron: 2. Introduction to HTML.pptx, dia 48)_
-
-## CSS (52)
-
-### Kleur & achtergrond
-- `background-color` — **Achtergrondkleur instellen**: Stelt de achtergrondkleur van een element in, bv. body { background-color: green; } voor een groene pagina. _(bron: 2. Introduction to HTML.pptx, dia 14)_
-  - werkt ook: `background: #D73233;` — background: kleur en background-color: kleur geven dezelfde achtergrondkleur.
-- `color: kleur;` — **Tekstkleur instellen**: De eigenschap color bepaalt de kleur van de tekst in een element. Je kunt een kleurnaam, een hexcode of een RGB-waarde gebruiken. _(bron: 3. Introduction to CSS.pptx, dia 45)_
-  - voorbeelden: `color: red;`, `color`
-- `#FF0000 / rgb(255, 0, 0)` — **Kleur als hexcode of RGB**: Behalve met een naam (red, hotpink, tomato …) kun je een kleur geven als hexcode of RGB-waarde. Bij RGB geef je de hoeveelheid rood, groen en blauw, elk van 0 tot 255; een hexcode geeft dezelfde drie getallen in hexadecimale notatie. _(bron: 3. Introduction to CSS.pptx, dia 45)_
-
-### Selectors
-- `.klasse {…}` — **Elementen met een klasse opmaken**: Een punt voor een naam selecteert alle elementen met die klasse. Zo krijgt .vader {color: red;} alle elementen met class="vader" rode tekst. _(bron: 2. Introduction to HTML.pptx, dia 54)_
-  - voorbeelden: `.TopGun {background: green;}`
-- `#id {…}` — **Element met een id opmaken**: Een hekje (#) voor een naam selecteert het element met dat id. Zo krijgt #kenobi {color: blue;} het element met id="kenobi" blauwe tekst. _(bron: 2. Introduction to HTML.pptx, dia 56)_
-  - voorbeelden: `#Nemo {background: orange;}`
-- `div {background: red;}` — **Elementselector: alle elementen van type**: Een elementselector is gewoon de tagnaam. De stijl geldt voor alle elementen van dat type op de pagina. _(bron: 3. Introduction to CSS.pptx, dia 14)_
-  - voorbeelden: `p {color: red;}`
-- `h1, h4 {background: red;}` — **Selectors groeperen met komma**: Scheid je selectors met een komma, dan geldt de stijl voor alle elementen die aan minstens één van de selectors voldoen. Zo hoef je dezelfde regel niet twee keer te schrijven. _(bron: 3. Introduction to CSS.pptx, dia 17)_
-- `p.BB.JP {background: orange;}` — **Samengestelde selector (zonder spaties)**: Plak je selectors aan elkaar zonder spatie, dan moet een element aan alle delen tegelijk voldoen. p.BB kiest <p>-elementen met klasse BB; p.BB.JP kiest <p>-elementen die zowel klasse BB als JP hebben. _(bron: 3. Introduction to CSS.pptx, dia 19)_
-- `div h3 {background: red;}` — **Afstammelingenselector (spatie)**: Een spatie tussen selectors betekent: het rechtse element moet ergens binnen het linkse element zitten (kind, kleinkind of dieper). Je kunt er meer aan elkaar rijgen, bv. div blockquote h3. _(bron: 3. Introduction to CSS.pptx, dia 22)_
-- `div > h3 {background: red;}` — **Kindselector: enkel directe kinderen**: Met > selecteer je alleen elementen die een direct kind zijn van het linkse element, zonder ander element ertussen. _(bron: 3. Introduction to CSS.pptx, dia 24)_
-- `#Cedric ~ h3 {background: purple;}` — **Siblingselector: latere broers/zussen**: Met ~ selecteer je elementen met dezelfde ouder die ergens ná het linkse element komen, niet noodzakelijk er direct na. _(bron: 3. Introduction to CSS.pptx, dia 26)_
-- `#Cedric + h3 {background: green;}` — **Directe siblingselector (+)**: Met + selecteer je enkel het element dat onmiddellijk ná het linkse element komt en dezelfde ouder heeft. _(bron: 3. Introduction to CSS.pptx, dia 28)_
-- `#Jasper :first-child {background: purple;}` — **Eerste kind binnen een ouder**: :first-child selecteert een element dat het eerste is van zijn siblings. Met de ouder-selector, een spatie en dan :first-child kies je het eerste kind binnen die ouder. _(bron: 3. Introduction to CSS.pptx, dia 32)_
-- `h3:first-child {background: orange;}` — **Elk h3 dat eerste kind is**: Zet je :first-child zonder spatie achter een element- of klasseselector, dan kies je elk element van dat type dat het eerste is tussen zijn siblings. _(bron: 3. Introduction to CSS.pptx, dia 33)_
-- `#Bart :last-child {background: red;}` — **Laatste kind selecteren**: :last-child selecteert het laatste element tussen zijn siblings. Met een spatie (#Bart :last-child) kies je het laatste kind van Bart; zonder spatie (h3:last-child) kies je elke <h3> die het laatste kind is. _(bron: 3. Introduction to CSS.pptx, dia 34)_
-- `ouder :nth-child(n) {…}` — **Het n-de kind selecteren**: :nth-child(n) selecteert het element op positie n tussen zijn siblings (tellen begint bij 1). n kan een getal of een formule zijn. _(bron: 3. Introduction to CSS.pptx, dia 36)_
-  - voorbeelden: `#Jasper :nth-child(3) {background: purple;}`, `#Jasper :nth-child(2n) {background: green;}`, `#Jasper :nth-child(2n+1) {background: red;}`
-- `#Jasper h3:first-of-type {background: red;}` — **Eerste element van een type**: :first-of-type selecteert het eerste element van een bepaald type tussen zijn siblings, ook als er andere elementen vóór staan. Tussen h3 en :first-of-type staat geen spatie. _(bron: 3. Introduction to CSS.pptx, dia 39)_
-- `#Jasper h3:last-of-type {background: red;}` — **Laatste element van een type**: :last-of-type selecteert het laatste element van een bepaald type tussen zijn siblings, ook als er nog andere elementen na komen. _(bron: 3. Introduction to CSS.pptx, dia 40)_
-- `#Paco:hover {background: orange;}` — **Stijl bij muis erover**: :hover past de stijl toe zolang de gebruiker met de muiscursor over het element beweegt. _(bron: 3. Introduction to CSS.pptx, dia 41)_
-- `#Paco:active {background: purple;}` — **Stijl tijdens het klikken**: :active past de stijl toe op het moment dat de gebruiker op het element klikt (de muisknop ingedrukt houdt). _(bron: 3. Introduction to CSS.pptx, dia 42)_
-- `a:link / a:visited` — **Onbezochte en bezochte links**: :link geeft een stijl aan links die nog niet bezocht zijn, :visited aan links die je al bezocht hebt. Voorbeeld: a:link {background: white;} en a:visited {background: red;}. _(bron: 3. Introduction to CSS.pptx, dia 43)_
-
-### Koppelen aan HTML
-- `selector { eigenschap: waarde; }` — **Opbouw van een CSS-regel**: Een CSS-regel bestaat uit een selector en een declaratieblok tussen accolades. Elke declaratie is een eigenschap met een waarde, gevolgd door een puntkomma. Voorbeeld: p { font-size: 1.2em; } geeft alle <p>-elementen een bepaalde lettergrootte. _(bron: 3. Introduction to CSS.pptx, dia 4)_
-- `<p style="color: red; background: green">` — **Inline CSS met style-attribuut**: Met het style-attribuut zet je CSS rechtstreeks op één HTML-element. Meerdere declaraties scheid je met een puntkomma. Handig voor één element, maar onhandig als je later veel elementen moet aanpassen. _(bron: 3. Introduction to CSS.pptx, dia 6)_
-- `<style> span {color: red;} </style>` — **Interne CSS in style-tag**: Met de <style>-tag in de <head> schrijf je CSS-regels die gelden voor meerdere elementen in hetzelfde HTML-document. Zo pas je een stijl op één plaats aan in plaats van bij elk element apart. _(bron: 3. Introduction to CSS.pptx, dia 8)_
-- `<link rel="stylesheet" type="text/css" href="style.css">` — **Extern stylesheet koppelen**: Zet je CSS-regels in een apart .css-bestand en koppel dat met de <link>-tag in de <head>. Zo kunnen meerdere HTML-pagina's dezelfde stijl delen. _(bron: 3. Introduction to CSS.pptx, dia 10)_
-
-### Box model
-- `border: 6px solid rgb(64,58,50);` — **Rand rond een element**: border is een shorthand die in één keer de dikte, de stijl en de kleur van de rand instelt (border-width, border-style en border-color). _(bron: 3. Introduction to CSS.pptx, dia 48)_
-- `height: 250px;` — **Breedte en hoogte instellen**: width bepaalt de horizontale grootte van een element, height de verticale. Je kunt verschillende eenheden gebruiken. _(bron: 3. Introduction to CSS.pptx, dia 49)_
-- `width: fit-content;` — **Breedte passend bij inhoud**: Met fit-content berekent de browser zelf de breedte (of hoogte) op basis van de inhoud. Zo is een div niet meer standaard even breed als het venster. _(bron: 3. Introduction to CSS.pptx, dia 50)_
-- `padding: 16px;` — **Ruimte binnen de rand**: padding is de ruimte tussen de inhoud van een element en zijn rand. Het is een shorthand voor padding-top, -right, -bottom en -left. Met 1 tot 4 waarden kies je welke kanten welke ruimte krijgen. _(bron: 3. Introduction to CSS.pptx, dia 53)_
-- `margin: 0px 0px 15px 0px;` — **Ruimte buiten de rand**: margin is de ruimte buiten de rand, tussen het element en andere elementen. Het is een shorthand voor margin-top, -right, -bottom en -left; de regels voor 1 tot 4 waarden zijn dezelfde als bij padding. _(bron: 3. Introduction to CSS.pptx, dia 53)_
-- `box-sizing: border-box;` — **Padding en rand meetellen**: Standaard (content-box) geldt width/height alleen voor de inhoud; padding en rand komen er nog bij. Met border-box tellen padding en rand mee in de opgegeven breedte en hoogte. _(bron: 3. Introduction to CSS.pptx, dia 55)_
-- `outline: 20px solid yellow;` — **Lijn buiten de rand**: outline tekent een lijn buiten de rand van een element, met dezelfde waarden als border (dikte, stijl, kleur). Anders dan een rand neemt een outline geen plaats in en duwt ze andere elementen niet weg. _(bron: 3. Introduction to CSS.pptx, dia 57)_
-
-### Tekst & lettertype
-- `font-size: 1.2em;` — **Lettergrootte instellen**: font-size bepaalt hoe groot de tekst in een element is. _(bron: 3. Introduction to CSS.pptx, dia 58)_
-- `font-weight: bold;` — **Letterdikte (vet) instellen**: font-weight bepaalt hoe dik of vet de tekst is. _(bron: 3. Introduction to CSS.pptx, dia 59)_
-- `font-style: italic;` — **Schuine tekst instellen**: font-style bepaalt of tekst rechtop of schuin staat. _(bron: 3. Introduction to CSS.pptx, dia 60)_
-- `font-family: 'Atkinson Hyperlegible', sans-serif;` — **Lettertype kiezen met reserve**: font-family kiest het lettertype. Je geeft een lijst gescheiden door komma's: lukt het eerste niet, dan gebruikt de browser het volgende. Een naam van meerdere woorden zet je tussen aanhalingstekens. _(bron: 3. Introduction to CSS.pptx, dia 62)_
-  - voorbeelden: `font-family`
-- `font-variant: small-caps;` — **Tekst in kleine hoofdletters**: font-variant voegt een stijleffect toe aan tekst. Met small-caps worden kleine letters getoond als kleinere hoofdletters; normal is de gewone weergave. _(bron: 3. Introduction to CSS.pptx, dia 63)_
-- `letter-spacing: 40px;` — **Ruimte tussen letters**: letter-spacing regelt de afstand tussen de letters. Je kunt px, em, % en andere eenheden gebruiken. _(bron: 3. Introduction to CSS.pptx, dia 64)_
-- `word-spacing: …` — **Ruimte tussen woorden**: word-spacing regelt de afstand tussen woorden, net zoals letter-spacing dat doet tussen letters. Je kunt px, em, % en andere eenheden gebruiken. _(bron: 3. Introduction to CSS.pptx, dia 64)_
-- `text-align: center;` — **Tekst horizontaal uitlijnen**: text-align bepaalt hoe tekst horizontaal uitgelijnd wordt binnen een element: links, rechts, gecentreerd of uitgevuld over de hele breedte. _(bron: 3. Introduction to CSS.pptx, dia 65)_
-- `text-decoration: line-through;` — **Lijn onder, boven of door tekst**: text-decoration voegt een lijn toe aan tekst of haalt die weg (bv. de standaard onderstreping van links). _(bron: 3. Introduction to CSS.pptx, dia 66)_
-
-### Overige eigenschappen
-- `list-style-type: none;` — **Opsommingsteken van lijst kiezen**: list-style-type bepaalt hoe de tekens voor lijstitems eruitzien. Voor een ongeordende lijst (<ul>): disc (standaard, gevuld bolletje), circle (leeg bolletje), square (vierkantje) of none (geen teken). _(bron: 3. Introduction to CSS.pptx, dia 67)_
-- `list-style-type: upper-roman;` — **Nummering van geordende lijst**: Voor een geordende lijst (<ol>) kies je met list-style-type hoe er genummerd wordt: cijfers, letters of Romeinse cijfers. _(bron: 3. Introduction to CSS.pptx, dia 68)_
-- `border-collapse: collapse;` — **Tabelranden samenvoegen**: Geef je een tabel en haar cellen een rand, dan krijg je dubbele lijnen met kleine tussenruimtes. Met border-collapse: collapse worden aangrenzende randen één lijn; separate houdt ze apart. Zet dit op het <table>-element. _(bron: 3. Introduction to CSS.pptx, dia 70)_
-
-### Layout & positie
-- `display: inline-block;` — **Blok- of inline-gedrag wijzigen**: display verandert hoe een element zich gedraagt: als blokelement (eigen regel, breedte/hoogte instelbaar) of als inline-element (op dezelfde regel). inline-block zet elementen naast elkaar maar laat breedte en hoogte toe. _(bron: 3. Introduction to CSS.pptx, dia 72)_
-- `visibility: hidden;` — **Element verbergen, plaats houden**: visibility: hidden maakt een element onzichtbaar, maar het blijft zijn plaats innemen in de layout. visible (standaard) toont het. Bij display: none verdwijnt de plaats wel. _(bron: 3. Introduction to CSS.pptx, dia 73)_
-- `top / bottom / left / right` — **Afstanden voor positionering**: Deze eigenschappen geven de plaats van een element aan met een afstand (px, %, em …). Wat ze precies doen hangt af van de position-waarde; bij position: static (standaard) hebben ze geen effect. _(bron: 3. Introduction to CSS.pptx, dia 74)_
-- `position: relative; top: 50px;` — **Verschuiven t.o.v. normale plaats**: Met position: relative verschuif je een element ten opzichte van zijn normale plaats. top: 50px schuift het 50 pixels naar beneden. De oorspronkelijke ruimte blijft behouden en andere elementen bewegen niet mee. _(bron: 3. Introduction to CSS.pptx, dia 76)_
-- `position: fixed;` — **Vast op het scherm plaatsen**: Met position: fixed staat een element vast ten opzichte van het browservenster en blijft het op dezelfde plek, ook bij scrollen. top, bottom, left en right geven de afstand tot de randen van het venster. De oorspronkelijke ruimte blijft niet behouden. _(bron: 3. Introduction to CSS.pptx, dia 78)_
-- `position: absolute;` — **Plaatsen binnen gepositioneerde voorouder**: Met position: absolute plaats je een element ten opzichte van de dichtstbijzijnde voorouder die zelf een position heeft (niet static). Daarom geef je de container vaak position: relative. De oorspronkelijke ruimte blijft niet behouden. _(bron: 3. Introduction to CSS.pptx, dia 80)_
-- `overflow: auto;` — **Wat met te veel inhoud**: overflow bepaalt wat er gebeurt als de inhoud groter is dan het element. _(bron: 3. Introduction to CSS.pptx, dia 81)_
-- `float: right;` — **Element links of rechts laten zweven**: float haalt een element uit de normale volgorde en zet het links of rechts in zijn ouder-element. Tekst en andere elementen lopen er dan omheen. _(bron: 3. Introduction to CSS.pptx, dia 82)_
-
-## PHP (88)
-
-### Basis & syntax
-- `php bestand.php` — **PHP-script uitvoeren in terminal**: Voert een PHP-bestand uit via de command line: typ php gevolgd door de naam van het bestand. Bewaar je code eerst in een bestand met de extensie .php en ga in de terminal naar de map waar dat bestand staat. _(bron: 4. Fundamentals of PHP.pptx, dia 5)_
-- `<?php ... ?>` — **PHP-code afbakenen met tags**: PHP voert alleen de code uit die tussen <?php en ?> staat; een bestand mag meerdere van die blokken bevatten. Alles buiten de PHP-tags (bv. gewone tekst of HTML) blijft ongewijzigd staan. _(bron: 4. Fundamentals of PHP.pptx, dia 8)_
-- `;` — **Statement afsluiten met puntkomma**: Elke PHP-opdracht (statement) eindigt met een puntkomma. Een vergeten puntkomma is een veelvoorkomende oorzaak van fouten. Uitzondering: if-, while-, for- en foreach-blokken met accolades krijgen geen puntkomma na de }. _(bron: 4. Fundamentals of PHP.pptx, dia 10)_
-- `// commentaar` — **Commentaar op één regel**: Alles na // (of #) tot het einde van de regel is commentaar: PHP negeert het. Je gebruikt het om uitleg bij je code te schrijven, zodat jij en anderen later nog weten wat de code doet. _(bron: 4. Fundamentals of PHP.pptx, dia 11)_
-- `/* commentaar */` — **Commentaar over meerdere regels**: Alles tussen /* en */ is commentaar, ook als het over meerdere regels loopt. Handig voor langere uitleg of om een stuk code tijdelijk uit te schakelen. _(bron: 4. Fundamentals of PHP.pptx, dia 11)_
-- `var_dump(waarde);` — **Type en waarde in detail tonen**: var_dump() toont gedetailleerde info over een waarde: het datatype én de waarde zelf (werkt ook voor arrays). Handig om te controleren welk type iets heeft of om het resultaat van een voorwaarde (true/false) te zien. _(bron: 4. Fundamentals of PHP.pptx, dia 14)_
-- `echo waarde;` — **Waarde of variabele tonen**: echo toont een waarde of de inhoud van een variabele (in de terminal of later in de browser). Het werkt voor getallen, tekst en booleans. _(bron: 4. Fundamentals of PHP.pptx, dia 17)_
-  - werkt ook: `print(waarde);` — echo en print tonen allebei een waarde op het scherm.
-- `echo "tekst", $variabele;` — **Meerdere waarden tegelijk tonen**: Met echo kun je meerdere waarden en variabelen in één keer tonen door ze met komma's te scheiden. Ze worden achter elkaar getoond. _(bron: 4. Fundamentals of PHP.pptx, dia 18)_
-- `<?php echo "<div>...</div>"; ?>` — **PHP in een HTML-pagina**: Je kunt PHP-code tussen <?php en ?> midden in HTML zetten. De server voert de code uit en vervangt ze door de HTML die echo maakt. Een bestand met PHP-code moet altijd de extensie .php hebben, ook als er vooral HTML in staat. _(bron: 5. Dynamic Web Pages.pptx, dia 3)_
-- `php -S localhost:8080` — **Ingebouwde PHP-webserver starten**: Start in de terminal een kleine webserver die je .php-bestanden uitvoert. Voer het uit in de map met je bestanden (de root-map) en open daarna de getoonde URL in de browser; standaard wordt index.php of index.html getoond. Een ander bestand open je door /bestandsnaam achter de URL te zetten (bv. localhost:8080/ABV.php). _(bron: 5. Dynamic Web Pages.pptx, dia 4)_
-- `include('bestand')` — **Ander bestand invoegen**: Voegt de inhoud van een .html- of .php-bestand in op die plek, bv. een header of footer die op veel pagina's terugkomt. Ontbreekt het bestand, dan gaat het script gewoon verder. _(bron: 5. Dynamic Web Pages.pptx, dia 8)_
-- `require('bestand')` — **Bestand invoegen, stoppen als ontbreekt**: Voegt net als include een bestand in, maar stopt het script met een fatale fout als het bestand ontbreekt. Gebruik het voor onderdelen die er zeker moeten zijn. _(bron: 5. Dynamic Web Pages.pptx, dia 9)_
-- `background: <?php echo $kleur; ?>;` — **PHP gebruiken binnen CSS**: PHP kan ook in een <style>-blok staan om een CSS-waarde te kiezen, bv. de achtergrondkleur afhankelijk van wat de gebruiker indiende. In de les: rood als de knop is ingedrukt, anders wit. _(bron: 5. Dynamic Web Pages.pptx, dia 20)_
-
-### Strings
-- `preg_replace(patroon, vervanging, $string)` — **Patroon vervangen in een string**: Zoekt een patroon (reguliere expressie) in een string en vervangt het. Met $1, $2 ... verwijs je in de vervanging naar de stukken tussen haakjes in het patroon. _(bron: 4. Fundamentals of PHP.pptx, dia 11)_
-- `"tekst" . $variabele` — **Strings aan elkaar plakken (concatenatie)**: De punt (.) plakt twee of meer waarden achter elkaar tot één string. Het resultaat kun je tonen met echo of print, of in een nieuwe variabele bewaren. _(bron: 4. Fundamentals of PHP.pptx, dia 20)_
-- `"tekst $variabele"` — **Variabele in string zetten (interpolatie)**: Zet je een variabele binnen een string met dubbele aanhalingstekens, dan vult PHP automatisch de waarde van die variabele in. Dit heet string-interpolatie. Je kunt de naam ook tussen accolades zetten, bv. "{$naam}". _(bron: 4. Fundamentals of PHP.pptx, dia 21)_
-- `'tekst met $'` — **String zonder interpolatie (enkele quotes)**: In een string tussen enkele aanhalingstekens vult PHP geen variabelen in: $ en de naam blijven letterlijk staan. Gebruik dit voor tekst met een dollarteken, zoals 'K$sha'; met dubbele quotes zou PHP $sha als (onbestaande) variabele zien en een waarschuwing geven. _(bron: 4. Fundamentals of PHP.pptx, dia 22)_
-- `Escape sequence` — **Speciaal teken in een string**: Een escape sequence is een backslash (\) gevolgd door een teken, waarmee je tekens in een string zet die anders moeilijk in te voegen zijn, zoals een nieuwe regel, een tab, een $ of een aanhalingsteken. In dubbele quotes werken \n, \t, \$, \" en \\; in enkele quotes alleen \' en \\. _(bron: 4. Fundamentals of PHP.pptx, dia 23)_
-- `\n` — **Nieuwe regel in string**: \n zet een nieuwe regel (newline) in een string met dubbele aanhalingstekens: de tekst erna begint op de volgende regel. Veel gebruikt om uitvoer in de terminal netjes onder elkaar te krijgen. _(bron: 4. Fundamentals of PHP.pptx, dia 23)_
-- `\t` — **Tab in string**: \t zet een tab (horizontale inspringing) in een string met dubbele aanhalingstekens. _(bron: 4. Fundamentals of PHP.pptx, dia 23)_
-- `\$` — **Letterlijk dollarteken in string**: \$ zet een gewoon dollarteken in een string met dubbele aanhalingstekens, zonder dat PHP er een variabele in ziet. _(bron: 4. Fundamentals of PHP.pptx, dia 23)_
-- `\\` — **Letterlijke backslash in string**: \\ zet één gewone backslash (\) in een string; werkt zowel tussen enkele als dubbele aanhalingstekens. _(bron: 4. Fundamentals of PHP.pptx, dia 23)_
-- `\" en \'` — **Aanhalingsteken in string zetten**: \" zet een dubbel aanhalingsteken in een string tussen dubbele quotes; \' zet een enkel aanhalingsteken in een string tussen enkele quotes. Zo sluit het aanhalingsteken de string niet per ongeluk af. _(bron: 4. Fundamentals of PHP.pptx, dia 24)_
-- `strlen($string)` — **Lengte van een string**: Geeft het aantal tekens in een string terug, spaties en leestekens inbegrepen. _(bron: 4. Fundamentals of PHP.pptx, dia 82)_
-- `str_split($string)` — **String opsplitsen in tekens**: Splitst een string in losse tekens en geeft een array terug waarin elk element één teken is. _(bron: 4. Fundamentals of PHP.pptx, dia 84)_
-- `strtolower($string)` — **Tekst naar kleine letters**: Geeft een nieuwe string terug waarin alle letters omgezet zijn naar kleine letters. _(bron: 4. Fundamentals of PHP.pptx, dia 85)_
-  - voorbeelden: `strtolower($tekst)`
-- `strtoupper($string)` — **Tekst naar hoofdletters**: Geeft een nieuwe string terug waarin alle letters omgezet zijn naar hoofdletters. _(bron: 4. Fundamentals of PHP.pptx, dia 86)_
-- `explode(delimiter, $string)` — **String splitsen in een array**: Knipt een string in stukken telkens waar de delimiter voorkomt en geeft die stukken terug als array. De delimiter zelf verdwijnt. _(bron: 4. Fundamentals of PHP.pptx, dia 87)_
-  - voorbeelden: `explode("\n", $tekst)`
-- `implode(delimiter, $array)` — **Array samenvoegen tot string**: Plakt alle elementen van een array aan elkaar tot één string, met de delimiter ertussen. Het omgekeerde van explode(). _(bron: 4. Fundamentals of PHP.pptx, dia 89)_
-- `preg_match('/^>/', $string)` — **Patroon zoeken in een string**: Controleert of een patroon (een reguliere expressie) in een string voorkomt en geeft true (1) of false (0) terug. Het patroon '/^>/' checkt of de string begint met >, handig om de headerregels van een (multi)FASTA-bestand te herkennen. _(bron: 4. Fundamentals of PHP.pptx, dia 90)_
-- `trim($string)` — **Witruimte aan begin/einde verwijderen**: Verwijdert spaties, tabs en newlines aan het begin en het einde van een string; witruimte in het midden blijft staan. Handig om ingevoerde gegevens zoals e-mailadressen op te kuisen. _(bron: 4. Fundamentals of PHP.pptx, dia 96)_
-  - voorbeelden: `trim($tekst)`
-
-### Variabelen & types
-- `Scalaire types (integer, float, string, boolean)` — **De vier eenvoudigste datatypes**: Scalaire waarden zijn de eenvoudigste soorten data en stellen één enkele waarde voor. Er zijn vier types: integer (geheel getal, bv. 42), float (kommagetal, bv. 3.14), string (tekst tussen ' ' of " ", bv. "Don't panic") en boolean (true of false). _(bron: 4. Fundamentals of PHP.pptx, dia 14)_
-- `$naam = waarde;` — **Waarde opslaan in een variabele**: Maakt een variabele en geeft ze een waarde, zodat je die later in het script kunt gebruiken. Een variabelenaam begint met $ gevolgd door letters, cijfers of underscores, maar mag niet met een cijfer beginnen (dus $Mona_Lisa mag, $123VanGogh of $Mona-Lisa niet). Een nieuwe waarde toekennen overschrijft de oude. _(bron: 4. Fundamentals of PHP.pptx, dia 15)_
-- `$naam = $naam . " " . $naam;` — **Variabele bijwerken met huidige waarde**: Je kunt een variabele aanpassen op basis van haar huidige waarde: rechts van = wordt eerst de nieuwe waarde berekend met de oude, en die wordt daarna terug in dezelfde variabele gestoken. _(bron: 4. Fundamentals of PHP.pptx, dia 25)_
-- `$argv` — **Command-line argumenten uitlezen**: $argv is een ingebouwde array met de argumenten die je bij het starten van het script in de terminal meegeeft. $argv[0] is altijd de naam van het script zelf, $argv[1] het eerste argument, $argv[2] het tweede, enzovoort. _(bron: 4. Fundamentals of PHP.pptx, dia 47)_
-
-### Operatoren
-- `$a + $b, $a - $b, $a * $b, $a / $b` — **Optellen, aftrekken, vermenigvuldigen, delen**: Rekenkundige operatoren voor berekeningen met integers en floats. -$a geeft het tegengestelde van $a. Het resultaat kun je tonen of in een variabele bewaren; met haakjes bepaal je wat eerst berekend wordt. _(bron: 4. Fundamentals of PHP.pptx, dia 27)_
-- `$a ** $b` — **Machtsverheffing**: Verheft $a tot de macht $b. _(bron: 4. Fundamentals of PHP.pptx, dia 27)_
-- `$a % $b` — **Rest na deling (modulus)**: Geeft de rest als je $a deelt door $b. Vaak gebruikt om deelbaarheid te testen: $getal % 2 is 0 bij een even getal en 1 bij een oneven getal. _(bron: 4. Fundamentals of PHP.pptx, dia 28)_
-- `$var++ en $var--` — **Variabele met 1 verhogen/verlagen**: ++ verhoogt de waarde van een numerieke variabele met 1, -- verlaagt ze met 1. Een kortere schrijfwijze voor $var = $var + 1 en $var = $var - 1; veel gebruikt in lussen. _(bron: 4. Fundamentals of PHP.pptx, dia 30)_
-- `$var += n en $var -= n` — **Getal optellen bij/aftrekken van variabele**: += telt een getal op bij de huidige waarde van een variabele, -= trekt er een getal van af. Korter dan $var = $var + n. _(bron: 4. Fundamentals of PHP.pptx, dia 30)_
-- `$a == $b` — **Gelijk aan (na type juggling)**: Geeft true als $a gelijk is aan $b, nadat PHP de types zo nodig automatisch omgezet heeft (type juggling). Let op: één = kent een waarde toe, == vergelijkt. _(bron: 4. Fundamentals of PHP.pptx, dia 51)_
-- `$a === $b` — **Identiek: zelfde waarde én type**: Geeft enkel true als $a en $b dezelfde waarde én hetzelfde type hebben; PHP zet niets automatisch om. Zo is false == 0 true, maar false === 0 false. _(bron: 4. Fundamentals of PHP.pptx, dia 51)_
-- `$a != $b` — **Niet gelijk aan**: Geeft true als $a niet gelijk is aan $b, na automatische typeomzetting. Zo is false != 0 false, omdat PHP 0 als false beschouwt. _(bron: 4. Fundamentals of PHP.pptx, dia 51)_
-- `$a !== $b` — **Niet identiek**: Geeft true als $a en $b een andere waarde óf een ander type hebben. Zo is false !== 0 true, omdat het ene een boolean en het andere een integer is. _(bron: 4. Fundamentals of PHP.pptx, dia 51)_
-- `<  >  <=  >=` — **Kleiner/groter dan vergelijken**: Vergelijkt twee waarden: < kleiner dan, > groter dan, <= kleiner dan of gelijk aan, >= groter dan of gelijk aan. Het resultaat is altijd true of false. _(bron: 4. Fundamentals of PHP.pptx, dia 51)_
-- `Type juggling` — **Automatische omzetting van types**: PHP zet waarden van verschillende types automatisch om als je ze vergelijkt, wat soms verrassend is: false == 0 is bijvoorbeeld true. Gebruik === en !== als ook het type moet kloppen. _(bron: 4. Fundamentals of PHP.pptx, dia 52)_
-- `$a && $b (and)` — **Logische EN**: Geeft true als beide voorwaarden waar zijn. && en and doen hetzelfde. _(bron: 4. Fundamentals of PHP.pptx, dia 54)_
-- `$a || $b (or)` — **Logische OF**: Geeft true als minstens één van de voorwaarden waar is. || en or doen hetzelfde. _(bron: 4. Fundamentals of PHP.pptx, dia 54)_
-- `$a xor $b` — **Exclusieve OF**: Geeft true als precies één van de twee voorwaarden waar is, maar niet allebei. _(bron: 4. Fundamentals of PHP.pptx, dia 54)_
-- `!$a` — **Logische NIET (omkeren)**: Keert het resultaat van een voorwaarde om: true wordt false en false wordt true. _(bron: 4. Fundamentals of PHP.pptx, dia 54)_
-- `$a && ($b || $c)` — **Haakjes in samengestelde voorwaarden**: Je mag meerdere logische operatoren combineren. Wat tussen haakjes staat wordt eerst geëvalueerd, zo bepaal je de juiste volgorde. _(bron: 4. Fundamentals of PHP.pptx, dia 56)_
-- `$a ?? 'standaard'` — **Standaardwaarde als iets ontbreekt**: De ??-operator geeft de linkerwaarde als die bestaat (en niet null is), anders de rechterwaarde. Korte vorm van if (isset(...)) ... else .... _(bron: 5. Dynamic Web Pages.pptx, dia 41)_
-
-### Arrays
-- `["a", "b", "c"]` — **Geïndexeerde array (korte syntax)**: Maakt een array met vierkante haken, korter dan array(). In zo'n geïndexeerde array krijgt elke waarde automatisch een nummer (index) als sleutel, te beginnen bij 0. _(bron: 4. Fundamentals of PHP.pptx, dia 34)_
-  - werkt ook: `array("a", "b", "c")` — [...] en array(...) maken allebei dezelfde array.
-- `["sleutel" => waarde]` — **Associatieve array met eigen sleutels**: In een associatieve array kies je zelf de sleutel van elke waarde (een string of een getal). Je schrijft de sleutel, dan =>, dan de waarde. _(bron: 4. Fundamentals of PHP.pptx, dia 35)_
-- `print_r($array);` — **Volledige array tonen**: Toont de hele inhoud van een array, met alle sleutels en waarden. echo en print werken niet voor een volledige array. _(bron: 4. Fundamentals of PHP.pptx, dia 37)_
-  - voorbeelden: `print_r($_POST)`
-- `$array[sleutel]` — **Waarde uit array ophalen**: Haalt één waarde uit een array: de naam van de array gevolgd door de sleutel (index of naam) tussen vierkante haken. Die waarde kun je tonen, bewaren of in je code gebruiken. _(bron: 4. Fundamentals of PHP.pptx, dia 38)_
-- `$array[sleutel] = waarde;` — **Waarde in array aanpassen/toevoegen**: Geeft de waarde bij een bepaalde sleutel een nieuwe waarde. Bestaat de sleutel al, dan wordt de waarde overschreven; is het een nieuwe sleutel, dan wordt een nieuw element toegevoegd. _(bron: 4. Fundamentals of PHP.pptx, dia 40)_
-- `$array[] = waarde;` — **Waarde achteraan toevoegen**: Lege vierkante haken voegen een nieuwe waarde toe aan het einde van de array (met de volgende vrije index). Doet hetzelfde als array_push. _(bron: 4. Fundamentals of PHP.pptx, dia 41)_
-  - werkt ook: `array_push($array, waarde);` — $array[] = waarde en array_push() voegen allebei een waarde achteraan toe.
-- `array_unshift($array, waarde);` — **Waarde vooraan toevoegen**: Voegt een nieuwe waarde toe aan het begin van een array; de indexen van de andere elementen schuiven op. _(bron: 4. Fundamentals of PHP.pptx, dia 41)_
-- `array_shift($array);` — **Eerste waarde verwijderen**: Verwijdert de eerste waarde van een array. _(bron: 4. Fundamentals of PHP.pptx, dia 43)_
-- `array_pop($array);` — **Laatste waarde verwijderen**: Verwijdert de laatste waarde van een array. _(bron: 4. Fundamentals of PHP.pptx, dia 43)_
-- `unset($array[sleutel]);` — **Specifieke waarde uit array verwijderen**: Verwijdert het element met de opgegeven sleutel uit een array. _(bron: 4. Fundamentals of PHP.pptx, dia 43)_
-- `$array[key1][key2]` — **Waarde uit tweedimensionale array**: Een tweedimensionale array is een array waarvan elk element zelf een array is (zoals een rooster). Met de eerste sleutel kies je de sub-array, met de tweede het element daarin. _(bron: 4. Fundamentals of PHP.pptx, dia 45)_
-- `count($array)` — **Aantal elementen in array**: Geeft het aantal elementen in een array terug. _(bron: 4. Fundamentals of PHP.pptx, dia 83)_
-- `in_array(waarde, $array)` — **Controleren of waarde in array zit**: Geeft true als de gezochte waarde in de array voorkomt en false als ze er niet in zit, zonder dat je zelf een lus moet schrijven. _(bron: 4. Fundamentals of PHP.pptx, dia 92)_
-  - voorbeelden: `in_array($zoek, $array)`
-
-### Voorwaarden
-- `if (voorwaarde) { ... }` — **Code uitvoeren als voorwaarde waar is**: Een if-statement controleert een voorwaarde en voert de code tussen de accolades alleen uit als die voorwaarde true is; anders wordt die code overgeslagen. Er komt geen puntkomma na het blok. Een nieuwe if start een aparte, onafhankelijke voorwaarde. _(bron: 4. Fundamentals of PHP.pptx, dia 57)_
-- `elseif (voorwaarde) { ... }` — **Extra voorwaarde als vorige onwaar**: elseif test een extra voorwaarde als alle voorgaande if/elseif-voorwaarden onwaar waren. Je mag er meerdere na een if zetten; zodra er één waar is, worden de volgende niet meer gecontroleerd. _(bron: 4. Fundamentals of PHP.pptx, dia 58)_
-- `else { ... }` — **Code als niets anders klopt**: else voert zijn code uit als alle voorgaande if- en elseif-voorwaarden onwaar zijn. Het heeft zelf geen voorwaarde en staat altijd als laatste. Een conditional heeft precies één if, optioneel één else en nul of meer elseifs. _(bron: 4. Fundamentals of PHP.pptx, dia 60)_
-- `Geneste if` — **Voorwaarde binnen een voorwaarde**: Je kunt een if-statement binnen een ander if-blok plaatsen (nesten). Zo behandel je ingewikkeldere logica waarbij een beslissing van meerdere voorwaarden afhangt. _(bron: 4. Fundamentals of PHP.pptx, dia 63)_
-
-### Lussen
-- `while (voorwaarde) { ... }` — **Herhalen zolang voorwaarde waar is**: Een while-lus controleert telkens de voorwaarde en voert het codeblok opnieuw uit zolang die true is. Zodra de voorwaarde false is, stopt de lus. Zorg dat er in de lus iets verandert, anders stopt ze nooit. _(bron: 4. Fundamentals of PHP.pptx, dia 66)_
-- `while (true) { ... }` — **Oneindige lus**: Omdat de voorwaarde altijd true is, stopt deze lus nooit vanzelf. Stop het script in de terminal met Ctrl + C. _(bron: 4. Fundamentals of PHP.pptx, dia 66)_
-- `for (start; voorwaarde; update) { ... }` — **Lus met teller**: Een for-lus heeft drie delen tussen haakjes: een startwaarde voor de lusvariabele, een voorwaarde die bepaalt of de lus doorgaat, en een update die de lusvariabele na elke ronde aanpast (meestal +1 of -1). _(bron: 4. Fundamentals of PHP.pptx, dia 68)_
-- `foreach ($array as $value) { ... }` — **Elke waarde van array overlopen**: Een foreach-lus overloopt elk element van een array: bij elke ronde krijgt $value de volgende waarde uit de array. _(bron: 4. Fundamentals of PHP.pptx, dia 70)_
-- `foreach ($array as $key => $value) { ... }` — **Sleutels en waarden van array overlopen**: Deze foreach-lus overloopt een array en geeft bij elke ronde zowel de sleutel ($key) als de bijhorende waarde ($value). Handig bij associatieve arrays. _(bron: 4. Fundamentals of PHP.pptx, dia 71)_
-- `continue;` — **Naar volgende lusronde springen**: continue slaat de rest van de huidige ronde van een lus over en gaat meteen verder met de volgende ronde. _(bron: 4. Fundamentals of PHP.pptx, dia 73)_
-- `break;` — **Lus volledig stoppen**: break stopt de lus meteen; het script gaat verder met de code na de lus. Handig om niet verder te zoeken als je gevonden hebt wat je zocht. _(bron: 4. Fundamentals of PHP.pptx, dia 73)_
-
-### Functies
-- `isset($variabele)` — **Controleren of variabele bestaat**: Geeft true als de variabele (of het array-element) bestaat en een waarde heeft, en false als ze niet bestaat of null is. Handig om te controleren of een sleutel in een array zit of of er een argument meegegeven is. _(bron: 4. Fundamentals of PHP.pptx, dia 76)_
-- `empty($variabele)` — **Controleren of variabele leeg is**: Geeft true als de variabele niet bestaat of een 'lege' waarde heeft: 0, een lege string "", null, false of een lege array []. _(bron: 4. Fundamentals of PHP.pptx, dia 78)_
-- `exit("bericht"); / die("bericht");` — **Script onmiddellijk stoppen**: exit() en die() stoppen het volledige script meteen; code daarna wordt niet meer uitgevoerd. Een optionele tekst tussen de haakjes wordt eerst nog getoond. Verschil met break: break stopt enkel een lus, de rest van het script loopt verder. _(bron: 4. Fundamentals of PHP.pptx, dia 80)_
-- `rand(min, max)` — **Willekeurig geheel getal**: Geeft een willekeurig geheel getal tussen min en max (beide inbegrepen). Wil je een willekeurig kommagetal, deel dan het resultaat, bv. rand(0, 10) / 10 geeft 0.0, 0.1 ... 1.0. _(bron: 4. Fundamentals of PHP.pptx, dia 93)_
-- `sleep(seconden);` — **Script even pauzeren**: Pauzeert de uitvoering van het script gedurende het opgegeven aantal seconden. _(bron: 4. Fundamentals of PHP.pptx, dia 95)_
-- `unset($variabele);` — **Variabele verwijderen**: Verwijdert een variabele of een array-element, zodat ze daarna niet meer bestaat. _(bron: 4. Fundamentals of PHP.pptx, dia 97)_
-
-### Formulieren
-- `$_POST['naam']` — **Formulierwaarde ophalen (POST)**: Ingebouwde array met de gegevens van een formulier met method="POST". De sleutel is de name van het invoerveld, de waarde is wat de gebruiker invulde. _(bron: 5. Dynamic Web Pages.pptx, dia 16)_
-- `if (isset($_POST['submit'])) { }` — **Controleren of formulier verstuurd is**: isset() geeft true als de naam in de array bestaat. Zo voer je de verwerkingscode pas uit nadat op de verzendknop (name="submit") is geklikt, en vermijd je fouten. Ook te gebruiken om te zien of een checkbox aangevinkt is. _(bron: 5. Dynamic Web Pages.pptx, dia 16)_
-- `$_GET['naam']` — **Formulierwaarde ophalen (GET)**: Ingebouwde array met de gegevens van een formulier met method="GET" (de waarden staan ook in de URL). Werkt verder net als $_POST. _(bron: 5. Dynamic Web Pages.pptx, dia 17)_
-- `$_FILES['naam']['tmp_name']` — **Tijdelijke locatie van upload**: Een geüpload bestand wordt eerst op een tijdelijke plaats bewaard. De ingebouwde array $_FILES bevat info over het bestand (naam, type, grootte …); via 'tmp_name' krijg je het pad om het bestand te lezen. _(bron: 5. Dynamic Web Pages.pptx, dia 48)_
-- `file($bestand)` — **Bestand inlezen als array regels**: Leest een bestand en geeft een array terug met één element per regel. Elke regel bevat nog het regeleinde \n, dus gebruik trim() voor je ermee vergelijkt. _(bron: 5. Dynamic Web Pages.pptx, dia 49)_
-- `file_get_contents($bestand)` — **Hele bestand als één string**: Leest de volledige inhoud van een bestand in als één string. Met explode("\n", ...) splits je die daarna in regels. _(bron: 5. Dynamic Web Pages.pptx, dia 49)_
-
 ## PyMOL (68)
 
 ### Weergave
@@ -1225,3 +946,286 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 ### Functievoorspelling
 - `Sequentie- vs structuurgebaseerde voorspelling` — **Twee manieren om functie te voorspellen**: Sequentiegebaseerd: functie overnemen van gelijkaardige sequenties (>40% identiteit). Structuurgebaseerd: vergelijken met gekende structuren (bv. via CATH, SCOP), zoeken naar gekende structurele motieven, of ab initio analyseren van enkel de structuur (bv. clefts). _(bron: SB-07-structural-functional-assignment.pptx, dia 34)_
 - `Cleft (groeve)` — **Holte waar liganden binden**: Groeve of holte in het eiwitoppervlak. De actieve site of ligandbindingsplaats is vaak de grootste cleft: daar kan het substraat nauwkeurig geplaatst en van het water afgeschermd worden. _(bron: SB-07-structural-functional-assignment.pptx, dia 48)_
+
+## HTML (60)
+
+### Structuur
+- `<!DOCTYPE html>` — **Documenttype**: Staat helemaal bovenaan elk HTML-bestand en vertelt de browser dat het om moderne HTML gaat.
+- `! + Enter` — **HTML-basisstructuur invoegen (VS Code)**: In VS Code typ je in een leeg .html-bestand een uitroepteken en druk je op Enter (of Tab). Dan wordt de volledige HTML5-basisstructuur met doctype, html, head en body automatisch ingevuld. _(bron: 2. Introduction to HTML.pptx, dia 9)_
+- `<html lang="en"></html>` — **Begin en einde van document**: De <html>-tag en de sluitingstag </html> markeren het begin en einde van het HTML-document; alles staat hiertussen. Het lang-attribuut zegt in welke taal de pagina geschreven is. _(bron: 2. Introduction to HTML.pptx, dia 11)_
+- `<head></head>` — **Metadata van de pagina**: In de <head> zet je informatie over de pagina (metadata), zoals de titel en CSS-stijlen. Het is een omhulsel rond andere tags; de inhoud ervan verschijnt niet in het browservenster zelf. _(bron: 2. Introduction to HTML.pptx, dia 12)_
+- `<body></body>` — **Zichtbare inhoud van de pagina**: Alles tussen <body> en </body> wordt in het browservenster getoond. Het is een omhulsel rond alle andere inhoudstags zoals koppen, paragrafen en afbeeldingen. _(bron: 2. Introduction to HTML.pptx, dia 15)_
+- `<!-- commentaar -->` — **Commentaar in HTML**: Tekst tussen <!-- en --> is commentaar: de browser toont het niet. Je gebruikt het voor uitleg en notities in je code, zodat die makkelijker te begrijpen is. _(bron: 2. Introduction to HTML.pptx, dia 16)_
+
+### Head & koppelingen
+- `<title></title>` — **Titel van de webpagina**: Stelt de titel van de webpagina in; de browser toont die in het tabblad. Staat binnen de <head>. _(bron: 2. Introduction to HTML.pptx, dia 13)_
+- `<style></style>` — **CSS-stijlen in de head**: Hiertussen zet je CSS-regels die de opmaak van de pagina bepalen (interne stijl). De <style>-tag staat in de <head>. _(bron: 2. Introduction to HTML.pptx, dia 14)_
+
+### Tekst
+- `<h1></h1> … <h6></h6>` — **Koppen (titels) van secties**: Koppen geven een titel aan een nieuwe sectie. Er zijn zes niveaus: h1 is de grootste, h6 de kleinste; de browser past de grootte automatisch aan. _(bron: 2. Introduction to HTML.pptx, dia 20)_
+- `<p></p>` — **Paragraaf maken**: Groepeert tekst die bij elkaar hoort in een paragraaf. De browser voegt automatisch witruimte toe boven en onder de paragraaf. Gelijkaardig aan <div> maar met extra witruimte _(bron: 2. Introduction to HTML.pptx, dia 21)_
+- `<pre></pre>` — **Tekst exact zoals getypt**: Toont tekst met alle spaties, tabs en regeleinden precies zoals in de code, in een monospaced lettertype. Ideaal voor sequenties van nucleotiden of aminozuren, of ASCII-art. _(bron: 2. Introduction to HTML.pptx, dia 23)_
+- `<blockquote></blockquote>` — **Blok citaat uit andere bron**: Markeert een blok tekst als citaat uit een andere bron. De browser voegt witruimte toe boven, onder en links van het citaat.
+Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2. Introduction to HTML.pptx, dia 25)_
+- `<br>` — **Nieuwe regel beginnen**: Voegt een regeleinde in: wat volgt komt op een nieuwe regel. Het is een self-closing tag. Anders dan <hr> tekent het geen lijn. _(bron: 2. Introduction to HTML.pptx, dia 29)_
+- `<code></code>` — **Code-tekst binnen een regel**: Toont tekst in een monospaced lettertype, zoals <pre>, maar is een inline-element: de tekst blijft op dezelfde regel staan. _(bron: 2. Introduction to HTML.pptx, dia 30)_
+- `<em></em>` — **Tekst benadrukken (cursief)**: Legt nadruk op tekst; de browser toont die cursief. _(bron: 2. Introduction to HTML.pptx, dia 31)_
+  - werkt ook: `<i></i>` — Zelfde resultaat (cursief); <em> geeft ook nadruk in de betekenis, <i> is puur opmaak.
+  - voorbeelden: `<i>enzym11111111</i>`
+- `<small></small>` — **Kleinere tekst**: Toont tekst in een kleiner lettertype. Je kan small-tags in elkaar zetten (nesten): hoe meer small-tags, hoe kleiner de tekst. _(bron: 2. Introduction to HTML.pptx, dia 32)_
+  - voorbeelden: `<small>2222222</small>`
+- `<strike></strike>` — **Tekst doorstrepen**: Toont tekst met een lijn erdoor, bv. om een fout aan te duiden. _(bron: 2. Introduction to HTML.pptx, dia 33)_
+  - werkt ook: `<del></del>` — Zelfde resultaat (doorgestreept); <strike> is verouderd, <del> of <s> is de moderne vorm.
+  - voorbeelden: `<strike>4444444</strike>`
+- `<strong></strong>` — **Tekst vet maken**: Benadrukt tekst sterk; de browser toont die in het vet. _(bron: 2. Introduction to HTML.pptx, dia 34)_
+  - werkt ook: `<b></b>` — Zelfde resultaat (vet); <strong> duidt ook belangrijkheid aan, <b> is puur opmaak.
+  - voorbeelden: `<strong>33333333</strong>`
+- `<q></q>` — **Kort citaat binnen regel**: Markeert een kort citaat binnen een regel tekst; de browser zet er automatisch aanhalingstekens rond. _(bron: 2. Introduction to HTML.pptx, dia 35)_
+
+### Layout
+- `<div></div>` — **Algemene container (blok)**: Geen andere content mag getoond worden om diezelfde lijn. De div-tag heeft geen eigen betekenis en voegt, anders dan <p>, geen extra witruimte toe boven of onder. _(bron: 2. Introduction to HTML.pptx, dia 22)_
+- `<hr>` — **Horizontale lijn**: Tekent een horizontale lijn om secties van elkaar te scheiden. Het is een self-closing tag: er is geen sluitingstag en geen inhoud. _(bron: 2. Introduction to HTML.pptx, dia 26)_
+- `<span></span>` — **Algemene container binnen regel**: Groepeert een stukje tekst binnen een regel zodat je het met CSS kan opmaken. Net als <div> heeft span geen eigen betekenis of effect, maar het is een inline-element. _(bron: 2. Introduction to HTML.pptx, dia 36)_
+
+### Links & media
+- `<a href="URL"></a>` — **Link naar andere website**: Maakt een klikbare hyperlink. In het href-attribuut zet je het adres (URL) van de pagina; de tekst tussen de tags is waarop je klikt. voeg ( target="blank" ) toe voor website te laten op nieuw tabblad _(bron: 2. Introduction to HTML.pptx, dia 27)_
+  - voorbeelden: `<a href="https://google.com">link to google</a>`, `<a href="https://howest.be">link to howest</a>`, `<a href="https://php.net">link to php.net</a>`, `<a href="https://github.com">link to github</a>`, `<a href="https://google.com" target="blank">link to google</a>`, `<a href="https://howest.be" target="blank">link to howest</a>`, `<a href="https://php.net" target="blank"> link to php.net</a>`
+- `<a href="info/contact.html"></a>` — **Link naar pagina op eigen site**: Verwijst naar een ander HTML-bestand van je eigen website. Staat het bestand in dezelfde map, dan volstaat de naam (about.html); in een submap zet je de mapnaam ervoor (info/contact.html). _(bron: 2. Introduction to HTML.pptx, dia 28)_
+  - voorbeelden: `<a href="pagina2.html">Volgende</a>`
+- `<img src="">` — **Afbeelding tonen**: Voegt een afbeelding in de pagina. Het src-attribuut is verplicht en geeft de locatie: een lokaal pad (bv. Mario.png in dezelfde map) of een volledige URL. _(bron: 2. Introduction to HTML.pptx, dia 37)_
+  - voorbeelden: `<img src="eiwit.png" alt="Eiwitstructuur">`
+- `<a href="#id"></a>` — **Link naar plek op pagina**: Een link met href="#" gevolgd door een id springt naar het element met dat id op dezelfde pagina. Handig voor een inhoudstafel. _(bron: 2. Introduction to HTML.pptx, dia 57)_
+- `<a href="mailto:adres">tekst</a>` — **Link die e-mail opstelt**: Een link met mailto: opent het e-mailprogramma van de gebruiker met het adres al ingevuld als ontvanger. _(bron: 5. Dynamic Web Pages.pptx, dia 9)_
+
+### Attributen
+- `<img src="" alt="">` — **Alternatieve tekst bij afbeelding**: Het alt-attribuut geeft tekst die getoond wordt als de afbeelding niet laadt, bv. door een typfout in het pad. _(bron: 2. Introduction to HTML.pptx, dia 38)_
+- `<img src="" width="500px">` — **Breedte of hoogte van afbeelding**: Met width en height stel je de afmetingen van een afbeelding in (in pixels). Geef je enkel de breedte of enkel de hoogte, dan past de andere zich aan zodat de afbeelding niet vervormt. _(bron: 2. Introduction to HTML.pptx, dia 39)_
+- `class=""` — **Klasse (label) aan element geven**: Geeft een element een label (klasse) zodat je het kan aanspreken, bv. met CSS. Meerdere elementen mogen dezelfde klasse hebben en één element kan meerdere klassen hebben, gescheiden door spaties. _(bron: 2. Introduction to HTML.pptx, dia 53)_
+- `id=""` — **Unieke naam aan element geven**: Geeft een element een unieke naam (id). Twee elementen mogen niet hetzelfde id hebben en elk element heeft maximaal één id. _(bron: 2. Introduction to HTML.pptx, dia 55)_
+- `style=""` — **CSS op één element**: Met het style-attribuut geef je CSS-opmaak aan één enkel element (inline stijl). _(bron: 2. Introduction to HTML.pptx, dia 58)_
+- `title=""` — **Tooltip bij element**: Geeft extra informatie die als tooltip verschijnt wanneer je met de muis over het element gaat. Niet verwarren met de <title>-tag, die de titel in het browsertabblad zet. _(bron: 2. Introduction to HTML.pptx, dia 59)_
+- `placeholder="tekst"` — **Hulptekst in leeg invoerveld**: Toont een lichtgrijze hint in een leeg invoerveld (bv. 'Provide your name'). De hint verdwijnt als je begint te typen en wordt niet verstuurd. _(bron: 5. Dynamic Web Pages.pptx, dia 11)_
+- `checked` — **Standaard aangevinkt bij laden**: Checkboxes en radioknoppen zijn standaard niet aangevinkt. Zet checked in de tag om ze vooraf aan te vinken: bij checkboxes mag dat bij meerdere, bij radioknoppen bij één knop per groep. _(bron: 5. Dynamic Web Pages.pptx, dia 31)_
+
+### Formulieren
+- `<fieldset></fieldset>` — **Kader met zichtbare rand**: Maakt een container met een zichtbare rand rond de inhoud. _(bron: 2. Introduction to HTML.pptx, dia 41)_
+- `<legend></legend>` — **Titel op rand van fieldset**: Zet een titel bovenaan op de rand van een <fieldset>. Werkt enkel binnen een fieldset-tag. _(bron: 2. Introduction to HTML.pptx, dia 41)_
+- `<form action="#" method="POST"></form>` — **Formulier voor invoervelden**: Een formulier bevat de invoervelden en bepaalt waar en hoe de gegevens na verzenden naartoe gaan. Alle invoervelden (<input>, <select>, <textarea>) moeten erin staan. _(bron: 5. Dynamic Web Pages.pptx, dia 13)_
+- `<input type="" name="" value="">` — **Invoerveld maken**: De belangrijkste tag voor invoervelden. Via name haal je de ingevulde waarde later op in PHP. _(bron: 5. Dynamic Web Pages.pptx, dia 19)_
+- `<input type="submit" name="submit" value="tekst">` — **Verzendknop voor formulier**: Maakt een knop die het formulier naar de PHP-server stuurt. value bepaalt de tekst op de knop (en de waarde in $_POST/$_GET); zonder value staat er 'Submit Query'. _(bron: 5. Dynamic Web Pages.pptx, dia 20)_
+- `<input type="text" name="">` — **Invoerveld voor korte tekst**: Een veld waarin de gebruiker een korte tekst typt. Met value kun je een standaardtekst meegeven. _(bron: 5. Dynamic Web Pages.pptx, dia 21)_
+- `<input type="number" name="">` — **Invoerveld voor getallen**: Een veld waarin alleen getallen ingevuld kunnen worden, bv. een leeftijd. Er bestaan ook min, max en step om het bereik te beperken (buiten de leerstof). _(bron: 5. Dynamic Web Pages.pptx, dia 23)_
+- `<input type="password" name="">` — **Verborgen invoer voor wachtwoorden**: De getypte tekens worden als bolletjes of sterretjes getoond. Gebruik voor gevoelige gegevens altijd method="POST", anders staat de waarde leesbaar in de URL. _(bron: 5. Dynamic Web Pages.pptx, dia 25)_
+- `<input type="email" name="">` — **Invoerveld voor e-mailadres**: Een veld voor een e-mailadres. Bij een ongeldig adres toont de browser meestal een foutmelding en wordt het formulier niet verstuurd. _(bron: 5. Dynamic Web Pages.pptx, dia 27)_
+- `<input type="hidden" name="" value="">` — **Onzichtbaar veld meesturen**: Een veld dat de gebruiker niet ziet, maar waarvan de value toch mee verstuurd wordt. Handig om extra informatie achter de schermen naar de PHP-server te sturen. _(bron: 5. Dynamic Web Pages.pptx, dia 29)_
+- `<input type="checkbox" name="">` — **Aanvinkvakje**: Een vakje dat je aan- of uitvinkt; je kunt er meerdere tegelijk aanvinken. Aangevinkt: de naam komt in $_POST/$_GET met waarde 'on' (of de eigen value). Niet aangevinkt: de naam ontbreekt helemaal. _(bron: 5. Dynamic Web Pages.pptx, dia 30)_
+- `<input type="radio" name="groep" value="">` — **Keuzerondje: één uit groep**: Radioknoppen met dezelfde name vormen een groep waarin je maar één optie kunt kiezen; elke knop heeft een eigen value. In $_POST/$_GET staat de groepsnaam met de value van de gekozen knop; is niets gekozen, dan ontbreekt de naam. _(bron: 5. Dynamic Web Pages.pptx, dia 33)_
+- `<textarea name=""></textarea>` — **Invoerveld voor meerdere regels**: Een groot tekstveld waarin je over meerdere regels kunt typen. Na verzenden is de inhoud één string, met \n op de plaats van de regeleinden. Tekst tussen de tags is de standaardinhoud. _(bron: 5. Dynamic Web Pages.pptx, dia 38)_
+- `<select name=""><option value="">tekst</option></select>` — **Keuzelijst (dropdown menu)**: Maakt een uitklapmenu waarin je één optie kiest. name staat op <select>, value op elke <option>; de tekst tussen de <option>-tags ziet de gebruiker. _(bron: 5. Dynamic Web Pages.pptx, dia 40)_
+- `<select name="naam[]" multiple>` — **Dropdown met meerdere keuzes**: Met het attribuut multiple kun je meerdere opties kiezen (Ctrl of Shift ingedrukt houden bij klikken). De [] achter de naam zorgt dat PHP de gekozen waarden als array ontvangt. _(bron: 5. Dynamic Web Pages.pptx, dia 42)_
+- `<optgroup label="">` — **Opties in dropdown groeperen**: Groepeert verwante <option>-tags in een <select> onder een kopje, zodat een lange lijst overzichtelijk blijft. Het kopje zelf kun je niet kiezen. _(bron: 5. Dynamic Web Pages.pptx, dia 44)_
+- `<input type="file" name="">` — **Bestand laten uploaden**: Maakt een knop waarmee de gebruiker een bestand kiest om te uploaden. Werkt alleen in een formulier met method="POST" en enctype="multipart/form-data". _(bron: 5. Dynamic Web Pages.pptx, dia 47)_
+- `enctype="multipart/form-data"` — **Formulier geschikt maken voor uploads**: Attribuut op de <form>-tag dat nodig is om bestanden te versturen. Het verpakt tekstvelden en bestanden in aparte delen, zodat de server ze correct kan verwerken; zonder dit werkt uploaden niet. _(bron: 5. Dynamic Web Pages.pptx, dia 47)_
+
+### Lijsten
+- `<ul></ul>` — **Lijst met opsommingstekens**: Maakt een ongenummerde lijst met bolletjes. Elk item staat in een eigen <li>-tag binnen de <ul>. _(bron: 2. Introduction to HTML.pptx, dia 42)_
+  - voorbeelden: `<ul><li>Item</li></ul>`
+- `<li></li>` — **Eén item in een lijst**: Elk item van een lijst staat in een eigen <li>-tag, binnen <ul> of <ol>. Voeg meer li-tags toe voor meer items. _(bron: 2. Introduction to HTML.pptx, dia 42)_
+- `<ol></ol>` — **Genummerde lijst**: Maakt een lijst met nummers, handig als de volgorde belangrijk is. Elk item staat in een eigen <li>-tag binnen de <ol>. _(bron: 2. Introduction to HTML.pptx, dia 43)_
+
+### Tabellen
+- `<table></table>` — **Tabel maken**: Maakt een tabel en is de buitenste laag die de hele tabel omsluit. Binnenin staan rijen (<tr>) met cellen (<td> of <th>). _(bron: 2. Introduction to HTML.pptx, dia 45)_
+- `<tr></tr>` — **Rij in een tabel**: Maakt één rij in een tabel. Voeg meer tr-tags toe voor meer rijen. _(bron: 2. Introduction to HTML.pptx, dia 46)_
+- `<td></td>` — **Cel in een tabelrij**: Maakt één gewone cel in een tabelrij. Voeg meer td-tags toe voor meer cellen (kolommen) in de rij. _(bron: 2. Introduction to HTML.pptx, dia 47)_
+- `<th></th>` — **Kopcel in een tabel**: Maakt een kopcel, meestal om kolommen of rijen te benoemen. Browsers tonen die standaard vet en gecentreerd. _(bron: 2. Introduction to HTML.pptx, dia 48)_
+
+## CSS (52)
+
+### Kleur & achtergrond
+- `background-color` — **Achtergrondkleur instellen**: Stelt de achtergrondkleur van een element in, bv. body { background-color: green; } voor een groene pagina. _(bron: 2. Introduction to HTML.pptx, dia 14)_
+  - werkt ook: `background: #D73233;` — background: kleur en background-color: kleur geven dezelfde achtergrondkleur.
+- `color: kleur;` — **Tekstkleur instellen**: De eigenschap color bepaalt de kleur van de tekst in een element. Je kunt een kleurnaam, een hexcode of een RGB-waarde gebruiken. _(bron: 3. Introduction to CSS.pptx, dia 45)_
+  - voorbeelden: `color: red;`, `color`
+- `#FF0000 / rgb(255, 0, 0)` — **Kleur als hexcode of RGB**: Behalve met een naam (red, hotpink, tomato …) kun je een kleur geven als hexcode of RGB-waarde. Bij RGB geef je de hoeveelheid rood, groen en blauw, elk van 0 tot 255; een hexcode geeft dezelfde drie getallen in hexadecimale notatie. _(bron: 3. Introduction to CSS.pptx, dia 45)_
+
+### Selectors
+- `.klasse {…}` — **Elementen met een klasse opmaken**: Een punt voor een naam selecteert alle elementen met die klasse. Zo krijgt .vader {color: red;} alle elementen met class="vader" rode tekst. _(bron: 2. Introduction to HTML.pptx, dia 54)_
+  - voorbeelden: `.TopGun {background: green;}`
+- `#id {…}` — **Element met een id opmaken**: Een hekje (#) voor een naam selecteert het element met dat id. Zo krijgt #kenobi {color: blue;} het element met id="kenobi" blauwe tekst. _(bron: 2. Introduction to HTML.pptx, dia 56)_
+  - voorbeelden: `#Nemo {background: orange;}`
+- `div {background: red;}` — **Elementselector: alle elementen van type**: Een elementselector is gewoon de tagnaam. De stijl geldt voor alle elementen van dat type op de pagina. _(bron: 3. Introduction to CSS.pptx, dia 14)_
+  - voorbeelden: `p {color: red;}`
+- `h1, h4 {background: red;}` — **Selectors groeperen met komma**: Scheid je selectors met een komma, dan geldt de stijl voor alle elementen die aan minstens één van de selectors voldoen. Zo hoef je dezelfde regel niet twee keer te schrijven. _(bron: 3. Introduction to CSS.pptx, dia 17)_
+- `p.BB.JP {background: orange;}` — **Samengestelde selector (zonder spaties)**: Plak je selectors aan elkaar zonder spatie, dan moet een element aan alle delen tegelijk voldoen. p.BB kiest <p>-elementen met klasse BB; p.BB.JP kiest <p>-elementen die zowel klasse BB als JP hebben. _(bron: 3. Introduction to CSS.pptx, dia 19)_
+- `div h3 {background: red;}` — **Afstammelingenselector (spatie)**: Een spatie tussen selectors betekent: het rechtse element moet ergens binnen het linkse element zitten (kind, kleinkind of dieper). Je kunt er meer aan elkaar rijgen, bv. div blockquote h3. _(bron: 3. Introduction to CSS.pptx, dia 22)_
+- `div > h3 {background: red;}` — **Kindselector: enkel directe kinderen**: Met > selecteer je alleen elementen die een direct kind zijn van het linkse element, zonder ander element ertussen. _(bron: 3. Introduction to CSS.pptx, dia 24)_
+- `#Cedric ~ h3 {background: purple;}` — **Siblingselector: latere broers/zussen**: Met ~ selecteer je elementen met dezelfde ouder die ergens ná het linkse element komen, niet noodzakelijk er direct na. _(bron: 3. Introduction to CSS.pptx, dia 26)_
+- `#Cedric + h3 {background: green;}` — **Directe siblingselector (+)**: Met + selecteer je enkel het element dat onmiddellijk ná het linkse element komt en dezelfde ouder heeft. _(bron: 3. Introduction to CSS.pptx, dia 28)_
+- `#Jasper :first-child {background: purple;}` — **Eerste kind binnen een ouder**: :first-child selecteert een element dat het eerste is van zijn siblings. Met de ouder-selector, een spatie en dan :first-child kies je het eerste kind binnen die ouder. _(bron: 3. Introduction to CSS.pptx, dia 32)_
+- `h3:first-child {background: orange;}` — **Elk h3 dat eerste kind is**: Zet je :first-child zonder spatie achter een element- of klasseselector, dan kies je elk element van dat type dat het eerste is tussen zijn siblings. _(bron: 3. Introduction to CSS.pptx, dia 33)_
+- `#Bart :last-child {background: red;}` — **Laatste kind selecteren**: :last-child selecteert het laatste element tussen zijn siblings. Met een spatie (#Bart :last-child) kies je het laatste kind van Bart; zonder spatie (h3:last-child) kies je elke <h3> die het laatste kind is. _(bron: 3. Introduction to CSS.pptx, dia 34)_
+- `ouder :nth-child(n) {…}` — **Het n-de kind selecteren**: :nth-child(n) selecteert het element op positie n tussen zijn siblings (tellen begint bij 1). n kan een getal of een formule zijn. _(bron: 3. Introduction to CSS.pptx, dia 36)_
+  - voorbeelden: `#Jasper :nth-child(3) {background: purple;}`, `#Jasper :nth-child(2n) {background: green;}`, `#Jasper :nth-child(2n+1) {background: red;}`
+- `#Jasper h3:first-of-type {background: red;}` — **Eerste element van een type**: :first-of-type selecteert het eerste element van een bepaald type tussen zijn siblings, ook als er andere elementen vóór staan. Tussen h3 en :first-of-type staat geen spatie. _(bron: 3. Introduction to CSS.pptx, dia 39)_
+- `#Jasper h3:last-of-type {background: red;}` — **Laatste element van een type**: :last-of-type selecteert het laatste element van een bepaald type tussen zijn siblings, ook als er nog andere elementen na komen. _(bron: 3. Introduction to CSS.pptx, dia 40)_
+- `#Paco:hover {background: orange;}` — **Stijl bij muis erover**: :hover past de stijl toe zolang de gebruiker met de muiscursor over het element beweegt. _(bron: 3. Introduction to CSS.pptx, dia 41)_
+- `#Paco:active {background: purple;}` — **Stijl tijdens het klikken**: :active past de stijl toe op het moment dat de gebruiker op het element klikt (de muisknop ingedrukt houdt). _(bron: 3. Introduction to CSS.pptx, dia 42)_
+- `a:link / a:visited` — **Onbezochte en bezochte links**: :link geeft een stijl aan links die nog niet bezocht zijn, :visited aan links die je al bezocht hebt. Voorbeeld: a:link {background: white;} en a:visited {background: red;}. _(bron: 3. Introduction to CSS.pptx, dia 43)_
+
+### Koppelen aan HTML
+- `selector { eigenschap: waarde; }` — **Opbouw van een CSS-regel**: Een CSS-regel bestaat uit een selector en een declaratieblok tussen accolades. Elke declaratie is een eigenschap met een waarde, gevolgd door een puntkomma. Voorbeeld: p { font-size: 1.2em; } geeft alle <p>-elementen een bepaalde lettergrootte. _(bron: 3. Introduction to CSS.pptx, dia 4)_
+- `<p style="color: red; background: green">` — **Inline CSS met style-attribuut**: Met het style-attribuut zet je CSS rechtstreeks op één HTML-element. Meerdere declaraties scheid je met een puntkomma. Handig voor één element, maar onhandig als je later veel elementen moet aanpassen. _(bron: 3. Introduction to CSS.pptx, dia 6)_
+- `<style> span {color: red;} </style>` — **Interne CSS in style-tag**: Met de <style>-tag in de <head> schrijf je CSS-regels die gelden voor meerdere elementen in hetzelfde HTML-document. Zo pas je een stijl op één plaats aan in plaats van bij elk element apart. _(bron: 3. Introduction to CSS.pptx, dia 8)_
+- `<link rel="stylesheet" type="text/css" href="style.css">` — **Extern stylesheet koppelen**: Zet je CSS-regels in een apart .css-bestand en koppel dat met de <link>-tag in de <head>. Zo kunnen meerdere HTML-pagina's dezelfde stijl delen. _(bron: 3. Introduction to CSS.pptx, dia 10)_
+
+### Box model
+- `border: 6px solid rgb(64,58,50);` — **Rand rond een element**: border is een shorthand die in één keer de dikte, de stijl en de kleur van de rand instelt (border-width, border-style en border-color). _(bron: 3. Introduction to CSS.pptx, dia 48)_
+- `height: 250px;` — **Breedte en hoogte instellen**: width bepaalt de horizontale grootte van een element, height de verticale. Je kunt verschillende eenheden gebruiken. _(bron: 3. Introduction to CSS.pptx, dia 49)_
+- `width: fit-content;` — **Breedte passend bij inhoud**: Met fit-content berekent de browser zelf de breedte (of hoogte) op basis van de inhoud. Zo is een div niet meer standaard even breed als het venster. _(bron: 3. Introduction to CSS.pptx, dia 50)_
+- `padding: 16px;` — **Ruimte binnen de rand**: padding is de ruimte tussen de inhoud van een element en zijn rand. Het is een shorthand voor padding-top, -right, -bottom en -left. Met 1 tot 4 waarden kies je welke kanten welke ruimte krijgen. _(bron: 3. Introduction to CSS.pptx, dia 53)_
+- `margin: 0px 0px 15px 0px;` — **Ruimte buiten de rand**: margin is de ruimte buiten de rand, tussen het element en andere elementen. Het is een shorthand voor margin-top, -right, -bottom en -left; de regels voor 1 tot 4 waarden zijn dezelfde als bij padding. _(bron: 3. Introduction to CSS.pptx, dia 53)_
+- `box-sizing: border-box;` — **Padding en rand meetellen**: Standaard (content-box) geldt width/height alleen voor de inhoud; padding en rand komen er nog bij. Met border-box tellen padding en rand mee in de opgegeven breedte en hoogte. _(bron: 3. Introduction to CSS.pptx, dia 55)_
+- `outline: 20px solid yellow;` — **Lijn buiten de rand**: outline tekent een lijn buiten de rand van een element, met dezelfde waarden als border (dikte, stijl, kleur). Anders dan een rand neemt een outline geen plaats in en duwt ze andere elementen niet weg. _(bron: 3. Introduction to CSS.pptx, dia 57)_
+
+### Tekst & lettertype
+- `font-size: 1.2em;` — **Lettergrootte instellen**: font-size bepaalt hoe groot de tekst in een element is. _(bron: 3. Introduction to CSS.pptx, dia 58)_
+- `font-weight: bold;` — **Letterdikte (vet) instellen**: font-weight bepaalt hoe dik of vet de tekst is. _(bron: 3. Introduction to CSS.pptx, dia 59)_
+- `font-style: italic;` — **Schuine tekst instellen**: font-style bepaalt of tekst rechtop of schuin staat. _(bron: 3. Introduction to CSS.pptx, dia 60)_
+- `font-family: 'Atkinson Hyperlegible', sans-serif;` — **Lettertype kiezen met reserve**: font-family kiest het lettertype. Je geeft een lijst gescheiden door komma's: lukt het eerste niet, dan gebruikt de browser het volgende. Een naam van meerdere woorden zet je tussen aanhalingstekens. _(bron: 3. Introduction to CSS.pptx, dia 62)_
+  - voorbeelden: `font-family`
+- `font-variant: small-caps;` — **Tekst in kleine hoofdletters**: font-variant voegt een stijleffect toe aan tekst. Met small-caps worden kleine letters getoond als kleinere hoofdletters; normal is de gewone weergave. _(bron: 3. Introduction to CSS.pptx, dia 63)_
+- `letter-spacing: 40px;` — **Ruimte tussen letters**: letter-spacing regelt de afstand tussen de letters. Je kunt px, em, % en andere eenheden gebruiken. _(bron: 3. Introduction to CSS.pptx, dia 64)_
+- `word-spacing: …` — **Ruimte tussen woorden**: word-spacing regelt de afstand tussen woorden, net zoals letter-spacing dat doet tussen letters. Je kunt px, em, % en andere eenheden gebruiken. _(bron: 3. Introduction to CSS.pptx, dia 64)_
+- `text-align: center;` — **Tekst horizontaal uitlijnen**: text-align bepaalt hoe tekst horizontaal uitgelijnd wordt binnen een element: links, rechts, gecentreerd of uitgevuld over de hele breedte. _(bron: 3. Introduction to CSS.pptx, dia 65)_
+- `text-decoration: line-through;` — **Lijn onder, boven of door tekst**: text-decoration voegt een lijn toe aan tekst of haalt die weg (bv. de standaard onderstreping van links). _(bron: 3. Introduction to CSS.pptx, dia 66)_
+
+### Overige eigenschappen
+- `list-style-type: none;` — **Opsommingsteken van lijst kiezen**: list-style-type bepaalt hoe de tekens voor lijstitems eruitzien. Voor een ongeordende lijst (<ul>): disc (standaard, gevuld bolletje), circle (leeg bolletje), square (vierkantje) of none (geen teken). _(bron: 3. Introduction to CSS.pptx, dia 67)_
+- `list-style-type: upper-roman;` — **Nummering van geordende lijst**: Voor een geordende lijst (<ol>) kies je met list-style-type hoe er genummerd wordt: cijfers, letters of Romeinse cijfers. _(bron: 3. Introduction to CSS.pptx, dia 68)_
+- `border-collapse: collapse;` — **Tabelranden samenvoegen**: Geef je een tabel en haar cellen een rand, dan krijg je dubbele lijnen met kleine tussenruimtes. Met border-collapse: collapse worden aangrenzende randen één lijn; separate houdt ze apart. Zet dit op het <table>-element. _(bron: 3. Introduction to CSS.pptx, dia 70)_
+
+### Layout & positie
+- `display: inline-block;` — **Blok- of inline-gedrag wijzigen**: display verandert hoe een element zich gedraagt: als blokelement (eigen regel, breedte/hoogte instelbaar) of als inline-element (op dezelfde regel). inline-block zet elementen naast elkaar maar laat breedte en hoogte toe. _(bron: 3. Introduction to CSS.pptx, dia 72)_
+- `visibility: hidden;` — **Element verbergen, plaats houden**: visibility: hidden maakt een element onzichtbaar, maar het blijft zijn plaats innemen in de layout. visible (standaard) toont het. Bij display: none verdwijnt de plaats wel. _(bron: 3. Introduction to CSS.pptx, dia 73)_
+- `top / bottom / left / right` — **Afstanden voor positionering**: Deze eigenschappen geven de plaats van een element aan met een afstand (px, %, em …). Wat ze precies doen hangt af van de position-waarde; bij position: static (standaard) hebben ze geen effect. _(bron: 3. Introduction to CSS.pptx, dia 74)_
+- `position: relative; top: 50px;` — **Verschuiven t.o.v. normale plaats**: Met position: relative verschuif je een element ten opzichte van zijn normale plaats. top: 50px schuift het 50 pixels naar beneden. De oorspronkelijke ruimte blijft behouden en andere elementen bewegen niet mee. _(bron: 3. Introduction to CSS.pptx, dia 76)_
+- `position: fixed;` — **Vast op het scherm plaatsen**: Met position: fixed staat een element vast ten opzichte van het browservenster en blijft het op dezelfde plek, ook bij scrollen. top, bottom, left en right geven de afstand tot de randen van het venster. De oorspronkelijke ruimte blijft niet behouden. _(bron: 3. Introduction to CSS.pptx, dia 78)_
+- `position: absolute;` — **Plaatsen binnen gepositioneerde voorouder**: Met position: absolute plaats je een element ten opzichte van de dichtstbijzijnde voorouder die zelf een position heeft (niet static). Daarom geef je de container vaak position: relative. De oorspronkelijke ruimte blijft niet behouden. _(bron: 3. Introduction to CSS.pptx, dia 80)_
+- `overflow: auto;` — **Wat met te veel inhoud**: overflow bepaalt wat er gebeurt als de inhoud groter is dan het element. _(bron: 3. Introduction to CSS.pptx, dia 81)_
+- `float: right;` — **Element links of rechts laten zweven**: float haalt een element uit de normale volgorde en zet het links of rechts in zijn ouder-element. Tekst en andere elementen lopen er dan omheen. _(bron: 3. Introduction to CSS.pptx, dia 82)_
+
+## PHP (88)
+
+### Basis & syntax
+- `php bestand.php` — **PHP-script uitvoeren in terminal**: Voert een PHP-bestand uit via de command line: typ php gevolgd door de naam van het bestand. Bewaar je code eerst in een bestand met de extensie .php en ga in de terminal naar de map waar dat bestand staat. _(bron: 4. Fundamentals of PHP.pptx, dia 5)_
+- `<?php ... ?>` — **PHP-code afbakenen met tags**: PHP voert alleen de code uit die tussen <?php en ?> staat; een bestand mag meerdere van die blokken bevatten. Alles buiten de PHP-tags (bv. gewone tekst of HTML) blijft ongewijzigd staan. _(bron: 4. Fundamentals of PHP.pptx, dia 8)_
+- `;` — **Statement afsluiten met puntkomma**: Elke PHP-opdracht (statement) eindigt met een puntkomma. Een vergeten puntkomma is een veelvoorkomende oorzaak van fouten. Uitzondering: if-, while-, for- en foreach-blokken met accolades krijgen geen puntkomma na de }. _(bron: 4. Fundamentals of PHP.pptx, dia 10)_
+- `// commentaar` — **Commentaar op één regel**: Alles na // (of #) tot het einde van de regel is commentaar: PHP negeert het. Je gebruikt het om uitleg bij je code te schrijven, zodat jij en anderen later nog weten wat de code doet. _(bron: 4. Fundamentals of PHP.pptx, dia 11)_
+- `/* commentaar */` — **Commentaar over meerdere regels**: Alles tussen /* en */ is commentaar, ook als het over meerdere regels loopt. Handig voor langere uitleg of om een stuk code tijdelijk uit te schakelen. _(bron: 4. Fundamentals of PHP.pptx, dia 11)_
+- `var_dump(waarde);` — **Type en waarde in detail tonen**: var_dump() toont gedetailleerde info over een waarde: het datatype én de waarde zelf (werkt ook voor arrays). Handig om te controleren welk type iets heeft of om het resultaat van een voorwaarde (true/false) te zien. _(bron: 4. Fundamentals of PHP.pptx, dia 14)_
+- `echo waarde;` — **Waarde of variabele tonen**: echo toont een waarde of de inhoud van een variabele (in de terminal of later in de browser). Het werkt voor getallen, tekst en booleans. _(bron: 4. Fundamentals of PHP.pptx, dia 17)_
+  - werkt ook: `print(waarde);` — echo en print tonen allebei een waarde op het scherm.
+- `echo "tekst", $variabele;` — **Meerdere waarden tegelijk tonen**: Met echo kun je meerdere waarden en variabelen in één keer tonen door ze met komma's te scheiden. Ze worden achter elkaar getoond. _(bron: 4. Fundamentals of PHP.pptx, dia 18)_
+- `<?php echo "<div>...</div>"; ?>` — **PHP in een HTML-pagina**: Je kunt PHP-code tussen <?php en ?> midden in HTML zetten. De server voert de code uit en vervangt ze door de HTML die echo maakt. Een bestand met PHP-code moet altijd de extensie .php hebben, ook als er vooral HTML in staat. _(bron: 5. Dynamic Web Pages.pptx, dia 3)_
+- `php -S localhost:8080` — **Ingebouwde PHP-webserver starten**: Start in de terminal een kleine webserver die je .php-bestanden uitvoert. Voer het uit in de map met je bestanden (de root-map) en open daarna de getoonde URL in de browser; standaard wordt index.php of index.html getoond. Een ander bestand open je door /bestandsnaam achter de URL te zetten (bv. localhost:8080/ABV.php). _(bron: 5. Dynamic Web Pages.pptx, dia 4)_
+- `include('bestand')` — **Ander bestand invoegen**: Voegt de inhoud van een .html- of .php-bestand in op die plek, bv. een header of footer die op veel pagina's terugkomt. Ontbreekt het bestand, dan gaat het script gewoon verder. _(bron: 5. Dynamic Web Pages.pptx, dia 8)_
+- `require('bestand')` — **Bestand invoegen, stoppen als ontbreekt**: Voegt net als include een bestand in, maar stopt het script met een fatale fout als het bestand ontbreekt. Gebruik het voor onderdelen die er zeker moeten zijn. _(bron: 5. Dynamic Web Pages.pptx, dia 9)_
+- `background: <?php echo $kleur; ?>;` — **PHP gebruiken binnen CSS**: PHP kan ook in een <style>-blok staan om een CSS-waarde te kiezen, bv. de achtergrondkleur afhankelijk van wat de gebruiker indiende. In de les: rood als de knop is ingedrukt, anders wit. _(bron: 5. Dynamic Web Pages.pptx, dia 20)_
+
+### Strings
+- `preg_replace(patroon, vervanging, $string)` — **Patroon vervangen in een string**: Zoekt een patroon (reguliere expressie) in een string en vervangt het. Met $1, $2 ... verwijs je in de vervanging naar de stukken tussen haakjes in het patroon. _(bron: 4. Fundamentals of PHP.pptx, dia 11)_
+- `"tekst" . $variabele` — **Strings aan elkaar plakken (concatenatie)**: De punt (.) plakt twee of meer waarden achter elkaar tot één string. Het resultaat kun je tonen met echo of print, of in een nieuwe variabele bewaren. _(bron: 4. Fundamentals of PHP.pptx, dia 20)_
+- `"tekst $variabele"` — **Variabele in string zetten (interpolatie)**: Zet je een variabele binnen een string met dubbele aanhalingstekens, dan vult PHP automatisch de waarde van die variabele in. Dit heet string-interpolatie. Je kunt de naam ook tussen accolades zetten, bv. "{$naam}". _(bron: 4. Fundamentals of PHP.pptx, dia 21)_
+- `'tekst met $'` — **String zonder interpolatie (enkele quotes)**: In een string tussen enkele aanhalingstekens vult PHP geen variabelen in: $ en de naam blijven letterlijk staan. Gebruik dit voor tekst met een dollarteken, zoals 'K$sha'; met dubbele quotes zou PHP $sha als (onbestaande) variabele zien en een waarschuwing geven. _(bron: 4. Fundamentals of PHP.pptx, dia 22)_
+- `Escape sequence` — **Speciaal teken in een string**: Een escape sequence is een backslash (\) gevolgd door een teken, waarmee je tekens in een string zet die anders moeilijk in te voegen zijn, zoals een nieuwe regel, een tab, een $ of een aanhalingsteken. In dubbele quotes werken \n, \t, \$, \" en \\; in enkele quotes alleen \' en \\. _(bron: 4. Fundamentals of PHP.pptx, dia 23)_
+- `\n` — **Nieuwe regel in string**: \n zet een nieuwe regel (newline) in een string met dubbele aanhalingstekens: de tekst erna begint op de volgende regel. Veel gebruikt om uitvoer in de terminal netjes onder elkaar te krijgen. _(bron: 4. Fundamentals of PHP.pptx, dia 23)_
+- `\t` — **Tab in string**: \t zet een tab (horizontale inspringing) in een string met dubbele aanhalingstekens. _(bron: 4. Fundamentals of PHP.pptx, dia 23)_
+- `\$` — **Letterlijk dollarteken in string**: \$ zet een gewoon dollarteken in een string met dubbele aanhalingstekens, zonder dat PHP er een variabele in ziet. _(bron: 4. Fundamentals of PHP.pptx, dia 23)_
+- `\\` — **Letterlijke backslash in string**: \\ zet één gewone backslash (\) in een string; werkt zowel tussen enkele als dubbele aanhalingstekens. _(bron: 4. Fundamentals of PHP.pptx, dia 23)_
+- `\" en \'` — **Aanhalingsteken in string zetten**: \" zet een dubbel aanhalingsteken in een string tussen dubbele quotes; \' zet een enkel aanhalingsteken in een string tussen enkele quotes. Zo sluit het aanhalingsteken de string niet per ongeluk af. _(bron: 4. Fundamentals of PHP.pptx, dia 24)_
+- `strlen($string)` — **Lengte van een string**: Geeft het aantal tekens in een string terug, spaties en leestekens inbegrepen. _(bron: 4. Fundamentals of PHP.pptx, dia 82)_
+- `str_split($string)` — **String opsplitsen in tekens**: Splitst een string in losse tekens en geeft een array terug waarin elk element één teken is. _(bron: 4. Fundamentals of PHP.pptx, dia 84)_
+- `strtolower($string)` — **Tekst naar kleine letters**: Geeft een nieuwe string terug waarin alle letters omgezet zijn naar kleine letters. _(bron: 4. Fundamentals of PHP.pptx, dia 85)_
+  - voorbeelden: `strtolower($tekst)`
+- `strtoupper($string)` — **Tekst naar hoofdletters**: Geeft een nieuwe string terug waarin alle letters omgezet zijn naar hoofdletters. _(bron: 4. Fundamentals of PHP.pptx, dia 86)_
+- `explode(delimiter, $string)` — **String splitsen in een array**: Knipt een string in stukken telkens waar de delimiter voorkomt en geeft die stukken terug als array. De delimiter zelf verdwijnt. _(bron: 4. Fundamentals of PHP.pptx, dia 87)_
+  - voorbeelden: `explode("\n", $tekst)`
+- `implode(delimiter, $array)` — **Array samenvoegen tot string**: Plakt alle elementen van een array aan elkaar tot één string, met de delimiter ertussen. Het omgekeerde van explode(). _(bron: 4. Fundamentals of PHP.pptx, dia 89)_
+- `preg_match('/^>/', $string)` — **Patroon zoeken in een string**: Controleert of een patroon (een reguliere expressie) in een string voorkomt en geeft true (1) of false (0) terug. Het patroon '/^>/' checkt of de string begint met >, handig om de headerregels van een (multi)FASTA-bestand te herkennen. _(bron: 4. Fundamentals of PHP.pptx, dia 90)_
+- `trim($string)` — **Witruimte aan begin/einde verwijderen**: Verwijdert spaties, tabs en newlines aan het begin en het einde van een string; witruimte in het midden blijft staan. Handig om ingevoerde gegevens zoals e-mailadressen op te kuisen. _(bron: 4. Fundamentals of PHP.pptx, dia 96)_
+  - voorbeelden: `trim($tekst)`
+
+### Variabelen & types
+- `Scalaire types (integer, float, string, boolean)` — **De vier eenvoudigste datatypes**: Scalaire waarden zijn de eenvoudigste soorten data en stellen één enkele waarde voor. Er zijn vier types: integer (geheel getal, bv. 42), float (kommagetal, bv. 3.14), string (tekst tussen ' ' of " ", bv. "Don't panic") en boolean (true of false). _(bron: 4. Fundamentals of PHP.pptx, dia 14)_
+- `$naam = waarde;` — **Waarde opslaan in een variabele**: Maakt een variabele en geeft ze een waarde, zodat je die later in het script kunt gebruiken. Een variabelenaam begint met $ gevolgd door letters, cijfers of underscores, maar mag niet met een cijfer beginnen (dus $Mona_Lisa mag, $123VanGogh of $Mona-Lisa niet). Een nieuwe waarde toekennen overschrijft de oude. _(bron: 4. Fundamentals of PHP.pptx, dia 15)_
+- `$naam = $naam . " " . $naam;` — **Variabele bijwerken met huidige waarde**: Je kunt een variabele aanpassen op basis van haar huidige waarde: rechts van = wordt eerst de nieuwe waarde berekend met de oude, en die wordt daarna terug in dezelfde variabele gestoken. _(bron: 4. Fundamentals of PHP.pptx, dia 25)_
+- `$argv` — **Command-line argumenten uitlezen**: $argv is een ingebouwde array met de argumenten die je bij het starten van het script in de terminal meegeeft. $argv[0] is altijd de naam van het script zelf, $argv[1] het eerste argument, $argv[2] het tweede, enzovoort. _(bron: 4. Fundamentals of PHP.pptx, dia 47)_
+
+### Operatoren
+- `$a + $b, $a - $b, $a * $b, $a / $b` — **Optellen, aftrekken, vermenigvuldigen, delen**: Rekenkundige operatoren voor berekeningen met integers en floats. -$a geeft het tegengestelde van $a. Het resultaat kun je tonen of in een variabele bewaren; met haakjes bepaal je wat eerst berekend wordt. _(bron: 4. Fundamentals of PHP.pptx, dia 27)_
+- `$a ** $b` — **Machtsverheffing**: Verheft $a tot de macht $b. _(bron: 4. Fundamentals of PHP.pptx, dia 27)_
+- `$a % $b` — **Rest na deling (modulus)**: Geeft de rest als je $a deelt door $b. Vaak gebruikt om deelbaarheid te testen: $getal % 2 is 0 bij een even getal en 1 bij een oneven getal. _(bron: 4. Fundamentals of PHP.pptx, dia 28)_
+- `$var++ en $var--` — **Variabele met 1 verhogen/verlagen**: ++ verhoogt de waarde van een numerieke variabele met 1, -- verlaagt ze met 1. Een kortere schrijfwijze voor $var = $var + 1 en $var = $var - 1; veel gebruikt in lussen. _(bron: 4. Fundamentals of PHP.pptx, dia 30)_
+- `$var += n en $var -= n` — **Getal optellen bij/aftrekken van variabele**: += telt een getal op bij de huidige waarde van een variabele, -= trekt er een getal van af. Korter dan $var = $var + n. _(bron: 4. Fundamentals of PHP.pptx, dia 30)_
+- `$a == $b` — **Gelijk aan (na type juggling)**: Geeft true als $a gelijk is aan $b, nadat PHP de types zo nodig automatisch omgezet heeft (type juggling). Let op: één = kent een waarde toe, == vergelijkt. _(bron: 4. Fundamentals of PHP.pptx, dia 51)_
+- `$a === $b` — **Identiek: zelfde waarde én type**: Geeft enkel true als $a en $b dezelfde waarde én hetzelfde type hebben; PHP zet niets automatisch om. Zo is false == 0 true, maar false === 0 false. _(bron: 4. Fundamentals of PHP.pptx, dia 51)_
+- `$a != $b` — **Niet gelijk aan**: Geeft true als $a niet gelijk is aan $b, na automatische typeomzetting. Zo is false != 0 false, omdat PHP 0 als false beschouwt. _(bron: 4. Fundamentals of PHP.pptx, dia 51)_
+- `$a !== $b` — **Niet identiek**: Geeft true als $a en $b een andere waarde óf een ander type hebben. Zo is false !== 0 true, omdat het ene een boolean en het andere een integer is. _(bron: 4. Fundamentals of PHP.pptx, dia 51)_
+- `<  >  <=  >=` — **Kleiner/groter dan vergelijken**: Vergelijkt twee waarden: < kleiner dan, > groter dan, <= kleiner dan of gelijk aan, >= groter dan of gelijk aan. Het resultaat is altijd true of false. _(bron: 4. Fundamentals of PHP.pptx, dia 51)_
+- `Type juggling` — **Automatische omzetting van types**: PHP zet waarden van verschillende types automatisch om als je ze vergelijkt, wat soms verrassend is: false == 0 is bijvoorbeeld true. Gebruik === en !== als ook het type moet kloppen. _(bron: 4. Fundamentals of PHP.pptx, dia 52)_
+- `$a && $b (and)` — **Logische EN**: Geeft true als beide voorwaarden waar zijn. && en and doen hetzelfde. _(bron: 4. Fundamentals of PHP.pptx, dia 54)_
+- `$a || $b (or)` — **Logische OF**: Geeft true als minstens één van de voorwaarden waar is. || en or doen hetzelfde. _(bron: 4. Fundamentals of PHP.pptx, dia 54)_
+- `$a xor $b` — **Exclusieve OF**: Geeft true als precies één van de twee voorwaarden waar is, maar niet allebei. _(bron: 4. Fundamentals of PHP.pptx, dia 54)_
+- `!$a` — **Logische NIET (omkeren)**: Keert het resultaat van een voorwaarde om: true wordt false en false wordt true. _(bron: 4. Fundamentals of PHP.pptx, dia 54)_
+- `$a && ($b || $c)` — **Haakjes in samengestelde voorwaarden**: Je mag meerdere logische operatoren combineren. Wat tussen haakjes staat wordt eerst geëvalueerd, zo bepaal je de juiste volgorde. _(bron: 4. Fundamentals of PHP.pptx, dia 56)_
+- `$a ?? 'standaard'` — **Standaardwaarde als iets ontbreekt**: De ??-operator geeft de linkerwaarde als die bestaat (en niet null is), anders de rechterwaarde. Korte vorm van if (isset(...)) ... else .... _(bron: 5. Dynamic Web Pages.pptx, dia 41)_
+
+### Arrays
+- `["a", "b", "c"]` — **Geïndexeerde array (korte syntax)**: Maakt een array met vierkante haken, korter dan array(). In zo'n geïndexeerde array krijgt elke waarde automatisch een nummer (index) als sleutel, te beginnen bij 0. _(bron: 4. Fundamentals of PHP.pptx, dia 34)_
+  - werkt ook: `array("a", "b", "c")` — [...] en array(...) maken allebei dezelfde array.
+- `["sleutel" => waarde]` — **Associatieve array met eigen sleutels**: In een associatieve array kies je zelf de sleutel van elke waarde (een string of een getal). Je schrijft de sleutel, dan =>, dan de waarde. _(bron: 4. Fundamentals of PHP.pptx, dia 35)_
+- `print_r($array);` — **Volledige array tonen**: Toont de hele inhoud van een array, met alle sleutels en waarden. echo en print werken niet voor een volledige array. _(bron: 4. Fundamentals of PHP.pptx, dia 37)_
+  - voorbeelden: `print_r($_POST)`
+- `$array[sleutel]` — **Waarde uit array ophalen**: Haalt één waarde uit een array: de naam van de array gevolgd door de sleutel (index of naam) tussen vierkante haken. Die waarde kun je tonen, bewaren of in je code gebruiken. _(bron: 4. Fundamentals of PHP.pptx, dia 38)_
+- `$array[sleutel] = waarde;` — **Waarde in array aanpassen/toevoegen**: Geeft de waarde bij een bepaalde sleutel een nieuwe waarde. Bestaat de sleutel al, dan wordt de waarde overschreven; is het een nieuwe sleutel, dan wordt een nieuw element toegevoegd. _(bron: 4. Fundamentals of PHP.pptx, dia 40)_
+- `$array[] = waarde;` — **Waarde achteraan toevoegen**: Lege vierkante haken voegen een nieuwe waarde toe aan het einde van de array (met de volgende vrije index). Doet hetzelfde als array_push. _(bron: 4. Fundamentals of PHP.pptx, dia 41)_
+  - werkt ook: `array_push($array, waarde);` — $array[] = waarde en array_push() voegen allebei een waarde achteraan toe.
+- `array_unshift($array, waarde);` — **Waarde vooraan toevoegen**: Voegt een nieuwe waarde toe aan het begin van een array; de indexen van de andere elementen schuiven op. _(bron: 4. Fundamentals of PHP.pptx, dia 41)_
+- `array_shift($array);` — **Eerste waarde verwijderen**: Verwijdert de eerste waarde van een array. _(bron: 4. Fundamentals of PHP.pptx, dia 43)_
+- `array_pop($array);` — **Laatste waarde verwijderen**: Verwijdert de laatste waarde van een array. _(bron: 4. Fundamentals of PHP.pptx, dia 43)_
+- `unset($array[sleutel]);` — **Specifieke waarde uit array verwijderen**: Verwijdert het element met de opgegeven sleutel uit een array. _(bron: 4. Fundamentals of PHP.pptx, dia 43)_
+- `$array[key1][key2]` — **Waarde uit tweedimensionale array**: Een tweedimensionale array is een array waarvan elk element zelf een array is (zoals een rooster). Met de eerste sleutel kies je de sub-array, met de tweede het element daarin. _(bron: 4. Fundamentals of PHP.pptx, dia 45)_
+- `count($array)` — **Aantal elementen in array**: Geeft het aantal elementen in een array terug. _(bron: 4. Fundamentals of PHP.pptx, dia 83)_
+- `in_array(waarde, $array)` — **Controleren of waarde in array zit**: Geeft true als de gezochte waarde in de array voorkomt en false als ze er niet in zit, zonder dat je zelf een lus moet schrijven. _(bron: 4. Fundamentals of PHP.pptx, dia 92)_
+  - voorbeelden: `in_array($zoek, $array)`
+
+### Voorwaarden
+- `if (voorwaarde) { ... }` — **Code uitvoeren als voorwaarde waar is**: Een if-statement controleert een voorwaarde en voert de code tussen de accolades alleen uit als die voorwaarde true is; anders wordt die code overgeslagen. Er komt geen puntkomma na het blok. Een nieuwe if start een aparte, onafhankelijke voorwaarde. _(bron: 4. Fundamentals of PHP.pptx, dia 57)_
+- `elseif (voorwaarde) { ... }` — **Extra voorwaarde als vorige onwaar**: elseif test een extra voorwaarde als alle voorgaande if/elseif-voorwaarden onwaar waren. Je mag er meerdere na een if zetten; zodra er één waar is, worden de volgende niet meer gecontroleerd. _(bron: 4. Fundamentals of PHP.pptx, dia 58)_
+- `else { ... }` — **Code als niets anders klopt**: else voert zijn code uit als alle voorgaande if- en elseif-voorwaarden onwaar zijn. Het heeft zelf geen voorwaarde en staat altijd als laatste. Een conditional heeft precies één if, optioneel één else en nul of meer elseifs. _(bron: 4. Fundamentals of PHP.pptx, dia 60)_
+- `Geneste if` — **Voorwaarde binnen een voorwaarde**: Je kunt een if-statement binnen een ander if-blok plaatsen (nesten). Zo behandel je ingewikkeldere logica waarbij een beslissing van meerdere voorwaarden afhangt. _(bron: 4. Fundamentals of PHP.pptx, dia 63)_
+
+### Lussen
+- `while (voorwaarde) { ... }` — **Herhalen zolang voorwaarde waar is**: Een while-lus controleert telkens de voorwaarde en voert het codeblok opnieuw uit zolang die true is. Zodra de voorwaarde false is, stopt de lus. Zorg dat er in de lus iets verandert, anders stopt ze nooit. _(bron: 4. Fundamentals of PHP.pptx, dia 66)_
+- `while (true) { ... }` — **Oneindige lus**: Omdat de voorwaarde altijd true is, stopt deze lus nooit vanzelf. Stop het script in de terminal met Ctrl + C. _(bron: 4. Fundamentals of PHP.pptx, dia 66)_
+- `for (start; voorwaarde; update) { ... }` — **Lus met teller**: Een for-lus heeft drie delen tussen haakjes: een startwaarde voor de lusvariabele, een voorwaarde die bepaalt of de lus doorgaat, en een update die de lusvariabele na elke ronde aanpast (meestal +1 of -1). _(bron: 4. Fundamentals of PHP.pptx, dia 68)_
+- `foreach ($array as $value) { ... }` — **Elke waarde van array overlopen**: Een foreach-lus overloopt elk element van een array: bij elke ronde krijgt $value de volgende waarde uit de array. _(bron: 4. Fundamentals of PHP.pptx, dia 70)_
+- `foreach ($array as $key => $value) { ... }` — **Sleutels en waarden van array overlopen**: Deze foreach-lus overloopt een array en geeft bij elke ronde zowel de sleutel ($key) als de bijhorende waarde ($value). Handig bij associatieve arrays. _(bron: 4. Fundamentals of PHP.pptx, dia 71)_
+- `continue;` — **Naar volgende lusronde springen**: continue slaat de rest van de huidige ronde van een lus over en gaat meteen verder met de volgende ronde. _(bron: 4. Fundamentals of PHP.pptx, dia 73)_
+- `break;` — **Lus volledig stoppen**: break stopt de lus meteen; het script gaat verder met de code na de lus. Handig om niet verder te zoeken als je gevonden hebt wat je zocht. _(bron: 4. Fundamentals of PHP.pptx, dia 73)_
+
+### Functies
+- `isset($variabele)` — **Controleren of variabele bestaat**: Geeft true als de variabele (of het array-element) bestaat en een waarde heeft, en false als ze niet bestaat of null is. Handig om te controleren of een sleutel in een array zit of of er een argument meegegeven is. _(bron: 4. Fundamentals of PHP.pptx, dia 76)_
+- `empty($variabele)` — **Controleren of variabele leeg is**: Geeft true als de variabele niet bestaat of een 'lege' waarde heeft: 0, een lege string "", null, false of een lege array []. _(bron: 4. Fundamentals of PHP.pptx, dia 78)_
+- `exit("bericht"); / die("bericht");` — **Script onmiddellijk stoppen**: exit() en die() stoppen het volledige script meteen; code daarna wordt niet meer uitgevoerd. Een optionele tekst tussen de haakjes wordt eerst nog getoond. Verschil met break: break stopt enkel een lus, de rest van het script loopt verder. _(bron: 4. Fundamentals of PHP.pptx, dia 80)_
+- `rand(min, max)` — **Willekeurig geheel getal**: Geeft een willekeurig geheel getal tussen min en max (beide inbegrepen). Wil je een willekeurig kommagetal, deel dan het resultaat, bv. rand(0, 10) / 10 geeft 0.0, 0.1 ... 1.0. _(bron: 4. Fundamentals of PHP.pptx, dia 93)_
+- `sleep(seconden);` — **Script even pauzeren**: Pauzeert de uitvoering van het script gedurende het opgegeven aantal seconden. _(bron: 4. Fundamentals of PHP.pptx, dia 95)_
+- `unset($variabele);` — **Variabele verwijderen**: Verwijdert een variabele of een array-element, zodat ze daarna niet meer bestaat. _(bron: 4. Fundamentals of PHP.pptx, dia 97)_
+
+### Formulieren
+- `$_POST['naam']` — **Formulierwaarde ophalen (POST)**: Ingebouwde array met de gegevens van een formulier met method="POST". De sleutel is de name van het invoerveld, de waarde is wat de gebruiker invulde. _(bron: 5. Dynamic Web Pages.pptx, dia 16)_
+- `if (isset($_POST['submit'])) { }` — **Controleren of formulier verstuurd is**: isset() geeft true als de naam in de array bestaat. Zo voer je de verwerkingscode pas uit nadat op de verzendknop (name="submit") is geklikt, en vermijd je fouten. Ook te gebruiken om te zien of een checkbox aangevinkt is. _(bron: 5. Dynamic Web Pages.pptx, dia 16)_
+- `$_GET['naam']` — **Formulierwaarde ophalen (GET)**: Ingebouwde array met de gegevens van een formulier met method="GET" (de waarden staan ook in de URL). Werkt verder net als $_POST. _(bron: 5. Dynamic Web Pages.pptx, dia 17)_
+- `$_FILES['naam']['tmp_name']` — **Tijdelijke locatie van upload**: Een geüpload bestand wordt eerst op een tijdelijke plaats bewaard. De ingebouwde array $_FILES bevat info over het bestand (naam, type, grootte …); via 'tmp_name' krijg je het pad om het bestand te lezen. _(bron: 5. Dynamic Web Pages.pptx, dia 48)_
+- `file($bestand)` — **Bestand inlezen als array regels**: Leest een bestand en geeft een array terug met één element per regel. Elke regel bevat nog het regeleinde \n, dus gebruik trim() voor je ermee vergelijkt. _(bron: 5. Dynamic Web Pages.pptx, dia 49)_
+- `file_get_contents($bestand)` — **Hele bestand als één string**: Leest de volledige inhoud van een bestand in als één string. Met explode("\n", ...) splits je die daarna in regels. _(bron: 5. Dynamic Web Pages.pptx, dia 49)_

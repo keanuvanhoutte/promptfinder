@@ -1,7 +1,7 @@
 {
  "app": "PromptFinder",
  "version": 1,
- "exportedAt": "2026-09-24T15:00:00Z",
+ "exportedAt": "2026-09-24T13:28:58Z",
  "tabs": [
   {
    "color": "#5A6874",
@@ -13,6 +13,26 @@
    "id": "algemeen"
   },
   {
+   "color": "#7A4FD0",
+   "createdAt": 1790250000000,
+   "hint": "CSS: opmaak van webpagina's (selectors, kleuren, box model, layout)",
+   "kind": "",
+   "name": "CSS",
+   "order": 6,
+   "section": "Web design",
+   "id": "css"
+  },
+  {
+   "color": "#3559C7",
+   "createdAt": 1790234039542,
+   "hint": "HTML-tags en -attributen om webpagina's te schrijven",
+   "kind": "html",
+   "name": "HTML",
+   "order": 5,
+   "section": "Web design",
+   "id": "html"
+  },
+  {
    "color": "#C27C0E",
    "createdAt": 1790234039542,
    "hint": "Commando's in de Linux-terminal (bash)",
@@ -22,34 +42,14 @@
    "id": "linux"
   },
   {
-   "color": "#3559C7",
-   "createdAt": 1790234039542,
-   "hint": "HTML-tags en -attributen om webpagina's te schrijven",
-   "kind": "html",
-   "name": "HTML",
-   "order": 3,
-   "id": "html",
-   "section": "Web design"
-  },
-  {
-   "color": "#7A4FD0",
-   "createdAt": 1790250000000,
-   "hint": "CSS: opmaak van webpagina's (selectors, kleuren, box model, layout)",
-   "kind": "",
-   "name": "CSS",
-   "order": 3.3,
-   "id": "css",
-   "section": "Web design"
-  },
-  {
    "color": "#B3407A",
    "createdAt": 1790250000001,
    "hint": "PHP: code die op de webserver draait (variabelen, lussen, formulieren)",
    "kind": "",
    "name": "PHP",
-   "order": 3.6,
-   "id": "php",
-   "section": "Web design"
+   "order": 7,
+   "section": "Web design",
+   "id": "php"
   },
   {
    "color": "#1E8A5A",
@@ -57,9 +57,9 @@
    "hint": "PyMOL-commando's om eiwitstructuren te bekijken",
    "kind": "pymol",
    "name": "PyMOL",
-   "order": 4,
-   "id": "pymol",
-   "section": "Struc. bio"
+   "order": 3,
+   "section": "Struc. bio",
+   "id": "pymol"
   },
   {
    "color": "#0B7A83",
@@ -67,9 +67,9 @@
    "hint": "Begrippen uit structurele biologie: eiwit- en DNA-structuur, structuurbepaling, databanken, validatie",
    "kind": "concept",
    "name": "Structurele biologie",
-   "order": 5,
-   "id": "structbio",
-   "section": "Struc. bio"
+   "order": 4,
+   "section": "Struc. bio",
+   "id": "structbio"
   }
  ],
  "prompts": [
@@ -1039,6 +1039,12 @@
    "id": "ex_head"
   },
   {
+   "alts": [
+    {
+     "command": "ls -al",
+     "note": "ls -la en ls -al geven exact hetzelfde resultaat."
+    }
+   ],
    "command": "ls -la",
    "createdAt": 1790233200000,
    "explanation": "Toont alle bestanden in de huidige map, ook verborgen bestanden, met rechten, eigenaar, grootte en datum.",
@@ -1061,14 +1067,8 @@
    "source": "voorbeeld",
    "tab": "linux",
    "title": "Toon alle bestanden in detail",
-   "alts": [
-    {
-     "command": "ls -al",
-     "note": "ls -la en ls -al geven exact hetzelfde resultaat."
-    }
-   ],
-   "uses": 1,
    "updatedAt": 1790260000000,
+   "uses": 1,
    "id": "ex_ls"
   },
   {
@@ -1364,6 +1364,12 @@
    "id": "les_0013"
   },
   {
+   "alts": [
+    {
+     "command": "Ctrl + D",
+     "note": "Ctrl + D sluit de shell af, net als exit."
+    }
+   ],
    "command": "exit",
    "createdAt": 1790250000013,
    "explanation": "Sluit de shell af: het terminalvenster sluit, of je logt uit van een virtuele console of een SSH-verbinding. exit is een ingebouwd Bash-commando.",
@@ -1381,12 +1387,6 @@
    "title": "Terminal of sessie afsluiten",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "Ctrl + D",
-     "note": "Ctrl + D sluit de shell af, net als exit."
-    }
-   ],
    "id": "les_0014"
   },
   {
@@ -1534,6 +1534,12 @@
    "id": "les_0021"
   },
   {
+   "alts": [
+    {
+     "command": "ll",
+     "note": "ll is op Fedora een alias voor ls -l."
+    }
+   ],
    "command": "ls -l",
    "createdAt": 1790250000021,
    "explanation": "Toont de inhoud als lange lijst met eigenschappen: bestandstype en rechten, aantal hardlinks, eigenaar, groep, grootte, datum en naam. Het eerste teken toont het type: - gewoon bestand, d map, l link, s socket, p named pipe, b block device, c character device.",
@@ -1555,12 +1561,6 @@
    "title": "Lijst met eigenschappen tonen",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "ll",
-     "note": "ll is op Fedora een alias voor ls -l."
-    }
-   ],
    "id": "les_0022"
   },
   {
@@ -2318,6 +2318,16 @@
   {
    "command": "ssh [user@]hostname",
    "createdAt": 1790250000059,
+   "examples": [
+    {
+     "command": "ssh guest@172.19.8.101",
+     "note": "Inloggen op Howest BIT-server",
+     "output": "",
+     "slide": 36,
+     "source": "les",
+     "sourceName": "Chapter 2 - The terminal.pptx"
+    }
+   ],
    "explanation": "Maakt een beveiligde verbinding (Secure Shell) met een andere Linux-computer, zodat je die via de terminal kan bedienen. Sluit de verbinding met exit of Ctrl + D.",
    "group": "Netwerk & op afstand",
    "parts": [
@@ -2341,16 +2351,6 @@
    "title": "Verbinden met een externe server",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": "ssh guest@172.19.8.101",
-     "note": "Inloggen op Howest BIT-server",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 2 - The terminal.pptx",
-     "slide": 36
-    }
-   ],
    "id": "les_0060"
   },
   {
@@ -2427,6 +2427,17 @@
   {
    "command": "scp username@IP:/path/to/file /path/to/destination",
    "createdAt": 1790250000064,
+   "examples": [
+    {
+     "command": "scp guest@172.19.8.101:/home/guest/welcome.txt .",
+     "date": 1790250000000,
+     "note": "",
+     "output": "guest@172.19.8.101's password:\nwelcome.txt 100% 75 6.7KB/s 00:00",
+     "slide": 39,
+     "source": "les",
+     "sourceName": "Chapter 2 - The terminal.pptx"
+    }
+   ],
    "explanation": "Kopieert een bestand van de server naar een map op je eigen computer. Als doel mag je ook . gebruiken (de huidige map).",
    "group": "Netwerk & op afstand",
    "parts": [
@@ -2450,17 +2461,6 @@
    "title": "Bestand van server kopiëren",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": "scp guest@172.19.8.101:/home/guest/welcome.txt .",
-     "date": 1790250000000,
-     "note": "",
-     "output": "guest@172.19.8.101's password:\nwelcome.txt 100% 75 6.7KB/s 00:00",
-     "slide": 39,
-     "source": "les",
-     "sourceName": "Chapter 2 - The terminal.pptx"
-    }
-   ],
    "id": "les_0065"
   },
   {
@@ -2534,6 +2534,24 @@
   {
    "command": "cd map",
    "createdAt": 1790250000069,
+   "examples": [
+    {
+     "command": "cd vim91",
+     "note": "Naar submap via relatief pad",
+     "output": "",
+     "slide": 7,
+     "source": "les",
+     "sourceName": "Chapter 3 - Organizing files.pptx"
+    },
+    {
+     "command": "cd Downloads",
+     "note": "Naar de map Downloads gaan",
+     "output": "",
+     "slide": 12,
+     "source": "les",
+     "sourceName": "1. Introduction.pptx"
+    }
+   ],
    "explanation": "Gaat naar de map vim91 die in de huidige map staat. Dit is een relatief pad: het hangt af van waar je nu bent.",
    "group": "Navigatie",
    "parts": [
@@ -2553,24 +2571,6 @@
    "title": "Naar submap via relatief pad",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": "cd vim91",
-     "note": "Naar submap via relatief pad",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 3 - Organizing files.pptx",
-     "slide": 7
-    },
-    {
-     "command": "cd Downloads",
-     "note": "Naar de map Downloads gaan",
-     "output": "",
-     "source": "les",
-     "sourceName": "1. Introduction.pptx",
-     "slide": 12
-    }
-   ],
    "id": "les_0070"
   },
   {
@@ -3961,6 +3961,16 @@
   {
    "command": "chmod 755 file",
    "createdAt": 1790250000125,
+   "examples": [
+    {
+     "command": "chmod 755 script_name.sh",
+     "note": "Script uitvoerbaar maken (cijfers)",
+     "output": "",
+     "slide": 6,
+     "source": "les",
+     "sourceName": "Chapter 9 - Shell scripting - student.pptx"
+    }
+   ],
    "explanation": "Iedereen mag lezen en uitvoeren, enkel de eigenaar mag wijzigen (rwxr-xr-x). Typisch voor programma's en scripts.",
    "group": "Rechten & gebruikers",
    "parts": [
@@ -3984,16 +3994,6 @@
    "title": "Uitvoerbaar voor iedereen",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": "chmod 755 script_name.sh",
-     "note": "Script uitvoerbaar maken (cijfers)",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 9 - Shell scripting - student.pptx",
-     "slide": 6
-    }
-   ],
    "id": "les_0126"
   },
   {
@@ -5202,6 +5202,17 @@
   {
    "command": "wc bestand",
    "createdAt": 1790250000175,
+   "examples": [
+    {
+     "command": "wc",
+     "date": 1790250000000,
+     "note": "wc file.txt toont 20 regels, 166 woorden en 924 tekens.",
+     "output": "20 166 924 file.txt",
+     "slide": 16,
+     "source": "les",
+     "sourceName": "Chapter 2 - The terminal.pptx"
+    }
+   ],
    "explanation": "Telt het aantal regels, woorden en tekens in een bestand. De les gebruikt het als voorbeeld: de invoer is de tekst in het bestand, de uitvoer zijn de getallen.",
    "group": "Bestanden bekijken",
    "parts": [
@@ -5221,17 +5232,6 @@
    "title": "Regels, woorden en tekens tellen",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": "wc",
-     "date": 1790250000000,
-     "note": "wc file.txt toont 20 regels, 166 woorden en 924 tekens.",
-     "output": "20 166 924 file.txt",
-     "slide": 16,
-     "source": "les",
-     "sourceName": "Chapter 2 - The terminal.pptx"
-    }
-   ],
    "id": "les_0176"
   },
   {
@@ -5251,9 +5251,9 @@
      "command": "ls -l > file.txt",
      "note": "Uitvoer naar bestand schrijven",
      "output": "",
+     "slide": 16,
      "source": "les",
-     "sourceName": "Chapter 2 - The terminal.pptx",
-     "slide": 16
+     "sourceName": "Chapter 2 - The terminal.pptx"
     },
     {
      "command": "ls -l > ile.txt",
@@ -5409,6 +5409,16 @@
   {
    "command": "commando >> bestand",
    "createdAt": 1790250000181,
+   "examples": [
+    {
+     "command": "ls -l >> file.txt",
+     "note": "Uitvoer aan bestand toevoegen",
+     "output": "",
+     "slide": 16,
+     "source": "les",
+     "sourceName": "Chapter 2 - The terminal.pptx"
+    }
+   ],
    "explanation": "Voegt de uitvoer van een commando toe aan het einde van een bestand, zonder de bestaande inhoud te overschrijven. Bestaat het bestand niet, dan wordt het gemaakt.",
    "group": "In- en uitvoer",
    "parts": [
@@ -5432,16 +5442,6 @@
    "title": "Uitvoer achteraan bestand toevoegen",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": "ls -l >> file.txt",
-     "note": "Uitvoer aan bestand toevoegen",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 2 - The terminal.pptx",
-     "slide": 16
-    }
-   ],
    "id": "les_0182"
   },
   {
@@ -5842,9 +5842,9 @@
      "command": "read TEXT",
      "note": "Invoer van gebruiker vragen",
      "output": "",
+     "slide": 10,
      "source": "les",
-     "sourceName": "Chapter 9 - Shell scripting - student.pptx",
-     "slide": 10
+     "sourceName": "Chapter 9 - Shell scripting - student.pptx"
     }
    ],
    "explanation": "Wacht tot de gebruiker iets typt en Enter drukt, en bewaart dat in een variabele. Met $VARIABELE gebruik je het daarna.",
@@ -5905,6 +5905,12 @@
    "id": "les_0196"
   },
   {
+   "alts": [
+    {
+     "command": "Ctrl + L",
+     "note": "Ctrl + L maakt het scherm leeg, net als clear."
+    }
+   ],
    "command": "clear",
    "createdAt": 1790250000196,
    "explanation": "Maakt het terminalvenster leeg zodat je met een proper scherm verder werkt.",
@@ -5922,12 +5928,6 @@
    "title": "Terminalscherm leegmaken",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "Ctrl + L",
-     "note": "Ctrl + L maakt het scherm leeg, net als clear."
-    }
-   ],
    "id": "les_0197"
   },
   {
@@ -6119,6 +6119,24 @@
   {
    "command": "echo $VARIABELE",
    "createdAt": 1790250000205,
+   "examples": [
+    {
+     "command": "echo $VARIABLE",
+     "note": "Inhoud van variabele tonen",
+     "output": "",
+     "slide": 38,
+     "source": "les",
+     "sourceName": "Chapter 3 - Organizing files.pptx"
+    },
+    {
+     "command": "echo $ANSWER",
+     "note": "Waarde van variabele tonen",
+     "output": "",
+     "slide": 8,
+     "source": "les",
+     "sourceName": "Chapter 9 - Shell scripting - student.pptx"
+    }
+   ],
    "explanation": "Toont de waarde van een variabele. Bij het opvragen zet je een $ voor de naam, bv. echo $PATH of echo $OSTYPE.",
    "group": "Omgeving & variabelen",
    "parts": [
@@ -6142,24 +6160,6 @@
    "title": "Inhoud van variabele tonen",
    "updatedAt": 1790260000000,
    "uses": 3,
-   "examples": [
-    {
-     "command": "echo $VARIABLE",
-     "note": "Inhoud van variabele tonen",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 3 - Organizing files.pptx",
-     "slide": 38
-    },
-    {
-     "command": "echo $ANSWER",
-     "note": "Waarde van variabele tonen",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 9 - Shell scripting - student.pptx",
-     "slide": 8
-    }
-   ],
    "id": "les_0206"
   },
   {
@@ -6235,6 +6235,16 @@
   {
    "command": "VARIABELE=waarde",
    "createdAt": 1790250000209,
+   "examples": [
+    {
+     "command": "ANSWER=yes",
+     "note": "Variabele aanmaken",
+     "output": "",
+     "slide": 8,
+     "source": "les",
+     "sourceName": "Chapter 9 - Shell scripting - student.pptx"
+    }
+   ],
    "explanation": "Maakt een variabele en geeft ze een waarde. Geen $ en geen spaties rond het =-teken. De naam mag niet met een cijfer beginnen. Zonder export bestaat ze enkel in je huidige shell.",
    "group": "Omgeving & variabelen",
    "parts": [
@@ -6258,16 +6268,6 @@
    "title": "Variabele een waarde geven",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": "ANSWER=yes",
-     "note": "Variabele aanmaken",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 9 - Shell scripting - student.pptx",
-     "slide": 8
-    }
-   ],
    "id": "les_0210"
   },
   {
@@ -6609,6 +6609,16 @@
   {
    "command": "alias naam='commando -opties'",
    "createdAt": 1790250000231,
+   "examples": [
+    {
+     "command": "alias nb='nano ~/.bashrc'",
+     "note": "Alias om .bashrc te bewerken",
+     "output": "",
+     "slide": 23,
+     "source": "les",
+     "sourceName": "Chapter 6 - The work environment.pptx"
+    }
+   ],
    "explanation": "Maakt een alias: een korte naam voor een commando dat je vaak gebruikt, bv. alias la='ls -a'. Zonder argumenten toont alias alle aliassen. Een alias in de terminal verdwijnt als je de shell sluit; zet hem in ~/.bashrc om hem te bewaren.",
    "group": "Omgeving & variabelen",
    "parts": [
@@ -6636,16 +6646,6 @@
    "title": "Korte naam voor commando maken",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": "alias nb='nano ~/.bashrc'",
-     "note": "Alias om .bashrc te bewerken",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 6 - The work environment.pptx",
-     "slide": 23
-    }
-   ],
    "id": "les_0232"
   },
   {
@@ -7008,6 +7008,40 @@
   {
    "command": "sudo dnf install pakket",
    "createdAt": 1790250000247,
+   "examples": [
+    {
+     "command": "sudo dnf install info",
+     "note": "Programma info installeren",
+     "output": "",
+     "slide": 31,
+     "source": "les",
+     "sourceName": "Chapter 2 - The terminal.pptx"
+    },
+    {
+     "command": "sudo dnf install xterm",
+     "note": "Het programma xterm installeren",
+     "output": "",
+     "slide": 11,
+     "source": "les",
+     "sourceName": "Chapter 4 - Processes.pptx"
+    },
+    {
+     "command": "sudo dnf install docker-compose",
+     "note": "Docker compose installeren",
+     "output": "",
+     "slide": 38,
+     "source": "les",
+     "sourceName": "Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx"
+    },
+    {
+     "command": "sudo dnf install pymol",
+     "note": "Open-source PyMOL installeren (Fedora)",
+     "output": "",
+     "slide": 16,
+     "source": "les",
+     "sourceName": "SB-01-introduction-workshop-1-molecular-visualization.pptx"
+    }
+   ],
    "explanation": "Installeert een programma met dnf, de pakketbeheerder voor RPM-pakketten (Fedora). Je kan een pakketnaam geven of een gedownload .rpm-bestand. sudo is nodig omdat je als beheerder installeert.",
    "group": "Pakketten & software",
    "parts": [
@@ -7035,40 +7069,6 @@
    "title": "Software installeren met dnf",
    "updatedAt": 1790260000000,
    "uses": 5,
-   "examples": [
-    {
-     "command": "sudo dnf install info",
-     "note": "Programma info installeren",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 2 - The terminal.pptx",
-     "slide": 31
-    },
-    {
-     "command": "sudo dnf install xterm",
-     "note": "Het programma xterm installeren",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 4 - Processes.pptx",
-     "slide": 11
-    },
-    {
-     "command": "sudo dnf install docker-compose",
-     "note": "Docker compose installeren",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx",
-     "slide": 38
-    },
-    {
-     "command": "sudo dnf install pymol",
-     "note": "Open-source PyMOL installeren (Fedora)",
-     "output": "",
-     "source": "les",
-     "sourceName": "SB-01-introduction-workshop-1-molecular-visualization.pptx",
-     "slide": 16
-    }
-   ],
    "id": "les_0248"
   },
   {
@@ -7154,6 +7154,24 @@
   {
    "command": "which programma",
    "createdAt": 1790250000251,
+   "examples": [
+    {
+     "command": "which command",
+     "note": "Locatie van commando vinden",
+     "output": "",
+     "slide": 37,
+     "source": "les",
+     "sourceName": "Chapter 3 - Organizing files.pptx"
+    },
+    {
+     "command": "which seqtk",
+     "note": "Locatie van een programma zoeken",
+     "output": "",
+     "slide": 14,
+     "source": "les",
+     "sourceName": "Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx"
+    }
+   ],
    "explanation": "Toont het volledige pad van een programma (bv. /usr/bin/gedit). Krijg je niets, dan staat het niet in je PATH of is het niet geïnstalleerd.",
    "group": "Pakketten & software",
    "parts": [
@@ -7173,24 +7191,6 @@
    "title": "Controleren of programma geïnstalleerd is",
    "updatedAt": 1790260000000,
    "uses": 3,
-   "examples": [
-    {
-     "command": "which command",
-     "note": "Locatie van commando vinden",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 3 - Organizing files.pptx",
-     "slide": 37
-    },
-    {
-     "command": "which seqtk",
-     "note": "Locatie van een programma zoeken",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx",
-     "slide": 14
-    }
-   ],
    "id": "les_0252"
   },
   {
@@ -8543,6 +8543,16 @@
   {
    "command": "wget URL",
    "createdAt": 1790250000305,
+   "examples": [
+    {
+     "command": "wget www.uniprot.org/uniprot/P00687.fasta",
+     "note": "Bestand downloaden van internet",
+     "output": "",
+     "slide": 14,
+     "source": "les",
+     "sourceName": "Chapter 3 - Organizing files.pptx"
+    }
+   ],
    "explanation": "Downloadt het bestand op het opgegeven webadres naar de huidige map. In de les gebruik je dit om het Miniconda-installatiescript te downloaden.",
    "group": "Netwerk & op afstand",
    "parts": [
@@ -8562,16 +8572,6 @@
    "title": "Bestand downloaden van internet",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": "wget www.uniprot.org/uniprot/P00687.fasta",
-     "note": "Bestand downloaden van internet",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 3 - Organizing files.pptx",
-     "slide": 14
-    }
-   ],
    "id": "les_0306"
   },
   {
@@ -10031,6 +10031,16 @@
   {
    "command": "export PATH=$PATH:directory",
    "createdAt": 1790250000369,
+   "examples": [
+    {
+     "command": "export PATH=$PATH:/home/guest/Scripts",
+     "note": "Scriptsmap toevoegen aan PATH",
+     "output": "",
+     "slide": 14,
+     "source": "les",
+     "sourceName": "Chapter 6 - The work environment.pptx"
+    }
+   ],
    "explanation": "Voegt een map toe aan de lijst waarin de shell naar programma's zoekt. Daarna kun je scripts in die map van overal uitvoeren zonder ./. Zet deze regel in ~/.bashrc of ~/.bash_profile om hem blijvend te maken.",
    "group": "Omgeving & variabelen",
    "parts": [
@@ -10054,16 +10064,6 @@
    "title": "Map toevoegen aan PATH",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": "export PATH=$PATH:/home/guest/Scripts",
-     "note": "Scriptsmap toevoegen aan PATH",
-     "output": "",
-     "source": "les",
-     "sourceName": "Chapter 6 - The work environment.pptx",
-     "slide": 14
-    }
-   ],
    "id": "les_0370"
   },
   {
@@ -10227,6 +10227,12 @@
    "id": "les_0380"
   },
   {
+   "alts": [
+    {
+     "command": "`commando`",
+     "note": "Backticks zijn de oude schrijfwijze van $(commando), met hetzelfde resultaat."
+    }
+   ],
    "command": "$(commando)",
    "createdAt": 1790250000380,
    "explanation": "Commandosubstitutie: het commando wordt uitgevoerd en de uitvoer komt op die plaats in de opdracht. Zo geef je een variabele een waarde die een commando berekent, bv. TODAY=$(date +%A). Dit is de aangeraden manier.",
@@ -10248,12 +10254,6 @@
    "title": "Uitvoer van commando gebruiken",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "`commando`",
-     "note": "Backticks zijn de oude schrijfwijze van $(commando), met hetzelfde resultaat."
-    }
-   ],
    "id": "les_0381"
   },
   {
@@ -11269,6 +11269,12 @@
    "id": "les_0422"
   },
   {
+   "alts": [
+    {
+     "command": "background: #D73233;",
+     "note": "background: kleur en background-color: kleur geven dezelfde achtergrondkleur."
+    }
+   ],
    "command": "background-color",
    "createdAt": 1790250000423,
    "explanation": "Stelt de achtergrondkleur van een element in, bv. body { background-color: green; } voor een groene pagina.",
@@ -11290,12 +11296,6 @@
    "title": "Achtergrondkleur instellen",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "background: #D73233;",
-     "note": "background: kleur en background-color: kleur geven dezelfde achtergrondkleur."
-    }
-   ],
    "id": "les_0424"
   },
   {
@@ -11554,18 +11554,99 @@
    "id": "les_0435"
   },
   {
+   "alts": [],
    "command": "<a href=\"URL\"></a>",
    "createdAt": 1790250000435,
-   "explanation": "Maakt een klikbare hyperlink. In het href-attribuut zet je het adres (URL) van de pagina; de tekst tussen de tags is waarop je klikt.",
+   "examples": [
+    {
+     "command": "<a href=\"https://google.com\">link to google</a>",
+     "date": 1790256098452,
+     "img": {
+      "id": "b8101f601337ece0ef5d8ef932bd3f6f",
+      "kind": "asset"
+     },
+     "note": "Dit maakt een clickbare link naar Google met de zichtbare tekst 'link to google'.",
+     "output": "",
+     "source": "screenshot"
+    },
+    {
+     "command": "<a href=\"https://howest.be\">link to howest</a>",
+     "date": 1790256098755,
+     "img": {
+      "id": "b8101f601337ece0ef5d8ef932bd3f6f",
+      "kind": "asset"
+     },
+     "note": "Dit maakt een clickbare link naar de Howest-website met de zichtbare tekst 'link to howest'.",
+     "output": "",
+     "source": "screenshot"
+    },
+    {
+     "command": "<a href=\"https://php.net\">link to php.net</a>",
+     "date": 1790256099052,
+     "img": {
+      "id": "b8101f601337ece0ef5d8ef932bd3f6f",
+      "kind": "asset"
+     },
+     "note": "Dit maakt een clickbare link naar php.net met de zichtbare tekst 'link to php.net'.",
+     "output": "",
+     "source": "screenshot"
+    },
+    {
+     "command": "<a href=\"https://github.com\">link to github</a>",
+     "date": 1790256099393,
+     "img": {
+      "id": "b8101f601337ece0ef5d8ef932bd3f6f",
+      "kind": "asset"
+     },
+     "note": "Dit maakt een clickbare link naar GitHub met de zichtbare tekst 'link to github'.",
+     "output": "",
+     "source": "screenshot"
+    },
+    {
+     "command": "<a href=\"https://google.com\" target=\"blank\">link to google</a>",
+     "date": 1790256311324,
+     "img": {
+      "id": "aeaaf92566c24c52b2e198587af5307f",
+      "kind": "asset"
+     },
+     "note": "Deze link opent google.com in een nieuw tabblad wanneer je erop klikt.",
+     "output": "",
+     "source": "screenshot"
+    },
+    {
+     "command": "<a href=\"https://howest.be\" target=\"blank\">link to howest</a>",
+     "date": 1790256311615,
+     "img": {
+      "id": "aeaaf92566c24c52b2e198587af5307f",
+      "kind": "asset"
+     },
+     "note": "Een link naar howest.be die in een nieuw tabblad opent.",
+     "output": "",
+     "source": "screenshot"
+    },
+    {
+     "command": "<a href=\"https://php.net\" target=\"blank\"> link to php.net</a>",
+     "date": 1790256311911,
+     "img": {
+      "id": "aeaaf92566c24c52b2e198587af5307f",
+      "kind": "asset"
+     },
+     "note": "Een link naar php.net die in een nieuw tabblad opent.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
+   "explanation": "Maakt een klikbare hyperlink. In het href-attribuut zet je het adres (URL) van de pagina; de tekst tussen de tags is waarop je klikt. voeg ( target=\"blank\" ) toe voor website te laten op nieuw tabblad",
    "group": "Links & media",
+   "lastSeen": 1790256311911,
    "parts": [
     {
      "m": "anchor: de link-tag",
      "t": "<a>"
     },
     {
-     "m": "bestemming van de link (verplicht)",
-     "t": "href=\"URL\""
+     "m": "\"URL\" = bestemming van de link (verplicht)",
+     "t": "href"
     },
     {
      "m": "de klikbare tekst tussen de tags",
@@ -11581,13 +11662,21 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Link naar andere website",
-   "updatedAt": 1790250000435,
-   "uses": 1,
+   "updatedAt": 1790256486359,
+   "uses": 8,
    "id": "les_0436"
   },
   {
    "command": "<a href=\"info/contact.html\"></a>",
    "createdAt": 1790250000436,
+   "examples": [
+    {
+     "command": "<a href=\"pagina2.html\">Volgende</a>",
+     "note": "Link naar andere pagina",
+     "output": "",
+     "source": "voorbeeld"
+    }
+   ],
    "explanation": "Verwijst naar een ander HTML-bestand van je eigen website. Staat het bestand in dezelfde map, dan volstaat de naam (about.html); in een submap zet je de mapnaam ervoor (info/contact.html).",
    "group": "Links & media",
    "parts": [
@@ -11607,14 +11696,6 @@
    "title": "Link naar pagina op eigen site",
    "updatedAt": 1790260000000,
    "uses": 1,
-   "examples": [
-    {
-     "command": "<a href=\"pagina2.html\">Volgende</a>",
-     "note": "Link naar andere pagina",
-     "output": "",
-     "source": "voorbeeld"
-    }
-   ],
    "id": "les_0437"
   },
   {
@@ -11673,6 +11754,12 @@
    "id": "les_0439"
   },
   {
+   "alts": [
+    {
+     "command": "<i></i>",
+     "note": "Zelfde resultaat (cursief); <em> geeft ook nadruk in de betekenis, <i> is puur opmaak."
+    }
+   ],
    "command": "<em></em>",
    "createdAt": 1790250000439,
    "examples": [
@@ -11708,12 +11795,6 @@
    "title": "Tekst benadrukken (cursief)",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "<i></i>",
-     "note": "Zelfde resultaat (cursief); <em> geeft ook nadruk in de betekenis, <i> is puur opmaak."
-    }
-   ],
    "id": "les_0440"
   },
   {
@@ -11755,6 +11836,12 @@
    "id": "les_0441"
   },
   {
+   "alts": [
+    {
+     "command": "<del></del>",
+     "note": "Zelfde resultaat (doorgestreept); <strike> is verouderd, <del> of <s> is de moderne vorm."
+    }
+   ],
    "command": "<strike></strike>",
    "createdAt": 1790250000441,
    "examples": [
@@ -11790,15 +11877,15 @@
    "title": "Tekst doorstrepen",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "<del></del>",
-     "note": "Zelfde resultaat (doorgestreept); <strike> is verouderd, <del> of <s> is de moderne vorm."
-    }
-   ],
    "id": "les_0442"
   },
   {
+   "alts": [
+    {
+     "command": "<b></b>",
+     "note": "Zelfde resultaat (vet); <strong> duidt ook belangrijkheid aan, <b> is puur opmaak."
+    }
+   ],
    "command": "<strong></strong>",
    "createdAt": 1790250000442,
    "examples": [
@@ -11834,12 +11921,6 @@
    "title": "Tekst vet maken",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "<b></b>",
-     "note": "Zelfde resultaat (vet); <strong> duidt ook belangrijkheid aan, <b> is puur opmaak."
-    }
-   ],
    "id": "les_0443"
   },
   {
@@ -11893,6 +11974,14 @@
   {
    "command": "<img src=\"\">",
    "createdAt": 1790250000445,
+   "examples": [
+    {
+     "command": "<img src=\"eiwit.png\" alt=\"Eiwitstructuur\">",
+     "note": "Afbeelding tonen",
+     "output": "",
+     "source": "voorbeeld"
+    }
+   ],
    "explanation": "Voegt een afbeelding in de pagina. Het src-attribuut is verplicht en geeft de locatie: een lokaal pad (bv. Mario.png in dezelfde map) of een volledige URL.",
    "group": "Links & media",
    "parts": [
@@ -11916,14 +12005,6 @@
    "title": "Afbeelding tonen",
    "updatedAt": 1790260000000,
    "uses": 1,
-   "examples": [
-    {
-     "command": "<img src=\"eiwit.png\" alt=\"Eiwitstructuur\">",
-     "note": "Afbeelding tonen",
-     "output": "",
-     "source": "voorbeeld"
-    }
-   ],
    "id": "les_0446"
   },
   {
@@ -12051,6 +12132,14 @@
   {
    "command": "<ul></ul>",
    "createdAt": 1790250000451,
+   "examples": [
+    {
+     "command": "<ul><li>Item</li></ul>",
+     "note": "Lijst met bolletjes",
+     "output": "",
+     "source": "voorbeeld"
+    }
+   ],
    "explanation": "Maakt een ongenummerde lijst met bolletjes. Elk item staat in een eigen <li>-tag binnen de <ul>.",
    "group": "Lijsten",
    "parts": [
@@ -12074,14 +12163,6 @@
    "title": "Lijst met opsommingstekens",
    "updatedAt": 1790260000000,
    "uses": 1,
-   "examples": [
-    {
-     "command": "<ul><li>Item</li></ul>",
-     "note": "Lijst met bolletjes",
-     "output": "",
-     "source": "voorbeeld"
-    }
-   ],
    "id": "les_0452"
   },
   {
@@ -12259,6 +12340,17 @@
   {
    "command": ".klasse {…}",
    "createdAt": 1790250000459,
+   "examples": [
+    {
+     "command": ".TopGun {background: green;}",
+     "date": 1790250000000,
+     "note": "Zowel de <div> als de <p> met class=\"TopGun\" krijgen een groene achtergrond.",
+     "output": "",
+     "slide": 16,
+     "source": "les",
+     "sourceName": "3. Introduction to CSS.pptx"
+    }
+   ],
    "explanation": "Een punt voor een naam selecteert alle elementen met die klasse. Zo krijgt .vader {color: red;} alle elementen met class=\"vader\" rode tekst.",
    "group": "Selectors",
    "parts": [
@@ -12282,17 +12374,6 @@
    "title": "Elementen met een klasse opmaken",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": ".TopGun {background: green;}",
-     "date": 1790250000000,
-     "note": "Zowel de <div> als de <p> met class=\"TopGun\" krijgen een groene achtergrond.",
-     "output": "",
-     "slide": 16,
-     "source": "les",
-     "sourceName": "3. Introduction to CSS.pptx"
-    }
-   ],
    "id": "les_0460"
   },
   {
@@ -12318,6 +12399,17 @@
   {
    "command": "#id {…}",
    "createdAt": 1790250000462,
+   "examples": [
+    {
+     "command": "#Nemo {background: orange;}",
+     "date": 1790250000000,
+     "note": "Alleen <div id=\"Nemo\">Just keep swimming.</div> krijgt een oranje achtergrond.",
+     "output": "",
+     "slide": 15,
+     "source": "les",
+     "sourceName": "3. Introduction to CSS.pptx"
+    }
+   ],
    "explanation": "Een hekje (#) voor een naam selecteert het element met dat id. Zo krijgt #kenobi {color: blue;} het element met id=\"kenobi\" blauwe tekst.",
    "group": "Selectors",
    "parts": [
@@ -12341,17 +12433,6 @@
    "title": "Element met een id opmaken",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": "#Nemo {background: orange;}",
-     "date": 1790250000000,
-     "note": "Alleen <div id=\"Nemo\">Just keep swimming.</div> krijgt een oranje achtergrond.",
-     "output": "",
-     "slide": 15,
-     "source": "les",
-     "sourceName": "3. Introduction to CSS.pptx"
-    }
-   ],
    "id": "les_0463"
   },
   {
@@ -12664,9 +12745,9 @@
      "command": "p {color: red;}",
      "note": "Alle elementen van één soort opmaken",
      "output": "",
+     "slide": 14,
      "source": "les",
-     "sourceName": "2. Introduction to HTML.pptx",
-     "slide": 14
+     "sourceName": "2. Introduction to HTML.pptx"
     }
    ],
    "explanation": "Een elementselector is gewoon de tagnaam. De stijl geldt voor alle elementen van dat type op de pagina.",
@@ -13321,9 +13402,9 @@
      "command": "color",
      "note": "Tekstkleur instellen",
      "output": "",
+     "slide": 54,
      "source": "les",
-     "sourceName": "2. Introduction to HTML.pptx",
-     "slide": 54
+     "sourceName": "2. Introduction to HTML.pptx"
     }
    ],
    "explanation": "De eigenschap color bepaalt de kleur van de tekst in een element. Je kunt een kleurnaam, een hexcode of een RGB-waarde gebruiken.",
@@ -13868,9 +13949,9 @@
      "command": "font-family",
      "note": "Lettertype kiezen",
      "output": "",
+     "slide": 58,
      "source": "les",
-     "sourceName": "2. Introduction to HTML.pptx",
-     "slide": 58
+     "sourceName": "2. Introduction to HTML.pptx"
     }
    ],
    "explanation": "font-family kiest het lettertype. Je geeft een lijst gescheiden door komma's: lukt het eerste niet, dan gebruikt de browser het volgende. Een naam van meerdere woorden zet je tussen aanhalingstekens.",
@@ -14804,6 +14885,12 @@
    "id": "les_0541"
   },
   {
+   "alts": [
+    {
+     "command": "print(waarde);",
+     "note": "echo en print tonen allebei een waarde op het scherm."
+    }
+   ],
    "command": "echo waarde;",
    "createdAt": 1790250000541,
    "examples": [
@@ -14836,12 +14923,6 @@
    "title": "Waarde of variabele tonen",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "print(waarde);",
-     "note": "echo en print tonen allebei een waarde op het scherm."
-    }
-   ],
    "id": "les_0542"
   },
   {
@@ -15351,6 +15432,12 @@
    "id": "les_0559"
   },
   {
+   "alts": [
+    {
+     "command": "array(\"a\", \"b\", \"c\")",
+     "note": "[...] en array(...) maken allebei dezelfde array."
+    }
+   ],
    "command": "[\"a\", \"b\", \"c\"]",
    "createdAt": 1790250000560,
    "examples": [
@@ -15383,12 +15470,6 @@
    "title": "Geïndexeerde array (korte syntax)",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "array(\"a\", \"b\", \"c\")",
-     "note": "[...] en array(...) maken allebei dezelfde array."
-    }
-   ],
    "id": "les_0561"
   },
   {
@@ -15433,6 +15514,17 @@
   {
    "command": "print_r($array);",
    "createdAt": 1790250000562,
+   "examples": [
+    {
+     "command": "print_r($_POST)",
+     "date": 1790250000000,
+     "note": "Na het invullen van 'Mathias' en klikken op de knop.",
+     "output": "Array ( [surname] => Mathias [submit] => Submit Query )",
+     "slide": 15,
+     "source": "les",
+     "sourceName": "5. Dynamic Web Pages.pptx"
+    }
+   ],
    "explanation": "Toont de hele inhoud van een array, met alle sleutels en waarden. echo en print werken niet voor een volledige array.",
    "group": "Arrays",
    "parts": [
@@ -15452,17 +15544,6 @@
    "title": "Volledige array tonen",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": "print_r($_POST)",
-     "date": 1790250000000,
-     "note": "Na het invullen van 'Mathias' en klikken op de knop.",
-     "output": "Array ( [surname] => Mathias [submit] => Submit Query )",
-     "slide": 15,
-     "source": "les",
-     "sourceName": "5. Dynamic Web Pages.pptx"
-    }
-   ],
    "id": "les_0563"
   },
   {
@@ -15540,6 +15621,12 @@
    "id": "les_0565"
   },
   {
+   "alts": [
+    {
+     "command": "array_push($array, waarde);",
+     "note": "$array[] = waarde en array_push() voegen allebei een waarde achteraan toe."
+    }
+   ],
    "command": "$array[] = waarde;",
    "createdAt": 1790250000565,
    "examples": [
@@ -15568,12 +15655,6 @@
    "title": "Waarde achteraan toevoegen",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "array_push($array, waarde);",
-     "note": "$array[] = waarde en array_push() voegen allebei een waarde achteraan toe."
-    }
-   ],
    "id": "les_0566"
   },
   {
@@ -16706,9 +16787,9 @@
      "command": "strtolower($tekst)",
      "note": "Tekst naar kleine letters",
      "output": "",
+     "slide": 22,
      "source": "les",
-     "sourceName": "5. Dynamic Web Pages.pptx",
-     "slide": 22
+     "sourceName": "5. Dynamic Web Pages.pptx"
     }
    ],
    "explanation": "Geeft een nieuwe string terug waarin alle letters omgezet zijn naar kleine letters.",
@@ -16799,9 +16880,9 @@
      "command": "explode(\"\\n\", $tekst)",
      "note": "Tekst splitsen in array",
      "output": "",
+     "slide": 38,
      "source": "les",
-     "sourceName": "5. Dynamic Web Pages.pptx",
-     "slide": 38
+     "sourceName": "5. Dynamic Web Pages.pptx"
     }
    ],
    "explanation": "Knipt een string in stukken telkens waar de delimiter voorkomt en geeft die stukken terug als array. De delimiter zelf verdwijnt.",
@@ -16932,9 +17013,9 @@
      "command": "in_array($zoek, $array)",
      "note": "Zit waarde in array?",
      "output": "",
+     "slide": 22,
      "source": "les",
-     "sourceName": "5. Dynamic Web Pages.pptx",
-     "slide": 22
+     "sourceName": "5. Dynamic Web Pages.pptx"
     }
    ],
    "explanation": "Geeft true als de gezochte waarde in de array voorkomt en false als ze er niet in zit, zonder dat je zelf een lus moet schrijven.",
@@ -17053,9 +17134,9 @@
      "command": "trim($tekst)",
      "note": "Spaties en regeleinden weghalen",
      "output": "",
+     "slide": 50,
      "source": "les",
-     "sourceName": "5. Dynamic Web Pages.pptx",
-     "slide": 50
+     "sourceName": "5. Dynamic Web Pages.pptx"
     }
    ],
    "explanation": "Verwijdert spaties, tabs en newlines aan het begin en het einde van een string; witruimte in het midden blijft staan. Handig om ingevoerde gegevens zoals e-mailadressen op te kuisen.",
@@ -18358,9 +18439,9 @@
      "command": "create nag, resn NAG",
      "note": "Glycanen in apart object",
      "output": "",
+     "slide": 12,
      "source": "les",
-     "sourceName": "SB-workshop-3-molecular-visualization.pptx",
-     "slide": 12
+     "sourceName": "SB-workshop-3-molecular-visualization.pptx"
     }
    ],
    "explanation": "Maakt een nieuw, apart object van een selectie, bv. create achain, chain A. Dat object verschijnt in de objectlijst en kun je apart tonen, verbergen en kleuren.",
@@ -18392,6 +18473,22 @@
   {
    "command": "fetch PDB-code",
    "createdAt": 1790250000666,
+   "examples": [
+    {
+     "command": "fetch 3CIG",
+     "note": "Structuur laden uit de PDB",
+     "output": "",
+     "slide": 23,
+     "source": "les",
+     "sourceName": "SB-01-introduction-workshop-1-molecular-visualization.pptx"
+    },
+    {
+     "command": "fetch 1ubq",
+     "note": "Download ubiquitine uit PDB",
+     "output": "",
+     "source": "voorbeeld"
+    }
+   ],
    "explanation": "Downloadt een structuur rechtstreeks van de Protein Data Bank via internet en laadt ze in PyMOL. Het enige argument is de PDB-code.",
    "group": "Laden & bewaren",
    "parts": [
@@ -18411,22 +18508,6 @@
    "title": "Structuur laden uit de PDB",
    "updatedAt": 1790260000000,
    "uses": 1,
-   "examples": [
-    {
-     "command": "fetch 3CIG",
-     "note": "Structuur laden uit de PDB",
-     "output": "",
-     "source": "les",
-     "sourceName": "SB-01-introduction-workshop-1-molecular-visualization.pptx",
-     "slide": 23
-    },
-    {
-     "command": "fetch 1ubq",
-     "note": "Download ubiquitine uit PDB",
-     "output": "",
-     "source": "voorbeeld"
-    }
-   ],
    "id": "les_0667"
   },
   {
@@ -18445,6 +18526,12 @@
    "id": "les_0668"
   },
   {
+   "alts": [
+    {
+     "command": "hide everything",
+     "note": "Zelfde resultaat: verbergt alle weergaven van alle objecten."
+    }
+   ],
    "command": "hide all",
    "createdAt": 1790250000668,
    "examples": [
@@ -18480,12 +18567,6 @@
    "title": "Alle weergaven verbergen",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "hide everything",
-     "note": "Zelfde resultaat: verbergt alle weergaven van alle objecten."
-    }
-   ],
    "id": "les_0669"
   },
   {
@@ -18744,6 +18825,30 @@
   {
    "command": "color kleur, selectie",
    "createdAt": 1790250000680,
+   "examples": [
+    {
+     "command": "color cyan, chain A",
+     "note": "Keten A cyaan kleuren",
+     "output": "",
+     "slide": 28,
+     "source": "les",
+     "sourceName": "SB-01-introduction-workshop-1-molecular-visualization.pptx"
+    },
+    {
+     "command": "color red, chain A",
+     "note": "Kleur keten A rood",
+     "output": "",
+     "source": "voorbeeld"
+    },
+    {
+     "command": "color skyblue, chain A",
+     "note": "Keten A hemelsblauw kleuren",
+     "output": "",
+     "slide": 6,
+     "source": "les",
+     "sourceName": "SB-workshop-3-molecular-visualization.pptx"
+    }
+   ],
    "explanation": "Geeft alle atomen van keten A de kleur cyaan. Zo kun je verschillende ketens van elkaar onderscheiden.",
    "group": "Kleuren",
    "parts": [
@@ -18767,30 +18872,6 @@
    "title": "Keten A cyaan kleuren",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": "color cyan, chain A",
-     "note": "Keten A cyaan kleuren",
-     "output": "",
-     "source": "les",
-     "sourceName": "SB-01-introduction-workshop-1-molecular-visualization.pptx",
-     "slide": 28
-    },
-    {
-     "command": "color red, chain A",
-     "note": "Kleur keten A rood",
-     "output": "",
-     "source": "voorbeeld"
-    },
-    {
-     "command": "color skyblue, chain A",
-     "note": "Keten A hemelsblauw kleuren",
-     "output": "",
-     "source": "les",
-     "sourceName": "SB-workshop-3-molecular-visualization.pptx",
-     "slide": 6
-    }
-   ],
    "id": "les_0681"
   },
   {
@@ -19347,17 +19428,17 @@
      "command": "align 2IWW, 2JQY",
      "note": "Kristal- en NMR-structuur superponeren",
      "output": "",
+     "slide": 3,
      "source": "les",
-     "sourceName": "SB-workshop-3-molecular-visualization.pptx",
-     "slide": 3
+     "sourceName": "SB-workshop-3-molecular-visualization.pptx"
     },
     {
      "command": "align 1RE2, 1HFX",
      "note": "Lysozym en α-lactalbumine superponeren",
      "output": "",
+     "slide": 6,
      "source": "les",
-     "sourceName": "SB-workshop-5-databases-tools.pptx",
-     "slide": 6
+     "sourceName": "SB-workshop-5-databases-tools.pptx"
     }
    ],
    "explanation": "Legt de eerste structuur (muis-TLR3) zo goed mogelijk op de tweede (humaan TLR3) door ze te verschuiven en draaien. Daarna kun je verschillen tussen beide zichtbaar maken, bv. met een andere kleur. PyMOL toont de RMSD als maat voor het verschil.",
@@ -19879,6 +19960,12 @@
    "id": "les_0736"
   },
   {
+   "alts": [
+    {
+     "command": "File > Save Session As...",
+     "note": "save sessie.pse en File > Save Session As bewaren allebei de sessie."
+    }
+   ],
    "command": "save sessie.pse",
    "createdAt": 1790250000736,
    "explanation": "Bewaart de volledige PyMOL-sessie als .pse-bestand (hetzelfde als File > Save Session As...). Met een extensie zoals .pdb bewaar je enkel de coördinaten.",
@@ -19900,15 +19987,15 @@
    "title": "Sessie bewaren via commando",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "File > Save Session As...",
-     "note": "save sessie.pse en File > Save Session As bewaren allebei de sessie."
-    }
-   ],
    "id": "les_0737"
   },
   {
+   "alts": [
+    {
+     "command": "File > Export Image As > PNG...",
+     "note": "png-commando en File > Export Image As > PNG bewaren allebei het beeld als PNG."
+    }
+   ],
    "command": "png figuur.png",
    "createdAt": 1790250000737,
    "explanation": "Bewaart het huidige beeld (bv. na ray) als PNG-afbeelding, zonder via het menu te gaan.",
@@ -19930,12 +20017,6 @@
    "title": "Beeld opslaan als PNG",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "File > Export Image As > PNG...",
-     "note": "png-commando en File > Export Image As > PNG bewaren allebei het beeld als PNG."
-    }
-   ],
    "id": "les_0738"
   },
   {
@@ -20071,6 +20152,12 @@
    "id": "les_0746"
   },
   {
+   "alts": [
+    {
+     "command": "Display > Background",
+     "note": "bg_color en Display > Background stellen allebei de achtergrondkleur in."
+    }
+   ],
    "command": "bg_color white",
    "createdAt": 1790250000746,
    "explanation": "Maakt de achtergrond van het canvas wit. In .pymolrc wordt dit de standaard bij elke start.",
@@ -20092,12 +20179,6 @@
    "title": "Witte achtergrond instellen",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "alts": [
-    {
-     "command": "Display > Background",
-     "note": "bg_color en Display > Background stellen allebei de achtergrondkleur in."
-    }
-   ],
    "id": "les_0747"
   },
   {
@@ -20318,6 +20399,24 @@
   {
    "command": "run script.py",
    "createdAt": 1790250000756,
+   "examples": [
+    {
+     "command": "run simplecolors.py",
+     "note": "Python-script uitvoeren",
+     "output": "",
+     "slide": 7,
+     "source": "les",
+     "sourceName": "SB-workshop-4-molecular-visualization.pptx"
+    },
+    {
+     "command": "run findseq.py",
+     "note": "findseq-script laden",
+     "output": "",
+     "slide": 9,
+     "source": "les",
+     "sourceName": "SB-workshop-4-molecular-visualization.pptx"
+    }
+   ],
    "explanation": "Voert een Python-script uit in PyMOL. Zet het script in je thuismap (dezelfde map als .pymolrc) en laad eerst een structuur, bv. fetch 1BBB.",
    "group": "Scripts",
    "parts": [
@@ -20337,24 +20436,6 @@
    "title": "Python-script uitvoeren",
    "updatedAt": 1790260000000,
    "uses": 2,
-   "examples": [
-    {
-     "command": "run simplecolors.py",
-     "note": "Python-script uitvoeren",
-     "output": "",
-     "source": "les",
-     "sourceName": "SB-workshop-4-molecular-visualization.pptx",
-     "slide": 7
-    },
-    {
-     "command": "run findseq.py",
-     "note": "findseq-script laden",
-     "output": "",
-     "source": "les",
-     "sourceName": "SB-workshop-4-molecular-visualization.pptx",
-     "slide": 9
-    }
-   ],
    "id": "les_0757"
   },
   {
@@ -23097,12 +23178,12 @@
    "group": "Programma's & processen",
    "parts": [
     {
-     "t": "firefox",
-     "m": "webbrowser"
+     "m": "webbrowser",
+     "t": "firefox"
     },
     {
-     "t": "bestand.html",
-     "m": "het HTML-bestand dat je wil bekijken"
+     "m": "het HTML-bestand dat je wil bekijken",
+     "t": "bestand.html"
     }
    ],
    "source": "screenshot",
@@ -23111,6 +23192,18 @@
    "updatedAt": 1790260000000,
    "uses": 2,
    "id": "p_mufito4xyzayh"
+  },
+  {
+   "command": "alt",
+   "createdAt": 1790255573488,
+   "explanation": "Alt ingedrukt houden en elke lijn aanduiden waarin je tegelijk wilt schrijven",
+   "group": "",
+   "parts": [],
+   "source": "manual",
+   "tab": "algemeen",
+   "title": "Meerder lijnen tegelijk typen",
+   "updatedAt": 1790255573488,
+   "id": "p_mufjy19sqxr6a"
   },
   {
    "command": "ls",
