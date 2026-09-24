@@ -133,6 +133,9 @@ main{max-width:1100px;margin:0 auto;padding-inline:16px;padding-block:18px 60px;
 .rrow.dupe{background:transparent;border-style:dashed}
 .rrow.dupe.off{opacity:.85}
 .exs{display:flex;flex-direction:column;gap:6px}
+.alts{display:flex;flex-direction:column;gap:6px;border:1px dashed var(--line);border-radius:10px;padding:8px 10px}
+.alt{display:flex;flex-direction:column;gap:2px}
+.alt .cmd{margin:0}
 .exlabel{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
 .ex{border-left:3px solid var(--accent);background:var(--surface-2);border-radius:0 8px 8px 0;padding:8px 10px;display:flex;flex-direction:column;gap:4px;min-width:0}
 .excmd{display:flex;gap:6px;font-family:var(--mono);font-size:12.5px;min-width:0}
@@ -285,13 +288,15 @@ function renderTabs(){
   } else { $("#subbar").hidden=true; $("#subtabs").innerHTML=""; }
 }
 function moveTo(id){ const t=tabById(id); if(!t) return; state.active=id; lsSet("pfd.active",id); lsSet("pfd.sec."+secOf(t),id); }
-function tokens(q){ return norm(q).split(/[^a-z0-9_.\-<>!/~+]+/).filter(Boolean); }
+const bare=s=>norm(s).replace(/[<>\/]/g," ").replace(/\s+/g," ").trim();
+function tokens(q){ return bare(q).split(/[^a-z0-9_.\-!~+]+/).filter(Boolean); }
 function score(p,toks,rawq){
-  const cmd=norm(p.command),title=norm(p.title),ex=norm(p.explanation),grp=norm(p.group),parts=norm((p.parts||[]).map(x=>x.t+" "+x.m).join(" ")+" "+(p.examples||[]).map(x=>x.command+" "+(x.note||"")).join(" "));
-  let s=0; const nq=norm(rawq).trim();
-  if(cmd===nq)s+=100; else if(cmd.startsWith(nq))s+=60; else if(cmd.includes(nq))s+=35;
-  for(const t of toks){ const stem=t.length>=7?t.slice(0,t.length-2):t; const first=cmd.split(/\s+/)[0].replace(/[<>]/g,""); let hit=false;
-    if(first===t.replace(/[<>]/g,"")){s+=30;hit=true} else if(cmd.includes(t)){s+=14;hit=true}
+  const cmds=[p.command,...(p.alts||[]).map(a=>a.command)].map(bare),cmd=cmds.join(" | "),title=norm(p.title),ex=norm(p.explanation),grp=norm(p.group),parts=norm((p.parts||[]).map(x=>x.t+" "+x.m).join(" "));
+  let s=0; const nq=bare(rawq); const firsts=cmds.map(c=>c.split(/[\s(;:,=]+/)[0]);
+  if(cmds.some(c=>c===nq))s+=100; else if(firsts.includes(nq))s+=80; else if(cmds.some(c=>c.startsWith(nq)))s+=50; else if(cmd.includes(nq))s+=30;
+  for(const t of toks){ const stem=t.length>=7?t.slice(0,t.length-2):t; let hit=false;
+    if(firsts.includes(t)){s+=30;hit=true} else if(cmd.includes(t)){s+=14;hit=true}
+    if(t.length<2){ if(!hit)s-=8; continue; }
     if(title.includes(stem)){s+=10;hit=true} if(ex.includes(stem)){s+=6;hit=true} if(grp.includes(stem)){s+=4;hit=true} if(parts.includes(stem)){s+=4;hit=true} if(!hit)s-=8; }
   return s;
 }
@@ -305,6 +310,7 @@ function card(p,top){
   const t=tabById(p.tab); const kind=t?.kind||""; const ps=PS[kind]??""; const parts=(p.parts||[]).filter(x=>x&&x.t); const ex=p.examples||[];
   return `<article class="card${top?" top1":""}">
     ${kind==="concept"?`<div class="term">${hl(p.command)}</div>`:`<div class="cmd">${ps?`<span class="ps">${esc(ps)}</span>`:""}<code>${hl(p.command)}</code><button class="copy" data-copy="${esc(p.id)}">Kopieer</button></div>`}
+    ${(p.alts||[]).length?`<div class="alts"><div class="exlabel">Werkt ook (zelfde resultaat)</div>${p.alts.map((a,i)=>`<div class="alt"><div class="cmd">${ps?`<span class="ps">${esc(ps)}</span>`:""}<code>${hl(a.command)}</code><button class="copy" data-copy="${esc(p.id)}" data-alt="${i}">Kopieer</button></div>${a.note?`<p class="exnote">${esc(a.note)}</p>`:""}</div>`).join("")}</div>`:""}
     ${p.title?`<div class="title">${hl(p.title)}</div>`:""}${p.explanation?`<p class="expl">${hl(p.explanation)}</p>`:""}
     ${ex.length?`<div class="exs"><div class="exlabel">Voorbeeld${ex.length>1?"en ("+ex.length+")":""}</div>${ex.slice().reverse().map(x=>exHTML(x,ps)).join("")}</div>`:""}
     ${parts.length?`<details class="parts"><summary>Stuk voor stuk</summary><div class="partlist">${parts.map(x=>`<code title="${esc(x.t)}">${esc(x.t)}</code><span>${esc(x.m)}</span>`).join("")}</div></details>`:""}
@@ -326,7 +332,7 @@ document.addEventListener("click",e=>{
   if(e.target.closest("[data-sec],[data-tab]")&&state.q){ q.value=""; state.q=""; $("#qClear").hidden=true; }
   const s=e.target.closest("[data-sec]"); if(s){ const g=sections().find(x=>x.name===s.dataset.sec); const last=lsGet("pfd.sec."+g.name,null); state.active=(g.tabs.find(t=>t.id===last)||g.tabs[0]).id; lsSet("pfd.active",state.active); renderAll(); return; }
   const t=e.target.closest("[data-tab]"); if(t){ state.active=t.dataset.tab; lsSet("pfd.active",state.active); lsSet("pfd.sec."+secOf(tabById(state.active)),state.active); renderAll(); return; }
-  const c=e.target.closest("[data-copy]"); if(c){ const p=prompts.find(x=>x.id===c.dataset.copy); if(p) copyText(p.command); }
+  const c=e.target.closest("[data-copy]"); if(c){ const p=prompts.find(x=>x.id===c.dataset.copy); if(p) copyText(c.dataset.alt!=null?p.alts[+c.dataset.alt].command:p.command); }
 });
 const q=$("#q");
 q.addEventListener("input",()=>{ const had=state.loc; state.q=q.value; $("#qClear").hidden=!q.value; if(!q.value.trim()&&had) moveTo(had); renderTabs(); renderLib(); });
