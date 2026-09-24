@@ -634,7 +634,8 @@ function scorePrompt(p, toks, rawq){
 /* "Alle functies van a": alle kaarten die met hetzelfde commando beginnen, samen opgelijst */
 const FAM_RE=/^\s*(?:alle?\s+(?:functies|opties|varianten)\s+(?:van\s+)?|all\s+(?:functions?|options?)\s+(?:of\s+)?|alles\s+van\s+)(.+)$/i;
 const baseTok=c=>bare(c).split(/[\s(;,=]+/)[0].replace(/:+$/,"");
-function familyKey(q){ const m=String(q||"").match(FAM_RE); return m?baseTok(m[1]):""; }
+function familyKey(q){ const m=String(q||"").match(FAM_RE); if(m) return baseTok(m[1]);
+  const s=String(q||"").match(/^\s*all\s+(\S.*)$/i); if(!s) return ""; const k=baseTok(s[1]); return (k&&familyOf(k).length)?k:""; }
 function familyOf(key){
   if(!key) return [];
   const ids=searchTabIds();
@@ -727,7 +728,7 @@ function renderLib(){
       return;
     }
     const fh=familyHint();
-    el.innerHTML = (fh?`<button class="famchip" data-act="family" data-key="${esc(fh)}">Alle functies van <code>${esc(fh)}</code> <span class="n">${familyOf(fh).length}</span></button>`:"")+`<div class="libhead"><h1>${res.length} resultaat${res.length===1?"":"en"}</h1><span class="hint">voor “${esc(state.q)}” in ${esc(searchScopeName())} · Enter kopieert het bovenste</span></div>`
+    el.innerHTML = (fh?`<button class="famchip" data-act="family" data-key="${esc(fh)}">Alle functies van <code>${esc(fh)}</code> <span class="n">${familyOf(fh).length}</span></button>`:"")+`<div class="libhead"><h1>${res.length} ${res.length===1?"resultaat":"resultaten"}</h1><span class="hint">voor “${esc(state.q)}” in ${esc(searchScopeName())} · Enter kopieert het bovenste</span></div>`
       + (res.length? `<div class="cards" style="margin-top:10px">${res.slice(0,60).map((p,i)=>cardHTML(p,i===0)).join("")}</div>`
         : `<div class="empty" style="margin-top:10px"><b>Niets gevonden</b>${state.sample?"Probeer andere woorden, of laat Claude op betekenis zoeken met <em>Slim zoeken</em>.":"Probeer andere woorden of zet “in alle tabs” aan."}</div>`);
     return;

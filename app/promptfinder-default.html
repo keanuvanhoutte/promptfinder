@@ -305,7 +305,8 @@ function score(p,toks,rawq){
 }
 const FAM_RE=/^\s*(?:alle?\s+(?:functies|opties|varianten)\s+(?:van\s+)?|all\s+(?:functions?|options?)\s+(?:of\s+)?|alles\s+van\s+)(.+)$/i;
 const baseTok=c=>bare(c).split(/[\s(;,=]+/)[0].replace(/:+$/,"");
-function familyKey(q){ const m=String(q||"").match(FAM_RE); return m?baseTok(m[1]):""; }
+function familyKey(q){ const m=String(q||"").match(FAM_RE); if(m) return baseTok(m[1]);
+  const s=String(q||"").match(/^\s*all\s+(\S.*)$/i); if(!s) return ""; const k=baseTok(s[1]); return (k&&familyOf(k).length)?k:""; }
 function familyOf(key){ if(!key) return []; const ids=state.allTabs?null:new Set(activeSection().tabs.map(t=>t.id));
   return prompts.filter(p=>(!ids||ids.has(p.tab))&&tabById(p.tab)?.kind!=="concept"&&(baseTok(p.command)===key||(p.alts||[]).some(a=>baseTok(a.command)===key)))
     .sort((a,b)=>(baseTok(a.command)===key?0:1)-(baseTok(b.command)===key?0:1)||String(a.command).length-String(b.command).length||String(a.command).localeCompare(String(b.command))); }
@@ -332,7 +333,7 @@ function renderLib(){
   if(state.q.trim()&&familyKey(state.q)){ const fk=familyKey(state.q); const r=results(); const scope=state.allTabs?"alle tabs":activeSection().name;
     el.innerHTML=`<div class="libhead"><h1>Alle functies van <code class="famkey">${esc(fk)}</code></h1><span class="hint">${r.length} variant${r.length===1?"":"en"} in ${esc(scope)} · klik een regel open voor uitleg en voorbeelden</span></div>`+(r.length?`<div class="famlist">${r.map(p=>`<details class="famrow"><summary><code>${esc(p.command)}</code><span class="famt">${esc(p.title||"")}${baseTok(p.command)!==fk?" <em>(werkt ook)</em>":""}</span></summary>${card(p)}</details>`).join("")}</div>`:`<div class="empty" style="margin-top:10px"><b>Geen commando's die beginnen met “${esc(fk)}”</b>Zet “in alle tabs” aan om overal te zoeken.</div>`); return; }
   if(state.q.trim()){ const r=results(); const scope=state.allTabs?"alle tabs":activeSection().name; const fh=familyHint();
-    el.innerHTML=(fh?`<button class="famchip" data-fam="${esc(fh)}">Alle functies van <code>${esc(fh)}</code> <span class="n">${familyOf(fh).length}</span></button>`:"")+`<div class="libhead"><h1>${r.length} resultaat${r.length===1?"":"en"}</h1><span class="hint">voor “${esc(state.q)}” in ${esc(scope)} · Enter kopieert het bovenste</span></div>`+(r.length?`<div class="cards" style="margin-top:10px">${r.slice(0,60).map((p,i)=>card(p,i===0)).join("")}</div>`:`<div class="empty" style="margin-top:10px"><b>Niets gevonden</b>Probeer andere woorden of zet “in alle tabs” aan.</div>`); return; }
+    el.innerHTML=(fh?`<button class="famchip" data-fam="${esc(fh)}">Alle functies van <code>${esc(fh)}</code> <span class="n">${familyOf(fh).length}</span></button>`:"")+`<div class="libhead"><h1>${r.length} ${r.length===1?"resultaat":"resultaten"}</h1><span class="hint">voor “${esc(state.q)}” in ${esc(scope)} · Enter kopieert het bovenste</span></div>`+(r.length?`<div class="cards" style="margin-top:10px">${r.slice(0,60).map((p,i)=>card(p,i===0)).join("")}</div>`:`<div class="empty" style="margin-top:10px"><b>Niets gevonden</b>Probeer andere woorden of zet “in alle tabs” aan.</div>`); return; }
   const list=prompts.filter(p=>p.tab===act.id);
   if(act.kind==="concept"){ const first={}; list.forEach(p=>{const g=p.group||"Overig"; first[g]=Math.min(first[g]??Infinity,p.createdAt||0)}); list.sort((a,b)=>(first[a.group||"Overig"]-first[b.group||"Overig"])||((a.createdAt||0)-(b.createdAt||0))); }
   else list.sort((a,b)=>String(a.group||"~").localeCompare(String(b.group||"~"))||String(a.command).localeCompare(String(b.command)));
