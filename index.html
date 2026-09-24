@@ -133,6 +133,18 @@ main{max-width:1100px;margin:0 auto;padding-inline:16px;padding-block:18px 60px;
 .rrow.dupe{background:transparent;border-style:dashed}
 .rrow.dupe.off{opacity:.85}
 .exs{display:flex;flex-direction:column;gap:6px}
+.famchip{display:inline-flex;align-items:center;gap:8px;margin:0 0 10px;padding:8px 14px;border-radius:999px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
+.famchip code,.famkey{font-family:var(--mono)}
+.famchip .n{font-size:12px;color:var(--muted);font-weight:500}
+.famlist{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.famrow{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.famrow>summary{display:flex;gap:12px;align-items:baseline;padding:10px 12px;cursor:pointer;list-style:none;flex-wrap:wrap}
+.famrow>summary::-webkit-details-marker{display:none}
+.famrow>summary::before{content:"▸";color:var(--muted)}
+.famrow[open]>summary::before{content:"▾"}
+.famrow>summary code{font-family:var(--mono);font-size:13px;background:var(--code-bg);color:var(--code-ink);padding:3px 8px;border-radius:6px;word-break:break-word}
+.famt{color:var(--muted);font-size:14px}
+.famrow>.card{border:0;border-top:1px solid var(--line);border-radius:0;box-shadow:none}
 .alts{display:flex;flex-direction:column;gap:6px;border:1px dashed var(--line);border-radius:10px;padding:8px 10px}
 .alt{display:flex;flex-direction:column;gap:2px}
 .alt .cmd{margin:0}
@@ -300,7 +312,14 @@ function score(p,toks,rawq){
     if(title.includes(stem)){s+=10;hit=true} if(ex.includes(stem)){s+=6;hit=true} if(grp.includes(stem)){s+=4;hit=true} if(parts.includes(stem)){s+=4;hit=true} if(!hit)s-=8; }
   return s;
 }
-function results(){ const toks=tokens(state.q); if(!toks.length) return []; const ids=state.allTabs?null:new Set(activeSection().tabs.map(t=>t.id));
+const FAM_RE=/^\s*(?:alle?\s+(?:functies|opties|varianten)\s+(?:van\s+)?|all\s+(?:functions?|options?)\s+(?:of\s+)?|alles\s+van\s+)(.+)$/i;
+const baseTok=c=>bare(c).split(/[\s(;,=]+/)[0].replace(/:+$/,"");
+function familyKey(q){ const m=String(q||"").match(FAM_RE); return m?baseTok(m[1]):""; }
+function familyOf(key){ if(!key) return []; const ids=state.allTabs?null:new Set(activeSection().tabs.map(t=>t.id));
+  return prompts.filter(p=>(!ids||ids.has(p.tab))&&tabById(p.tab)?.kind!=="concept"&&(baseTok(p.command)===key||(p.alts||[]).some(a=>baseTok(a.command)===key)))
+    .sort((a,b)=>(baseTok(a.command)===key?0:1)-(baseTok(b.command)===key?0:1)||String(a.command).length-String(b.command).length||String(a.command).localeCompare(String(b.command))); }
+function familyHint(){ const t=tokens(state.q); if(t.length!==1||familyKey(state.q)) return ""; const key=baseTok(t[0]); return familyOf(key).length>=2?key:""; }
+function results(){ const fk=familyKey(state.q); if(fk) return familyOf(fk); const toks=tokens(state.q); if(!toks.length) return []; const ids=state.allTabs?null:new Set(activeSection().tabs.map(t=>t.id));
   return prompts.filter(p=>!ids||ids.has(p.tab)).map(p=>({p,s:score(p,toks,state.q)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).map(x=>x.p); }
 function hl(text){ const toks=tokens(state.q).filter(t=>t.length>1); let h=esc(text); if(!toks.length) return h;
   const pats=toks.map(t=>(t.length>=7?t.slice(0,t.length-2):t).replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).map(esc);
@@ -319,8 +338,10 @@ function card(p,top){
 }
 function renderLib(){
   const el=$("#lib"), act=activeTab();
-  if(state.q.trim()){ const r=results(); const scope=state.allTabs?"alle tabs":activeSection().name;
-    el.innerHTML=`<div class="libhead"><h1>${r.length} resultaat${r.length===1?"":"en"}</h1><span class="hint">voor “${esc(state.q)}” in ${esc(scope)} · Enter kopieert het bovenste</span></div>`+(r.length?`<div class="cards" style="margin-top:10px">${r.slice(0,60).map((p,i)=>card(p,i===0)).join("")}</div>`:`<div class="empty" style="margin-top:10px"><b>Niets gevonden</b>Probeer andere woorden of zet “in alle tabs” aan.</div>`); return; }
+  if(state.q.trim()&&familyKey(state.q)){ const fk=familyKey(state.q); const r=results(); const scope=state.allTabs?"alle tabs":activeSection().name;
+    el.innerHTML=`<div class="libhead"><h1>Alle functies van <code class="famkey">${esc(fk)}</code></h1><span class="hint">${r.length} variant${r.length===1?"":"en"} in ${esc(scope)} · klik een regel open voor uitleg en voorbeelden</span></div>`+(r.length?`<div class="famlist">${r.map(p=>`<details class="famrow"><summary><code>${esc(p.command)}</code><span class="famt">${esc(p.title||"")}${baseTok(p.command)!==fk?" <em>(werkt ook)</em>":""}</span></summary>${card(p)}</details>`).join("")}</div>`:`<div class="empty" style="margin-top:10px"><b>Geen commando's die beginnen met “${esc(fk)}”</b>Zet “in alle tabs” aan om overal te zoeken.</div>`); return; }
+  if(state.q.trim()){ const r=results(); const scope=state.allTabs?"alle tabs":activeSection().name; const fh=familyHint();
+    el.innerHTML=(fh?`<button class="famchip" data-fam="${esc(fh)}">Alle functies van <code>${esc(fh)}</code> <span class="n">${familyOf(fh).length}</span></button>`:"")+`<div class="libhead"><h1>${r.length} resultaat${r.length===1?"":"en"}</h1><span class="hint">voor “${esc(state.q)}” in ${esc(scope)} · Enter kopieert het bovenste</span></div>`+(r.length?`<div class="cards" style="margin-top:10px">${r.slice(0,60).map((p,i)=>card(p,i===0)).join("")}</div>`:`<div class="empty" style="margin-top:10px"><b>Niets gevonden</b>Probeer andere woorden of zet “in alle tabs” aan.</div>`); return; }
   const list=prompts.filter(p=>p.tab===act.id);
   if(act.kind==="concept"){ const first={}; list.forEach(p=>{const g=p.group||"Overig"; first[g]=Math.min(first[g]??Infinity,p.createdAt||0)}); list.sort((a,b)=>(first[a.group||"Overig"]-first[b.group||"Overig"])||((a.createdAt||0)-(b.createdAt||0))); }
   else list.sort((a,b)=>String(a.group||"~").localeCompare(String(b.group||"~"))||String(a.command).localeCompare(String(b.command)));
@@ -332,6 +353,7 @@ document.addEventListener("click",e=>{
   if(e.target.closest("[data-sec],[data-tab]")&&state.q){ q.value=""; state.q=""; $("#qClear").hidden=true; }
   const s=e.target.closest("[data-sec]"); if(s){ const g=sections().find(x=>x.name===s.dataset.sec); const last=lsGet("pfd.sec."+g.name,null); state.active=(g.tabs.find(t=>t.id===last)||g.tabs[0]).id; lsSet("pfd.active",state.active); renderAll(); return; }
   const t=e.target.closest("[data-tab]"); if(t){ state.active=t.dataset.tab; lsSet("pfd.active",state.active); lsSet("pfd.sec."+secOf(tabById(state.active)),state.active); renderAll(); return; }
+  const fm=e.target.closest("[data-fam]"); if(fm){ q.value="alle functies van "+fm.dataset.fam; q.dispatchEvent(new Event("input")); q.focus(); return; }
   const c=e.target.closest("[data-copy]"); if(c){ const p=prompts.find(x=>x.id===c.dataset.copy); if(p) copyText(c.dataset.alt!=null?p.alts[+c.dataset.alt].command:p.command); }
 });
 const q=$("#q");
