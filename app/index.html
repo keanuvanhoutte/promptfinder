@@ -133,6 +133,9 @@ main{max-width:1100px;margin:0 auto;padding-inline:16px;padding-block:18px 60px;
 .rrow.dupe{background:transparent;border-style:dashed}
 .rrow.dupe.off{opacity:.85}
 .exs{display:flex;flex-direction:column;gap:6px}
+.alts{display:flex;flex-direction:column;gap:6px;border:1px dashed var(--line);border-radius:10px;padding:8px 10px}
+.alt{display:flex;flex-direction:column;gap:2px}
+.alt .cmd{margin:0}
 .exlabel{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
 .ex{border-left:3px solid var(--accent);background:var(--surface-2);border-radius:0 8px 8px 0;padding:8px 10px;display:flex;flex-direction:column;gap:4px;min-width:0}
 .excmd{display:flex;gap:6px;font-family:var(--mono);font-size:12.5px;min-width:0}
@@ -593,18 +596,21 @@ function moveTo(id){ const t=tabById(id); if(!t) return; state.active=id; lsSet(
 function openTab(id){ const t=tabById(id); if(!t) return; state.active=id; lsSet("pf.active",id); lsSet("pf.sec."+secOf(t),id); state.smart=null; renderAll(); }
 
 /* ---------- Zoeken ---------- */
-function tokens(q){ return norm(q).split(/[^a-z0-9_.\-<>!/~+]+/).filter(Boolean); }
+/* Zoeken gebeurt op het commando zelf (+ alternatieven, titel, uitleg), niet op de voorbeelden. <, > en / tellen niet mee: "em" vindt <em></em>. */
+const bare = s => norm(s).replace(/[<>\/]/g," ").replace(/\s+/g," ").trim();
+function tokens(q){ return bare(q).split(/[^a-z0-9_.\-!~+]+/).filter(Boolean); }
 function scorePrompt(p, toks, rawq){
   if(!toks.length) return 0;
-  const cmd=norm(p.command), title=norm(p.title), ex=norm(p.explanation), grp=norm(p.group), parts=norm((p.parts||[]).map(x=>x.t+" "+x.m).join(" ")+" "+(p.examples||[]).map(x=>x.command+" "+(x.note||"")).join(" "));
-  let s=0; const nq=norm(rawq).trim();
-  if(cmd===nq) s+=100; else if(cmd.startsWith(nq)) s+=60; else if(cmd.includes(nq)) s+=35;
+  const cmds=[p.command,...(p.alts||[]).map(a=>a.command)].map(bare), cmd=cmds.join(" | "), title=norm(p.title), ex=norm(p.explanation), grp=norm(p.group), parts=norm((p.parts||[]).map(x=>x.t+" "+x.m).join(" "));
+  let s=0; const nq=bare(rawq);
+  const firsts=cmds.map(c=>c.split(/[\s(;:,=]+/)[0]);
+  if(cmds.some(c=>c===nq)) s+=100; else if(firsts.includes(nq)) s+=80; else if(cmds.some(c=>c.startsWith(nq))) s+=50; else if(cmd.includes(nq)) s+=30;
   for(const t of toks){
     const stem = t.length>=7 ? t.slice(0,t.length-2) : t;
-    const first = cmd.split(/\s+/)[0].replace(/[<>]/g,"");
     let hit=false;
-    if(first===t.replace(/[<>]/g,"")) {s+=30;hit=true}
+    if(firsts.includes(t)) {s+=30;hit=true}
     else if(cmd.includes(t)) {s+=14;hit=true}
+    if(t.length<2){ if(!hit) s-=8; continue; }
     if(title.includes(stem)) {s+=10;hit=true}
     if(ex.includes(stem)) {s+=6;hit=true}
     if(grp.includes(stem)) {s+=4;hit=true}
@@ -650,11 +656,18 @@ async function viewImage(ref){
   let src=""; try{ src = ref.kind==="asset" ? "/_blob/"+ref.id : URL.createObjectURL(await loadRef(ref)); }catch{ toast("Screenshot niet gevonden."); return; }
   openModal({title:"Screenshot",body:`<img src="${esc(src)}" alt="screenshot" style="width:100%;border-radius:8px;border:1px solid var(--line)">`,ok:null});
 }
+/* Andere commando's die hetzelfde resultaat geven */
+const kindOfTab=id=>tabById(id)?.kind||"";
+function altsHTML(p,ps){
+  const al=(p.alts||[]).filter(a=>a&&a.command); if(!al.length) return "";
+  return `<div class="alts"><div class="exlabel">Werkt ook (zelfde resultaat)</div>${al.map((a,i)=>`<div class="alt"><div class="cmd">${ps?`<span class="ps">${esc(ps)}</span>`:""}<code>${hl(a.command)}</code><button class="copy" data-act="copy-alt" data-id="${esc(p.id)}" data-i="${i}">Kopieer</button></div>${a.note?`<p class="exnote">${esc(a.note)}</p>`:""}</div>`).join("")}</div>`;
+}
 function cardHTML(p, top){
   const t=tabById(p.tab); const kind=t?.kind||""; const ps=PS[kind]??"";
   const parts=(p.parts||[]).filter(x=>x&&x.t);
   return `<article class="card${top?" top1":""}" data-id="${esc(p.id)}">
     ${kind==="concept" ? `<div class="term">${hl(p.command)}</div>` : `<div class="cmd">${ps?`<span class="ps">${esc(ps)}</span>`:""}<code>${hl(p.command)}</code><button class="copy" data-act="copy" data-id="${esc(p.id)}">Kopieer</button></div>`}
+    ${altsHTML(p,ps)}
     ${p.title?`<div class="title">${hl(p.title)}</div>`:""}
     ${p.explanation?`<p class="expl">${hl(p.explanation)}</p>`:""}
     ${examplesHTML(p,ps)}
@@ -727,6 +740,7 @@ function editPrompt(p){
       <div class="field"><label for="fTitle">Wat doet het (kort)</label><input id="fTitle" value="${esc(p.title||"")}"></div>
       <div class="field"><label for="fExpl">Uitleg</label><textarea id="fExpl" rows="3">${esc(p.explanation||"")}</textarea></div>
       ${!isNew&&(p.examples||[]).length?`<div class="field"><label>Voorbeelden</label>${p.examples.map((x,i)=>exampleHTML(x,PS[tabById(p.tab)?.kind]||"",p.id,i,true)).join("")}</div>`:""}
+      ${kindOfTab(p.tab)!=="concept"?`<div class="field"><label for="fAlts">Werkt ook: andere commando's met hetzelfde resultaat (één per regel: commando = korte uitleg)</label><textarea id="fAlts" class="mono" rows="2">${esc((p.alts||[]).map(a=>a.command+(a.note?" = "+a.note:"")).join("\n"))}</textarea></div>`:""}
       <div class="field"><label for="fParts">Stuk voor stuk (één per regel: stukje = betekenis)</label><textarea id="fParts" class="mono" rows="3">${esc(partsTxt)}</textarea></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn small" id="fAuto" type="button">Vul uitleg aan (lokaal)</button>${state.sample?`<button class="btn small" id="fClaude" type="button">Leg uit met Claude</button>`:""}<span class="tagline" id="fMsg"></span></div>`,
     danger: isNew?null:"Verwijderen",
@@ -749,7 +763,8 @@ function editPrompt(p){
       const dupe=findExisting(command); if(dupe && (isNew || dupe.id!==p.id)){ $("#fMsg").textContent="Dit commando staat al in je lijst"+(tabById(dupe.tab)?` (tab ${tabById(dupe.tab).name})`:"")+"; het wordt niet dubbel toegevoegd."; return false; }
       const parts=$("#fParts").value.split("\n").map(l=>{const i=l.indexOf("=");return i<0?null:{t:l.slice(0,i).trim(),m:l.slice(i+1).trim()}}).filter(x=>x&&x.t);
       const cur=state.prompts.find(x=>x.id===p.id);
-      const obj={...p,...(cur?{examples:cur.examples||[],uses:cur.uses}:{}),command,tab:$("#fTab").value,group:$("#fGrp").value.trim(),title:$("#fTitle").value.trim(),explanation:$("#fExpl").value.trim(),parts,updatedAt:Date.now()};
+      const alts=$("#fAlts")?$("#fAlts").value.split("\n").map(l=>{ l=l.trim(); if(!l) return null; const i=l.indexOf(" = "); return i<0?{command:l,note:""}:{command:l.slice(0,i).trim(),note:l.slice(i+3).trim()}; }).filter(x=>x&&x.command&&normCmd(x.command)!==normCmd(command)):(p.alts||[]);
+      const obj={...p,alts,...(cur?{examples:cur.examples||[],uses:cur.uses}:{}),command,tab:$("#fTab").value,group:$("#fGrp").value.trim(),title:$("#fTitle").value.trim(),explanation:$("#fExpl").value.trim(),parts,updatedAt:Date.now()};
       delete obj.id; if(isNew){obj.createdAt=Date.now();obj.source="manual";}
       if(!isNew) delete obj.sample;
       if(obj.quality==="lokaal" && obj.explanation) delete obj.quality;
@@ -1216,14 +1231,18 @@ function claudeContext(){
   for(const p of ordered){ const l=`${p.id}|${String(p.command).replace(/\s+/g," ").slice(0,60)}\n`; if(existing.length+l.length>26000) break; existing+=l; }
   return {tabs,groups,existing};
 }
-const ITEM_FORMAT=`{"items":[{"command":"ls -la ~/data","tab":"linux","group":"Navigatie","title":"Toon alle bestanden in detail","explanation":"1-3 zinnen: wat het doet en wanneer je het gebruikt.","parts":[{"t":"ls","m":"toon inhoud van een map"},{"t":"-l","m":"lange weergave"}],"fout":"","uitvoer":"max 6 relevante regels uitvoer, of leeg","voorbeeld":"1 zin: wat dit concrete voorbeeld toont (bv. waarom het deze bestanden vond)","hoortBij":"id uit de lijst hieronder, of leeg"}]}`;
+const ITEM_FORMAT=`{"items":[{"command":"ls -la ~/data","tab":"linux","group":"Navigatie","title":"Toon alle bestanden in detail","explanation":"1-3 zinnen: wat het doet en wanneer je het gebruikt.","parts":[{"t":"ls","m":"toon inhoud van een map"},{"t":"-l","m":"lange weergave"}],"fout":"","uitvoer":"max 6 relevante regels uitvoer, of leeg","voorbeeld":"1 zin: wat dit concrete voorbeeld toont (bv. waarom het deze bestanden vond)","algemeen":"algemene vorm met plaatshouders, of leeg","hoortBij":"id uit de lijst hieronder, of leeg","alternatief":false}]}`;
 const RELATE_RULES=`- "hoortBij": staat hetzelfde commando al in zijn lijst, of is dit een variant/concreet voorbeeld van een commando uit de lijst (bv. "wc *ile.txt" bij "wc", of "ls -l > x.txt" bij "ls -l")? Zet dan de id van dat item. Anders "".
 - "uitvoer": neem de relevante uitvoer uit het scherm letterlijk over (max 6 regels), zodat het voorbeeld later te begrijpen is. Leeg als er geen uitvoer is.
-- "voorbeeld": één zin die uitlegt wat je aan DIT concrete voorbeeld leert (wat er gebeurde en waarom).`;
+- "voorbeeld": één zin die uitlegt wat je aan DIT concrete voorbeeld leert (wat er gebeurde en waarom).
+- "algemeen": typte de student een concreet geval met een eigen invulling (bestandsnaam, mapnaam, PDB-code, pakketnaam, kleur…), zet dan de algemene vorm met Nederlandse plaatshouders, bv. "firefox hello-world.html" → "firefox bestand.html", "fetch 1ubq" → "fetch PDB-code", "sudo dnf install vim" → "sudo dnf install pakket". Leeg als het commando al algemeen is (bv. "ls -la", "<em></em>").
+- Komt hetzelfde commando meerdere keren voor met een andere invulling, maak dan per keer een item met DEZELFDE "algemeen": ze worden samen één kaart met meerdere voorbeelden.
+- "alternatief": true als dit een ANDER commando is dat hetzelfde resultaat geeft als het item in "hoortBij" (bv. "ls -al" bij "ls -la", "<i></i>" bij "<em></em>", "print" bij "echo"). Anders false.`
 function cleanClaudeItems(res,extra){
   const items=Array.isArray(res?.items)?res.items:[];
   return items.filter(x=>x&&x.command).map(x=>toReviewItem({command:String(x.command),tab:String(x.tab||""),group:String(x.group||""),title:String(x.title||""),explanation:String(x.explanation||""),parts:Array.isArray(x.parts)?x.parts.filter(p=>p&&p.t).map(p=>({t:String(p.t),m:String(p.m||"")})):[],error:String(x.fout||""),
     output:String(x.uitvoer||"").split("\n").slice(0,6).join("\n").slice(0,600),note:String(x.voorbeeld||"").slice(0,300),
+    general:(String(x.algemeen||"").trim()&&normCmd(x.algemeen)!==normCmd(x.command))?String(x.algemeen).trim():"",alt:x.alternatief===true,
     relatedId:state.prompts.some(p=>p.id===String(x.hoortBij||"")&&tabById(p.tab)?.kind!=="concept")?String(x.hoortBij):"",...(extra?extra(x):{})}));
 }
 async function analyzeClaude(blob,job){
@@ -1349,18 +1368,18 @@ function toReviewItem(x){
 
 /* ---------- Dubbels: nooit dubbel opslaan, wel ter controle tonen ---------- */
 let exIndex=null, exIndexSrc=null;
-function findExisting(cmd){ if(exIndexSrc!==state.prompts){ exIndex=new Map(state.prompts.map(p=>[normCmd(p.command),p])); exIndexSrc=state.prompts; } return exIndex.get(normCmd(cmd)); }
+function findExisting(cmd){ if(!cmd) return undefined; if(exIndexSrc!==state.prompts){ exIndex=new Map(); for(const p of state.prompts){ for(const a of p.alts||[]) if(a&&a.command) exIndex.set(normCmd(a.command),p); for(const e of p.examples||[]) if(e&&e.command&&!exIndex.has(normCmd(e.command))) exIndex.set(normCmd(e.command),p); } for(const p of state.prompts) exIndex.set(normCmd(p.command),p); exIndexSrc=state.prompts; } return exIndex.get(normCmd(cmd)); }
 
 /* ---------- Wachtrij tekenen ---------- */
 const itemsOf = j => edits[j.id] || j.items || [];
 const tabsSig = () => sortedTabs().map(t=>t.id+":"+t.name).join("|");
 function jobSig(j,ctx){ return JSON.stringify([j.status,j.used,j.error,j.progress,j.note,itemsOf(j),itemsOf(j).map(it=>{const e=relOf(it);return e?e.id+(e.updatedAt||"")+(e.examples||[]).length:"";}),!!rt[j.id],reachable(j),tabsSig(),j.id===currentJob,ctx]); }
 const STATUS_LABEL={upload:"Inlezen…",wachtend:"In wachtrij",bezig:"Bezig",klaar:"Klaar: controleer en sla op",fout:"Mislukt"};
-const relOf=it=>findExisting(it.command)||(it.relatedId&&state.prompts.find(p=>p.id===it.relatedId))||null;
+const relOf=it=>findExisting(it.command)||(it.general&&findExisting(it.general))||(it.relatedId&&state.prompts.find(p=>p.id===it.relatedId))||null;
 function rowHTML(it,i){
   const ex=relOf(it);
   if(ex){ const exact=!!findExisting(it.command);
-    const opts=[["voorbeeld",`Toevoegen als voorbeeld bij “${ex.command.slice(0,40)}”`], ...(exact?[["vervang","Voorbeeld toevoegen én uitleg vervangen door de nieuwe"]]:[["nieuw","Als apart commando opslaan"]]), ["niets","Niet opslaan"]];
+    const opts=[["voorbeeld",it.alt&&!exact?`Toevoegen als “werkt ook” bij “${ex.command.slice(0,40)}”`:`Toevoegen als voorbeeld bij “${ex.command.slice(0,40)}”`], ...(exact?[["vervang","Voorbeeld toevoegen én uitleg vervangen door de nieuwe"]]:[["nieuw","Als apart commando opslaan"]]), ["niets","Niet opslaan"]];
     return `<div class="rrow dupe${it.act==="niets"?" off":""}" data-i="${i}">
       <span></span>
       <div class="rfields">
@@ -1376,6 +1395,7 @@ function rowHTML(it,i){
       <input type="checkbox" data-f="on" ${it.on?"checked":""} aria-label="Opslaan">
       <div class="rfields">
         <div class="field full"><label>Commando${it.slide?` · dia ${it.slide}`:""}</label><input class="mono" data-f="command" value="${esc(it.command)}"></div>
+        ${it.general?`<div class="field full"><label>Algemene vorm (wordt de kaart; jouw commando wordt een voorbeeld)</label><input class="mono" data-f="general" value="${esc(it.general)}"></div>`:""}
         <div class="field"><label>Wat doet het</label><input data-f="title" value="${esc(it.title)}" placeholder="${it.unknown?"Onbekend: vul zelf in":""}"></div>
         <div class="field"><label>Tab · groep</label><div style="display:flex;gap:6px"><select data-f="tab" style="flex:1">${tabOptions(it.tab)}</select><input data-f="group" value="${esc(it.group)}" placeholder="groep" style="flex:1"></div></div>
         <div class="field full"><label>Uitleg</label><textarea data-f="explanation" rows="2">${esc(it.explanation)}</textarea></div>
@@ -1471,22 +1491,24 @@ async function saveJob(id,quiet){
   const source=j.type==="deck"?"les":"screenshot";
   for(const it of itemsOf(j)){
     const cmd=String(it.command||"").trim(); if(!cmd) continue;
-    const exact=findExisting(cmd)||createdNow.get(normCmd(cmd));
+    const gen=String(it.general||"").trim(); const key=normCmd(gen||cmd);
+    const exact=findExisting(cmd)||createdNow.get(normCmd(cmd))||createdNow.get(key)||(gen?findExisting(gen):undefined);
     const rel=exact||relOf(it);
     const ex=makeExample(it,j);
     if(rel && !(it.act==="nieuw"&&!exact)){
       if(it.act==="niets") continue;
       const upd={uses:(rel.uses||1)+1,lastSeen:Date.now(),examples:addExample(rel.examples,ex),updatedAt:Date.now()};
+      if(it.alt&&!exact&&normCmd(rel.command)!==normCmd(cmd)&&!(rel.alts||[]).some(a=>normCmd(a.command)===normCmd(cmd))){ upd.alts=[...(rel.alts||[]),{command:cmd,note:(it.title||it.note||"").trim()}]; }
       if(it.act==="vervang"&&exact) Object.assign(upd,{title:(it.title||"").trim(),explanation:(it.explanation||"").trim(),parts:it.parts||[]});
-      try{ await state.store.update("prompts",rel.id,upd); rel.examples=upd.examples; rel.uses=upd.uses; it.act==="vervang"?r.updated++:r.examples++; if(ex.img) usedImg=true; }catch{ r.failed++; }
+      try{ await state.store.update("prompts",rel.id,upd); rel.examples=upd.examples; rel.uses=upd.uses; if(upd.alts) rel.alts=upd.alts; it.act==="vervang"?r.updated++:r.examples++; if(ex.img) usedImg=true; }catch{ r.failed++; }
       continue;
     }
     if(!rel && !it.on) continue;
     const pid=uid("p_");
-    const obj={command:cmd,tab:it.tab||activeTab()?.id,group:(it.group||"").trim(),title:(it.title||"").trim(),explanation:(it.explanation||"").trim(),parts:it.parts||[],source,uses:1,createdAt:Date.now(),updatedAt:Date.now(),...(j.used==="local"?{quality:"lokaal"}:{}),
-      examples:(source==="screenshot"||it.output||it.note)?[ex]:[],
+    const obj={command:gen||cmd,tab:it.tab||activeTab()?.id,group:(it.group||"").trim(),title:(it.title||"").trim(),explanation:(it.explanation||"").trim(),parts:it.parts||[],source,uses:1,createdAt:Date.now(),updatedAt:Date.now(),...(j.used==="local"?{quality:"lokaal"}:{}),
+      examples:(gen||source==="screenshot"||it.output||it.note)?[ex]:[],
       ...(j.type==="deck"?{sourceName:j.name,slide:it.slide||null}:{})};
-    if(await write("prompts",pid,obj)){ r.added++; createdNow.set(normCmd(cmd),{id:pid,...obj}); if(obj.examples.length&&ex.img) usedImg=true; } else r.failed++;
+    if(await write("prompts",pid,obj)){ r.added++; { const o={id:pid,...obj}; createdNow.set(normCmd(cmd),o); createdNow.set(key,o); } if(obj.examples.length&&ex.img) usedImg=true; } else r.failed++;
   }
   if(!r.failed){ clearTimeout(saveTimers[id]); delete edits[id]; await remove("queue",id); dropBlob(j,usedImg); }
   if(!quiet) toast(saveMsg(r));
@@ -1551,6 +1573,7 @@ async function handleAct(act, node){
   const id=node.dataset.id;
   switch(act){
     case "copy": { const p=state.prompts.find(x=>x.id===id); if(p) copyText(p.command); break; }
+    case "copy-alt": { const p=state.prompts.find(x=>x.id===id); const a=p?.alts?.[+node.dataset.i]; if(a) copyText(a.command); break; }
     case "edit": editPrompt(state.prompts.find(x=>x.id===id)); break;
     case "del": { if(node.dataset.armed){ await remove("prompts",id); } else { node.dataset.armed="1"; node.textContent="Zeker?"; setTimeout(()=>{ if(node.isConnected){ delete node.dataset.armed; node.textContent="Verwijderen"; } },3000); } break; }
     case "new-tab": editTab(null); break;
