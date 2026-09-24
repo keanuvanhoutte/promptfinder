@@ -1,7 +1,7 @@
 {
  "app": "PromptFinder",
  "version": 1,
- "exportedAt": "2026-09-24T09:53:23Z",
+ "exportedAt": "2026-09-24T11:10:34Z",
  "tabs": [
   {
    "color": "#5A6874",
@@ -20166,8 +20166,22 @@
   {
    "command": "create nieuw_object, selectie",
    "createdAt": 1790250000665,
+   "examples": [
+    {
+     "command": "create tlr3, 1ZIW and (not hetatm)",
+     "date": 1790243622182,
+     "img": {
+      "id": "fae5ff72f7b72af70a5fa5190393a5bf",
+      "kind": "asset"
+     },
+     "note": "Er ontstaat een nieuw object 'tlr3' in de objectlijst dat alleen de atomen van het eiwit bevat.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "Maakt een nieuw, apart object van een selectie, bv. create achain, chain A. Dat object verschijnt in de objectlijst en kun je apart tonen, verbergen en kleuren.",
    "group": "Selecties",
+   "lastSeen": 1790243622182,
    "parts": [
     {
      "m": "maak een nieuw object",
@@ -20187,8 +20201,8 @@
    "sourceName": "SB-01-introduction-workshop-1-molecular-visualization.pptx",
    "tab": "pymol",
    "title": "Nieuw object uit selectie",
-   "updatedAt": 1790250000665,
-   "uses": 1,
+   "updatedAt": 1790243622182,
+   "uses": 2,
    "id": "les_0666"
   },
   {
@@ -20659,8 +20673,22 @@
   {
    "command": "align 3CIG, 1ZIW",
    "createdAt": 1790250000706,
+   "examples": [
+    {
+     "command": "align 3CIG, 1ZIW",
+     "date": 1790245416917,
+     "img": {
+      "id": "1fc0507efd1fe264d6e1dd242ff15684",
+      "kind": "asset"
+     },
+     "note": "De twee eiwitstructuren worden nu bovenop elkaar geplaatst, zodat je hun 3D-vormverschillen kunt onderzoeken.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "Legt de eerste structuur (muis-TLR3) zo goed mogelijk op de tweede (humaan TLR3) door ze te verschuiven en draaien. Daarna kun je verschillen tussen beide zichtbaar maken, bv. met een andere kleur. PyMOL toont de RMSD als maat voor het verschil.",
    "group": "Vergelijken",
+   "lastSeen": 1790245416917,
    "parts": [
     {
      "m": "structureel superponeren",
@@ -20680,8 +20708,8 @@
    "sourceName": "SB-workshop-2-molecular-visualization.pptx",
    "tab": "pymol",
    "title": "Structuur op andere structuur passen",
-   "updatedAt": 1790250000706,
-   "uses": 1,
+   "updatedAt": 1790245416918,
+   "uses": 2,
    "id": "les_0707"
   },
   {
@@ -20843,8 +20871,22 @@
   {
    "command": "hide all",
    "createdAt": 1790250000668,
+   "examples": [
+    {
+     "command": "hide all",
+     "date": 1790243621869,
+     "img": {
+      "id": "fae5ff72f7b72af70a5fa5190393a5bf",
+      "kind": "asset"
+     },
+     "note": "Alle voorheen zichtbare onderdelen van de eiwitstructuur worden nu onzichtbaar.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "Verbergt alle weergaven van alle objecten, zodat je daarna zelf kiest wat je toont.",
    "group": "Weergave",
+   "lastSeen": 1790243621869,
    "parts": [
     {
      "m": "verberg een weergave",
@@ -20860,8 +20902,8 @@
    "sourceName": "SB-01-introduction-workshop-1-molecular-visualization.pptx",
    "tab": "pymol",
    "title": "Alle weergaven verbergen",
-   "updatedAt": 1790250000668,
-   "uses": 1,
+   "updatedAt": 1790243621869,
+   "uses": 2,
    "id": "les_0669"
   },
   {
