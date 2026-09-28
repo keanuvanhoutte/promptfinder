@@ -145,6 +145,14 @@ main{max-width:1100px;margin:0 auto;padding-inline:16px;padding-block:18px 60px;
 .famrow>summary code{font-family:var(--mono);font-size:13px;background:var(--code-bg);color:var(--code-ink);padding:3px 8px;border-radius:6px;word-break:break-word}
 .famt{color:var(--muted);font-size:14px}
 .famrow>.card{border:0;border-top:1px solid var(--line);border-radius:0;box-shadow:none}
+.pickfields{display:none;flex-direction:column;gap:6px}
+.rrow.aspick .pickfields{display:flex}
+.pickres{display:flex;flex-direction:column;gap:4px;max-height:260px;overflow:auto}
+.pickopt{display:flex;gap:10px;align-items:baseline;text-align:left;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer;flex-wrap:wrap}
+.pickopt:hover{border-color:var(--accent);background:var(--accent-soft)}
+.pickopt code{font-family:var(--mono);font-size:12.5px}
+.pickopt span{color:var(--muted);font-size:13px}
+.pickchosen code{font-family:var(--mono)}
 .newfields{display:none;grid-template-columns:1fr 1fr;gap:10px}
 .rrow.asnew .newfields{display:grid}
 @media (max-width:640px){.newfields{grid-template-columns:1fr}}
@@ -1415,11 +1423,21 @@ const tabsSig = () => sortedTabs().map(t=>t.id+":"+t.name).join("|");
 function jobSig(j,ctx){ return JSON.stringify([j.status,j.used,j.error,j.progress,j.note,itemsOf(j),itemsOf(j).map(it=>{const e=relOf(it);return e?e.id+(e.updatedAt||"")+(e.examples||[]).length:"";}),!!rt[j.id],reachable(j),tabsSig(),j.id===currentJob,ctx]); }
 const STATUS_LABEL={upload:"Inlezen…",wachtend:"In wachtrij",bezig:"Bezig",klaar:"Klaar: controleer en sla op",fout:"Mislukt"};
 const relOf=it=>findExisting(it.command)||(it.general&&findExisting(it.general))||(it.relatedId&&state.prompts.find(p=>p.id===it.relatedId))||null;
+/* Zelf kiezen bij welk bestaand commando een gevonden item hoort */
+function pickHTML(it){
+  const t=it.targetId&&state.prompts.find(p=>p.id===it.targetId);
+  return `<div class="pickfields full"><label>Bij welk commando hoort dit?</label><input class="mono" data-pick placeholder="Zoek een commando, bv. #id, ls of color…" autocomplete="off"><div class="pickres"></div><div class="pickchosen">${t?`Gekozen: <code>${esc(t.command)}</code> <span class="tagline">${esc(tabById(t.tab)?.name||"")}</span>`:`<span class="tagline">Nog niets gekozen: zoek hierboven en klik een commando aan.</span>`}</div></div>`;
+}
+function rowCtx(el){ const row=el.closest(".rrow"), jn=el.closest(".job"); if(!row||!jn) return null; const id=jn.dataset.job; const j=state.queue.find(x=>x.id===id); if(!j) return null;
+  const items=edits[id]||(edits[id]=itemsOf(j).map(x=>({...x}))); return {row,jn,id,j,it:items[+row.dataset.i]}; }
+function pickResults(q){ const toks=tokens(q); if(!toks.length) return [];
+  const r=state.prompts.filter(p=>tabById(p.tab)?.kind!=="concept").map(p=>({p,s:scorePrompt(p,toks,q)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s);
+  const top=r[0]?.s||0; return r.filter(x=>x.s>=top/3).slice(0,8).map(x=>x.p); }
 function rowHTML(it,i){
   const ex=relOf(it);
   if(ex){ const exact=!!findExisting(it.command);
-    const opts=[["voorbeeld",it.alt&&!exact?`Toevoegen als “werkt ook” bij “${ex.command.slice(0,40)}”`:`Toevoegen als voorbeeld bij “${ex.command.slice(0,40)}”`], ...(exact?[["vervang","Voorbeeld toevoegen én uitleg vervangen door de nieuwe"]]:[]), ["nieuw","Toevoegen als nieuwe prompt (eigen kaart)"], ["niets","Niet opslaan"]];
-    return `<div class="rrow dupe${it.act==="niets"?" off":""}${it.act==="nieuw"?" asnew":""}" data-i="${i}">
+    const opts=[["voorbeeld",it.alt&&!exact?`Toevoegen als “werkt ook” bij “${ex.command.slice(0,40)}”`:`Toevoegen als voorbeeld bij “${ex.command.slice(0,40)}”`], ...(exact?[["vervang","Voorbeeld toevoegen én uitleg vervangen door de nieuwe"]]:[]), ["nieuw","Toevoegen als nieuwe prompt (eigen kaart)"], ["ander","Toevoegen bij… (zelf een commando zoeken)"], ["niets","Niet opslaan"]];
+    return `<div class="rrow dupe${it.act==="niets"?" off":""}${it.act==="nieuw"?" asnew":""}${it.act==="ander"?" aspick":""}" data-i="${i}">
       <span></span>
       <div class="rfields">
         <div class="field full"><label>${exact?"Staat al in je lijst":"Hoort bij iets uit je lijst"}${it.slide?` · dia ${it.slide}`:""}</label><input class="mono" data-f="command" value="${esc(it.command)}"></div>
@@ -1427,13 +1445,14 @@ function rowHTML(it,i){
         <div class="compare full"><div><span class="tagline">In je lijst: <code>${esc(ex.command)}</code>${(ex.examples||[]).length?` · ${ex.examples.length} voorbeeld${ex.examples.length>1?"en":""}`:""}</span><b>${esc(ex.title||"(geen titel)")}</b><span>${esc(ex.explanation||"(geen uitleg)")}</span></div>
           <div><span class="tagline">Nieuw gevonden</span><b>${esc(it.title||"(geen titel)")}</b><span>${esc(it.explanation||"(geen uitleg)")}</span></div></div>
         <div class="field full"><label>Wat doen we ermee</label><select data-f="act">${opts.map(([v,l])=>`<option value="${v}"${it.act===v?" selected":""}>${esc(l)}</option>`).join("")}</select></div>
+        ${pickHTML(it)}
         <div class="newfields full"><div class="field"><label>Wat doet het</label><input data-f="title" value="${esc(it.title||"")}"></div>
           <div class="field"><label>Tab · groep</label><div style="display:flex;gap:6px"><select data-f="tab" style="flex:1">${tabOptions(it.tab)}</select><input data-f="group" value="${esc(it.group||"")}" placeholder="groep" style="flex:1"></div></div>
           <div class="field full"><label>Uitleg</label><textarea data-f="explanation" rows="2">${esc(it.explanation||"")}</textarea></div></div>
         ${it.error?`<div class="tagline full dup">Gaf een foutmelding (${esc(it.error)}). Kan leerrijk zijn als voorbeeld; standaard niet opgeslagen.</div>`:""}
       </div></div>`;
   }
-  return `<div class="rrow${it.on?"":" off"}" data-i="${i}">
+  return `<div class="rrow${it.on?"":" off"}${it.act==="ander"?" aspick":""}" data-i="${i}">
       <input type="checkbox" data-f="on" ${it.on?"checked":""} aria-label="Opslaan">
       <div class="rfields">
         <div class="field full"><label>Commando${it.slide?` · dia ${it.slide}`:""}</label><input class="mono" data-f="command" value="${esc(it.command)}"></div>
@@ -1442,6 +1461,8 @@ function rowHTML(it,i){
         <div class="field"><label>Tab · groep</label><div style="display:flex;gap:6px"><select data-f="tab" style="flex:1">${tabOptions(it.tab)}</select><input data-f="group" value="${esc(it.group)}" placeholder="groep" style="flex:1"></div></div>
         <div class="field full"><label>Uitleg</label><textarea data-f="explanation" rows="2">${esc(it.explanation)}</textarea></div>
         ${it.output||it.note?`<div class="ex full">${it.output?`<pre class="exout">${esc(it.output)}</pre>`:""}${it.note?`<p class="exnote">${esc(it.note)}</p>`:""}</div>`:""}
+        <div class="full"><button class="linkbtn" type="button" data-act="pick-open">${it.act==="ander"?"Toch als nieuw commando opslaan":"Toevoegen bij een bestaand commando…"}</button></div>
+        ${pickHTML(it)}
         <div class="tagline full${it.error?" dup":""}">${it.error?`Gaf een foutmelding (${esc(it.error)}); standaard niet aangevinkt. `:""}${it.newTab?`Voorgestelde tab: ${esc(it.newTab)}. `:""}${it.parts?.length?`${it.parts.length} onderdelen uitgelegd.`:""}</div>
       </div></div>`;
 }
@@ -1535,12 +1556,13 @@ async function saveJob(id,quiet){
     const cmd=String(it.command||"").trim(); if(!cmd) continue;
     const gen=String(it.general||"").trim(); const key=normCmd(gen||cmd);
     const exact=findExisting(cmd)||createdNow.get(normCmd(cmd))||createdNow.get(key)||(gen?findExisting(gen):undefined);
-    const rel=exact||relOf(it);
+    let rel=exact||relOf(it);
+    if(it.act==="ander"){ rel=state.prompts.find(p=>p.id===it.targetId); if(!rel){ r.failed++; continue; } }
     const ex=makeExample(it,j);
     if(rel && it.act!=="nieuw"){
       if(it.act==="niets") continue;
       const upd={uses:(rel.uses||1)+1,lastSeen:Date.now(),examples:addExample(rel.examples,ex),updatedAt:Date.now()};
-      if(it.alt&&!exact&&normCmd(rel.command)!==normCmd(cmd)&&!(rel.alts||[]).some(a=>normCmd(a.command)===normCmd(cmd))){ upd.alts=[...(rel.alts||[]),{command:cmd,note:(it.title||it.note||"").trim()}]; }
+      if(it.alt&&it.act!=="ander"&&!exact&&normCmd(rel.command)!==normCmd(cmd)&&!(rel.alts||[]).some(a=>normCmd(a.command)===normCmd(cmd))){ upd.alts=[...(rel.alts||[]),{command:cmd,note:(it.title||it.note||"").trim()}]; }
       if(it.act==="vervang"&&exact) Object.assign(upd,{title:(it.title||"").trim(),explanation:(it.explanation||"").trim(),parts:it.parts||[]});
       try{ await state.store.update("prompts",rel.id,upd); rel.examples=upd.examples; rel.uses=upd.uses; if(upd.alts) rel.alts=upd.alts; it.act==="vervang"?r.updated++:r.examples++; if(ex.img) usedImg=true; }catch{ r.failed++; }
       continue;
@@ -1616,6 +1638,16 @@ async function handleAct(act, node){
   switch(act){
     case "copy": { const p=state.prompts.find(x=>x.id===id); if(p) copyText(p.command); break; }
     case "family": { const k=node.dataset.key; const qi=$("#q"); qi.value="alle functies van "+k; qi.dispatchEvent(new Event("input",{bubbles:true})); qi.focus(); break; }
+    case "pick-open": { const c=rowCtx(node); if(!c) break; c.it.act = c.it.act==="ander" ? undefined : "ander"; c.row.classList.toggle("aspick",c.it.act==="ander");
+      node.textContent = c.it.act==="ander" ? "Toch als nieuw commando opslaan" : "Toevoegen bij een bestaand commando…";
+      if(c.it.act==="ander"){ c.it.on=true; c.row.classList.remove("off"); const cb=c.row.querySelector('[data-f="on"]'); if(cb) cb.checked=true; c.row.querySelector("[data-pick]")?.focus(); }
+      c.jn.dataset.sig=jobSig(c.j,{}); persistEdits(c.id); break; }
+    case "pick-target": { const c=rowCtx(node); if(!c) break; const t=state.prompts.find(p=>p.id===id); if(!t) break;
+      c.it.targetId=t.id; c.it.act="ander"; c.it.on=true;
+      const sel=c.row.querySelector('[data-f="act"]'); if(sel) sel.value="ander";
+      c.row.querySelector(".pickchosen").innerHTML=`Gekozen: <code>${esc(t.command)}</code> <span class="tagline">${esc(tabById(t.tab)?.name||"")}</span>`;
+      c.row.querySelector(".pickres").innerHTML=""; const inp=c.row.querySelector("[data-pick]"); if(inp) inp.value="";
+      c.jn.dataset.sig=jobSig(c.j,{}); persistEdits(c.id); break; }
     case "copy-alt": { const p=state.prompts.find(x=>x.id===id); const a=p?.alts?.[+node.dataset.i]; if(a) copyText(a.command); break; }
     case "edit": editPrompt(state.prompts.find(x=>x.id===id)); break;
     case "del": { if(node.dataset.armed){ await remove("prompts",id); } else { node.dataset.armed="1"; node.textContent="Zeker?"; setTimeout(()=>{ if(node.isConnected){ delete node.dataset.armed; node.textContent="Verwijderen"; } },3000); } break; }
@@ -1710,10 +1742,13 @@ function bindUI(){
     const id=jn.dataset.job; const j=state.queue.find(x=>x.id===id); if(!j) return;
     const items=edits[id]||(edits[id]=itemsOf(j).map(x=>({...x}))); const it=items[+row.dataset.i];
     if(f==="on"){ it.on=e.target.checked; row.classList.toggle("off",!it.on); }
-    else if(f==="act"){ it.act=e.target.value; row.classList.toggle("off",it.act==="niets"); row.classList.toggle("asnew",it.act==="nieuw"); }
+    else if(f==="act"){ it.act=e.target.value; row.classList.toggle("off",it.act==="niets"); row.classList.toggle("asnew",it.act==="nieuw"); row.classList.toggle("aspick",it.act==="ander"); if(it.act==="ander") row.querySelector("[data-pick]")?.focus(); }
     else it[f]=e.target.value;
     const ctxPlace={}; jn.dataset.sig=jobSig(j,ctxPlace); persistEdits(id); };
   q2.addEventListener("input",onField); q2.addEventListener("change",onField);
+  q2.addEventListener("input",e=>{ const inp=e.target.closest("[data-pick]"); if(!inp) return; const box=inp.parentElement.querySelector(".pickres");
+    const res=pickResults(inp.value);
+    box.innerHTML = inp.value.trim() ? (res.length? res.map(p=>`<button type="button" class="pickopt" data-act="pick-target" data-id="${esc(p.id)}"><code>${esc(p.command)}</code><span>${esc(p.title||"")} · ${esc(tabById(p.tab)?.name||"")}</span></button>`).join("") : `<span class="tagline">Niets gevonden.</span>`) : ""; });
 }
 boot();
 </script>
