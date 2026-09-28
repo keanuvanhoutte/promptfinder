@@ -145,6 +145,9 @@ main{max-width:1100px;margin:0 auto;padding-inline:16px;padding-block:18px 60px;
 .famrow>summary code{font-family:var(--mono);font-size:13px;background:var(--code-bg);color:var(--code-ink);padding:3px 8px;border-radius:6px;word-break:break-word}
 .famt{color:var(--muted);font-size:14px}
 .famrow>.card{border:0;border-top:1px solid var(--line);border-radius:0;box-shadow:none}
+.newfields{display:none;grid-template-columns:1fr 1fr;gap:10px}
+.rrow.asnew .newfields{display:grid}
+@media (max-width:640px){.newfields{grid-template-columns:1fr}}
 .alts{display:flex;flex-direction:column;gap:6px;border:1px dashed var(--line);border-radius:10px;padding:8px 10px}
 .alt{display:flex;flex-direction:column;gap:2px}
 .alt .cmd{margin:0}
@@ -1413,8 +1416,8 @@ const relOf=it=>findExisting(it.command)||(it.general&&findExisting(it.general))
 function rowHTML(it,i){
   const ex=relOf(it);
   if(ex){ const exact=!!findExisting(it.command);
-    const opts=[["voorbeeld",it.alt&&!exact?`Toevoegen als “werkt ook” bij “${ex.command.slice(0,40)}”`:`Toevoegen als voorbeeld bij “${ex.command.slice(0,40)}”`], ...(exact?[["vervang","Voorbeeld toevoegen én uitleg vervangen door de nieuwe"]]:[["nieuw","Als apart commando opslaan"]]), ["niets","Niet opslaan"]];
-    return `<div class="rrow dupe${it.act==="niets"?" off":""}" data-i="${i}">
+    const opts=[["voorbeeld",it.alt&&!exact?`Toevoegen als “werkt ook” bij “${ex.command.slice(0,40)}”`:`Toevoegen als voorbeeld bij “${ex.command.slice(0,40)}”`], ...(exact?[["vervang","Voorbeeld toevoegen én uitleg vervangen door de nieuwe"]]:[]), ["nieuw","Toevoegen als nieuwe prompt (eigen kaart)"], ["niets","Niet opslaan"]];
+    return `<div class="rrow dupe${it.act==="niets"?" off":""}${it.act==="nieuw"?" asnew":""}" data-i="${i}">
       <span></span>
       <div class="rfields">
         <div class="field full"><label>${exact?"Staat al in je lijst":"Hoort bij iets uit je lijst"}${it.slide?` · dia ${it.slide}`:""}</label><input class="mono" data-f="command" value="${esc(it.command)}"></div>
@@ -1422,6 +1425,9 @@ function rowHTML(it,i){
         <div class="compare full"><div><span class="tagline">In je lijst: <code>${esc(ex.command)}</code>${(ex.examples||[]).length?` · ${ex.examples.length} voorbeeld${ex.examples.length>1?"en":""}`:""}</span><b>${esc(ex.title||"(geen titel)")}</b><span>${esc(ex.explanation||"(geen uitleg)")}</span></div>
           <div><span class="tagline">Nieuw gevonden</span><b>${esc(it.title||"(geen titel)")}</b><span>${esc(it.explanation||"(geen uitleg)")}</span></div></div>
         <div class="field full"><label>Wat doen we ermee</label><select data-f="act">${opts.map(([v,l])=>`<option value="${v}"${it.act===v?" selected":""}>${esc(l)}</option>`).join("")}</select></div>
+        <div class="newfields full"><div class="field"><label>Wat doet het</label><input data-f="title" value="${esc(it.title||"")}"></div>
+          <div class="field"><label>Tab · groep</label><div style="display:flex;gap:6px"><select data-f="tab" style="flex:1">${tabOptions(it.tab)}</select><input data-f="group" value="${esc(it.group||"")}" placeholder="groep" style="flex:1"></div></div>
+          <div class="field full"><label>Uitleg</label><textarea data-f="explanation" rows="2">${esc(it.explanation||"")}</textarea></div></div>
         ${it.error?`<div class="tagline full dup">Gaf een foutmelding (${esc(it.error)}). Kan leerrijk zijn als voorbeeld; standaard niet opgeslagen.</div>`:""}
       </div></div>`;
   }
@@ -1529,7 +1535,7 @@ async function saveJob(id,quiet){
     const exact=findExisting(cmd)||createdNow.get(normCmd(cmd))||createdNow.get(key)||(gen?findExisting(gen):undefined);
     const rel=exact||relOf(it);
     const ex=makeExample(it,j);
-    if(rel && !(it.act==="nieuw"&&!exact)){
+    if(rel && it.act!=="nieuw"){
       if(it.act==="niets") continue;
       const upd={uses:(rel.uses||1)+1,lastSeen:Date.now(),examples:addExample(rel.examples,ex),updatedAt:Date.now()};
       if(it.alt&&!exact&&normCmd(rel.command)!==normCmd(cmd)&&!(rel.alts||[]).some(a=>normCmd(a.command)===normCmd(cmd))){ upd.alts=[...(rel.alts||[]),{command:cmd,note:(it.title||it.note||"").trim()}]; }
@@ -1539,7 +1545,7 @@ async function saveJob(id,quiet){
     }
     if(!rel && !it.on) continue;
     const pid=uid("p_");
-    const obj={command:gen||cmd,tab:it.tab||activeTab()?.id,group:(it.group||"").trim(),title:(it.title||"").trim(),explanation:(it.explanation||"").trim(),parts:it.parts||[],source,uses:1,createdAt:Date.now(),updatedAt:Date.now(),...(j.used==="local"?{quality:"lokaal"}:{}),
+    const obj={command:(gen&&!(it.act==="nieuw"&&findExisting(gen)))?gen:cmd,tab:it.tab||activeTab()?.id,group:(it.group||"").trim(),title:(it.title||"").trim(),explanation:(it.explanation||"").trim(),parts:it.parts||[],source,uses:1,createdAt:Date.now(),updatedAt:Date.now(),...(j.used==="local"?{quality:"lokaal"}:{}),
       examples:(gen||source==="screenshot"||it.output||it.note)?[ex]:[],
       ...(j.type==="deck"?{sourceName:j.name,slide:it.slide||null}:{})};
     if(await write("prompts",pid,obj)){ r.added++; { const o={id:pid,...obj}; createdNow.set(normCmd(cmd),o); createdNow.set(key,o); } if(obj.examples.length&&ex.img) usedImg=true; } else r.failed++;
@@ -1702,7 +1708,7 @@ function bindUI(){
     const id=jn.dataset.job; const j=state.queue.find(x=>x.id===id); if(!j) return;
     const items=edits[id]||(edits[id]=itemsOf(j).map(x=>({...x}))); const it=items[+row.dataset.i];
     if(f==="on"){ it.on=e.target.checked; row.classList.toggle("off",!it.on); }
-    else if(f==="act"){ it.act=e.target.value; row.classList.toggle("off",it.act==="niets"); }
+    else if(f==="act"){ it.act=e.target.value; row.classList.toggle("off",it.act==="niets"); row.classList.toggle("asnew",it.act==="nieuw"); }
     else it[f]=e.target.value;
     const ctxPlace={}; jn.dataset.sig=jobSig(j,ctxPlace); persistEdits(id); };
   q2.addEventListener("input",onField); q2.addEventListener("change",onField);
