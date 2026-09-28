@@ -1,7 +1,7 @@
 {
  "app": "PromptFinder",
  "version": 1,
- "exportedAt": "2026-09-28T10:13:31Z",
+ "exportedAt": "2026-09-28T12:16:11Z",
  "tabs": [
   {
    "color": "#5A6874",
@@ -899,27 +899,6 @@
    "id": "alg_virtuele-machine-vm"
   },
   {
-   "command": "as cartoon",
-   "createdAt": 1790233200000,
-   "explanation": "Verbergt de andere weergaven en toont het eiwit als lint, zodat je helices en sheets goed ziet.",
-   "group": "Weergave",
-   "parts": [
-    {
-     "m": "toon alleen deze weergave",
-     "t": "as"
-    },
-    {
-     "m": "lintweergave (secundaire structuur)",
-     "t": "cartoon"
-    }
-   ],
-   "sample": true,
-   "source": "voorbeeld",
-   "tab": "pymol",
-   "title": "Toon enkel als lint",
-   "id": "ex_cartoon"
-  },
-  {
    "command": "cd ~/map",
    "createdAt": 1790233200000,
    "examples": [
@@ -948,79 +927,6 @@
    "title": "Naar een map in je thuismap",
    "updatedAt": 1790592000000,
    "id": "ex_cd"
-  },
-  {
-   "command": "chmod +x script.sh",
-   "createdAt": 1790233200000,
-   "explanation": "Geeft een script uitvoerrechten, zodat je het daarna kan starten met ./script.sh.",
-   "group": "Rechten & gebruikers",
-   "parts": [
-    {
-     "m": "wijzig rechten",
-     "t": "chmod"
-    },
-    {
-     "m": "voeg uitvoerrecht toe",
-     "t": "+x"
-    },
-    {
-     "m": "het script",
-     "t": "script.sh"
-    }
-   ],
-   "sample": true,
-   "source": "voorbeeld",
-   "tab": "linux",
-   "title": "Maak script uitvoerbaar",
-   "id": "ex_chmod"
-  },
-  {
-   "command": "<!DOCTYPE html>",
-   "createdAt": 1790233200000,
-   "explanation": "Staat helemaal bovenaan elk HTML-bestand en vertelt de browser dat het om moderne HTML gaat.",
-   "group": "Structuur",
-   "lastSeen": 1790238426697,
-   "parts": [
-    {
-     "m": "documenttype HTML5",
-     "t": "<!DOCTYPE html>"
-    }
-   ],
-   "sample": true,
-   "source": "voorbeeld",
-   "tab": "html",
-   "title": "Documenttype",
-   "uses": 6,
-   "id": "ex_doctype"
-  },
-  {
-   "command": "grep -c \">\" sequentie.fasta",
-   "createdAt": 1790233200000,
-   "explanation": "Telt hoeveel regels met '>' beginnen, dus hoeveel sequenties er in een FASTA-bestand staan.",
-   "group": "Zoeken & filteren",
-   "parts": [
-    {
-     "m": "zoek tekst in bestanden",
-     "t": "grep"
-    },
-    {
-     "m": "tel het aantal gevonden regels",
-     "t": "-c"
-    },
-    {
-     "m": "zoekpatroon: het teken > (begin van elke sequentie)",
-     "t": "\">\""
-    },
-    {
-     "m": "het bestand",
-     "t": "sequentie.fasta"
-    }
-   ],
-   "sample": true,
-   "source": "voorbeeld",
-   "tab": "linux",
-   "title": "Tel sequenties in FASTA",
-   "id": "ex_grep"
   },
   {
    "command": "head -n getal bestand",
@@ -12064,10 +11970,22 @@
      "slide": 14,
      "source": "les",
      "sourceName": "2. Introduction to HTML.pptx"
+    },
+    {
+     "command": "background-color: kleur;",
+     "date": 1790595674740,
+     "img": {
+      "id": "1ca973961eb45cf6dfa2a040f57095c2",
+      "kind": "asset"
+     },
+     "note": "background-color: Mlpink; geeft het element een roze achtergrond.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": "Stelt de achtergrondkleur van een element in, bv. body { background-color: green; } voor een groene pagina.",
    "group": "Kleur & achtergrond",
+   "lastSeen": 1790595674740,
    "parts": [
     {
      "m": "eigenschap achtergrondkleur",
@@ -12083,8 +12001,8 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "css",
    "title": "Achtergrondkleur instellen",
-   "updatedAt": 1790592000000,
-   "uses": 2,
+   "updatedAt": 1790595674740,
+   "uses": 3,
    "id": "les_0424"
   },
   {
@@ -13489,11 +13407,55 @@
      "note": "Dit voorbeeld toont hoe je een ID-selector gebruikt om één div (BIT02) rood te maken.",
      "output": "",
      "source": "screenshot"
+    },
+    {
+     "command": "#id { eigenschap: waarde; }",
+     "date": 1790595674453,
+     "img": {
+      "id": "1ca973961eb45cf6dfa2a040f57095c2",
+      "kind": "asset"
+     },
+     "note": "De ID-selector #big past een achtergrondkleur, breedte en hoogte toe op het div-element met id=\"big\".",
+     "output": "",
+     "source": "screenshot"
+    },
+    {
+     "command": "#id { width: 1em; font-size: 30px; }",
+     "date": 1790595929665,
+     "img": {
+      "id": "d267fa269309980ffb9088621e240156",
+      "kind": "asset"
+     },
+     "note": "Dit voorbeeld toont hoe je een element met een uniek id kunt opmaken en relatieve eenheden (em) voor flexibele afmetingen kunt gebruiken.",
+     "output": "",
+     "source": "screenshot"
+    },
+    {
+     "command": "#id { background-color: kleur; width: getal; font-size: getal; }",
+     "date": 1790596044791,
+     "img": {
+      "id": "1d728680c7dc709154f734e3d2fc7c2c",
+      "kind": "asset"
+     },
+     "note": "Dit CSS-blok past stijl toe op een element met id='big': roze achtergrond, 50% van de schermbreedten 20% van de schermhoogte als tekstgrootte.",
+     "output": "",
+     "source": "screenshot"
+    },
+    {
+     "command": "#id { background-color: kleur; width: fit-content; }",
+     "date": 1790596142555,
+     "img": {
+      "id": "d027e62eb0fbecce913a1815786893ee",
+      "kind": "asset"
+     },
+     "note": "Met dit voorbeeld zet je op het element met id='big' een roze achtergrond en zorgt de breedte ervoor dat hij niet breder is dan nodig.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": "Een hekje (#) voor een naam selecteert het element met dat id. Bv. #kenobi {color: blue;} geeft het element met id=\"kenobi\" blauwe tekst.",
    "group": "Selectors",
-   "lastSeen": 1790586624932,
+   "lastSeen": 1790596142555,
    "parts": [
     {
      "m": "selecteer op id",
@@ -13513,8 +13475,8 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "css",
    "title": "Element met een id opmaken",
-   "updatedAt": 1790592000000,
-   "uses": 3,
+   "updatedAt": 1790596142555,
+   "uses": 7,
    "id": "les_0463"
   },
   {
@@ -13609,8 +13571,22 @@
   {
    "command": "selector { eigenschap: waarde; }",
    "createdAt": 1790250000467,
+   "examples": [
+    {
+     "command": "selector { eigenschap: waarde; }",
+     "date": 1790596639984,
+     "img": {
+      "id": "bb06bec85303e4eb040dd6d861e296fc",
+      "kind": "asset"
+     },
+     "note": "Je ziet hoe je CSS-regels opbouwt: selector, accolades, en er tussen eigenschappen met waarden.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "Een CSS-regel bestaat uit een selector en een declaratieblok tussen accolades. Elke declaratie is een eigenschap met een waarde, gevolgd door een puntkomma. Voorbeeld: p { font-size: 1.2em; } geeft alle <p>-elementen een bepaalde lettergrootte.",
    "group": "Koppelen aan HTML",
+   "lastSeen": 1790596639984,
    "parts": [
     {
      "m": "welke HTML-elementen je opmaakt (bv. p)",
@@ -13642,8 +13618,8 @@
    "sourceName": "3. Introduction to CSS.pptx",
    "tab": "css",
    "title": "Opbouw van een CSS-regel",
-   "updatedAt": 1790250000467,
-   "uses": 1,
+   "updatedAt": 1790596639984,
+   "uses": 2,
    "id": "les_0468"
   },
   {
@@ -14335,10 +14311,44 @@
      "slide": 38,
      "source": "les",
      "sourceName": "3. Introduction to CSS.pptx"
+    },
+    {
+     "command": "#id :nth-child(3) {background-color: kleur;}",
+     "date": 1790590837825,
+     "img": {
+      "id": "62a7df3eb437424a451b3160362b4b92",
+      "kind": "asset"
+     },
+     "note": "Dit voorbeeld kleur het derde kind-element rood op.",
+     "output": "",
+     "source": "screenshot"
+    },
+    {
+     "command": "#id :nth-child(2n) {background-color: kleur;}",
+     "date": 1790590838186,
+     "img": {
+      "id": "62a7df3eb437424a451b3160362b4b92",
+      "kind": "asset"
+     },
+     "note": "Dit voorbeeld kleur elke tweede rij in een lijst.",
+     "output": "",
+     "source": "screenshot"
+    },
+    {
+     "command": "#id :nth-child(2n+1) {background-color: kleur;}",
+     "date": 1790590838614,
+     "img": {
+      "id": "62a7df3eb437424a451b3160362b4b92",
+      "kind": "asset"
+     },
+     "note": "Dit voorbeeld kleur elke oneven rij rood, waardoor een afwisselend patroon ontstaat.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": ":nth-child(n) selecteert het element op positie n tussen zijn siblings (tellen begint bij 1). n kan een getal of een formule zijn, bv. #Jasper :nth-child(3) of :nth-child(2n).",
    "group": "Selectors",
+   "lastSeen": 1790590838614,
    "parts": [
     {
      "m": "de ouder, bv. #Jasper",
@@ -14358,8 +14368,8 @@
    "sourceName": "3. Introduction to CSS.pptx",
    "tab": "css",
    "title": "Het n-de kind selecteren",
-   "updatedAt": 1790592000000,
-   "uses": 3,
+   "updatedAt": 1790590838614,
+   "uses": 6,
    "id": "les_0489"
   },
   {
@@ -14472,10 +14482,22 @@
      "slide": 41,
      "source": "les",
      "sourceName": "3. Introduction to CSS.pptx"
+    },
+    {
+     "command": "#id:hover {background-color: kleur;}",
+     "date": 1790591070329,
+     "img": {
+      "id": "11d8e351c980be3c8b795e09f6e177d5",
+      "kind": "asset"
+     },
+     "note": "Wanneer je met je muis over het element #Cedric gaat, wordt de achtergrond rood.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": ":hover past de stijl toe zolang de gebruiker met de muiscursor over het element beweegt, bv. #Paco:hover {background: orange;}.",
    "group": "Selectors",
+   "lastSeen": 1790591070329,
    "parts": [
     {
      "m": "het element, bv. #Paco",
@@ -14491,8 +14513,8 @@
    "sourceName": "3. Introduction to CSS.pptx",
    "tab": "css",
    "title": "Stijl bij muis erover",
-   "updatedAt": 1790592000000,
-   "uses": 1,
+   "updatedAt": 1790591070329,
+   "uses": 2,
    "id": "les_0494"
   },
   {
@@ -14507,10 +14529,22 @@
      "slide": 42,
      "source": "les",
      "sourceName": "3. Introduction to CSS.pptx"
+    },
+    {
+     "command": "#id:active {background-color: kleur;}",
+     "date": 1790591070613,
+     "img": {
+      "id": "11d8e351c980be3c8b795e09f6e177d5",
+      "kind": "asset"
+     },
+     "note": "Wanneer je op #Paco klikt, wordt de achtergrond rood zolang je de muisknop ingedrukt houdt.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": ":active past de stijl toe op het moment dat de gebruiker op het element klikt (de muisknop ingedrukt houdt), bv. #Paco:active {background: purple;}.",
    "group": "Selectors",
+   "lastSeen": 1790591070613,
    "parts": [
     {
      "m": "het element, bv. #Paco",
@@ -14526,15 +14560,40 @@
    "sourceName": "3. Introduction to CSS.pptx",
    "tab": "css",
    "title": "Stijl tijdens het klikken",
-   "updatedAt": 1790592000000,
-   "uses": 1,
+   "updatedAt": 1790591070613,
+   "uses": 2,
    "id": "les_0495"
   },
   {
    "command": "a:link / a:visited",
    "createdAt": 1790250000495,
+   "examples": [
+    {
+     "command": "a:link {background-color: kleur;}",
+     "date": 1790591070898,
+     "img": {
+      "id": "11d8e351c980be3c8b795e09f6e177d5",
+      "kind": "asset"
+     },
+     "note": "Alle hyperlinks die je nog niet hebt bezocht krijgen een rode achtergrond.",
+     "output": "",
+     "source": "screenshot"
+    },
+    {
+     "command": "a:visited {background-color: kleur;}",
+     "date": 1790591071257,
+     "img": {
+      "id": "11d8e351c980be3c8b795e09f6e177d5",
+      "kind": "asset"
+     },
+     "note": "Alle hyperlinks die je al hebt bezocht krijgen een andere achtergrondkleur (hier: blauw).",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": ":link geeft een stijl aan links die nog niet bezocht zijn, :visited aan links die je al bezocht hebt. Voorbeeld: a:link {background: white;} en a:visited {background: red;}.",
    "group": "Selectors",
+   "lastSeen": 1790591071257,
    "parts": [
     {
      "m": "link-element (anchor)",
@@ -14554,8 +14613,8 @@
    "sourceName": "3. Introduction to CSS.pptx",
    "tab": "css",
    "title": "Onbezochte en bezochte links",
-   "updatedAt": 1790250000495,
-   "uses": 1,
+   "updatedAt": 1790591071257,
+   "uses": 3,
    "id": "les_0496"
   },
   {
@@ -14671,10 +14730,22 @@
      "slide": 48,
      "source": "les",
      "sourceName": "3. Introduction to CSS.pptx"
+    },
+    {
+     "command": "element { border: dikte stijl kleur; }",
+     "date": 1790595271432,
+     "img": {
+      "id": "f74f819f3a5646995ee8ee19a88b52cd",
+      "kind": "asset"
+     },
+     "note": "Dit voorbeeld maakt een rode rand van 1 pixel rond alle div-elementen.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": "border is een shorthand die in één keer de dikte, de stijl en de kleur van de rand instelt (border-width, border-style en border-color), bv. border: 6px solid rgb(64,58,50);.",
    "group": "Box model",
+   "lastSeen": 1790595271432,
    "parts": [
     {
      "m": "shorthand voor de rand",
@@ -14698,8 +14769,8 @@
    "sourceName": "3. Introduction to CSS.pptx",
    "tab": "css",
    "title": "Rand rond een element",
-   "updatedAt": 1790592000000,
-   "uses": 1,
+   "updatedAt": 1790595271432,
+   "uses": 2,
    "id": "les_0501"
   },
   {
@@ -14714,10 +14785,22 @@
      "slide": 49,
      "source": "les",
      "sourceName": "3. Introduction to CSS.pptx"
+    },
+    {
+     "command": "width: waarde; height: waarde;",
+     "date": 1790595674993,
+     "img": {
+      "id": "1ca973961eb45cf6dfa2a040f57095c2",
+      "kind": "asset"
+     },
+     "note": "width: 30px; en height: 300px; geven het element een breedte van 30 pixels en een hoogte van 300 pixels.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": "width bepaalt de horizontale grootte van een element, height de verticale. Je kunt verschillende eenheden gebruiken, bv. height: 250px;.",
    "group": "Box model",
+   "lastSeen": 1790595674993,
    "parts": [
     {
      "m": "breedte / hoogte",
@@ -14745,8 +14828,8 @@
    "sourceName": "3. Introduction to CSS.pptx",
    "tab": "css",
    "title": "Breedte en hoogte instellen",
-   "updatedAt": 1790592000000,
-   "uses": 1,
+   "updatedAt": 1790595674993,
+   "uses": 2,
    "id": "les_0502"
   },
   {
@@ -14935,10 +15018,22 @@
      "slide": 55,
      "source": "les",
      "sourceName": "3. Introduction to CSS.pptx"
+    },
+    {
+     "command": "#id { padding: afstand; border: solid breedte kleur; box-sizing: border-box; }",
+     "date": 1790597119121,
+     "img": {
+      "id": "234eb7ba0ca06b1c94e00b1c7ef0addb",
+      "kind": "asset"
+     },
+     "note": "Het eerste div-element (#first) krijgt een zwarte rand van 4 pixels, 4 pixels binnenruimte, en de totale grootte blijft 5×5 pixels.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": "Standaard (content-box) geldt width/height alleen voor de inhoud; padding en rand komen er nog bij. Met border-box tellen padding en rand mee in de opgegeven breedte en hoogte.",
    "group": "Box model",
+   "lastSeen": 1790597119121,
    "parts": [
     {
      "m": "hoe breedte en hoogte berekend worden",
@@ -14958,8 +15053,8 @@
    "sourceName": "3. Introduction to CSS.pptx",
    "tab": "css",
    "title": "Padding en rand meetellen",
-   "updatedAt": 1790250000508,
-   "uses": 1,
+   "updatedAt": 1790597119121,
+   "uses": 2,
    "id": "les_0509"
   },
   {
@@ -24862,10 +24957,22 @@
      "note": "Dit laat zien hoe je CSS direct in je HTML-bestand schrijft in plaats van een afzonderlijk stylesheet.",
      "output": "",
      "source": "screenshot"
+    },
+    {
+     "command": "<style> #big { background-color: kleur; width: fit-content; } </style>",
+     "date": 1790596142851,
+     "img": {
+      "id": "d027e62eb0fbecce913a1815786893ee",
+      "kind": "asset"
+     },
+     "note": "Dit concrete voorbeeld toont hoe je CSS rechtstreeks in je HTML-bestand schrijft zonder aparte CSS-file.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": "De <style>-tag bevat CSS-regels die rechtstreeks in het HTML-document staan, meestal in de <head>. Ze gelden voor die ene pagina. Bv. span {color: red;} maakt alle span-elementen rood.",
    "group": "Head & koppelingen",
+   "lastSeen": 1790596142851,
    "parts": [
     {
      "m": "openingstag voor CSS-opmaak",
@@ -24879,8 +24986,8 @@
    "source": "screenshot",
    "tab": "css",
    "title": "Interne CSS-stijlen in HTML",
-   "updatedAt": 1790592000000,
-   "uses": 1,
+   "updatedAt": 1790596142851,
+   "uses": 2,
    "id": "p_mul0h66yr9g8z"
   },
   {

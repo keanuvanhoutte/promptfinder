@@ -1,5 +1,5 @@
 # PromptFinder – leesbare lijst
-Export: 2026-09-28T10:13:31Z · 944 items
+Export: 2026-09-28T12:16:11Z · 940 items
 
 
 ## Algemeen (143)
@@ -167,7 +167,7 @@ Export: 2026-09-28T10:13:31Z · 944 items
 ### Overig
 - `alt` — **Meerder lijnen tegelijk typen**: Alt ingedrukt houden en elke lijn aanduiden waarin je tegelijk wilt schrijven
 
-## Linux (349)
+## Linux (347)
 
 ### Navigatie
 - `cd ~/map` — **Naar een map in je thuismap**: Gaat naar een map die in je thuismap staat, waar je ook bent. ~ is een afkorting voor je thuismap. Bv. cd ~/projecten.
@@ -187,55 +187,6 @@ Export: 2026-09-28T10:13:31Z · 944 items
   - voorbeelden: `cd ../../systemd`
 - `cd /` — **Naar de root-map gaan**: Gaat naar de root /, het beginpunt van het hele bestandssysteem. _(bron: Chapter 3 - Organizing files.pptx, dia 7)_
 - `cd ~user` — **Naar thuismap van andere gebruiker**: Gaat naar de thuismap van een bepaalde gebruiker; de shell vervangt ~user door bv. /home/user. _(bron: Chapter 3 - Organizing files.pptx, dia 8)_
-
-### Rechten & gebruikers
-- `chmod +x script.sh` — **Maak script uitvoerbaar**: Geeft een script uitvoerrechten, zodat je het daarna kan starten met ./script.sh.
-- `sudo commando` — **Commando uitvoeren als beheerder**: Zet sudo voor een commando om het uit te voeren met rechten van de superuser (root), bv. om software te installeren. Je moet dan je wachtwoord ingeven. _(bron: Chapter 2 - The terminal.pptx, dia 8)_
-- `umask` — **Standaardrechten nieuwe bestanden**: Toont het gebruikersmasker: een waarde die afgetrokken wordt van de standaardrechten van nieuwe bestanden en mappen. Zo zijn nieuwe, zelfgemaakte bestanden standaard niet uitvoerbaar, wat helpt tegen virussen. Met umask gevolgd door een getal wijzig je het masker. _(bron: Chapter 3 - Organizing files.pptx, dia 45)_
-- `chmod [ugoa][-+=][rwx...] file` — **Rechten wijzigen met letters**: Wijzigt de toegangsrechten van een bestand of map. Je kiest voor wie (u, g, o, a), wat je doet (- afnemen, + geven, = instellen) en welk recht (r, w, x). _(bron: Chapter 3 - Organizing files.pptx, dia 47)_
-- `chmod a-x map` — **Uitvoerrecht op map afnemen**: Neemt bij iedereen het x-recht af van een map. Daarna kan niemand nog met cd in die map. Bv. chmod a-x mydir. _(bron: Chapter 3 - Organizing files.pptx, dia 47)_
-  - voorbeelden: `chmod a-x mydir`
-- `ls -ld map` — **Rechten van map zelf tonen**: Toont de eigenschappen (rechten) van de map zelf in plaats van haar inhoud. Bv. ls -ld mydir. _(bron: Chapter 3 - Organizing files.pptx, dia 47)_
-  - voorbeelden: `ls -ld mydir`
-- `chmod 400 file` — **Bestand beschermen tegen overschrijven**: Enkel de eigenaar mag lezen (r--------). Beschermt tegen per ongeluk overschrijven. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
-- `chmod 500 directory` — **Map beschermen tegen wijzigingen**: Eigenaar mag lezen en binnengaan (r-x), niet schrijven. Zo verwijder, hernoem of verplaats je niet per ongeluk bestanden in die map. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
-- `chmod 600 file` — **Privébestand voor eigenaar**: Enkel de eigenaar mag lezen en schrijven (rw-------); anderen hebben geen toegang. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
-- `chmod 644 file` — **Openbaar leesbaar bestand**: Iedereen mag lezen, maar enkel de eigenaar mag wijzigen (rw-r--r--). _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
-- `chmod 660 file` — **Bestand voor eigen groep**: Eigenaar en groep mogen lezen en wijzigen (rw-rw----); anderen hebben geen toegang. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
-- `chmod 700 file` — **Alle rechten enkel voor eigenaar**: Enkel de eigenaar mag lezen, schrijven en uitvoeren (rwx------). _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
-- `chmod 755 file` — **Uitvoerbaar voor iedereen**: Iedereen mag lezen en uitvoeren, enkel de eigenaar mag wijzigen (rwxr-xr-x). Typisch voor programma's en scripts. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
-  - voorbeelden: `chmod 755 script_name.sh`
-- `chmod 770 file` — **Alle rechten voor groep**: Eigenaar en groep hebben alle rechten (rwxrwx---); anderen niets. Standaard binnen een groep. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
-- `chmod 777 file` — **Alle rechten voor iedereen**: Iedereen mag lezen, schrijven en uitvoeren (rwxrwxrwx). Onveilig, dus zelden gebruiken. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
-- `chown [options] user_spec files` — **Eigenaar van bestand wijzigen**: Stelt in wie de eigenaar is van bestanden of mappen. Meestal heb je daarvoor sudo nodig. _(bron: Chapter 3 - Organizing files.pptx, dia 49)_
-- `chgrp [options] group_spec files` — **Groep van bestand wijzigen**: Stelt in tot welke groep bestanden of mappen behoren. _(bron: Chapter 3 - Organizing files.pptx, dia 49)_
-- `sudo usermod -aG groep gebruiker` — **Gebruiker aan groep toevoegen**: Voegt een gebruiker toe aan een groep. Bv. sudo usermod -aG docker guest laat guest docker gebruiken zonder sudo. Dit werkt pas na opnieuw inloggen. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 23)_
-  - voorbeelden: `sudo usermod -aG docker guest`
-
-### Zoeken & filteren
-- `grep -c ">" sequentie.fasta` — **Tel sequenties in FASTA**: Telt hoeveel regels met '>' beginnen, dus hoeveel sequenties er in een FASTA-bestand staan.
-- `find map -name bestand` — **Bestand zoeken op naam**: Zoekt in een map en al haar submappen naar bestanden met een bepaalde naam. Met find kan je ook zoeken op grootte, tijdstip, eigenaar, type of rechten (zie man find). Bv. find ~ -name file6. _(bron: Chapter 3 - Organizing files.pptx, dia 32)_
-  - voorbeelden: `find ~ -name file6`
-- `locate pattern` — **Snel zoeken via index**: Toont alle absolute paden waarin het woord pattern voorkomt. locate zoekt in een index (databank), dus bestanden die net aangemaakt zijn vindt hij pas na het bijwerken van die index. _(bron: Chapter 3 - Organizing files.pptx, dia 34)_
-- `updatedb -l 0 -o ~/dbfile -U /` — **Eigen zoekindex maken**: Maakt een eigen indexbestand ~/dbfile voor locate, met alle bestanden vanaf de root /. _(bron: Chapter 3 - Organizing files.pptx, dia 36)_
-- `locate -d ~/dbfile pattern` — **Zoeken in eigen index**: Zoekt pattern in je eigen indexbestand in plaats van in de standaardindex. _(bron: Chapter 3 - Organizing files.pptx, dia 36)_
-- `grep string file` — **Tekst zoeken in bestand**: Toont alle regels van een bestand waarin het woord string voorkomt. grep werkt met reguliere expressies en heeft nuttige opties zoals -i (hoofdletters negeren) en -v (regels tonen die het woord níet bevatten). _(bron: Chapter 3 - Organizing files.pptx, dia 39)_
-- `grep ^\> bestand.fasta` — **Kopregel van FASTA-bestand tonen**: Toont de regels die beginnen met >: in een FASTA-bestand is dat de kopregel met de naam van de sequentie. De \ zorgt dat Bash > niet als redirect ziet. Bv. grep ^\> P00687.fasta. _(bron: Chapter 3 - Organizing files.pptx, dia 40)_
-  - voorbeelden: `grep ^\> P00687.fasta`
-- `grep patroon bestand*` — **Zoeken in meerdere bestanden**: Toont in alle passende bestanden de regels waarin het patroon voorkomt, met de bestandsnaam ervoor. Bv. grep rs112803166 snp151* haalt de info over één SNP uit meerdere tabellen. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 8)_
-  - voorbeelden: `grep rs112803166 snp151*`
-- `awk 'NR < 6' bestand` — **Eerste vijf regels met awk**: Drukt de regels af waarvan het regelnummer kleiner is dan 6, dus de eerste 5 regels. Zonder actie is afdrukken de standaardactie; het is hetzelfde als awk 'NR < 6 {print $0}'. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 29)_
-  - voorbeelden: `awk 'NR < 6' snp151annotation.txt`
-- `awk 'NR == 1' bestand` — **Alleen de eerste regel**: Drukt enkel regel 1 af (bv. de kopregel). Let op: gebruik == om te vergelijken, niet =. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 29)_
-  - voorbeelden: `awk 'NR == 1' snp151annotation.txt`
-- `awk 'NR > 1 && NR < 7' bestand` — **Regels 2 tot en met 6**: Drukt de regels af met een nummer groter dan 1 én kleiner dan 7, dus regel 2 tot en met 6. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 29)_
-  - voorbeelden: `awk 'NR > 1 && NR < 7' snp151annotation.txt`
-- `awk '/patroon/' bestand` — **Regels met patroon afdrukken**: Drukt alle regels af die het patroon (een reguliere expressie) bevatten, vergelijkbaar met grep; bv. awk '/ccttcc/' snp151annotation.txt. Het patroon staat tussen schuine strepen; hoofdletters en kleine letters zijn verschillend. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 30)_
-  - voorbeelden: `awk '/ccttcc/' snp151annotation.txt`
-- `awk '/patroon/ {print $1}' bestand` — **Kolom 1 van gevonden regels**: Drukt enkel kolom 1 af van de regels die het patroon bevatten. Bv. awk '/ccttcc/ {print $1}' snp151annotation.txt geeft de SNP-ID's. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 30)_
-  - voorbeelden: `awk '/ccttcc/ {print $1}' snp151annotation.txt`
-- `awk 'BEGIN {n=0}; /patroon/ {n++}; END {print n}' bestand` — **Gevonden regels tellen met awk**: Telt het aantal regels die het patroon bevatten (bv. /CCTTCC/). Vóór het lezen wordt teller n op 0 gezet, bij elke passende regel verhoogd met 1, en na het lezen wordt n afgedrukt. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 30)_
-  - voorbeelden: `awk 'BEGIN {n=0}; /CCTTCC/ {n++}; END {print n}' snp151annotation.txt`
 
 ### Bestanden bekijken
 - `head -n getal bestand` — **Eerste regels van een bestand tonen**: Toont de eerste regels van een bestand; met -n kies je hoeveel. Handig om snel te zien hoe een bestand eruitziet. Bv. head -n 20 sequentie.fasta.
@@ -328,6 +279,29 @@ Export: 2026-09-28T10:13:31Z · 944 items
 - `Ctrl + H` — **Teken links van cursor wissen**: Werkt als de Backspace-toets: verwijdert het teken links van de cursor. _(bron: Chapter 2 - The terminal.pptx, dia 24)_
 - `Ctrl + Z` — **Lopend programma bevriezen**: Pauzeert (bevriest) het programma dat nu loopt, bv. Firefox gestart vanuit de terminal, zodat je de terminal weer kan gebruiken. Het programma wordt niet afgesloten. _(bron: Chapter 2 - The terminal.pptx, dia 24)_
 
+### Rechten & gebruikers
+- `sudo commando` — **Commando uitvoeren als beheerder**: Zet sudo voor een commando om het uit te voeren met rechten van de superuser (root), bv. om software te installeren. Je moet dan je wachtwoord ingeven. _(bron: Chapter 2 - The terminal.pptx, dia 8)_
+- `umask` — **Standaardrechten nieuwe bestanden**: Toont het gebruikersmasker: een waarde die afgetrokken wordt van de standaardrechten van nieuwe bestanden en mappen. Zo zijn nieuwe, zelfgemaakte bestanden standaard niet uitvoerbaar, wat helpt tegen virussen. Met umask gevolgd door een getal wijzig je het masker. _(bron: Chapter 3 - Organizing files.pptx, dia 45)_
+- `chmod [ugoa][-+=][rwx...] file` — **Rechten wijzigen met letters**: Wijzigt de toegangsrechten van een bestand of map. Je kiest voor wie (u, g, o, a), wat je doet (- afnemen, + geven, = instellen) en welk recht (r, w, x). _(bron: Chapter 3 - Organizing files.pptx, dia 47)_
+- `chmod a-x map` — **Uitvoerrecht op map afnemen**: Neemt bij iedereen het x-recht af van een map. Daarna kan niemand nog met cd in die map. Bv. chmod a-x mydir. _(bron: Chapter 3 - Organizing files.pptx, dia 47)_
+  - voorbeelden: `chmod a-x mydir`
+- `ls -ld map` — **Rechten van map zelf tonen**: Toont de eigenschappen (rechten) van de map zelf in plaats van haar inhoud. Bv. ls -ld mydir. _(bron: Chapter 3 - Organizing files.pptx, dia 47)_
+  - voorbeelden: `ls -ld mydir`
+- `chmod 400 file` — **Bestand beschermen tegen overschrijven**: Enkel de eigenaar mag lezen (r--------). Beschermt tegen per ongeluk overschrijven. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
+- `chmod 500 directory` — **Map beschermen tegen wijzigingen**: Eigenaar mag lezen en binnengaan (r-x), niet schrijven. Zo verwijder, hernoem of verplaats je niet per ongeluk bestanden in die map. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
+- `chmod 600 file` — **Privébestand voor eigenaar**: Enkel de eigenaar mag lezen en schrijven (rw-------); anderen hebben geen toegang. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
+- `chmod 644 file` — **Openbaar leesbaar bestand**: Iedereen mag lezen, maar enkel de eigenaar mag wijzigen (rw-r--r--). _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
+- `chmod 660 file` — **Bestand voor eigen groep**: Eigenaar en groep mogen lezen en wijzigen (rw-rw----); anderen hebben geen toegang. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
+- `chmod 700 file` — **Alle rechten enkel voor eigenaar**: Enkel de eigenaar mag lezen, schrijven en uitvoeren (rwx------). _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
+- `chmod 755 file` — **Uitvoerbaar voor iedereen**: Iedereen mag lezen en uitvoeren, enkel de eigenaar mag wijzigen (rwxr-xr-x). Typisch voor programma's en scripts. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
+  - voorbeelden: `chmod 755 script_name.sh`
+- `chmod 770 file` — **Alle rechten voor groep**: Eigenaar en groep hebben alle rechten (rwxrwx---); anderen niets. Standaard binnen een groep. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
+- `chmod 777 file` — **Alle rechten voor iedereen**: Iedereen mag lezen, schrijven en uitvoeren (rwxrwxrwx). Onveilig, dus zelden gebruiken. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
+- `chown [options] user_spec files` — **Eigenaar van bestand wijzigen**: Stelt in wie de eigenaar is van bestanden of mappen. Meestal heb je daarvoor sudo nodig. _(bron: Chapter 3 - Organizing files.pptx, dia 49)_
+- `chgrp [options] group_spec files` — **Groep van bestand wijzigen**: Stelt in tot welke groep bestanden of mappen behoren. _(bron: Chapter 3 - Organizing files.pptx, dia 49)_
+- `sudo usermod -aG groep gebruiker` — **Gebruiker aan groep toevoegen**: Voegt een gebruiker toe aan een groep. Bv. sudo usermod -aG docker guest laat guest docker gebruiken zonder sudo. Dit werkt pas na opnieuw inloggen. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 23)_
+  - voorbeelden: `sudo usermod -aG docker guest`
+
 ### Hulp & documentatie
 - `ls --version` — **Versie van ls tonen**: Toont welke versie van het programma ls geïnstalleerd is. Opties met twee streepjes zijn voluit geschreven, leesbare opties. _(bron: Chapter 2 - The terminal.pptx, dia 10)_
 - `ls --help` — **Korte gebruiksuitleg van commando**: Toont hoe je het commando gebruikt en welke opties er zijn. --help werkt bij bijna elk commando, bv. wc --help. _(bron: Chapter 2 - The terminal.pptx, dia 10)_
@@ -396,6 +370,30 @@ Export: 2026-09-28T10:13:31Z · 944 items
   - voorbeelden: `curl localhost:80`
 - `efetch -db protein -id ID -format fasta` — **Sequentie ophalen uit NCBI**: Commando uit het conda-pakket entrez-direct (EDirect). Het downloadt een eiwitsequentie met de opgegeven identifier (bv. NP_000509) uit de NCBI-databank in FASTA-formaat. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 42)_
   - voorbeelden: `efetch -db protein -id NP_000509 -format fasta`
+
+### Zoeken & filteren
+- `find map -name bestand` — **Bestand zoeken op naam**: Zoekt in een map en al haar submappen naar bestanden met een bepaalde naam. Met find kan je ook zoeken op grootte, tijdstip, eigenaar, type of rechten (zie man find). Bv. find ~ -name file6. _(bron: Chapter 3 - Organizing files.pptx, dia 32)_
+  - voorbeelden: `find ~ -name file6`
+- `locate pattern` — **Snel zoeken via index**: Toont alle absolute paden waarin het woord pattern voorkomt. locate zoekt in een index (databank), dus bestanden die net aangemaakt zijn vindt hij pas na het bijwerken van die index. _(bron: Chapter 3 - Organizing files.pptx, dia 34)_
+- `updatedb -l 0 -o ~/dbfile -U /` — **Eigen zoekindex maken**: Maakt een eigen indexbestand ~/dbfile voor locate, met alle bestanden vanaf de root /. _(bron: Chapter 3 - Organizing files.pptx, dia 36)_
+- `locate -d ~/dbfile pattern` — **Zoeken in eigen index**: Zoekt pattern in je eigen indexbestand in plaats van in de standaardindex. _(bron: Chapter 3 - Organizing files.pptx, dia 36)_
+- `grep string file` — **Tekst zoeken in bestand**: Toont alle regels van een bestand waarin het woord string voorkomt. grep werkt met reguliere expressies en heeft nuttige opties zoals -i (hoofdletters negeren) en -v (regels tonen die het woord níet bevatten). _(bron: Chapter 3 - Organizing files.pptx, dia 39)_
+- `grep ^\> bestand.fasta` — **Kopregel van FASTA-bestand tonen**: Toont de regels die beginnen met >: in een FASTA-bestand is dat de kopregel met de naam van de sequentie. De \ zorgt dat Bash > niet als redirect ziet. Bv. grep ^\> P00687.fasta. _(bron: Chapter 3 - Organizing files.pptx, dia 40)_
+  - voorbeelden: `grep ^\> P00687.fasta`
+- `grep patroon bestand*` — **Zoeken in meerdere bestanden**: Toont in alle passende bestanden de regels waarin het patroon voorkomt, met de bestandsnaam ervoor. Bv. grep rs112803166 snp151* haalt de info over één SNP uit meerdere tabellen. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 8)_
+  - voorbeelden: `grep rs112803166 snp151*`
+- `awk 'NR < 6' bestand` — **Eerste vijf regels met awk**: Drukt de regels af waarvan het regelnummer kleiner is dan 6, dus de eerste 5 regels. Zonder actie is afdrukken de standaardactie; het is hetzelfde als awk 'NR < 6 {print $0}'. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 29)_
+  - voorbeelden: `awk 'NR < 6' snp151annotation.txt`
+- `awk 'NR == 1' bestand` — **Alleen de eerste regel**: Drukt enkel regel 1 af (bv. de kopregel). Let op: gebruik == om te vergelijken, niet =. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 29)_
+  - voorbeelden: `awk 'NR == 1' snp151annotation.txt`
+- `awk 'NR > 1 && NR < 7' bestand` — **Regels 2 tot en met 6**: Drukt de regels af met een nummer groter dan 1 én kleiner dan 7, dus regel 2 tot en met 6. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 29)_
+  - voorbeelden: `awk 'NR > 1 && NR < 7' snp151annotation.txt`
+- `awk '/patroon/' bestand` — **Regels met patroon afdrukken**: Drukt alle regels af die het patroon (een reguliere expressie) bevatten, vergelijkbaar met grep; bv. awk '/ccttcc/' snp151annotation.txt. Het patroon staat tussen schuine strepen; hoofdletters en kleine letters zijn verschillend. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 30)_
+  - voorbeelden: `awk '/ccttcc/' snp151annotation.txt`
+- `awk '/patroon/ {print $1}' bestand` — **Kolom 1 van gevonden regels**: Drukt enkel kolom 1 af van de regels die het patroon bevatten. Bv. awk '/ccttcc/ {print $1}' snp151annotation.txt geeft de SNP-ID's. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 30)_
+  - voorbeelden: `awk '/ccttcc/ {print $1}' snp151annotation.txt`
+- `awk 'BEGIN {n=0}; /patroon/ {n++}; END {print n}' bestand` — **Gevonden regels tellen met awk**: Telt het aantal regels die het patroon bevatten (bv. /CCTTCC/). Vóór het lezen wordt teller n op 0 gezet, bij elke passende regel verhoogd met 1, en na het lezen wordt n afgedrukt. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 30)_
+  - voorbeelden: `awk 'BEGIN {n=0}; /CCTTCC/ {n++}; END {print n}' snp151annotation.txt`
 
 ### Processen
 - `xterm` — **Lichte terminal openen**: Opent een nieuw, eenvoudig terminalvenster. Zonder & bezet het je huidige terminal tot je het sluit; met xterm & blijft je terminal bruikbaar. _(bron: Chapter 4 - Processes.pptx, dia 11)_
@@ -652,35 +650,7 @@ Export: 2026-09-28T10:13:31Z · 944 items
 - `firefox bestand.html` — **HTML-bestand openen in Firefox**: Start de webbrowser Firefox en opent het opgegeven HTML-bestand erin, zodat je het resultaat van je HTML-code in een echte browser ziet.
   - voorbeelden: `firefox hello-world.html`, `firefox Block-elements.html`
 
-## PyMOL (68)
-
-### Weergave
-- `as cartoon` — **Toon enkel als lint**: Verbergt de andere weergaven en toont het eiwit als lint, zodat je helices en sheets goed ziet.
-- `Objectlijst` — **Geladen objecten tonen/verbergen**: De objectlijst rechts toont welke objecten (structuren, selecties) geladen zijn. Klik op de naam van een object om het te verbergen of weer te tonen. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 18)_
-- `A / S / H / L / C-knoppen` — **Menuknoppen naast elk object**: Naast elk object in de objectlijst staan vijf knoppen die een keuzemenu openen. Zo kun je veel doen zonder commando's te typen. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 19)_
-- `hide all` — **Alle weergaven verbergen**: Verbergt alle weergaven van alle objecten, zodat je daarna zelf kiest wat je toont. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 24)_
-  - werkt ook: `hide everything` — Zelfde resultaat: verbergt alle weergaven van alle objecten.
-- `show sticks` — **Toon als staafjes**: Toont de atomen en bindingen als staafjes (sticks). Handig om zijketens of liganden in detail te bekijken. Met hide sticks verberg je ze weer. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 24)_
-- `show cartoon` — **Toon als cartoon**: Toont het eiwit als cartoon: helices als spiralen en β-strengen als pijlen. Deze weergave toont enkel de eiwitketen (secundaire structuur), geen liganden. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 24)_
-- `show spheres, hetatm` — **HETATM-atomen als bollen tonen**: Toont alle HETATM-atomen (liganden, water, zouten, gemodificeerde residuen) als bollen. Vergeet niet de selectie na de komma te vermelden, anders geldt het voor alles. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 26)_
-- `show representatie, selectie` — **Algemene vorm van show**: Algemene vorm van show (en hide): eerst de weergave, dan welke atomen. Mogelijke weergaven zijn lines, sticks, spheres, surface, mesh, dots, ribbon en cartoon. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 27)_
-- `Wizard > Demo > Representations` — **Demo van alle weergaven**: Via het hoofdmenu Wizard > Demo > Representations toont PyMOL een voorbeeld van alle weergaven naast elkaar: lines, sticks, spheres, surface, mesh, dots, ribbon en cartoon. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 27)_
-- `hide representatie, selectie` — **Weergave van een deel verbergen**: Verbergt één weergave enkel voor een deel van de structuur; de rest blijft zichtbaar. Bv. hide cartoon, chain A verbergt alleen de cartoon van keten A. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 28)_
-  - voorbeelden: `hide cartoon, chain A`
-- `show ribbon, selectie` — **Als lint tonen**: Toont een selectie als ribbon: een dunne lijn die de ruggengraat (backbone) volgt. Bv. show ribbon, chain A. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 28)_
-  - voorbeelden: `show ribbon, chain A`
-- `Display > Sequence` — **Sequentie boven het beeld tonen**: Toont de aminozuursequentie bovenaan het canvas. Klikken op residuen in de sequentie selecteert ze in de structuur. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 33)_
-- `show surface` — **Moleculair oppervlak tonen**: Toont het moleculaire oppervlak van de structuur. Handig om bv. een bindingsholte te zien. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 38)_
-- `show sticks, resi begin-einde` — **Reeks residuen als sticks**: Toont een reeks residuen als staafjes, bv. om een bindingsplaats in detail te bekijken. Bv. show sticks, resi 511-521 (dsRNA-bindingsplaats van TLR3). _(bron: SB-workshop-2-molecular-visualization.pptx, dia 5)_
-  - voorbeelden: `show sticks, resi 511-521`
-- `set all_states, on` — **Alle NMR-modellen tegelijk tonen**: Toont alle states (modellen/conformeren) van een object tegelijk, bv. het NMR-ensemble van 2JQY, zodat je de verschillen tussen de conformeren ziet. Met set all_states, off zie je weer één model. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 3)_
-- `show surface, selectie` — **Oppervlak van een deel tonen**: Toont enkel een deel (bv. één keten) als moleculair oppervlak, terwijl je de rest bv. als cartoon toont. Bv. show surface, chain A. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 6)_
-  - voorbeelden: `show surface, chain A`
-- `show sticks, resn RES and resi residunummer` — **Eén bepaald residu als sticks**: Toont één residu, gekozen op naam én nummer, als staafjes (in alle ketens). Bv. show sticks, resn TRP and resi 2 voor tryptofaan 2 in cadherine. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 6)_
-  - voorbeelden: `show sticks, resn TRP and resi 2`
-- `show sticks, resn DA+DC+DG+DT` — **DNA als staafjes tonen**: Toont alle DNA-nucleotiden als staafjes. Met + som je meerdere residunamen op binnen één resn. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 7)_
-- `alter selectie, ss='type'` — **Secundaire structuur handmatig wijzigen**: Verandert de secundaire structuur van residuen, bv. een korte helix die als lus getoond moet worden. Daarna voer je rebuild uit om de cartoon opnieuw te tekenen. Bv. alter resi 100-103, ss='L'. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 12)_
-  - voorbeelden: `alter resi 100-103, ss='L'`
+## PyMOL (67)
 
 ### Laden & bewaren
 - `png bestand.png, dpi=300, ray=1` — **Bewaar mooie afbeelding**: Rendert het beeld in hoge kwaliteit en bewaart het als PNG met 300 dpi, geschikt voor een verslag. Bv. png eiwit.png, dpi=300, ray=1.
@@ -726,6 +696,33 @@ Export: 2026-09-28T10:13:31Z · 944 items
   - voorbeelden: `select byres (elem Ca around 3.5)`
 - `findseq motief, object, naam` — **Sequentiemotief zoeken in structuur**: Zoekt een sequentiemotief in een object en maakt er een selectie van. Werkt pas nadat je run findseq.py hebt uitgevoerd. Kleine letters en reguliere expressies (bv. F.*W) werken ook. Bv. findseq DDMPNAL, achain, found. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 9)_
   - voorbeelden: `findseq DDMPNAL, achain, found`
+
+### Weergave
+- `Objectlijst` — **Geladen objecten tonen/verbergen**: De objectlijst rechts toont welke objecten (structuren, selecties) geladen zijn. Klik op de naam van een object om het te verbergen of weer te tonen. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 18)_
+- `A / S / H / L / C-knoppen` — **Menuknoppen naast elk object**: Naast elk object in de objectlijst staan vijf knoppen die een keuzemenu openen. Zo kun je veel doen zonder commando's te typen. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 19)_
+- `hide all` — **Alle weergaven verbergen**: Verbergt alle weergaven van alle objecten, zodat je daarna zelf kiest wat je toont. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 24)_
+  - werkt ook: `hide everything` — Zelfde resultaat: verbergt alle weergaven van alle objecten.
+- `show sticks` — **Toon als staafjes**: Toont de atomen en bindingen als staafjes (sticks). Handig om zijketens of liganden in detail te bekijken. Met hide sticks verberg je ze weer. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 24)_
+- `show cartoon` — **Toon als cartoon**: Toont het eiwit als cartoon: helices als spiralen en β-strengen als pijlen. Deze weergave toont enkel de eiwitketen (secundaire structuur), geen liganden. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 24)_
+- `show spheres, hetatm` — **HETATM-atomen als bollen tonen**: Toont alle HETATM-atomen (liganden, water, zouten, gemodificeerde residuen) als bollen. Vergeet niet de selectie na de komma te vermelden, anders geldt het voor alles. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 26)_
+- `show representatie, selectie` — **Algemene vorm van show**: Algemene vorm van show (en hide): eerst de weergave, dan welke atomen. Mogelijke weergaven zijn lines, sticks, spheres, surface, mesh, dots, ribbon en cartoon. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 27)_
+- `Wizard > Demo > Representations` — **Demo van alle weergaven**: Via het hoofdmenu Wizard > Demo > Representations toont PyMOL een voorbeeld van alle weergaven naast elkaar: lines, sticks, spheres, surface, mesh, dots, ribbon en cartoon. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 27)_
+- `hide representatie, selectie` — **Weergave van een deel verbergen**: Verbergt één weergave enkel voor een deel van de structuur; de rest blijft zichtbaar. Bv. hide cartoon, chain A verbergt alleen de cartoon van keten A. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 28)_
+  - voorbeelden: `hide cartoon, chain A`
+- `show ribbon, selectie` — **Als lint tonen**: Toont een selectie als ribbon: een dunne lijn die de ruggengraat (backbone) volgt. Bv. show ribbon, chain A. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 28)_
+  - voorbeelden: `show ribbon, chain A`
+- `Display > Sequence` — **Sequentie boven het beeld tonen**: Toont de aminozuursequentie bovenaan het canvas. Klikken op residuen in de sequentie selecteert ze in de structuur. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 33)_
+- `show surface` — **Moleculair oppervlak tonen**: Toont het moleculaire oppervlak van de structuur. Handig om bv. een bindingsholte te zien. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 38)_
+- `show sticks, resi begin-einde` — **Reeks residuen als sticks**: Toont een reeks residuen als staafjes, bv. om een bindingsplaats in detail te bekijken. Bv. show sticks, resi 511-521 (dsRNA-bindingsplaats van TLR3). _(bron: SB-workshop-2-molecular-visualization.pptx, dia 5)_
+  - voorbeelden: `show sticks, resi 511-521`
+- `set all_states, on` — **Alle NMR-modellen tegelijk tonen**: Toont alle states (modellen/conformeren) van een object tegelijk, bv. het NMR-ensemble van 2JQY, zodat je de verschillen tussen de conformeren ziet. Met set all_states, off zie je weer één model. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 3)_
+- `show surface, selectie` — **Oppervlak van een deel tonen**: Toont enkel een deel (bv. één keten) als moleculair oppervlak, terwijl je de rest bv. als cartoon toont. Bv. show surface, chain A. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 6)_
+  - voorbeelden: `show surface, chain A`
+- `show sticks, resn RES and resi residunummer` — **Eén bepaald residu als sticks**: Toont één residu, gekozen op naam én nummer, als staafjes (in alle ketens). Bv. show sticks, resn TRP and resi 2 voor tryptofaan 2 in cadherine. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 6)_
+  - voorbeelden: `show sticks, resn TRP and resi 2`
+- `show sticks, resn DA+DC+DG+DT` — **DNA als staafjes tonen**: Toont alle DNA-nucleotiden als staafjes. Met + som je meerdere residunamen op binnen één resn. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 7)_
+- `alter selectie, ss='type'` — **Secundaire structuur handmatig wijzigen**: Verandert de secundaire structuur van residuen, bv. een korte helix die als lus getoond moet worden. Daarna voer je rebuild uit om de cartoon opnieuw te tekenen. Bv. alter resi 100-103, ss='L'. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 12)_
+  - voorbeelden: `alter resi 100-103, ss='L'`
 
 ### Kleuren
 - `color kleur, hetatm` — **Alle niet-eiwitatomen kleuren**: Kleurt alle HETATM-atomen (niet-eiwit, bv. liganden) in een kleur naar keuze. Ook een voorbeeld van de basisvorm van een PyMOL-commando: sleutelwoord, dan argumenten gescheiden door komma's. Bv. color red, hetatm. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 21)_
@@ -1055,10 +1052,9 @@ Export: 2026-09-28T10:13:31Z · 944 items
 - `Sequentie- vs structuurgebaseerde voorspelling` — **Twee manieren om functie te voorspellen**: Sequentiegebaseerd: functie overnemen van gelijkaardige sequenties (>40% identiteit). Structuurgebaseerd: vergelijken met gekende structuren (bv. via CATH, SCOP), zoeken naar gekende structurele motieven, of ab initio analyseren van enkel de structuur (bv. clefts). _(bron: SB-07-structural-functional-assignment.pptx, dia 34)_
 - `Cleft (groeve)` — **Holte waar liganden binden**: Groeve of holte in het eiwitoppervlak. De actieve site of ligandbindingsplaats is vaak de grootste cleft: daar kan het substraat nauwkeurig geplaatst en van het water afgeschermd worden. _(bron: SB-07-structural-functional-assignment.pptx, dia 48)_
 
-## HTML (61)
+## HTML (60)
 
 ### Structuur
-- `<!DOCTYPE html>` — **Documenttype**: Staat helemaal bovenaan elk HTML-bestand en vertelt de browser dat het om moderne HTML gaat.
 - `! + Enter` — **HTML-basisstructuur invoegen (VS Code)**: In VS Code typ je in een leeg .html-bestand een uitroepteken en druk je op Enter (of Tab). Dan wordt de volledige HTML5-basisstructuur met doctype, html, head en body automatisch ingevuld. _(bron: 2. Introduction to HTML.pptx, dia 9)_
 - `<html lang="taal"></html>` — **Begin en einde van document**: De <html>-tag en de sluitingstag </html> markeren het begin en einde van het HTML-document; alles staat hiertussen. Het lang-attribuut zegt in welke taal de pagina geschreven is, bv. lang="en" (Engels) of lang="nl" (Nederlands). _(bron: 2. Introduction to HTML.pptx, dia 11)_
   - voorbeelden: `<html lang="en"></html>`, `</html>`
@@ -1181,7 +1177,7 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `.klasse {…}` — **Elementen met een klasse opmaken**: Een punt voor een naam selecteert alle elementen met die klasse. Bv. .vader {color: red;} geeft alle elementen met class="vader" rode tekst. _(bron: 2. Introduction to HTML.pptx, dia 54)_
   - voorbeelden: `.TopGun {background: green;}`, `.informatician {color: green;}`, `.header {background-color: blauw;}`
 - `#id {…}` — **Element met een id opmaken**: Een hekje (#) voor een naam selecteert het element met dat id. Bv. #kenobi {color: blue;} geeft het element met id="kenobi" blauwe tekst. _(bron: 2. Introduction to HTML.pptx, dia 56)_
-  - voorbeelden: `#Nemo {background: orange;}`, `#keanu {color: red;}`
+  - voorbeelden: `#Nemo {background: orange;}`, `#keanu {color: red;}`, `#id { eigenschap: waarde; }`, `#id { width: 1em; font-size: 30px; }`, `#id { background-color: kleur; width: getal; font-size: getal; }`, `#id { background-color: kleur; width: fit-content; }`
 - `element {…}` — **Elementselector: alle elementen van type**: Een elementselector is gewoon de tagnaam. De stijl geldt voor alle elementen van dat type op de pagina, bv. div {background: red;} kleurt alle <div>-elementen. _(bron: 3. Introduction to CSS.pptx, dia 14)_
   - voorbeelden: `div {background: red;}`, `p {color: red;}`
 - `selector, selector {…}` — **Selectors groeperen met komma**: Scheid je selectors met een komma, dan geldt de stijl voor alle elementen die aan minstens één van de selectors voldoen. Bv. h1, h4 {background: red;} kleurt alle <h1>- en <h4>-elementen. Zo hoef je dezelfde regel niet twee keer te schrijven. _(bron: 3. Introduction to CSS.pptx, dia 17)_
@@ -1203,16 +1199,17 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `ouder :last-child {…}` — **Laatste kind selecteren**: :last-child selecteert het laatste element tussen zijn siblings. Met een spatie (bv. #Bart :last-child) kies je het laatste kind binnen die ouder; zonder spatie (bv. h3:last-child) kies je elke <h3> die het laatste kind is. _(bron: 3. Introduction to CSS.pptx, dia 34)_
   - voorbeelden: `#Bart :last-child {background: red;}`, `div :last-child {background-color: kleur;}`
 - `ouder :nth-child(n) {…}` — **Het n-de kind selecteren**: :nth-child(n) selecteert het element op positie n tussen zijn siblings (tellen begint bij 1). n kan een getal of een formule zijn, bv. #Jasper :nth-child(3) of :nth-child(2n). _(bron: 3. Introduction to CSS.pptx, dia 36)_
-  - voorbeelden: `#Jasper :nth-child(3) {background: purple;}`, `#Jasper :nth-child(2n) {background: green;}`, `#Jasper :nth-child(2n+1) {background: red;}`
+  - voorbeelden: `#Jasper :nth-child(3) {background: purple;}`, `#Jasper :nth-child(2n) {background: green;}`, `#Jasper :nth-child(2n+1) {background: red;}`, `#id :nth-child(3) {background-color: kleur;}`, `#id :nth-child(2n) {background-color: kleur;}`, `#id :nth-child(2n+1) {background-color: kleur;}`
 - `ouder element:first-of-type {…}` — **Eerste element van een type**: :first-of-type selecteert het eerste element van een bepaald type tussen zijn siblings, ook als er andere elementen vóór staan. Bv. #Jasper h3:first-of-type kiest de eerste <h3> binnen #Jasper. Tussen element en :first-of-type staat geen spatie. _(bron: 3. Introduction to CSS.pptx, dia 39)_
   - voorbeelden: `#Jasper h3:first-of-type {background: red;}`
 - `ouder element:last-of-type {…}` — **Laatste element van een type**: :last-of-type selecteert het laatste element van een bepaald type tussen zijn siblings, ook als er nog andere elementen na komen. Bv. #Jasper h3:last-of-type kiest de laatste <h3> binnen #Jasper. _(bron: 3. Introduction to CSS.pptx, dia 40)_
   - voorbeelden: `#Jasper h3:last-of-type {background: red;}`, `h3:last-child {background-color: kleur;}`
 - `selector:hover {…}` — **Stijl bij muis erover**: :hover past de stijl toe zolang de gebruiker met de muiscursor over het element beweegt, bv. #Paco:hover {background: orange;}. _(bron: 3. Introduction to CSS.pptx, dia 41)_
-  - voorbeelden: `#Paco:hover {background: orange;}`
+  - voorbeelden: `#Paco:hover {background: orange;}`, `#id:hover {background-color: kleur;}`
 - `selector:active {…}` — **Stijl tijdens het klikken**: :active past de stijl toe op het moment dat de gebruiker op het element klikt (de muisknop ingedrukt houdt), bv. #Paco:active {background: purple;}. _(bron: 3. Introduction to CSS.pptx, dia 42)_
-  - voorbeelden: `#Paco:active {background: purple;}`
+  - voorbeelden: `#Paco:active {background: purple;}`, `#id:active {background-color: kleur;}`
 - `a:link / a:visited` — **Onbezochte en bezochte links**: :link geeft een stijl aan links die nog niet bezocht zijn, :visited aan links die je al bezocht hebt. Voorbeeld: a:link {background: white;} en a:visited {background: red;}. _(bron: 3. Introduction to CSS.pptx, dia 43)_
+  - voorbeelden: `a:link {background-color: kleur;}`, `a:visited {background-color: kleur;}`
 - `selector {color: kleur;}` — **Tekstkleur van elementen instellen**: Geeft alle elementen die bij de selector passen een tekstkleur. De selector en de kleur kies je zelf. Bv. span {color: red;} maakt alle span-elementen rood.
   - voorbeelden: `span {color: red;}`
 - `element { border: solid breedte kleur; padding: afstand; }` — **Rand en binnenruimte instellen**: Geeft elementen een doorlopende rand (solid) met een dikte en kleur, en binnenruimte (padding) tussen rand en inhoud. Bv. div { border: solid 1px black; padding: 16px; }.
@@ -1227,7 +1224,7 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 
 ### Box model
 - `border: dikte stijl kleur;` — **Rand rond een element**: border is een shorthand die in één keer de dikte, de stijl en de kleur van de rand instelt (border-width, border-style en border-color), bv. border: 6px solid rgb(64,58,50);. _(bron: 3. Introduction to CSS.pptx, dia 48)_
-  - voorbeelden: `border: 6px solid rgb(64,58,50);`
+  - voorbeelden: `border: 6px solid rgb(64,58,50);`, `element { border: dikte stijl kleur; }`
 - `width: waarde; height: waarde;` — **Breedte en hoogte instellen**: width bepaalt de horizontale grootte van een element, height de verticale. Je kunt verschillende eenheden gebruiken, bv. height: 250px;. _(bron: 3. Introduction to CSS.pptx, dia 49)_
   - voorbeelden: `height: 250px;`
 - `width: fit-content;` — **Breedte passend bij inhoud**: Met fit-content berekent de browser zelf de breedte (of hoogte) op basis van de inhoud. Zo is een div niet meer standaard even breed als het venster. _(bron: 3. Introduction to CSS.pptx, dia 50)_
@@ -1236,6 +1233,7 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `margin: boven rechts onder links;` — **Ruimte buiten de rand**: margin is de ruimte buiten de rand, tussen het element en andere elementen, bv. margin: 0px 0px 15px 0px; (enkel 15px onderaan). Het is een shorthand voor margin-top, -right, -bottom en -left; de regels voor 1 tot 4 waarden zijn dezelfde als bij padding. _(bron: 3. Introduction to CSS.pptx, dia 53)_
   - voorbeelden: `margin: 0px 0px 15px 0px;`
 - `box-sizing: border-box;` — **Padding en rand meetellen**: Standaard (content-box) geldt width/height alleen voor de inhoud; padding en rand komen er nog bij. Met border-box tellen padding en rand mee in de opgegeven breedte en hoogte. _(bron: 3. Introduction to CSS.pptx, dia 55)_
+  - voorbeelden: `#id { padding: afstand; border: solid breedte kleur; box-sizing: border-box; }`
 - `outline: dikte stijl kleur;` — **Lijn buiten de rand**: outline tekent een lijn buiten de rand van een element, met dezelfde waarden als border (dikte, stijl, kleur), bv. outline: 20px solid yellow;. Anders dan een rand neemt een outline geen plaats in en duwt ze andere elementen niet weg. _(bron: 3. Introduction to CSS.pptx, dia 57)_
   - voorbeelden: `outline: 20px solid yellow;`
 
@@ -1276,7 +1274,7 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 </style>` — **Interne CSS-stijlen in HTML**: De <style>-tag bevat CSS-regels die rechtstreeks in het HTML-document staan, meestal in de <head>. Ze gelden voor die ene pagina. Bv. span {color: red;} maakt alle span-elementen rood.
   - voorbeelden: `<style>
          span {color: Bred;}
-       </style>`
+       </style>`, `<style> #big { background-color: kleur; width: fit-content; } </style>`
 - `<style> element.klasse { eigenschap: waarde; } </style>` — **CSS-stijl voor een klasse in de HTML-pagina**: Je schrijft CSS-regels rechtstreeks in je HTML-bestand, tussen <style>-tags in de <head>. element.klasse kiest alleen elementen van dat type met die klasse. Bv. div.klasse { background-color: kleur; }.
   - voorbeelden: `<style> div.klasse { background-color: kleur; } </style>`
 
