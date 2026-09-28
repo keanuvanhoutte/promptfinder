@@ -1,5 +1,5 @@
 # PromptFinder – leesbare lijst
-Export: 2026-09-28T08:50:10Z · 940 items
+Export: 2026-09-28T10:13:31Z · 944 items
 
 
 ## Algemeen (143)
@@ -170,7 +170,8 @@ Export: 2026-09-28T08:50:10Z · 940 items
 ## Linux (349)
 
 ### Navigatie
-- `cd ~/projecten` — **Ga naar de map projecten**: Wisselt naar de map 'projecten' in je thuismap. ~ is een afkorting voor je thuismap.
+- `cd ~/map` — **Naar een map in je thuismap**: Gaat naar een map die in je thuismap staat, waar je ook bent. ~ is een afkorting voor je thuismap. Bv. cd ~/projecten.
+  - voorbeelden: `cd ~/projecten`
 - `ls -la` — **Toon alle bestanden in detail**: Toont alle bestanden in de huidige map, ook verborgen bestanden, met rechten, eigenaar, grootte en datum.
   - werkt ook: `ls -al` — ls -la en ls -al geven exact hetzelfde resultaat.
 - `ls` — **Toon inhoud van de map**: Toont de bestanden en mappen in de map waarin je nu staat. Mappen verschijnen meestal in het blauw.
@@ -178,11 +179,12 @@ Export: 2026-09-28T08:50:10Z · 940 items
 - `pwd` — **Huidige map tonen**: Toont het volledige (absolute) pad van de map waarin je nu werkt (present working directory). pwd is ingebouwd in Bash. _(bron: Chapter 2 - The terminal.pptx, dia 15)_
 - `.` — **Huidige map**: Een punt staat voor de map waarin je nu bent. Je gebruikt het in relatieve paden, bv. scp ... . om iets naar de huidige map te kopiëren. _(bron: Chapter 2 - The terminal.pptx, dia 15)_
 - `..` — **Bovenliggende map**: Twee punten staan voor de map één niveau hoger (parent directory). ../.. is twee niveaus hoger, bv. ls ../.. toont de inhoud van de map twee niveaus hoger. _(bron: Chapter 2 - The terminal.pptx, dia 15)_
-- `cd /usr/share/vim` — **Naar map via absoluut pad**: Gaat naar de map /usr/share/vim. Omdat het pad met / begint, is het een absoluut pad: het vertrekt vanaf de root, waar je ook bent. _(bron: Chapter 3 - Organizing files.pptx, dia 7)_
-  - voorbeelden: `cd lesson02`
-- `cd map` — **Naar submap via relatief pad**: Gaat naar de map vim91 die in de huidige map staat. Dit is een relatief pad: het hangt af van waar je nu bent. _(bron: Chapter 3 - Organizing files.pptx, dia 7)_
+- `cd /pad/naar/map` — **Naar map via absoluut pad**: Gaat naar een map via een absoluut pad. Omdat het pad met / begint, vertrekt het vanaf de root, waar je ook bent. Bv. cd /usr/share/vim. _(bron: Chapter 3 - Organizing files.pptx, dia 7)_
+  - voorbeelden: `cd /usr/share/vim`, `cd lesson02`
+- `cd map` — **Naar submap via relatief pad**: Gaat naar een map die in de map staat waar je nu bent. Dit is een relatief pad: het hangt af van waar je nu bent. Bv. cd vim91 of cd Downloads. _(bron: Chapter 3 - Organizing files.pptx, dia 7)_
   - voorbeelden: `cd vim91`, `cd Downloads`
-- `cd ../../systemd` — **Twee niveaus hoger, dan submap**: Gaat twee mappen omhoog (../..) en daar naar de map systemd. Vanuit /usr/share/vim/vim91 kom je zo in /usr/share/systemd. _(bron: Chapter 3 - Organizing files.pptx, dia 7)_
+- `cd ../../map` — **Twee niveaus hoger, dan submap**: Gaat twee mappen omhoog (../..) en daar naar een submap. Bv. vanuit /usr/share/vim/vim91 brengt cd ../../systemd je naar /usr/share/systemd. _(bron: Chapter 3 - Organizing files.pptx, dia 7)_
+  - voorbeelden: `cd ../../systemd`
 - `cd /` — **Naar de root-map gaan**: Gaat naar de root /, het beginpunt van het hele bestandssysteem. _(bron: Chapter 3 - Organizing files.pptx, dia 7)_
 - `cd ~user` — **Naar thuismap van andere gebruiker**: Gaat naar de thuismap van een bepaalde gebruiker; de shell vervangt ~user door bv. /home/user. _(bron: Chapter 3 - Organizing files.pptx, dia 8)_
 
@@ -191,8 +193,10 @@ Export: 2026-09-28T08:50:10Z · 940 items
 - `sudo commando` — **Commando uitvoeren als beheerder**: Zet sudo voor een commando om het uit te voeren met rechten van de superuser (root), bv. om software te installeren. Je moet dan je wachtwoord ingeven. _(bron: Chapter 2 - The terminal.pptx, dia 8)_
 - `umask` — **Standaardrechten nieuwe bestanden**: Toont het gebruikersmasker: een waarde die afgetrokken wordt van de standaardrechten van nieuwe bestanden en mappen. Zo zijn nieuwe, zelfgemaakte bestanden standaard niet uitvoerbaar, wat helpt tegen virussen. Met umask gevolgd door een getal wijzig je het masker. _(bron: Chapter 3 - Organizing files.pptx, dia 45)_
 - `chmod [ugoa][-+=][rwx...] file` — **Rechten wijzigen met letters**: Wijzigt de toegangsrechten van een bestand of map. Je kiest voor wie (u, g, o, a), wat je doet (- afnemen, + geven, = instellen) en welk recht (r, w, x). _(bron: Chapter 3 - Organizing files.pptx, dia 47)_
-- `chmod a-x mydir` — **Uitvoerrecht op map afnemen**: Neemt bij iedereen het x-recht af van de map mydir. Daarna kan niemand nog met cd in die map. _(bron: Chapter 3 - Organizing files.pptx, dia 47)_
-- `ls -ld mydir` — **Rechten van map zelf tonen**: Toont de eigenschappen (rechten) van de map zelf in plaats van haar inhoud. _(bron: Chapter 3 - Organizing files.pptx, dia 47)_
+- `chmod a-x map` — **Uitvoerrecht op map afnemen**: Neemt bij iedereen het x-recht af van een map. Daarna kan niemand nog met cd in die map. Bv. chmod a-x mydir. _(bron: Chapter 3 - Organizing files.pptx, dia 47)_
+  - voorbeelden: `chmod a-x mydir`
+- `ls -ld map` — **Rechten van map zelf tonen**: Toont de eigenschappen (rechten) van de map zelf in plaats van haar inhoud. Bv. ls -ld mydir. _(bron: Chapter 3 - Organizing files.pptx, dia 47)_
+  - voorbeelden: `ls -ld mydir`
 - `chmod 400 file` — **Bestand beschermen tegen overschrijven**: Enkel de eigenaar mag lezen (r--------). Beschermt tegen per ongeluk overschrijven. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
 - `chmod 500 directory` — **Map beschermen tegen wijzigingen**: Eigenaar mag lezen en binnengaan (r-x), niet schrijven. Zo verwijder, hernoem of verplaats je niet per ongeluk bestanden in die map. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
 - `chmod 600 file` — **Privébestand voor eigenaar**: Enkel de eigenaar mag lezen en schrijven (rw-------); anderen hebben geen toegang. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
@@ -205,34 +209,47 @@ Export: 2026-09-28T08:50:10Z · 940 items
 - `chmod 777 file` — **Alle rechten voor iedereen**: Iedereen mag lezen, schrijven en uitvoeren (rwxrwxrwx). Onveilig, dus zelden gebruiken. _(bron: Chapter 3 - Organizing files.pptx, dia 48)_
 - `chown [options] user_spec files` — **Eigenaar van bestand wijzigen**: Stelt in wie de eigenaar is van bestanden of mappen. Meestal heb je daarvoor sudo nodig. _(bron: Chapter 3 - Organizing files.pptx, dia 49)_
 - `chgrp [options] group_spec files` — **Groep van bestand wijzigen**: Stelt in tot welke groep bestanden of mappen behoren. _(bron: Chapter 3 - Organizing files.pptx, dia 49)_
-- `sudo usermod -aG docker guest` — **Gebruiker aan groep toevoegen**: Voegt gebruiker guest toe aan de groep docker, zodat die docker kan gebruiken zonder sudo. Dit werkt pas na opnieuw inloggen. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 23)_
+- `sudo usermod -aG groep gebruiker` — **Gebruiker aan groep toevoegen**: Voegt een gebruiker toe aan een groep. Bv. sudo usermod -aG docker guest laat guest docker gebruiken zonder sudo. Dit werkt pas na opnieuw inloggen. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 23)_
+  - voorbeelden: `sudo usermod -aG docker guest`
 
 ### Zoeken & filteren
 - `grep -c ">" sequentie.fasta` — **Tel sequenties in FASTA**: Telt hoeveel regels met '>' beginnen, dus hoeveel sequenties er in een FASTA-bestand staan.
-- `find ~ -name file6` — **Bestand zoeken op naam**: Zoekt in je thuismap en alle submappen naar bestanden met de naam file6. Met find kan je ook zoeken op grootte, tijdstip, eigenaar, type of rechten (zie man find). _(bron: Chapter 3 - Organizing files.pptx, dia 32)_
+- `find map -name bestand` — **Bestand zoeken op naam**: Zoekt in een map en al haar submappen naar bestanden met een bepaalde naam. Met find kan je ook zoeken op grootte, tijdstip, eigenaar, type of rechten (zie man find). Bv. find ~ -name file6. _(bron: Chapter 3 - Organizing files.pptx, dia 32)_
+  - voorbeelden: `find ~ -name file6`
 - `locate pattern` — **Snel zoeken via index**: Toont alle absolute paden waarin het woord pattern voorkomt. locate zoekt in een index (databank), dus bestanden die net aangemaakt zijn vindt hij pas na het bijwerken van die index. _(bron: Chapter 3 - Organizing files.pptx, dia 34)_
 - `updatedb -l 0 -o ~/dbfile -U /` — **Eigen zoekindex maken**: Maakt een eigen indexbestand ~/dbfile voor locate, met alle bestanden vanaf de root /. _(bron: Chapter 3 - Organizing files.pptx, dia 36)_
 - `locate -d ~/dbfile pattern` — **Zoeken in eigen index**: Zoekt pattern in je eigen indexbestand in plaats van in de standaardindex. _(bron: Chapter 3 - Organizing files.pptx, dia 36)_
 - `grep string file` — **Tekst zoeken in bestand**: Toont alle regels van een bestand waarin het woord string voorkomt. grep werkt met reguliere expressies en heeft nuttige opties zoals -i (hoofdletters negeren) en -v (regels tonen die het woord níet bevatten). _(bron: Chapter 3 - Organizing files.pptx, dia 39)_
-- `grep ^\> P00687.fasta` — **Kopregel van FASTA-bestand tonen**: Toont de regels die beginnen met >: in een FASTA-bestand is dat de kopregel met de naam van de sequentie. De \ zorgt dat Bash > niet als redirect ziet. _(bron: Chapter 3 - Organizing files.pptx, dia 40)_
-- `grep rs112803166 snp151*` — **Regels met een ID zoeken**: Toont in beide snp151-bestanden de regels waarin rs112803166 voorkomt, met de bestandsnaam ervoor. Zo filter je de informatie over één SNP uit meerdere tabellen. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 8)_
-- `awk 'NR < 6' snp151annotation.txt` — **Eerste vijf regels met awk**: Drukt de regels af waarvan het regelnummer kleiner is dan 6, dus de eerste 5 regels. Zonder actie is afdrukken de standaardactie; het is hetzelfde als awk 'NR < 6 {print $0}'. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 29)_
-- `awk 'NR == 1' snp151annotation.txt` — **Alleen de eerste regel**: Drukt enkel regel 1 af (bv. de kopregel). Let op: gebruik == om te vergelijken, niet =. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 29)_
-- `awk 'NR > 1 && NR < 7' snp151annotation.txt` — **Regels 2 tot en met 6**: Drukt de regels af met een nummer groter dan 1 én kleiner dan 7, dus regel 2 tot en met 6. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 29)_
-- `awk '/ccttcc/' snp151annotation.txt` — **Regels met patroon afdrukken**: Drukt alle regels af die het patroon (een reguliere expressie) ccttcc bevatten, vergelijkbaar met grep. Het patroon staat tussen schuine strepen; hoofdletters en kleine letters zijn verschillend. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 30)_
-- `awk '/ccttcc/ {print $1}' snp151annotation.txt` — **ID's van gevonden regels**: Drukt enkel het SNP-ID (kolom 1) af van de regels die ccttcc bevatten. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 30)_
-- `awk 'BEGIN {n=0}; /CCTTCC/ {n++}; END {print n}' snp151annotation.txt` — **Gevonden regels tellen met awk**: Telt het aantal regels die CCTTCC bevatten. Vóór het lezen wordt teller n op 0 gezet, bij elke passende regel verhoogd met 1, en na het lezen wordt n afgedrukt. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 30)_
+- `grep ^\> bestand.fasta` — **Kopregel van FASTA-bestand tonen**: Toont de regels die beginnen met >: in een FASTA-bestand is dat de kopregel met de naam van de sequentie. De \ zorgt dat Bash > niet als redirect ziet. Bv. grep ^\> P00687.fasta. _(bron: Chapter 3 - Organizing files.pptx, dia 40)_
+  - voorbeelden: `grep ^\> P00687.fasta`
+- `grep patroon bestand*` — **Zoeken in meerdere bestanden**: Toont in alle passende bestanden de regels waarin het patroon voorkomt, met de bestandsnaam ervoor. Bv. grep rs112803166 snp151* haalt de info over één SNP uit meerdere tabellen. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 8)_
+  - voorbeelden: `grep rs112803166 snp151*`
+- `awk 'NR < 6' bestand` — **Eerste vijf regels met awk**: Drukt de regels af waarvan het regelnummer kleiner is dan 6, dus de eerste 5 regels. Zonder actie is afdrukken de standaardactie; het is hetzelfde als awk 'NR < 6 {print $0}'. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 29)_
+  - voorbeelden: `awk 'NR < 6' snp151annotation.txt`
+- `awk 'NR == 1' bestand` — **Alleen de eerste regel**: Drukt enkel regel 1 af (bv. de kopregel). Let op: gebruik == om te vergelijken, niet =. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 29)_
+  - voorbeelden: `awk 'NR == 1' snp151annotation.txt`
+- `awk 'NR > 1 && NR < 7' bestand` — **Regels 2 tot en met 6**: Drukt de regels af met een nummer groter dan 1 én kleiner dan 7, dus regel 2 tot en met 6. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 29)_
+  - voorbeelden: `awk 'NR > 1 && NR < 7' snp151annotation.txt`
+- `awk '/patroon/' bestand` — **Regels met patroon afdrukken**: Drukt alle regels af die het patroon (een reguliere expressie) bevatten, vergelijkbaar met grep; bv. awk '/ccttcc/' snp151annotation.txt. Het patroon staat tussen schuine strepen; hoofdletters en kleine letters zijn verschillend. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 30)_
+  - voorbeelden: `awk '/ccttcc/' snp151annotation.txt`
+- `awk '/patroon/ {print $1}' bestand` — **Kolom 1 van gevonden regels**: Drukt enkel kolom 1 af van de regels die het patroon bevatten. Bv. awk '/ccttcc/ {print $1}' snp151annotation.txt geeft de SNP-ID's. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 30)_
+  - voorbeelden: `awk '/ccttcc/ {print $1}' snp151annotation.txt`
+- `awk 'BEGIN {n=0}; /patroon/ {n++}; END {print n}' bestand` — **Gevonden regels tellen met awk**: Telt het aantal regels die het patroon bevatten (bv. /CCTTCC/). Vóór het lezen wordt teller n op 0 gezet, bij elke passende regel verhoogd met 1, en na het lezen wordt n afgedrukt. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 30)_
+  - voorbeelden: `awk 'BEGIN {n=0}; /CCTTCC/ {n++}; END {print n}' snp151annotation.txt`
 
 ### Bestanden bekijken
-- `head -n 20 sequentie.fasta` — **Toon de eerste 20 regels**: Toont de eerste 20 regels van een FASTA-bestand, handig om snel te zien hoe het bestand eruitziet zonder alles te openen.
+- `head -n getal bestand` — **Eerste regels van een bestand tonen**: Toont de eerste regels van een bestand; met -n kies je hoeveel. Handig om snel te zien hoe een bestand eruitziet. Bv. head -n 20 sequentie.fasta.
+  - voorbeelden: `head -n 20 sequentie.fasta`
 - `ls -a` — **Ook verborgen bestanden tonen**: Toont alle bestanden, ook de verborgen bestanden (namen die met een punt beginnen, zoals .bashrc, en ook . en ..). _(bron: Chapter 2 - The terminal.pptx, dia 9)_
-- `ls /etc` — **Inhoud van een andere map tonen**: Toont de inhoud van de map /etc zonder dat je er naartoe gaat. Het argument /etc is het pad waarop het commando werkt; /etc bevat de configuratiebestanden. _(bron: Chapter 2 - The terminal.pptx, dia 11)_
+- `ls map` — **Inhoud van een andere map tonen**: Toont de inhoud van een map zonder dat je er naartoe gaat. Het argument is het pad waarop ls werkt. Bv. ls /etc toont de map met configuratiebestanden. _(bron: Chapter 2 - The terminal.pptx, dia 11)_
+  - voorbeelden: `ls /etc`
 - `ls -F` — **Bestandstype met teken aanduiden**: Zet achter elke naam een teken dat het bestandstype toont: / map, * uitvoerbaar bestand, @ link, = socket, | named pipe. Gewone bestanden krijgen geen teken. _(bron: Chapter 2 - The terminal.pptx, dia 12)_
 - `ls -l` — **Lijst met eigenschappen tonen**: Toont de inhoud als lange lijst met eigenschappen: bestandstype en rechten, aantal hardlinks, eigenaar, groep, grootte, datum en naam. Het eerste teken toont het type: - gewoon bestand, d map, l link, s socket, p named pipe, b block device, c character device. _(bron: Chapter 2 - The terminal.pptx, dia 14)_
   - werkt ook: `ll` — ll is op Fedora een alias voor ls -l.
 - `wc -l` — **Aantal regels tellen**: Toont enkel het aantal regels van een bestand. _(bron: Chapter 2 - The terminal.pptx, dia 16)_
 - `wc -w` — **Aantal woorden tellen**: Toont enkel het aantal woorden van een bestand. Combineren kan: wc -lw of wc -wl toont regels en woorden. _(bron: Chapter 2 - The terminal.pptx, dia 16)_
-- `tree -FL 1 /` — **Mappenstructuur als boom tonen**: Toont de inhoud van de root / als boomstructuur, hier maar 1 niveau diep, met een teken achter elke naam volgens het type. _(bron: Chapter 3 - Organizing files.pptx, dia 10)_
+- `tree -FL getal map` — **Mappenstructuur als boom tonen**: Toont de inhoud van een map als boomstructuur, met een teken achter elke naam volgens het type. Met -L kies je hoeveel niveaus diep. Bv. tree -FL 1 / toont de root 1 niveau diep. _(bron: Chapter 3 - Organizing files.pptx, dia 10)_
+  - voorbeelden: `tree -FL 1 /`
 - `ls -alF` — **Alles tonen met details en type**: Combineert drie opties: alle bestanden (ook verborgen), als lange lijst, met een teken achter de naam volgens het type. _(bron: Chapter 3 - Organizing files.pptx, dia 13)_
 - `file [file(s)]` — **Bestandstype achterhalen**: Toont wat voor soort bestand iets is (bv. map, tekst, PNG-afbeelding, programma), soms met extra info zoals de grootte. Handig omdat Linux geen extensies nodig heeft. _(bron: Chapter 3 - Organizing files.pptx, dia 19)_
 - `cat file(s)` — **Inhoud van tekstbestand tonen**: Toont de volledige inhoud van één of meer tekstbestanden in de terminal, bv. cat /etc/fedora-release. _(bron: Chapter 3 - Organizing files.pptx, dia 20)_
@@ -248,25 +265,39 @@ Export: 2026-09-28T08:50:10Z · 940 items
 - `wc bestand` — **Regels, woorden en tekens tellen**: Telt het aantal regels, woorden en tekens in een bestand. De les gebruikt het als voorbeeld: de invoer is de tekst in het bestand, de uitvoer zijn de getallen. _(bron: Chapter 5 - Input and output.pptx, dia 4)_
   - voorbeelden: `wc`
 - `v (in less)` — **Bestand openen in editor**: Terwijl je een bestand bekijkt met less, open je het met v in de standaard teksteditor (ingesteld via $VISUAL of $EDITOR). _(bron: Chapter 6 - The work environment.pptx, dia 5)_
-- `cat -n /etc/profile` — **Bestand tonen met regelnummers**: Toont de inhoud van /etc/profile met een regelnummer voor elke regel. _(bron: Chapter 6 - The work environment.pptx, dia 8)_
-- `head -n 5 snp151*` — **Eerste 5 regels van bestanden**: Toont de eerste 5 regels van elk bestand waarvan de naam met snp151 begint. Bij meerdere bestanden zet head telkens de bestandsnaam erboven. Handig om snel te zien hoe een tabel eruitziet. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 8)_
-- `head -n 1 snp151annotation.txt > HEADER` — **Kopregel apart bewaren**: Schrijft enkel de eerste regel (de kopregel) naar het bestand HEADER. sort sorteert de kopregel anders gewoon mee; daarom haal je hem eerst apart. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 17)_
-- `tail -n +2 snp151annotation.txt > DATA` — **Alles behalve de kopregel**: Toont alle regels vanaf regel 2, dus de tabel zonder kopregel, en bewaart ze in DATA. Na het sorteren zet je kopregel en data terug samen met bv. cat HEADER DATA_gesorteerd > nieuw_bestand. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 17)_
+- `cat -n bestand` — **Bestand tonen met regelnummers**: Toont de inhoud van een bestand met een regelnummer voor elke regel. Bv. cat -n /etc/profile. _(bron: Chapter 6 - The work environment.pptx, dia 8)_
+  - voorbeelden: `cat -n /etc/profile`
+- `head -n 5 bestand*` — **Eerste 5 regels van meerdere bestanden**: Toont de eerste 5 regels van elk bestand dat past bij het jokerteken, bv. head -n 5 snp151*. Bij meerdere bestanden zet head telkens de bestandsnaam erboven. Handig om snel te zien hoe een tabel eruitziet. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 8)_
+  - voorbeelden: `head -n 5 snp151*`
+- `head -n 1 bestand > HEADER` — **Kopregel apart bewaren**: Schrijft enkel de eerste regel (de kopregel) naar het bestand HEADER. sort sorteert de kopregel anders gewoon mee; daarom haal je hem eerst apart. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 17)_
+  - voorbeelden: `head -n 1 snp151annotation.txt > HEADER`
+- `tail -n +2 bestand > DATA` — **Alles behalve de kopregel**: Toont alle regels vanaf regel 2, dus de tabel zonder kopregel, en bewaart ze in DATA. Na het sorteren zet je kopregel en data terug samen met bv. cat HEADER DATA_gesorteerd > nieuw_bestand. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 17)_
+  - voorbeelden: `tail -n +2 snp151annotation.txt > DATA`
 
 ### Bestanden & mappen
-- `mkdir -p data/ruw` — **Maak mappen aan**: Maakt de map 'data' en daarin 'ruw' aan in één keer. Bestaan ze al, dan krijg je geen foutmelding.
+- `mkdir -p map/submap` — **Map met submappen in één keer maken**: Maakt een map en de mappen erin in één keer aan. Bestaan ze al, dan krijg je geen foutmelding. Bv. mkdir -p data/ruw.
+  - voorbeelden: `mkdir -p data/ruw`
 - `touch [option(s)] file(s)` — **Leeg bestand aanmaken**: Maakt snel een nieuw, leeg tekstbestand aan (0 kB). Bestaat het bestand al, dan wordt enkel de datum van laatste wijziging aangepast. _(bron: Chapter 3 - Organizing files.pptx, dia 13)_
-- `cp ./source file ./destination file` — **Bestand kopiëren**: Maakt een exacte kopie van een bestand. Let op: bestaat het doelbestand al, dan wordt het zonder waarschuwing overschreven! Zonder pad werkt cp in de huidige map. _(bron: Chapter 3 - Organizing files.pptx, dia 14)_
-- `cp file3 ~/Downloads` — **Kopiëren naar map, zelfde naam**: Geef je als doel enkel een map (zonder bestandsnaam), dan krijgt de kopie dezelfde naam als het origineel. _(bron: Chapter 3 - Organizing files.pptx, dia 15)_
-- `cp file{1,2} ~/Downloads` — **Meerdere bestanden tegelijk kopiëren**: Kopieert file1 en file2 samen naar ~/Downloads. Bij meerdere bronbestanden moet het laatste argument een map zijn. De accolades worden uitgebreid tot file1 file2. _(bron: Chapter 3 - Organizing files.pptx, dia 16)_
-- `mv file3 P00687.fasta` — **Bestand hernoemen**: mv verplaatst en/of hernoemt bestanden. Blijft het bestand in dezelfde map, dan krijgt het gewoon een nieuwe naam. _(bron: Chapter 3 - Organizing files.pptx, dia 17)_
-- `mv ~/Documents/P00687.fasta .` — **Bestand naar huidige map verplaatsen**: Verplaatst het bestand uit ~/Documents naar de map waarin je nu bent (.). _(bron: Chapter 3 - Organizing files.pptx, dia 17)_
+- `cp bron doel` — **Bestand kopiëren**: Maakt een exacte kopie van een bestand. Let op: bestaat het doelbestand al, dan wordt het zonder waarschuwing overschreven! Zonder pad werkt cp in de huidige map. Bv. cp data.txt kopie.txt. _(bron: Chapter 3 - Organizing files.pptx, dia 14)_
+  - voorbeelden: `cp ./source file ./destination file`
+- `cp bestand map` — **Kopiëren naar map, zelfde naam**: Geef je als doel enkel een map (zonder bestandsnaam), dan krijgt de kopie dezelfde naam als het origineel. Bv. cp file3 ~/Downloads. _(bron: Chapter 3 - Organizing files.pptx, dia 15)_
+  - voorbeelden: `cp file3 ~/Downloads`
+- `cp bestand{1,2} map` — **Meerdere bestanden tegelijk kopiëren**: Kopieert meerdere bestanden samen naar een map; het laatste argument moet dan een map zijn. De accolades worden uitgebreid: bestand{1,2} wordt bestand1 bestand2. Bv. cp file{1,2} ~/Downloads. _(bron: Chapter 3 - Organizing files.pptx, dia 16)_
+  - voorbeelden: `cp file{1,2} ~/Downloads`
+- `mv bestand nieuwe_naam` — **Bestand hernoemen**: mv verplaatst en/of hernoemt bestanden. Blijft het bestand in dezelfde map, dan krijgt het gewoon een nieuwe naam. Bv. mv file3 P00687.fasta. _(bron: Chapter 3 - Organizing files.pptx, dia 17)_
+  - voorbeelden: `mv file3 P00687.fasta`
+- `mv pad/naar/bestand .` — **Bestand naar huidige map verplaatsen**: Verplaatst een bestand uit een andere map naar de map waarin je nu bent (.). Bv. mv ~/Documents/P00687.fasta . _(bron: Chapter 3 - Organizing files.pptx, dia 17)_
+  - voorbeelden: `mv ~/Documents/P00687.fasta .`
 - `rm file(s)` — **Bestanden verwijderen**: Verwijdert één of meer bestanden. Let op: er is geen prullenbak, het bestand is echt weg. _(bron: Chapter 3 - Organizing files.pptx, dia 18)_
-- `rm ~/Documents/file? ~/Downloads/file?` — **Bestanden met jokerteken verwijderen**: Verwijdert in ~/Documents en ~/Downloads alle bestanden met 'file' + precies één teken, zoals file1, file2 en file3. _(bron: Chapter 3 - Organizing files.pptx, dia 18)_
+- `rm bestand?` — **Bestanden met jokerteken verwijderen**: Verwijdert alle bestanden waarvan de naam begint met 'bestand' + precies één teken, zoals bestand1, bestand2 en bestandA. Bv. rm ~/Documents/file? ~/Downloads/file?. _(bron: Chapter 3 - Organizing files.pptx, dia 18)_
+  - voorbeelden: `rm ~/Documents/file? ~/Downloads/file?`
 - `ln target linkname` — **Hardlink maken**: Maakt een hardlink: een tweede naam (linkname) voor dezelfde data als target. _(bron: Chapter 3 - Organizing files.pptx, dia 27)_
-- `ln -s file1 link_to_file1` — **Symbolische link maken**: Maakt een symbolische link link_to_file1 die naar file1 wijst. Met ls -l zie je de link als link_to_file1 -> file1. _(bron: Chapter 3 - Organizing files.pptx, dia 27)_
-- `basename /home/guest/file.txt` — **Bestandsnaam uit pad halen**: Haalt uit een volledig pad enkel de bestandsnaam. _(bron: Chapter 3 - Organizing files.pptx, dia 29)_
-- `dirname /home/guest/file.txt` — **Mappad uit pad halen**: Haalt uit een volledig pad enkel de map waarin het bestand staat. _(bron: Chapter 3 - Organizing files.pptx, dia 29)_
+- `ln -s doel linknaam` — **Symbolische link maken**: Maakt een symbolische link die naar een bestaand bestand wijst. Met ls -l zie je de link als linknaam -> doel. Bv. ln -s file1 link_to_file1. _(bron: Chapter 3 - Organizing files.pptx, dia 27)_
+  - voorbeelden: `ln -s file1 link_to_file1`
+- `basename /pad/naar/bestand.txt` — **Bestandsnaam uit pad halen**: Haalt uit een volledig pad enkel de bestandsnaam. Bv. basename /home/guest/file.txt geeft file.txt. _(bron: Chapter 3 - Organizing files.pptx, dia 29)_
+  - voorbeelden: `basename /home/guest/file.txt`
+- `dirname /pad/naar/bestand.txt` — **Mappad uit pad halen**: Haalt uit een volledig pad enkel de map waarin het bestand staat. Bv. dirname /home/guest/file.txt geeft /home/guest. _(bron: Chapter 3 - Organizing files.pptx, dia 29)_
+  - voorbeelden: `dirname /home/guest/file.txt`
 - `mkdir directory(ies)` — **Nieuwe map aanmaken**: Maakt één of meer nieuwe mappen; relatieve en absolute paden kunnen. Bv. mkdir folder1 folder2. _(bron: Chapter 3 - Organizing files.pptx, dia 30)_
 - `rmdir directory(ies)` — **Lege map verwijderen**: Verwijdert één of meer mappen, maar enkel als ze leeg zijn. Bv. rmdir folder* verwijdert alle lege mappen die met folder beginnen. _(bron: Chapter 3 - Organizing files.pptx, dia 30)_
 
@@ -303,8 +334,10 @@ Export: 2026-09-28T08:50:10Z · 940 items
 - `man commando` — **Handleiding van commando openen**: Opent de man page (handleiding) van een commando met naam, syntax (SYNOPSIS), beschrijving, opties en voorbeelden. Bv. man ls, of man man voor uitleg over man zelf. _(bron: Chapter 2 - The terminal.pptx, dia 25)_
 - `h / q / f / b / /woord` — **Navigeren in een man page**: Toetsen binnen een man page: h toont alle navigatietoetsen, q sluit de man page, f gaat één pagina vooruit, b één pagina terug. Met /woord zoek je een woord in de tekst. _(bron: Chapter 2 - The terminal.pptx, dia 26)_
 - `info commando` — **Uitgebreide hulpdocumentatie openen**: Opent de info-documentatie van een commando, vaak uitgebreider dan de man page. Bv. info ls of info info. Is info niet beschikbaar, gebruik dan man. _(bron: Chapter 2 - The terminal.pptx, dia 31)_
-- `whatis ls` — **Korte omschrijving van commando**: Toont één regel uitleg over een commando, overgenomen uit de man page (met het sectienummer tussen haakjes). _(bron: Chapter 2 - The terminal.pptx, dia 32)_
-- `apropos browser` — **Commando zoeken op trefwoord**: Zoekt in de korte omschrijvingen van alle man pages naar een woord. Handig als je niet weet welk commando je nodig hebt. _(bron: Chapter 2 - The terminal.pptx, dia 32)_
+- `whatis commando` — **Korte omschrijving van commando**: Toont één regel uitleg over een commando, overgenomen uit de man page (met het sectienummer tussen haakjes). Bv. whatis ls. _(bron: Chapter 2 - The terminal.pptx, dia 32)_
+  - voorbeelden: `whatis ls`
+- `apropos trefwoord` — **Commando zoeken op trefwoord**: Zoekt in de korte omschrijvingen van alle man pages naar een woord. Handig als je niet weet welk commando je nodig hebt. Bv. apropos browser. _(bron: Chapter 2 - The terminal.pptx, dia 32)_
+  - voorbeelden: `apropos browser`
 - `ls /usr/share/doc` — **Documentatie van programma's bekijken**: Toont de map /usr/share/doc, waarin geïnstalleerde programma's (bv. gedit) extra documentatie bewaren. _(bron: Chapter 2 - The terminal.pptx, dia 33)_
 
 ### Omgeving & variabelen
@@ -346,7 +379,8 @@ Export: 2026-09-28T08:50:10Z · 940 items
 - `alias nohead="awk 'NR > 1 && NR <= 11'"` — **Alias: head zonder kopregel**: Maakt een alias nohead die 10 regels van een bestand toont zoals head, maar de eerste regel (kopregel) overslaat. Gebruik: nohead bestand. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 37)_
 - `export PATH=$PATH:directory` — **Map toevoegen aan PATH**: Voegt een map toe aan de lijst waarin de shell naar programma's zoekt. Daarna kun je scripts in die map van overal uitvoeren zonder ./. Zet deze regel in ~/.bashrc of ~/.bash_profile om hem blijvend te maken. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 7)_
   - voorbeelden: `export PATH=$PATH:/home/guest/Scripts`
-- `export ANSWER=yes` — **Variabele doorgeven aan subshells**: Maakt de variabele en exporteert ze, zodat ze ook bekend is in subshells en scripts die je vanuit deze shell start. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 9)_
+- `export NAAM=waarde` — **Variabele doorgeven aan subshells**: Maakt de variabele en exporteert ze, zodat ze ook bekend is in subshells en scripts die je vanuit deze shell start. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 9)_
+  - voorbeelden: `export ANSWER=yes`
 - `date +%A` — **Dag van de week tonen**: Toont de naam van de huidige dag van de week (bv. Monday). Met +% bepaal je hoe date de datum weergeeft. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 14)_
 
 ### Netwerk & op afstand
@@ -358,8 +392,10 @@ Export: 2026-09-28T08:50:10Z · 940 items
   - voorbeelden: `scp guest@172.19.8.101:/home/guest/welcome.txt .`
 - `wget URL` — **Bestand downloaden van internet**: Downloadt het bestand op het opgegeven webadres naar de huidige map. In de les gebruik je dit om het Miniconda-installatiescript te downloaden. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 11)_
   - voorbeelden: `wget www.uniprot.org/uniprot/P00687.fasta`
-- `curl localhost:80` — **Webpagina opvragen in terminal**: Vraagt de webpagina op poort 80 van je eigen computer (localhost) op en toont de inhoud in de terminal. Zo test je of een webserver bereikbaar is. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 32)_
-- `efetch -db protein -id NP_000509 -format fasta` — **Sequentie ophalen uit NCBI**: Commando uit het conda-pakket entrez-direct (EDirect). Het downloadt de eiwitsequentie met identifier NP_000509 uit de NCBI-databank in FASTA-formaat. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 42)_
+- `curl URL` — **Webpagina opvragen in terminal**: Vraagt een webpagina op en toont de inhoud in de terminal. Bv. curl localhost:80 test of een webserver op je eigen computer bereikbaar is. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 32)_
+  - voorbeelden: `curl localhost:80`
+- `efetch -db protein -id ID -format fasta` — **Sequentie ophalen uit NCBI**: Commando uit het conda-pakket entrez-direct (EDirect). Het downloadt een eiwitsequentie met de opgegeven identifier (bv. NP_000509) uit de NCBI-databank in FASTA-formaat. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 42)_
+  - voorbeelden: `efetch -db protein -id NP_000509 -format fasta`
 
 ### Processen
 - `xterm` — **Lichte terminal openen**: Opent een nieuw, eenvoudig terminalvenster. Zonder & bezet het je huidige terminal tot je het sluit; met xterm & blijft je terminal bruikbaar. _(bron: Chapter 4 - Processes.pptx, dia 11)_
@@ -412,14 +448,17 @@ Export: 2026-09-28T08:50:10Z · 940 items
 - `ls -l /etc | grep cron | grep -v crontab` — **Meerdere pipes na elkaar**: Je kan meerdere pipes koppelen. Hier: toon de inhoud van /etc, houd enkel regels met 'cron' en laat daarvan de regels met 'crontab' weg. _(bron: Chapter 5 - Input and output.pptx, dia 19)_
 - `who | sort | awk '{print $1}'` — **Gesorteerde lijst van gebruikersnamen**: Toont wie aangemeld is, sorteert die lijst en drukt met awk enkel de eerste kolom (de gebruikersnaam) af. _(bron: Chapter 5 - Input and output.pptx, dia 19)_
 - `commando | tee bestand` — **Uitvoer tonen én bewaren**: tee kopieert de uitvoer: je ziet ze in de terminal én ze wordt in een bestand geschreven. Met > of >> kan dat niet, want dan zie je niets op het scherm. Met tee -a voeg je toe in plaats van te overschrijven (zoals >>). _(bron: Chapter 5 - Input and output.pptx, dia 20)_
-- `cat files_to_remove.txt | xargs rm` — **Regels omzetten tot argumenten**: xargs leest regels tekst van de invoer en geeft ze als argumenten aan een commando. Hier worden alle bestandsnamen uit files_to_remove.txt aan rm gegeven, dus al die bestanden worden verwijderd. _(bron: Chapter 5 - Input and output.pptx, dia 21)_
-- `echo wc -l myfile | bash` — **Tekst als commando laten uitvoeren**: echo maakt de tekst 'wc -l myfile'; via de pipe krijgt bash die tekst en voert hem uit als commando. Zo kan je commando's als tekst opbouwen en daarna uitvoeren. _(bron: Chapter 5 - Input and output.pptx, dia 22)_
+- `cat bestand.txt | xargs commando` — **Regels omzetten tot argumenten**: xargs leest regels tekst van de invoer en geeft ze als argumenten aan een commando. Bv. cat files_to_remove.txt | xargs rm verwijdert alle bestanden die in die lijst staan. _(bron: Chapter 5 - Input and output.pptx, dia 21)_
+  - voorbeelden: `cat files_to_remove.txt | xargs rm`
+- `echo commando | bash` — **Tekst als commando laten uitvoeren**: echo maakt de tekst van een commando; via de pipe krijgt bash die tekst en voert hem uit. Zo kan je commando's als tekst opbouwen en daarna uitvoeren. Bv. echo wc -l myfile | bash. _(bron: Chapter 5 - Input and output.pptx, dia 22)_
+  - voorbeelden: `echo wc -l myfile | bash`
 - `echo [argumenten]` — **Tekst op het scherm tonen**: Drukt de argumenten af op de standaarduitvoer. Handig in scripts om iets te vragen vóór read of om waarden te tonen. Opties: -n (geen nieuwe regel op het einde), -e (escapetekens zoals \n of \a interpreteren). _(bron: Chapter 5 - Input and output.pptx, dia 24)_
   - voorbeelden: `echo`, `echo "Hello world!"`, `echo "thx mate :)"`
 - `printf "FORMAT" [ARGUMENTEN]` — **Opgemaakte tekst afdrukken**: Uitgebreide echo: drukt tekst af volgens een opmaakstring. Plaatshouders zoals %s (tekst) en %d (geheel getal) worden vervangen door de argumenten. \n zet een nieuwe regel. Bv. printf "A %s team counts %d players.\n" soccer 11 geeft: A soccer team counts 11 players. _(bron: Chapter 5 - Input and output.pptx, dia 25)_
 - `clear` — **Terminalscherm leegmaken**: Maakt het terminalvenster leeg zodat je met een proper scherm verder werkt. _(bron: Chapter 5 - Input and output.pptx, dia 26)_
   - werkt ook: `Ctrl + L` — Ctrl + L maakt het scherm leeg, net als clear.
-- `seq 1 100` — **Reeks getallen maken**: Toont de getallen van 1 tot en met 100, elk op een aparte regel. Handig in een for-lus: for i in $(seq 1 100). _(bron: Chapter 9 - Shell scripting - student.pptx, dia 32)_
+- `seq begin einde` — **Reeks getallen maken**: Toont alle getallen van begin tot en met einde, elk op een aparte regel; bv. seq 1 100. Handig in een for-lus: for i in $(seq 1 100). _(bron: Chapter 9 - Shell scripting - student.pptx, dia 32)_
+  - voorbeelden: `seq 1 100`
 
 ### Scripts
 - `read VARIABELE` — **Invoer van gebruiker inlezen**: Wacht tot de gebruiker iets typt en Enter drukt, en bewaart dat in een variabele. Met $VARIABELE gebruik je het daarna. _(bron: Chapter 5 - Input and output.pptx, dia 24)_
@@ -436,7 +475,8 @@ Export: 2026-09-28T08:50:10Z · 940 items
 - `"$VALUE"` — **Dubbele aanhalingstekens rond variabele**: Tussen dubbele aanhalingstekens wordt tekst letterlijk genomen, behalve $, ` en !. Een variabele wordt dus wel vervangen door haar waarde. Zet variabelen tussen dubbele aanhalingstekens als ze spaties kunnen bevatten: dan wordt de waarde als één geheel gezien in plaats van als losse woorden. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 13)_
 - `$(commando)` — **Uitvoer van commando gebruiken**: Commandosubstitutie: het commando wordt uitgevoerd en de uitvoer komt op die plaats in de opdracht. Zo geef je een variabele een waarde die een commando berekent, bv. TODAY=$(date +%A). Dit is de aangeraden manier. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 14)_
   - werkt ook: ``commando`` — Backticks zijn de oude schrijfwijze van $(commando), met hetzelfde resultaat.
-- `TODAY=$(date +%A)` — **Uitvoer in variabele bewaren**: Bewaart de dag van de week in de variabele TODAY; echo $TODAY toont bv. Monday. Let op: TODAY='date +%A' (enkele aanhalingstekens) bewaart gewoon de tekst date +%A, terwijl backticks (`date +%A`) wel het commando uitvoeren. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 15)_
+- `VARIABELE=$(commando)` — **Uitvoer in variabele bewaren**: Bewaart de uitvoer van een commando in een variabele. Bv. TODAY=$(date +%A); echo $TODAY toont Monday. Let op: TODAY='date +%A' (enkele aanhalingstekens) bewaart gewoon de tekst, terwijl backticks (`date +%A`) wel het commando uitvoeren. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 15)_
+  - voorbeelden: `TODAY=$(date +%A)`
 - `${VARIABLE:-word}` — **Standaardwaarde als variabele leeg is**: Geeft de waarde van VARIABLE terug; als die niet bestaat (of leeg is), wordt word gebruikt. De variabele zelf verandert niet. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 18)_
 - `${VARIABLE:=word}` — **Variabele standaardwaarde toekennen**: Als VARIABLE niet bestaat (of leeg is), krijgt ze de waarde word en wordt die teruggegeven. Daarna heeft de variabele die waarde echt. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 18)_
 - `${VARIABLE:?error_message}` — **Stoppen als variabele ontbreekt**: Als VARIABLE niet bestaat (of leeg is), stopt het script en verschijnt de foutmelding. Handig om te controleren of een verplicht argument opgegeven is, bv. ${1:?geef een bestandsnaam}. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 18)_
@@ -444,10 +484,13 @@ Export: 2026-09-28T08:50:10Z · 940 items
 - `${VAR##/*/}` — **Langste match links weghalen**: Verwijdert vanaf het begin het langste stuk dat op het patroon past. Met VAR=/one/two/three/four/ past het patroon /*/ op de hele tekst, dus het resultaat is leeg. Bij een pad zonder / op het einde houd je zo enkel de bestandsnaam over. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 19)_
 - `${VAR%.*}` — **Kortste match rechts weghalen**: Verwijdert vanaf het einde (rechts) het kortste stuk dat op het patroon .* past. Met VAR=/usr/bin/info.hallo.tk is het resultaat /usr/bin/info.hallo. Handig om een extensie te verwijderen. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 20)_
 - `${VAR%%.*}` — **Langste match rechts weghalen**: Verwijdert vanaf het einde het langste stuk dat op .* past, dus alles vanaf de eerste punt. Met VAR=/usr/bin/info.hallo.tk is het resultaat /usr/bin/info. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 20)_
-- `${VAR/one/four}` — **Eerste match vervangen**: Vervangt de eerste keer dat one voorkomt door four. Met VAR=/one/two/three/two/one/ is het resultaat /four/two/three/two/one/. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 21)_
-- `${VAR//one/four}` — **Alle matches vervangen**: Vervangt elke keer dat one voorkomt door four. Met VAR=/one/two/three/two/one/ is het resultaat /four/two/three/two/four/. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 21)_
+- `${VAR/patroon/tekst}` — **Eerste match vervangen**: Vervangt de eerste keer dat patroon voorkomt door tekst. Bv. met VAR=/one/two/three/two/one/ geeft ${VAR/one/four} /four/two/three/two/one/. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 21)_
+  - voorbeelden: `${VAR/one/four}`
+- `${VAR//patroon/tekst}` — **Alle matches vervangen**: Vervangt elke keer dat patroon voorkomt door tekst. Bv. met VAR=/one/two/three/two/one/ geeft ${VAR//one/four} /four/two/three/two/four/. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 21)_
+  - voorbeelden: `${VAR//one/four}`
 - `COUNTER=$((COUNTER+1))` — **Rekenen met variabelen**: Berekent de som tussen $(( )) en bewaart het resultaat: hier wordt COUNTER met 1 verhoogd. Mogelijke bewerkingen: + (optellen), - (aftrekken), * (vermenigvuldigen), / (delen, enkel gehele getallen) en % (modulo = rest na deling). _(bron: Chapter 9 - Shell scripting - student.pptx, dia 24)_
-- `test -f /etc/passwd` — **Testen of iets een bestand is**: test controleert een voorwaarde en geeft een exitstatus terug: 0 als het klopt, 1 als het niet klopt. -f test of het pad een gewoon bestand is. Alle mogelijke tests vind je met man test. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 25)_
+- `test -f bestand` — **Testen of iets een bestand is**: test controleert een voorwaarde en geeft een exitstatus terug: 0 als het klopt, 1 als het niet klopt. -f test of het pad een gewoon bestand is. Alle mogelijke tests vind je met man test. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 25)_
+  - voorbeelden: `test -f /etc/passwd`
 - `[ string1 = string2 ]` — **Korte schrijfwijze van test**: Doet hetzelfde als test: hier controleren of twee teksten gelijk zijn. Vergeet de spatie na [ en vóór ] niet, anders krijg je een fout. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 25)_
 - `if [ ] then … elif [ ] then … else … fi` — **Meerdere voorwaarden na elkaar**: Met elif (else if) test je een tweede voorwaarde als de eerste niet klopte. Je kunt meerdere elif's na elkaar zetten; else vangt alle overige gevallen op. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 27)_
 - `[ ] && …` — **Uitvoeren als test lukt**: Het commando na && wordt enkel uitgevoerd als de test ervoor gelukt is (exitstatus 0), bv. [ -f $1 ] && echo bestand. _(bron: Chapter 9 - Shell scripting - student.pptx, dia 27)_
@@ -489,11 +532,13 @@ Export: 2026-09-28T08:50:10Z · 940 items
 - `make` — **Broncode compileren**: Compileert de broncode tot een uitvoerbaar programma, volgens de instructies in het Makefile. _(bron: Chapter 6 - The work environment.pptx, dia 36)_
 - `sudo make install` — **Gecompileerd programma installeren**: Laatste stap: kopieert het gecompileerde programma naar de systeemmappen. Vraagt beheerdersrechten. _(bron: Chapter 6 - The work environment.pptx, dia 36)_
 - `git clone URL` — **Broncode van project downloaden**: Downloadt (kloont) de volledige broncode van een project, bv. een bio-informaticatool, naar je computer. Dit is de eerste stap van de klassieke, minst reproduceerbare manier om software te installeren. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 5)_
-- `hisat2 --version` — **Versie van een tool tonen**: Toont welke versie van de tool (hier hisat2) geïnstalleerd is. Zo controleer je of de installatie gelukt is en welke versie je gebruikt, belangrijk voor reproduceerbaarheid. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 5)_
+- `programma --version` — **Versie van een tool tonen**: Toont welke versie van een tool geïnstalleerd is, bv. hisat2 --version. Zo controleer je of de installatie gelukt is en welke versie je gebruikt, belangrijk voor reproduceerbaarheid. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 5)_
+  - voorbeelden: `hisat2 --version`
 - `sudo dnf -y install dnf-plugins-core` — **Plugins voor dnf installeren**: Installeert extra plugins voor de pakketbeheerder dnf, waaronder config-manager, nodig om de Docker-repository toe te voegen. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 21)_
 - `sudo dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo` — **Docker-repository toevoegen**: Voegt de officiële softwarebron van Docker toe aan dnf, zodat je daarna Docker kunt installeren. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 21)_
 - `sudo dnf install docker-ce docker-ce-cli containerd.io` — **Docker Engine installeren**: Installeert de Docker Engine, het docker-commando en containerd. Tijdens de installatie aanvaard je de GPG-sleutel. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 21)_
-- `fastqc WT*.fq.gz` — **Kwaliteitscontrole van fastq-bestanden**: Voert een kwaliteitscontrole uit op alle bestanden die met WT beginnen en op .fq.gz eindigen. Per bestand maakt fastqc een html-rapport dat je in je browser opent. Werkt na conda install fastqc of in een container. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 44)_
+- `fastqc bestand.fq.gz` — **Kwaliteitscontrole van fastq-bestanden**: Voert een kwaliteitscontrole uit op fastq-bestanden, bv. fastqc WT*.fq.gz voor alle bestanden die met WT beginnen. Per bestand maakt fastqc een html-rapport dat je in je browser opent. Werkt na conda install fastqc of in een container. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 44)_
+  - voorbeelden: `fastqc WT*.fq.gz`
 - `sudo dnf install firefox php` — **Firefox en PHP installeren**: Installeert de webbrowser Firefox en de programmeertaal PHP op Fedora met de pakketbeheerder dnf. Je hebt sudo nodig omdat software installeren beheerdersrechten vraagt. _(bron: 1. Introduction.pptx, dia 8)_
 - `sudo dnf install code-1.81.1-1691620770.el7.x86_64.rpm` — **VS Code installeren uit .rpm-bestand**: Installeert Visual Studio Code vanuit een gedownload .rpm-bestand in de huidige map. dnf toont eerst een overzicht en vraagt dan bevestiging: typ y om door te gaan of n om te stoppen. _(bron: 1. Introduction.pptx, dia 14)_
 - `code` — **Visual Studio Code openen**: Start de teksteditor Visual Studio Code vanuit de terminal. Handig om te testen of de installatie gelukt is. _(bron: 1. Introduction.pptx, dia 16)_
@@ -502,37 +547,57 @@ Export: 2026-09-28T08:50:10Z · 940 items
 - `pip install pmw` — **Pmw installeren voor PyMOL (Windows)**: Installeert het Python-pakket Pmw (Python megawidgets), dat PyMOL nodig heeft voor zijn grafische vensters. Tweede stap bij het installeren van PyMOL 3.1 op Windows. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 16)_
 
 ### Tekst bewerken
-- `cut -f 1 snp151annotation.txt` — **Eén kolom uit tabel halen**: cut selecteert kolommen uit een tabel; hier kolom 1 (de SNP-namen). Standaard is het scheidingsteken een tab; met -d kies je een ander scheidingsteken (bv. -d ','). _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 9)_
-- `cut -f 1-3 snp151position.txt` — **Meerdere kolommen selecteren**: Selecteert kolommen 1 tot en met 3. Met een koppelteken (-) geef je een bereik op, met een komma losse kolommen, bv. -f 1,4. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 9)_
-- `paste tmp5 tmp6 tmp1` — **Bestanden naast elkaar plakken**: paste zet de regels van meerdere bestanden naast elkaar als kolommen (gescheiden door een tab). Zo kun je kolommen in een andere volgorde zetten: eerst knippen met cut, dan in de gewenste volgorde plakken. cat zet bestanden net ónder elkaar. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 10)_
+- `cut -f 1 bestand` — **Eén kolom uit tabel halen**: cut selecteert kolommen uit een tabel; hier kolom 1 (bv. cut -f 1 snp151annotation.txt geeft de SNP-namen). Standaard is het scheidingsteken een tab; met -d kies je een ander scheidingsteken (bv. -d ','). _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 9)_
+  - voorbeelden: `cut -f 1 snp151annotation.txt`
+- `cut -f 1-3 bestand` — **Meerdere kolommen selecteren**: Selecteert kolommen 1 tot en met 3. Met een koppelteken (-) geef je een bereik op, met een komma losse kolommen, bv. -f 1,4. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 9)_
+  - voorbeelden: `cut -f 1-3 snp151position.txt`
+- `paste bestand1 bestand2 bestand3` — **Bestanden naast elkaar plakken**: paste zet de regels van meerdere bestanden naast elkaar als kolommen (gescheiden door een tab). Zo kun je kolommen in een andere volgorde zetten: eerst knippen met cut, dan in de gewenste volgorde plakken. cat zet bestanden net ónder elkaar. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 10)_
+  - voorbeelden: `paste tmp5 tmp6 tmp1`
 - `join FILE1 FILE2` — **Twee tabellen koppelen op sleutel**: join voegt de regels van twee bestanden samen die dezelfde waarde hebben in een gemeenschappelijke kolom (standaard de eerste kolom). Beide bestanden moeten eerst gesorteerd zijn met sort. Standaard is het scheidingsteken een spatie. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 13)_
 - `join -t $'\t' FILE1 FILE2` — **Koppelen met tab als scheiding**: Zelfde als join, maar met een tab als scheidingsteken in plaats van een spatie. Gebruik --header als de bestanden een kopregel hebben, zodat die niet mee gesorteerd/gekoppeld wordt. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 13)_
-- `join -t $'\t' -o '1.1 1.2 2.2' --header snp151position-sorted.txt snp151annotation-sorted.txt` — **Gekozen kolommen na join**: Koppelt twee gesorteerde tabellen op kolom 1 en houdt enkel de opgegeven kolommen over. Met -o kies je welke velden in de uitvoer komen, in de vorm bestand.kolom. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 15)_
-- `sort /etc/passwd` — **Regels alfabetisch sorteren**: Sorteert de regels van een bestand: eerst cijfers (0-9), dan letters (aA-zZ). Het sorteert teken per teken, daarom komt 10 vóór 2. Hetzelfde resultaat krijg je met cat /etc/passwd | sort. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 16)_
-- `sort -k 2 DATA` — **Sorteren op een kolom**: Sorteert de regels op basis van kolom 2 in plaats van vanaf het begin van de regel. Met -k 2,2 sorteer je strikt op enkel kolom 2. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 16)_
-- `sort -k 6 -n -r DATA` — **Numeriek omgekeerd sorteren**: Sorteert op kolom 6 volgens de getalwaarde (-n), van groot naar klein (-r). Zonder -n sorteert sort als tekst, waardoor bv. 10 vóór 2 komt. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 16)_
+- `join -t $'\t' -o '1.1 1.2 2.2' --header bestand1 bestand2` — **Gekozen kolommen na join**: Koppelt twee gesorteerde tabellen op kolom 1 en houdt enkel de opgegeven kolommen over. Met -o kies je welke velden in de uitvoer komen, in de vorm bestand.kolom. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 15)_
+  - voorbeelden: `join -t $'\t' -o '1.1 1.2 2.2' --header snp151position-sorted.txt snp151annotation-sorted.txt`
+- `sort bestand` — **Regels alfabetisch sorteren**: Sorteert de regels van een bestand, bv. sort /etc/passwd: eerst cijfers (0-9), dan letters (aA-zZ). Het sorteert teken per teken, daarom komt 10 vóór 2. Hetzelfde resultaat krijg je met cat bestand | sort. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 16)_
+  - voorbeelden: `sort /etc/passwd`
+- `sort -k 2 bestand` — **Sorteren op een kolom**: Sorteert de regels op basis van kolom 2 in plaats van vanaf het begin van de regel. Met -k 2,2 sorteer je strikt op enkel kolom 2. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 16)_
+  - voorbeelden: `sort -k 2 DATA`
+- `sort -k 6 -n -r bestand` — **Numeriek omgekeerd sorteren**: Sorteert op kolom 6 volgens de getalwaarde (-n), van groot naar klein (-r). Zonder -n sorteert sort als tekst, waardoor bv. 10 vóór 2 komt. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 16)_
+  - voorbeelden: `sort -k 6 -n -r DATA`
 - `sort -R bestand` — **Regels willekeurig schudden**: Zet de regels in een willekeurige volgorde (random sort). _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 16)_
-- `sort -u -k 1,1 DATA` — **Sorteren en dubbels verwijderen**: Sorteert en houdt per waarde in kolom 1 maar één regel over (unique sort). Zonder -k verwijdert sort -u enkel regels die volledig identiek zijn. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 16)_
-- `cut -f 2 DATA | sort -u | wc -l` — **Aantal verschillende waarden tellen**: Haalt kolom 2 uit DATA, houdt elke waarde maar één keer over en telt het aantal regels. Zo krijg je het aantal verschillende (distinct) waarden in die kolom. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 18)_
+- `sort -u -k 1,1 bestand` — **Sorteren en dubbels verwijderen**: Sorteert en houdt per waarde in kolom 1 maar één regel over (unique sort). Zonder -k verwijdert sort -u enkel regels die volledig identiek zijn. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 16)_
+  - voorbeelden: `sort -u -k 1,1 DATA`
+- `cut -f 2 bestand | sort -u | wc -l` — **Aantal verschillende waarden tellen**: Haalt kolom 2 uit het bestand (in de les: DATA), houdt elke waarde maar één keer over en telt het aantal regels. Zo krijg je het aantal verschillende (distinct) waarden in die kolom. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 18)_
+  - voorbeelden: `cut -f 2 DATA | sort -u | wc -l`
 - `sort bestand | uniq` — **Aangrenzende dubbele regels weglaten**: uniq herkent enkel identieke regels die direct na elkaar staan. Daarom sorteer je eerst, en gebruik je daarna uniq. Het resultaat is gelijk aan sort -u. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 19)_
 - `uniq -d bestand` — **Alleen herhaalde regels tonen**: Toont enkel regels die meer dan één keer (na elkaar) voorkomen, telkens één keer. Sorteer het bestand eerst. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 19)_
-- `uniq -c -f 1 snp151annotation-short.txt` — **Herhaalde regels tellen**: Telt hoe vaak elke (aangrenzende) regel voorkomt, waarbij het eerste veld genegeerd wordt; zo tel je hier de waarden van de class-kolom. Omdat uniq enkel aangrenzende regels vergelijkt, moet je eerst op die kolom sorteren: sort -k 2 snp151annotation-short.txt | uniq -c -f 1. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 20)_
-- `sed s/chr/chromosome/g snp151position.txt` — **Tekst vervangen in bestand**: sed is een stream editor die tekst filtert en omzet. Hier wordt overal 'chr' vervangen door 'chromosome'. Het bestand zelf verandert niet; het resultaat verschijnt op het scherm. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 21)_
+- `uniq -c -f 1 bestand` — **Herhaalde regels tellen**: Telt hoe vaak elke (aangrenzende) regel voorkomt, waarbij het eerste veld genegeerd wordt; in de les tel je zo de waarden van de class-kolom. Omdat uniq enkel aangrenzende regels vergelijkt, sorteer je eerst op die kolom: sort -k 2 bestand | uniq -c -f 1. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 20)_
+  - voorbeelden: `uniq -c -f 1 snp151annotation-short.txt`
+- `sed s/patroon/tekst/g bestand` — **Tekst vervangen in bestand**: sed is een stream editor die tekst filtert en omzet. Het vervangt overal patroon door tekst, bv. sed s/chr/chromosome/g snp151position.txt. Het bestand zelf verandert niet; het resultaat verschijnt op het scherm. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 21)_
+  - voorbeelden: `sed s/chr/chromosome/g snp151position.txt`
 - `awk 'condition {action}' inputfile` — **Basisvorm van awk**: awk is een kleine programmeertaal voor tabellen. Het leest het bestand regel per regel (record) en voert de actie uit op elke regel die aan de voorwaarde voldoet. Elke regel wordt opgedeeld in velden (kolommen). _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 22)_
 - `$0, $1, NR, NF, FS` — **Ingebouwde variabelen van awk**: Deze variabelen gebruik je binnen een awk-opdracht. Ze geven de hele regel, een bepaalde kolom, het regelnummer, het aantal kolommen of het scheidingsteken. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 23)_
-- `awk '{print $1}' snp151annotation.txt` — **Eerste kolom afdrukken**: Drukt van elke regel enkel het eerste veld (kolom) af. Er is geen voorwaarde, dus de actie gebeurt op alle regels. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 24)_
-- `awk '{print $1, $3, $2}' snp151annotation.txt` — **Kolommen herschikken met awk**: Drukt kolom 1, 3 en 2 af in die volgorde, gescheiden door een spatie. De komma tussen de velden zet er een spatie tussen. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 24)_
-- `awk '{print $1, "\t", $3, "\t", $2}' snp151annotation.txt` — **Kolommen herschikken, tab-gescheiden**: Herschikt de kolommen en zet een tab tussen de velden. Door de komma's komt er ook een spatie rond elke tab; schrijf $1 "\t" $3 "\t" $2 (zonder komma's) voor enkel een tab. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 24)_
-- `awk '{print NF}' snp151annotation.txt` — **Aantal kolommen per regel**: Drukt voor elke regel het aantal velden (kolommen) af. Met awk '{print NF, $0}' zet je dat aantal als extra eerste kolom vóór de inhoud van de regel. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 25)_
-- `awk '{print $NF}' snp151annotation.txt` — **Laatste kolom afdrukken**: Drukt van elke regel het laatste veld af. NF is het aantal kolommen, dus $NF is de inhoud van de laatste kolom (en niet het aantal). _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 25)_
+- `awk '{print $1}' bestand` — **Eerste kolom afdrukken**: Drukt van elke regel enkel het eerste veld (kolom) af. Er is geen voorwaarde, dus de actie gebeurt op alle regels. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 24)_
+  - voorbeelden: `awk '{print $1}' snp151annotation.txt`
+- `awk '{print $1, $3, $2}' bestand` — **Kolommen herschikken met awk**: Drukt kolom 1, 3 en 2 af in die volgorde, gescheiden door een spatie. De komma tussen de velden zet er een spatie tussen. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 24)_
+  - voorbeelden: `awk '{print $1, $3, $2}' snp151annotation.txt`
+- `awk '{print $1, "\t", $3, "\t", $2}' bestand` — **Kolommen herschikken, tab-gescheiden**: Herschikt de kolommen en zet een tab tussen de velden. Door de komma's komt er ook een spatie rond elke tab; schrijf $1 "\t" $3 "\t" $2 (zonder komma's) voor enkel een tab. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 24)_
+  - voorbeelden: `awk '{print $1, "\t", $3, "\t", $2}' snp151annotation.txt`
+- `awk '{print NF}' bestand` — **Aantal kolommen per regel**: Drukt voor elke regel het aantal velden (kolommen) af. Met awk '{print NF, $0}' zet je dat aantal als extra eerste kolom vóór de inhoud van de regel. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 25)_
+  - voorbeelden: `awk '{print NF}' snp151annotation.txt`
+- `awk '{print $NF}' bestand` — **Laatste kolom afdrukken**: Drukt van elke regel het laatste veld af. NF is het aantal kolommen, dus $NF is de inhoud van de laatste kolom (en niet het aantal). _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 25)_
+  - voorbeelden: `awk '{print $NF}' snp151annotation.txt`
 - `awk 'BEGIN {print "some text"}'` — **Actie vóór het lezen**: BEGIN voert de actie uit vóór er regels gelezen worden, hier tekst afdrukken. Er is zelfs geen invoerbestand nodig. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 27)_
 - `awk 'BEGIN {print "2+3=" 2+3}'` — **Rekenen met awk**: awk kan rekenen: dit drukt de tekst 2+3= af, gevolgd door het resultaat van de berekening. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 27)_
-- `awk 'END {print NR}' snp151annotation.txt` — **Totaal aantal regels tellen**: END voert de actie uit nadat alle regels gelezen zijn; NR is dan het totale aantal regels. awk '{print NR}' (zonder END) drukt daarentegen bij elke regel het regelnummer af. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 28)_
-- `awk 'NR > 1 {s=0; for (i=2; i<=NF; i++) s=s+$i; print s}' arrayDat.txt` — **Som per regel berekenen**: Slaat de kopregel over en telt per regel (gen) alle waarden vanaf kolom 2 op, dus de expressiewaarden van alle stalen. Daarna wordt de som afgedrukt. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 36)_
-- `awk 'NR > 1 {s=0; n=NF-1; for (i=2; i<=NF; i++) s=s+$i; s=s/n; print s}' arrayDat.txt` — **Gemiddelde per regel berekenen**: Zelfde als de som per regel, maar deelt de som door het aantal stalen (NF-1, want kolom 1 is de ProbeID). Zo krijg je de gemiddelde expressie per gen. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 36)_
+- `awk 'END {print NR}' bestand` — **Totaal aantal regels tellen**: END voert de actie uit nadat alle regels gelezen zijn; NR is dan het totale aantal regels. awk '{print NR}' (zonder END) drukt daarentegen bij elke regel het regelnummer af. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 28)_
+  - voorbeelden: `awk 'END {print NR}' snp151annotation.txt`
+- `awk 'NR > 1 {s=0; for (i=2; i<=NF; i++) s=s+$i; print s}' bestand` — **Som per regel berekenen**: Slaat de kopregel over en telt per regel (gen) alle waarden vanaf kolom 2 op, dus de expressiewaarden van alle stalen. Daarna wordt de som afgedrukt. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 36)_
+  - voorbeelden: `awk 'NR > 1 {s=0; for (i=2; i<=NF; i++) s=s+$i; print s}' arrayDat.txt`
+- `awk 'NR > 1 {s=0; n=NF-1; for (i=2; i<=NF; i++) s=s+$i; s=s/n; print s}' bestand` — **Gemiddelde per regel berekenen**: Zelfde als de som per regel, maar deelt de som door het aantal stalen (NF-1, want kolom 1 is de ProbeID). Zo krijg je de gemiddelde expressie per gen. _(bron: Chapter 7 - Tables and text file manipulation.pptx, dia 36)_
+  - voorbeelden: `awk 'NR > 1 {s=0; n=NF-1; for (i=2; i<=NF; i++) s=s+$i; s=s/n; print s}' arrayDat.txt`
 
 ### Reproduceerbaar werken
-- `VBoxManage startvm "rnaseq" --type headless` — **Virtuele machine zonder venster starten**: Start de VirtualBox virtuele machine met de naam rnaseq op de achtergrond, zonder grafisch venster. Daarna kun je met ssh inloggen en de analyse in de VM uitvoeren. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 8)_
+- `VBoxManage startvm "naam" --type headless` — **Virtuele machine zonder venster starten**: Start een VirtualBox virtuele machine op de achtergrond, zonder grafisch venster (bv. de VM "rnaseq"). Daarna kun je met ssh inloggen en in de VM werken. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 8)_
+  - voorbeelden: `VBoxManage startvm "rnaseq" --type headless`
 - `conda init` — **Conda in de shell activeren**: Stelt je shell zo in dat conda na het opstarten van een nieuwe terminal beschikbaar is. Dit doe je één keer na het installeren van Miniconda. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 11)_
 - `conda config --add channels bioconda` — **Kanaal toevoegen aan conda**: Voegt het kanaal bioconda toe aan de lijst waar conda pakketten zoekt. In de les voeg je na elkaar defaults, bioconda en conda-forge toe; het laatst toegevoegde kanaal krijgt de hoogste prioriteit. De volgorde staat in ~/.condarc. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 12)_
 - `conda config --set channel_priority strict` — **Strikte kanaalvolgorde instellen**: Zorgt dat conda de volgorde van de kanalen strikt volgt: een pakket wordt uit het kanaal met de hoogste prioriteit gehaald. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 12)_
@@ -540,23 +605,30 @@ Export: 2026-09-28T08:50:10Z · 940 items
 - `conda activate env_name` — **Conda-omgeving activeren**: Activeert de omgeving: vanaf nu gebruik je de tools die in die omgeving geïnstalleerd zijn. De naam van de omgeving verschijnt in je prompt. Met --stack activeer je een omgeving bovenop een andere. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 13)_
 - `conda deactivate` — **Conda-omgeving verlaten**: Schakelt de actieve conda-omgeving uit, zodat je terug in de vorige omgeving zit. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 13)_
 - `conda env list` — **Alle conda-omgevingen tonen**: Toont een lijst van alle conda-omgevingen op het systeem; de actieve omgeving is gemarkeerd met een *. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 13)_
-- `conda install --yes seqtk=1.3` — **Pakket installeren in omgeving**: Installeert het pakket seqtk (een tool om FASTA- of FASTQ-sequenties te verwerken) in versie 1.3 in de actieve omgeving. Zonder =versie krijg je de nieuwste versie. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 14)_
+- `conda install --yes pakket=versie` — **Pakket installeren in omgeving**: Installeert een pakket in de actieve omgeving, bv. conda install --yes seqtk=1.3. Zonder =versie krijg je de nieuwste versie. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 14)_
+  - voorbeelden: `conda install --yes seqtk=1.3`
 - `conda list` — **Geïnstalleerde pakketten tonen**: Toont alle pakketten in de actieve omgeving, met hun versie en het kanaal waaruit ze komen. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 14)_
-- `conda env export > my_tool.yaml` — **Omgeving exporteren naar bestand**: Schrijft een beschrijving van de actieve omgeving (pakketten en versies) naar een yaml-bestand. Zo kun je je omgeving delen, bv. bij een publicatie. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 15)_
+- `conda env export > bestand.yaml` — **Omgeving exporteren naar bestand**: Schrijft een beschrijving van de actieve omgeving (pakketten en versies) naar een yaml-bestand. Zo kun je je omgeving delen, bv. bij een publicatie. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 15)_
+  - voorbeelden: `conda env export > my_tool.yaml`
 - `conda env create -n <env-name> --file <environment.yaml>` — **Omgeving maken uit yaml-bestand**: Maakt op een ander systeem een nieuwe omgeving met exact de pakketten en versies uit het yaml-bestand. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 15)_
 - `conda env update --file <environment.yaml>` — **Bestaande omgeving bijwerken**: Installeert de pakketten uit het yaml-bestand in een bestaande omgeving. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 15)_
 - `chroot map` — **Programma opsluiten in een map**: Start een shell (of commando) waarbij de opgegeven map als root-map (/) geldt. Het programma kan niet buiten die map, zoals in een gevangenis (jail). Dit is een eenvoudige voorloper van containers; meestal zijn rootrechten nodig. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 17)_
 - `sudo docker run hello-world` — **Docker-installatie testen**: Start een container van het testimage hello-world. Als het image nog niet lokaal staat, wordt het eerst gedownload. De boodschap bevestigt dat Docker werkt. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 22)_
-- `docker pull ubuntu` — **Image downloaden uit registry**: Downloadt het ubuntu-basisimage van Docker Hub naar je computer. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 24)_
-- `docker pull biocontainers/fastqc:v0.11.9_cv8` — **Specifieke imageversie downloaden**: Downloadt het fastqc-image van BioContainers in een vaste versie. Het deel na de dubbele punt is de tag (versie); zo gebruik je altijd exact dezelfde tool. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 24)_
+- `docker pull image` — **Image downloaden uit registry**: Downloadt een image van Docker Hub naar je computer, bv. docker pull ubuntu. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 24)_
+  - voorbeelden: `docker pull ubuntu`
+- `docker pull image:tag` — **Specifieke imageversie downloaden**: Downloadt een image in een vaste versie, bv. docker pull biocontainers/fastqc:v0.11.9_cv8. Het deel na de dubbele punt is de tag (versie); zo gebruik je altijd exact dezelfde tool. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 24)_
+  - voorbeelden: `docker pull biocontainers/fastqc:v0.11.9_cv8`
 - `docker images` — **Lokale images oplijsten**: Toont alle images die lokaal op je computer staan, met hun naam, tag, IMAGE ID, ouderdom en grootte. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 25)_
 - `docker rmi -f IMAGE_ID` — **Image verwijderen**: Verwijdert een image van je computer. Met -f forceer je het verwijderen, ook als er nog een (gestopte) container van dat image bestaat. Het IMAGE_ID vind je met docker images. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 25)_
-- `docker run ubuntu /bin/ls` — **Commando in container uitvoeren**: Start een container van het ubuntu-image en voert er ls in uit; je ziet de inhoud van de root-map (/) van de container. De uitvoer gaat naar stdout en daarna stopt de container. Dit is een container op de voorgrond. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 26)_
+- `docker run image commando` — **Commando in container uitvoeren**: Start een container van een image en voert er een commando in uit; bv. docker run ubuntu /bin/ls toont de inhoud van de root-map (/) van de container. De uitvoer gaat naar stdout en daarna stopt de container (voorgrond). _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 26)_
+  - voorbeelden: `docker run ubuntu /bin/ls`
 - `docker run --rm --name` — **Container benoemen en opruimen**: Nuttige opties bij docker run: --name geeft de container een eigen naam, zodat je hem later makkelijk kunt aanspreken. --rm verwijdert de container automatisch zodra hij stopt. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 27)_
 - `docker run -v /path/in/host/:/path/in/container/` — **Hostmap in container koppelen**: Koppelt (bind mount) een map van je eigen computer aan een map in de container, bv. -v ~/data/:/data. Zo kan de container, die anders volledig afgeschermd is, je bestanden lezen en resultaten wegschrijven. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 27)_
 - `docker run --rm -u="$(id -u):$(id -g)" -v ~/fastq/:/data -w="/data" biocontainers/fastqc:v0.11.9_cv8 /bin/bash -c "fastqc WT*.fq.gz"` — **FastQC draaien in een container**: Voert fastqc uit op de fastq-bestanden in ~/fastq met het fastqc-image. De map wordt gekoppeld aan /data en /data is de werkmap; door je eigen gebruikers- en groeps-ID te gebruiken zijn de resultaatbestanden van jou. De html-resultaten open je daarna in je browser. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 28)_
-- `docker run --detach ubuntu sleep 100` — **Container op achtergrond starten**: Start de container losgekoppeld (detached) op de achtergrond, als een daemon. Handig voor lange processen; je terminal blijft vrij. Je krijgt enkel het container-ID te zien. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 29)_
-- `docker run -it ubuntu /bin/bash` — **Interactief in container werken**: Start een container en opent er een bash-shell in, zodat je zelf commando's in de container kunt typen. Met exit verlaat je de container. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 29)_
+- `docker run --detach image commando` — **Container op achtergrond starten**: Start de container losgekoppeld (detached) op de achtergrond, bv. docker run --detach ubuntu sleep 100. Handig voor lange processen; je terminal blijft vrij. Je krijgt enkel het container-ID te zien. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 29)_
+  - voorbeelden: `docker run --detach ubuntu sleep 100`
+- `docker run -it image /bin/bash` — **Interactief in container werken**: Start een container en opent er een bash-shell in, zodat je zelf commando's in de container kunt typen. Met exit verlaat je de container. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 29)_
+  - voorbeelden: `docker run -it ubuntu /bin/bash`
 - `docker ps` — **Draaiende containers tonen**: Toont de containers die op dit moment draaien, met onder andere hun CONTAINER ID en naam. Met docker ps -a zie je alle containers, ook de gestopte. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 30)_
 - `docker stop CONTAINER_ID` — **Draaiende container stoppen**: Stopt een container die draait. Je kunt het container-ID (via docker ps) of de naam gebruiken, bv. docker stop webserver. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 30)_
 - `docker exec CONTAINER_ID command` — **Commando in draaiende container**: Voert een nieuw commando uit in een container die al draait, bv. docker exec webserver curl localhost:80. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 30)_
@@ -564,13 +636,16 @@ Export: 2026-09-28T08:50:10Z · 940 items
 - `docker system prune` — **Alles van Docker opruimen**: Verwijdert in één keer alle gestopte containers, ongebruikte netwerken en ongebruikte (dangling) images en build-cache. Docker vraagt eerst om bevestiging. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 31)_
 - `docker run --rm --detach --name webserver nginx` — **Webserver-container starten**: Start een nginx-webserver in een container op de achtergrond met de naam webserver. Omdat de container afgeschermd is, kun je hem van op je eigen systeem niet bereiken; binnen de container wel (docker exec webserver curl localhost:80). _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 32)_
 - `docker run --detach --name webserver --publish 80:80 nginx` — **Containerpoort openzetten naar host**: Start de webserver en koppelt poort 80 van je computer aan poort 80 in de container, zodat curl localhost:80 op je eigen systeem nu wel werkt. Met -p 8080:80 is de server op de host via poort 8080 bereikbaar, terwijl hij in de container op poort 80 blijft. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 33)_
-- `FROM ubuntu:18.04` — **Basis-image kiezen in Dockerfile**: Eerste instructie in een Dockerfile: het parent-image waarop je nieuwe image gebouwd wordt (de basislaag). _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 35)_
-- `RUN apt install -y wget` — **Commando uitvoeren in Dockerfile**: Instructie in een Dockerfile die tijdens het bouwen een commando uitvoert (als root), hier wget installeren. Elke regel in de Dockerfile vormt een nieuwe laag in het image. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 35)_
+- `FROM image:tag` — **Basis-image kiezen in Dockerfile**: Eerste instructie in een Dockerfile: het parent-image waarop je nieuwe image gebouwd wordt (de basislaag), bv. FROM ubuntu:18.04. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 35)_
+  - voorbeelden: `FROM ubuntu:18.04`
+- `RUN commando` — **Commando uitvoeren in Dockerfile**: Instructie in een Dockerfile die tijdens het bouwen een commando uitvoert (als root), bv. RUN apt install -y wget. Elke regel in de Dockerfile vormt een nieuwe laag in het image. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 35)_
+  - voorbeelden: `RUN apt install -y wget`
 - `docker compose up` — **Compose-containers bouwen en starten**: Leest het bestand docker-compose.yml in de huidige map en bouwt en start alle containers die erin beschreven staan. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 38)_
 - `docker compose down` — **Compose-containers stoppen en verwijderen**: Stopt de containers van het compose-bestand in de huidige map en verwijdert ze, samen met de bijhorende netwerken (en eventueel images en volumes). _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 39)_
 - `docker compose ps` — **Compose-containers oplijsten**: Toont de draaiende containers van Docker compose. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 39)_
 - `docker compose exec` — **Commando in compose-container**: Voert een commando uit in een draaiende container van Docker compose, zoals docker exec, bv. docker compose exec dienstnaam bash. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 39)_
-- `podman run ubuntu /bin/ls` — **Container draaien met Podman**: Doet hetzelfde als docker run ubuntu /bin/ls, maar met Podman: bijna alle docker-commando's werken door docker te vervangen door podman. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 41)_
+- `podman run image commando` — **Container draaien met Podman**: Doet hetzelfde als docker run, maar met Podman (bv. podman run ubuntu /bin/ls): bijna alle docker-commando's werken door docker te vervangen door podman. _(bron: Chapter 8 - Reproducible bioinformatics research in Linux_student.pptx, dia 41)_
+  - voorbeelden: `podman run ubuntu /bin/ls`
 
 ### Programma's & processen
 - `code .` — **Visual Studio Code openen in huidige map**: Dit commando start Visual Studio Code en opent de huidige map (aangegeven met '.') als project. Handig om code te bewerken met een grafische editor.
@@ -590,89 +665,121 @@ Export: 2026-09-28T08:50:10Z · 940 items
 - `show spheres, hetatm` — **HETATM-atomen als bollen tonen**: Toont alle HETATM-atomen (liganden, water, zouten, gemodificeerde residuen) als bollen. Vergeet niet de selectie na de komma te vermelden, anders geldt het voor alles. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 26)_
 - `show representatie, selectie` — **Algemene vorm van show**: Algemene vorm van show (en hide): eerst de weergave, dan welke atomen. Mogelijke weergaven zijn lines, sticks, spheres, surface, mesh, dots, ribbon en cartoon. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 27)_
 - `Wizard > Demo > Representations` — **Demo van alle weergaven**: Via het hoofdmenu Wizard > Demo > Representations toont PyMOL een voorbeeld van alle weergaven naast elkaar: lines, sticks, spheres, surface, mesh, dots, ribbon en cartoon. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 27)_
-- `hide cartoon, chain A` — **Cartoon van keten A verbergen**: Verbergt enkel de cartoonweergave van keten A; de andere ketens blijven zichtbaar. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 28)_
-- `show ribbon, chain A` — **Keten A als lint tonen**: Toont keten A als ribbon: een dunne lijn die de ruggengraat (backbone) van de keten volgt. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 28)_
+- `hide representatie, selectie` — **Weergave van een deel verbergen**: Verbergt één weergave enkel voor een deel van de structuur; de rest blijft zichtbaar. Bv. hide cartoon, chain A verbergt alleen de cartoon van keten A. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 28)_
+  - voorbeelden: `hide cartoon, chain A`
+- `show ribbon, selectie` — **Als lint tonen**: Toont een selectie als ribbon: een dunne lijn die de ruggengraat (backbone) volgt. Bv. show ribbon, chain A. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 28)_
+  - voorbeelden: `show ribbon, chain A`
 - `Display > Sequence` — **Sequentie boven het beeld tonen**: Toont de aminozuursequentie bovenaan het canvas. Klikken op residuen in de sequentie selecteert ze in de structuur. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 33)_
 - `show surface` — **Moleculair oppervlak tonen**: Toont het moleculaire oppervlak van de structuur. Handig om bv. een bindingsholte te zien. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 38)_
-- `show sticks, resi 511-521` — **Bereik residuen als sticks**: Toont de residuen 511 tot 521 als staafjes, bv. om de dsRNA-interactieplaats van TLR3 (met N515 en N517) in detail te bekijken. _(bron: SB-workshop-2-molecular-visualization.pptx, dia 5)_
+- `show sticks, resi begin-einde` — **Reeks residuen als sticks**: Toont een reeks residuen als staafjes, bv. om een bindingsplaats in detail te bekijken. Bv. show sticks, resi 511-521 (dsRNA-bindingsplaats van TLR3). _(bron: SB-workshop-2-molecular-visualization.pptx, dia 5)_
+  - voorbeelden: `show sticks, resi 511-521`
 - `set all_states, on` — **Alle NMR-modellen tegelijk tonen**: Toont alle states (modellen/conformeren) van een object tegelijk, bv. het NMR-ensemble van 2JQY, zodat je de verschillen tussen de conformeren ziet. Met set all_states, off zie je weer één model. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 3)_
-- `show surface, chain A` — **Oppervlak van één keten**: Toont enkel keten A als moleculair oppervlak, terwijl je de andere keten bv. als cartoon toont. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 6)_
-- `show sticks, resn TRP and resi 2` — **Tryptofaan 2 als sticks**: Toont het tryptofaan op positie 2 (in de adhesie-arm van cadherine) als staafjes, in beide ketens. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 6)_
+- `show surface, selectie` — **Oppervlak van een deel tonen**: Toont enkel een deel (bv. één keten) als moleculair oppervlak, terwijl je de rest bv. als cartoon toont. Bv. show surface, chain A. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 6)_
+  - voorbeelden: `show surface, chain A`
+- `show sticks, resn RES and resi residunummer` — **Eén bepaald residu als sticks**: Toont één residu, gekozen op naam én nummer, als staafjes (in alle ketens). Bv. show sticks, resn TRP and resi 2 voor tryptofaan 2 in cadherine. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 6)_
+  - voorbeelden: `show sticks, resn TRP and resi 2`
 - `show sticks, resn DA+DC+DG+DT` — **DNA als staafjes tonen**: Toont alle DNA-nucleotiden als staafjes. Met + som je meerdere residunamen op binnen één resn. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 7)_
-- `alter resi 100-103, ss='L'` — **Secundaire structuur handmatig wijzigen**: Verandert de secundaire structuur van residuen, bv. een korte helix die als lus (L) getoond moet worden. Daarna voer je rebuild uit om de cartoon opnieuw te tekenen. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 12)_
+- `alter selectie, ss='type'` — **Secundaire structuur handmatig wijzigen**: Verandert de secundaire structuur van residuen, bv. een korte helix die als lus getoond moet worden. Daarna voer je rebuild uit om de cartoon opnieuw te tekenen. Bv. alter resi 100-103, ss='L'. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 12)_
+  - voorbeelden: `alter resi 100-103, ss='L'`
 
 ### Laden & bewaren
-- `png eiwit.png, dpi=300, ray=1` — **Bewaar mooie afbeelding**: Rendert het beeld in hoge kwaliteit en bewaart het als eiwit.png met 300 dpi, geschikt voor een verslag.
+- `png bestand.png, dpi=300, ray=1` — **Bewaar mooie afbeelding**: Rendert het beeld in hoge kwaliteit en bewaart het als PNG met 300 dpi, geschikt voor een verslag. Bv. png eiwit.png, dpi=300, ray=1.
+  - voorbeelden: `png eiwit.png, dpi=300, ray=1`
 - `fetch PDB-code` — **Structuur laden uit de PDB**: Downloadt een structuur rechtstreeks van de Protein Data Bank via internet en laadt ze in PyMOL. Het enige argument is de PDB-code. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 23)_
   - voorbeelden: `fetch 3CIG`, `fetch 1ubq`
 - `File > Open` — **Coördinatenbestand openen van laptop**: Via het menu File > Open kies je een bestand met atoomcoördinaten (bv. een .pdb- of .cif-bestand) dat al op je computer staat. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 23)_
-- `delete 3CIG` — **Object verwijderen**: Verwijdert een object (hier de structuur 3CIG) uit PyMOL. Handig om opnieuw te beginnen of een selectie op te ruimen. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 26)_
-- `split_states 2JQY` — **NMR-modellen in aparte objecten**: Zet elk model (state) van een NMR-structuur in een apart object, zodat je ze apart kunt kleuren, tonen of op elkaar passen. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 3)_
-- `save sessie.pse` — **Sessie bewaren via commando**: Bewaart de volledige PyMOL-sessie als .pse-bestand (hetzelfde als File > Save Session As...). Met een extensie zoals .pdb bewaar je enkel de coördinaten. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 6)_
+- `delete object` — **Object verwijderen**: Verwijdert een object of selectie uit PyMOL. Handig om opnieuw te beginnen of op te ruimen. Bv. delete 3CIG. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 26)_
+  - voorbeelden: `delete 3CIG`
+- `split_states object` — **NMR-modellen in aparte objecten**: Zet elk model (state) van een NMR-structuur in een apart object, zodat je ze apart kunt kleuren, tonen of op elkaar passen. Bv. split_states 2JQY. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 3)_
+  - voorbeelden: `split_states 2JQY`
+- `save bestand.pse` — **Sessie bewaren via commando**: Bewaart de volledige PyMOL-sessie als .pse-bestand (hetzelfde als File > Save Session As...). Met een extensie zoals .pdb bewaar je enkel de coördinaten. Bv. save sessie.pse. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 6)_
   - werkt ook: `File > Save Session As...` — save sessie.pse en File > Save Session As bewaren allebei de sessie.
+  - voorbeelden: `save sessie.pse`
 
 ### Selecties
-- `select actief, resi 40-50` — **Selecteer residuen 40-50**: Maakt een selectie met de naam 'actief' van residu 40 tot en met 50, die je daarna kan kleuren of tonen.
+- `select naam, resi begin-einde` — **Selecteer een reeks residuen**: Maakt een selectie met een zelfgekozen naam van een reeks opeenvolgende residuen, die je daarna kan kleuren of tonen. Bv. select actief, resi 40-50.
+  - voorbeelden: `select actief, resi 40-50`
 - `create nieuw_object, selectie` — **Nieuw object uit selectie**: Maakt een nieuw, apart object van een selectie, bv. create achain, chain A. Dat object verschijnt in de objectlijst en kun je apart tonen, verbergen en kleuren. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 22)_
   - voorbeelden: `create tlr3, 1ZIW and (not hetatm)`, `create nag, resn NAG`
 - `hetatm` — **Niet-standaard atomen selecteren**: Sleutelwoord dat alle atomen selecteert die in het PDB-bestand als HETATM staan: liganden, water, zouten, gemodificeerde residuen. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 26)_
-- `select ///A/10` — **Residu 10 van keten A**: Hiërarchische selectie van links naar rechts: /model/segment/chain/residue/atom. Lege velden betekenen 'alles'. Dit selecteert residu 10 in keten A. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 30)_
-- `select ////10-20/CA` — **CA-atomen van residuen 10-20**: Hiërarchische selectie van de atomen met naam CA (α-koolstof) in residuen 10 tot 20, in eender welke keten. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 30)_
-- `select 42/C,N` — **C- en N-atoom van residu 42**: Hiërarchische selectie van rechts naar links zonder beginnende /: residu/atoom. Selecteert de atomen C en N in residu 42. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 30)_
+- `select ///keten/residunummer` — **Residu in keten (hiërarchisch)**: Hiërarchische selectie van links naar rechts: /model/segment/chain/residue/atom. Lege velden betekenen 'alles'. Bv. select ///A/10 selecteert residu 10 in keten A. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 30)_
+  - voorbeelden: `select ///A/10`
+- `select ////begin-einde/atoomnaam` — **Atomen per naam in residureeks**: Hiërarchische selectie van atomen met een bepaalde naam in een reeks residuen, in eender welke keten. Bv. select ////10-20/CA geeft de α-koolstoffen van residu 10 tot 20. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 30)_
+  - voorbeelden: `select ////10-20/CA`
+- `select residunummer/atoomnamen` — **Atomen van één residu**: Hiërarchische selectie van rechts naar links zonder beginnende /: residu/atoom. Bv. select 42/C,N selecteert de atomen C en N in residu 42. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 30)_
+  - voorbeelden: `select 42/C,N`
 - `resi` — **Selecteren op residunummer**: Sleutelwoord om residuen te selecteren op hun nummer (residue index), bv. resi 10 of een bereik resi 10:20. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 31)_
 - `resn` — **Selecteren op residunaam**: Sleutelwoord om residuen te selecteren op hun naam (residue name), bv. resn ALA voor alanine of resn HEM voor de heemgroep. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 31)_
-- `select chain B and resi 10:20` — **Residuen 10-20 van keten B**: Algebraïsche selectie: termen zoals chain en resi worden gecombineerd met and. De selectie heet standaard (sele) en wordt in het beeld aangeduid. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 31)_
+- `select chain keten and resi begin:einde` — **Residureeks in een keten**: Algebraïsche selectie: termen zoals chain en resi worden gecombineerd met and. De selectie heet standaard (sele). Bv. select chain B and resi 10:20. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 31)_
+  - voorbeelden: `select chain B and resi 10:20`
 - `and / or / not` — **Selecties combineren**: Logische operatoren om algebraïsche selecties te combineren: and (beide), or (één van beide), not (uitsluiten). _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 31)_
 - `elem` — **Selecteren op chemisch element**: Sleutelwoord om atomen te selecteren op element, bv. elem O voor alle zuurstofatomen. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 32)_
 - `name` — **Selecteren op atoomnaam**: Sleutelwoord om atomen te selecteren op hun naam in het PDB-bestand, bv. name CA voor de α-koolstofatomen of name N voor de backbone-stikstof. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 32)_
 - `all` — **Alle atomen selecteren**: Sleutelwoord dat alle atomen van alle objecten selecteert, bv. in hide all. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 32)_
-- `select resn ALA and name N` — **Backbone-stikstof van alanines**: Selecteert de backbone-stikstofatomen (name N) van alle alanineresiduen. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 32)_
-- `select elem O and not name OH` — **Zuurstofatomen behalve hydroxylen**: Selecteert alle zuurstofatomen behalve de atomen met naam OH (hydroxylgroepen). _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 32)_
+- `select resn RES and name atoomnaam` — **Bepaald atoom in bepaald residutype**: Selecteert één soort atoom (op naam) in alle residuen van één type. Bv. select resn ALA and name N geeft de backbone-stikstof van alle alanines. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 32)_
+  - voorbeelden: `select resn ALA and name N`
+- `select elem element and not name atoomnaam` — **Element selecteren met uitzondering**: Selecteert alle atomen van een element, behalve de atomen met een bepaalde naam. Bv. select elem O and not name OH: alle zuurstoffen behalve hydroxylen. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 32)_
+  - voorbeelden: `select elem O and not name OH`
 - `around` — **Atomen in de buurt selecteren**: Selecteert atomen binnen een bepaalde afstand (in ångström) van een bestaande selectie, bv. hetatm around 5. Handig om te zien welke residuen betrokken zijn in een bindingsplaats. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 32)_
 - `chain` — **Selecteren op keten**: Sleutelwoord om atomen van een bepaalde keten te selecteren, bv. chain A. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 33)_
-- `select byres (elem Ca around 3.5)` — **Residuen rond calcium selecteren**: Selecteert alle volledige residuen (byres) met minstens één atoom binnen 3,5 Å van een calciumion. Zo vind je welke residuen calcium binden. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 5)_
-- `findseq DDMPNAL, achain, found` — **Sequentiemotief zoeken in structuur**: Zoekt een sequentiemotief in een object en maakt er een selectie van. Werkt pas nadat je run findseq.py hebt uitgevoerd (script van de PyMOL-wiki). Kleine letters en reguliere expressies (bv. F.*W) werken ook. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 9)_
+- `select byres (selectie around afstand)` — **Volledige residuen rond iets selecteren**: Selecteert alle volledige residuen (byres) met minstens één atoom binnen een afstand (in Å) van een selectie. Bv. select byres (elem Ca around 3.5) toont welke residuen calcium binden. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 5)_
+  - voorbeelden: `select byres (elem Ca around 3.5)`
+- `findseq motief, object, naam` — **Sequentiemotief zoeken in structuur**: Zoekt een sequentiemotief in een object en maakt er een selectie van. Werkt pas nadat je run findseq.py hebt uitgevoerd. Kleine letters en reguliere expressies (bv. F.*W) werken ook. Bv. findseq DDMPNAL, achain, found. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 9)_
+  - voorbeelden: `findseq DDMPNAL, achain, found`
 
 ### Kleuren
-- `color red, hetatm` — **Alle niet-eiwitatomen rood kleuren**: Voorbeeld van de basisvorm van een PyMOL-commando: een sleutelwoord gevolgd door één of meer argumenten, gescheiden door komma's. Dit kleurt alle HETATM-atomen (niet-eiwit, bv. liganden) rood. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 21)_
+- `color kleur, hetatm` — **Alle niet-eiwitatomen kleuren**: Kleurt alle HETATM-atomen (niet-eiwit, bv. liganden) in een kleur naar keuze. Ook een voorbeeld van de basisvorm van een PyMOL-commando: sleutelwoord, dan argumenten gescheiden door komma's. Bv. color red, hetatm. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 21)_
+  - voorbeelden: `color red, hetatm`
 - `C > by ss` — **Kleuren volgens secundaire structuur**: In het Color-menu (knop C) naast een object kies je by ss om helices, β-strengen en lussen elk een eigen kleur te geven. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 25)_
-- `color kleur, selectie` — **Keten A cyaan kleuren**: Geeft alle atomen van keten A de kleur cyaan. Zo kun je verschillende ketens van elkaar onderscheiden. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 28)_
+- `color kleur, selectie` — **Selectie een kleur geven**: Geeft alle atomen van een selectie één kleur. Zo kun je bv. verschillende ketens van elkaar onderscheiden. Bv. color cyan, chain A. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 28)_
   - voorbeelden: `color cyan, chain A`, `color red, chain A`, `color skyblue, chain A`
-- `color magenta, chain B + chain C + chain D` — **Meerdere ketens tegelijk kleuren**: Kleurt de ketens B, C en D in één keer magenta. Met + voeg je selecties samen (zoals or). _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 28)_
-- `color orange, resn DA` — **DNA-nucleotiden per type kleuren**: Kleurt alle adenine-nucleotiden (residunaam DA) oranje. Doe hetzelfde met een andere kleur voor DG, DT en DC om elk type nucleotide een eigen kleur te geven. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 7)_
+- `color kleur, chain keten1 + chain keten2` — **Meerdere ketens tegelijk kleuren**: Kleurt meerdere ketens in één keer. Met + voeg je selecties samen (zoals or). Bv. color magenta, chain B + chain C + chain D. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 28)_
+  - voorbeelden: `color magenta, chain B + chain C + chain D`
+- `color kleur, resn nucleotide` — **DNA-nucleotiden per type kleuren**: Kleurt alle nucleotiden van één type. Herhaal met een andere kleur voor elk type (DA, DC, DG, DT) zodat elk een eigen kleur krijgt. Bv. color orange, resn DA. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 7)_
+  - voorbeelden: `color orange, resn DA`
 
 ### Instellingen
 - `Setting > Edit All...` — **Alle parameters bekijken en wijzigen**: Opent een lijst met alle parameters die je in PyMOL kunt instellen, zoals sphere_scale of transparency. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 36)_
-- `set sphere_scale, 0.8, chain B` — **Bolgrootte van keten B verkleinen**: Stelt de grootte van de bollen (show spheres) in op 0,8 keer de normale grootte, enkel voor keten B. Algemene vorm: set parameter, waarde, selectie. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 36)_
-- `set transparency, 0.4` — **Oppervlak doorschijnend maken**: Maakt het oppervlak (surface) voor 40% doorzichtig, zodat de cartoon eronder zichtbaar blijft. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 38)_
+- `set sphere_scale, waarde, selectie` — **Bolgrootte aanpassen**: Stelt de grootte van de bollen (show spheres) in, eventueel enkel voor een selectie. 1 is de normale grootte. Bv. set sphere_scale, 0.8, chain B. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 36)_
+  - voorbeelden: `set sphere_scale, 0.8, chain B`
+- `set transparency, waarde` — **Oppervlak doorschijnend maken**: Maakt het oppervlak (surface) doorzichtig, zodat de cartoon eronder zichtbaar blijft. Bv. set transparency, 0.4 = 40% doorzichtig. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 38)_
+  - voorbeelden: `set transparency, 0.4`
 - `File > Edit pymolrc` — **Opstartinstellingen bewerken**: Opent het bestand .pymolrc in je thuismap. De commando's daarin voert PyMOL automatisch uit bij elke start, bv. een witte achtergrond. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 3)_
-- `bg_color white` — **Witte achtergrond instellen**: Maakt de achtergrond van het canvas wit. In .pymolrc wordt dit de standaard bij elke start. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 3)_
+- `bg_color kleur` — **Achtergrondkleur instellen**: Stelt de achtergrondkleur van het canvas in. In .pymolrc wordt dit de standaard bij elke start. Bv. bg_color white. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 3)_
   - werkt ook: `Display > Background` — bg_color en Display > Background stellen allebei de achtergrondkleur in.
+  - voorbeelden: `bg_color white`
 - `set seq_view_format, 1` — **Drielettercodes in sequentie**: Toont in de sequentieweergave (Display > Sequence) de residuen met drielettercodes (bv. ALA) in plaats van eenlettercodes. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 3)_
 
 ### Afbeeldingen
-- `ray 1200,800` — **Figuur renderen met ray tracing**: Maakt met de ingebouwde ray tracing een mooie, scherpe figuur met schaduwen, hier met een resolutie van 1200 op 800 pixels. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 37)_
-- `png figuur.png` — **Beeld opslaan als PNG**: Bewaart het huidige beeld (bv. na ray) als PNG-afbeelding, zonder via het menu te gaan. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 6)_
+- `ray breedte,hoogte` — **Figuur renderen met ray tracing**: Maakt met de ingebouwde ray tracing een mooie, scherpe figuur met schaduwen, in de gekozen resolutie. Bv. ray 1200,800. _(bron: SB-01-introduction-workshop-1-molecular-visualization.pptx, dia 37)_
+  - voorbeelden: `ray 1200,800`
+- `png bestand.png` — **Beeld opslaan als PNG**: Bewaart het huidige beeld (bv. na ray) als PNG-afbeelding, zonder via het menu te gaan. Bv. png figuur.png. _(bron: SB-workshop-3-molecular-visualization.pptx, dia 6)_
   - werkt ook: `File > Export Image As > PNG...` — png-commando en File > Export Image As > PNG bewaren allebei het beeld als PNG.
+  - voorbeelden: `png figuur.png`
 
 ### Vergelijken
-- `align object1, object2` — **Structuur op andere structuur passen**: Legt de eerste structuur (muis-TLR3) zo goed mogelijk op de tweede (humaan TLR3) door ze te verschuiven en draaien. Daarna kun je verschillen tussen beide zichtbaar maken, bv. met een andere kleur. PyMOL toont de RMSD als maat voor het verschil. _(bron: SB-workshop-2-molecular-visualization.pptx, dia 2)_
+- `align object1, object2` — **Structuur op andere structuur passen**: Legt de eerste structuur zo goed mogelijk op de tweede door ze te verschuiven en draaien. PyMOL toont de RMSD als maat voor het verschil. Bv. align 3CIG, 1ZIW (muis-TLR3 op humaan TLR3). _(bron: SB-workshop-2-molecular-visualization.pptx, dia 2)_
   - voorbeelden: `align 3CIG, 1ZIW`, `align 2IWW, 2JQY`, `align 1RE2, 1HFX`
-- `align 2LHB and resn HEM, 3TM3 and resn HEM` — **Structuren superponeren op heemgroep**: Legt twee hemoglobinestructuren over elkaar door enkel de heemgroepen (residunaam HEM) uit te lijnen. Handig wanneer de sequenties te verschillend zijn om de volledige ketens uit te lijnen. _(bron: SB-07-structural-functional-assignment.pptx, dia 29)_
+- `align object1 and resn HEM, object2 and resn HEM` — **Structuren superponeren op heemgroep**: Legt twee structuren over elkaar door enkel de heemgroepen (residunaam HEM) uit te lijnen. Handig wanneer de sequenties te verschillend zijn voor een volledige uitlijning. Bv. align 2LHB and resn HEM, 3TM3 and resn HEM. _(bron: SB-07-structural-functional-assignment.pptx, dia 29)_
+  - voorbeelden: `align 2LHB and resn HEM, 3TM3 and resn HEM`
 
 ### Metingen
-- `distance hbonds, sel1, sel2, mode=2` — **Waterstofbruggen tonen**: Tekent stippellijnen voor mogelijke polaire contacten (waterstofbruggen) tussen twee selecties en bewaart ze als object hbonds. Via de A-knop > find > polar contacts kan hetzelfde met de muis. _(bron: SB-workshop-2-molecular-visualization.pptx, dia 16)_
+- `distance naam, selectie1, selectie2, mode=2` — **Waterstofbruggen tonen**: Tekent stippellijnen voor mogelijke polaire contacten (waterstofbruggen) tussen twee selecties en bewaart ze als nieuw object. Bv. distance hbonds, sel1, sel2, mode=2. Via de A-knop > find > polar contacts kan hetzelfde met de muis. _(bron: SB-workshop-2-molecular-visualization.pptx, dia 16)_
+  - voorbeelden: `distance hbonds, sel1, sel2, mode=2`
 
 ### Scripts
 - `# commentaar` — **Commentaar in script**: Een regel die met # begint is commentaar en wordt niet uitgevoerd. Zet commentaar in PyMOL-scripts op een aparte regel, niet achter code. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 5)_
 - `from pymol import cmd` — **PyMOL-commando's in Python laden**: Eerste regel van een Python-script voor PyMOL: importeert de module cmd. Daarna roep je elk PyMOL-commando op als cmd.functienaam(...), bv. cmd.color('red'). _(bron: SB-workshop-4-molecular-visualization.pptx, dia 5)_
-- `cmd.create('achain','chain A')` — **Object maken in Python**: Python-versie van create achain, chain A: maakt een nieuw object achain met de atomen van keten A. Argumenten staan tussen haakjes en aanhalingstekens. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 5)_
-- `cmd.bg_color('white')` — **Witte achtergrond in Python**: Python-versie van bg_color white: maakt de achtergrond wit. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 5)_
-- `cmd.color('red','resn asp or resn glu')` — **Zure residuen rood kleuren**: Kleurt alle aspartaat- en glutamaatresiduen (negatief geladen) rood. Het script simplecolors.py kleurt op dezelfde manier arg, lys en his (positief) blauw. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 7)_
+- `cmd.create('naam','selectie')` — **Object maken in Python**: Python-versie van create naam, selectie: maakt een nieuw object met de atomen van een selectie. Argumenten staan tussen haakjes en aanhalingstekens. Bv. cmd.create('achain','chain A'). _(bron: SB-workshop-4-molecular-visualization.pptx, dia 5)_
+  - voorbeelden: `cmd.create('achain','chain A')`
+- `cmd.bg_color('kleur')` — **Achtergrondkleur in Python**: Python-versie van bg_color: stelt de achtergrondkleur in. Bv. cmd.bg_color('white'). _(bron: SB-workshop-4-molecular-visualization.pptx, dia 5)_
+  - voorbeelden: `cmd.bg_color('white')`
+- `cmd.color('kleur','selectie')` — **Kleuren in Python**: Python-versie van color: geeft een selectie een kleur. Bv. cmd.color('red','resn asp or resn glu') kleurt de zure residuen rood; het script simplecolors.py kleurt zo ook arg, lys en his blauw. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 7)_
+  - voorbeelden: `cmd.color('red','resn asp or resn glu')`
 - `cmd.show('cartoon')` — **Cartoon tonen in Python**: Python-versie van show cartoon. Met een tweede argument beperk je het tot een selectie, bv. cmd.show('cartoon','achain + bchain'). _(bron: SB-workshop-4-molecular-visualization.pptx, dia 7)_
 - `cmd.hide('lines')` — **Lijnen verbergen in Python**: Python-versie van hide lines: verbergt de standaard lijnenweergave. Met cmd.hide('all') verberg je alles. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 7)_
-- `run script.py` — **Python-script uitvoeren**: Voert een Python-script uit in PyMOL. Zet het script in je thuismap (dezelfde map als .pymolrc) en laad eerst een structuur, bv. fetch 1BBB. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 7)_
-  - voorbeelden: `run simplecolors.py`, `run findseq.py`
+- `run bestand.py` — **Python-script uitvoeren**: Voert een Python-script uit in PyMOL. Zet het script in je thuismap (dezelfde map als .pymolrc) en laad eerst een structuur. Bv. run simplecolors.py. _(bron: SB-workshop-4-molecular-visualization.pptx, dia 7)_
+  - voorbeelden: `run script.py`, `run simplecolors.py`, `run findseq.py`
 
 ## Structurele biologie (180)
 
@@ -953,8 +1060,8 @@ Export: 2026-09-28T08:50:10Z · 940 items
 ### Structuur
 - `<!DOCTYPE html>` — **Documenttype**: Staat helemaal bovenaan elk HTML-bestand en vertelt de browser dat het om moderne HTML gaat.
 - `! + Enter` — **HTML-basisstructuur invoegen (VS Code)**: In VS Code typ je in een leeg .html-bestand een uitroepteken en druk je op Enter (of Tab). Dan wordt de volledige HTML5-basisstructuur met doctype, html, head en body automatisch ingevuld. _(bron: 2. Introduction to HTML.pptx, dia 9)_
-- `<html lang="en"></html>` — **Begin en einde van document**: De <html>-tag en de sluitingstag </html> markeren het begin en einde van het HTML-document; alles staat hiertussen. Het lang-attribuut zegt in welke taal de pagina geschreven is. _(bron: 2. Introduction to HTML.pptx, dia 11)_
-  - voorbeelden: `</html>`
+- `<html lang="taal"></html>` — **Begin en einde van document**: De <html>-tag en de sluitingstag </html> markeren het begin en einde van het HTML-document; alles staat hiertussen. Het lang-attribuut zegt in welke taal de pagina geschreven is, bv. lang="en" (Engels) of lang="nl" (Nederlands). _(bron: 2. Introduction to HTML.pptx, dia 11)_
+  - voorbeelden: `<html lang="en"></html>`, `</html>`
 - `<head></head>` — **Metadata van de pagina**: In de <head> zet je informatie over de pagina (metadata), zoals de titel en CSS-stijlen. Het is een omhulsel rond andere tags; de inhoud ervan verschijnt niet in het browservenster zelf. _(bron: 2. Introduction to HTML.pptx, dia 12)_
 - `<body></body>` — **Zichtbare inhoud van de pagina**: Alles tussen <body> en </body> wordt in het browservenster getoond. Het is een omhulsel rond alle andere inhoudstags zoals koppen, paragrafen en afbeeldingen. _(bron: 2. Introduction to HTML.pptx, dia 15)_
   - voorbeelden: `</body>`
@@ -992,12 +1099,13 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `<div></div>` — **Algemene container (blok)**: Geen andere content mag getoond worden om diezelfde lijn. De div-tag heeft geen eigen betekenis en voegt, anders dan <p>, geen extra witruimte toe boven of onder. _(bron: 2. Introduction to HTML.pptx, dia 22)_
 - `<hr>` — **Horizontale lijn**: Tekent een horizontale lijn om secties van elkaar te scheiden. Het is een self-closing tag: er is geen sluitingstag en geen inhoud. _(bron: 2. Introduction to HTML.pptx, dia 26)_
 - `<span></span>` — **Algemene container binnen regel**: Groepeert een stukje tekst binnen een regel zodat je het met CSS kan opmaken. Net als <div> heeft span geen eigen betekenis of effect, maar het is een inline-element. _(bron: 2. Introduction to HTML.pptx, dia 36)_
+  - voorbeelden: `A butterfly starts as an <span>egg</span>, then hatches :`
 
 ### Links & media
 - `<a href="URL"></a>` — **Link naar andere website**: Maakt een klikbare hyperlink. In het href-attribuut zet je het adres (URL) van de pagina; de tekst tussen de tags is waarop je klikt. voeg ( target="blank" ) toe voor website te laten op nieuw tabblad _(bron: 2. Introduction to HTML.pptx, dia 27)_
   - voorbeelden: `<a href="https://google.com">link to google</a>`, `<a href="https://howest.be">link to howest</a>`, `<a href="https://php.net">link to php.net</a>`, `<a href="https://github.com">link to github</a>`, `<a href="https://google.com" target="blank">link to google</a>`, `<a href="https://howest.be" target="blank">link to howest</a>`, `<a href="https://php.net" target="blank"> link to php.net</a>`
-- `<a href="info/contact.html"></a>` — **Link naar pagina op eigen site**: Verwijst naar een ander HTML-bestand van je eigen website. Staat het bestand in dezelfde map, dan volstaat de naam (about.html); in een submap zet je de mapnaam ervoor (info/contact.html). _(bron: 2. Introduction to HTML.pptx, dia 28)_
-  - voorbeelden: `<a href="pagina2.html">Volgende</a>`
+- `<a href="bestand.html"></a>` — **Link naar pagina op eigen site**: Verwijst naar een ander HTML-bestand van je eigen website. Staat het bestand in dezelfde map, dan volstaat de naam (bv. about.html); in een submap zet je de mapnaam ervoor (bv. info/contact.html). _(bron: 2. Introduction to HTML.pptx, dia 28)_
+  - voorbeelden: `<a href="info/contact.html"></a>`, `<a href="pagina2.html">Volgende</a>`
 - `<img src="">` — **Afbeelding tonen**: Voegt een afbeelding in de pagina. Het src-attribuut is verplicht en geeft de locatie: een lokaal pad (bv. Mario.png in dezelfde map) of een volledige URL. _(bron: 2. Introduction to HTML.pptx, dia 37)_
   - voorbeelden: `<img src="eiwit.png" alt="Eiwitstructuur">`, `<img width="20px" src="https://ventje.com/wp-content/uploads/2026/05/background-desktop-1.jpg" alt="">`
 - `<a href="#id"></a>` — **Link naar plek op pagina**: Een link met href="#" gevolgd door een id springt naar het element met dat id op dezelfde pagina. Handig voor een inhoudstafel. _(bron: 2. Introduction to HTML.pptx, dia 57)_
@@ -1007,9 +1115,10 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 
 ### Attributen
 - `<img src="" alt="">` — **Alternatieve tekst bij afbeelding**: Het alt-attribuut geeft tekst die getoond wordt als de afbeelding niet laadt, bv. door een typfout in het pad. _(bron: 2. Introduction to HTML.pptx, dia 38)_
-- `<img src="" width="500px">` — **Breedte of hoogte van afbeelding**: Met width en height stel je de afmetingen van een afbeelding in (in pixels). Geef je enkel de breedte of enkel de hoogte, dan past de andere zich aan zodat de afbeelding niet vervormt. _(bron: 2. Introduction to HTML.pptx, dia 39)_
-  - voorbeelden: `<img src="bit-lecturers/Paco.jpg" alt="" width="200">`
+- `<img src="" width="getal">` — **Breedte of hoogte van afbeelding**: Met width en height stel je de afmetingen van een afbeelding in (in pixels), bv. width="500". Geef je enkel de breedte of enkel de hoogte, dan past de andere zich aan zodat de afbeelding niet vervormt. _(bron: 2. Introduction to HTML.pptx, dia 39)_
+  - voorbeelden: `<img src="" width="500px">`, `<img src="bit-lecturers/Paco.jpg" alt="" width="200">`
 - `class=""` — **Klasse (label) aan element geven**: Geeft een element een label (klasse) zodat je het kan aanspreken, bv. met CSS. Meerdere elementen mogen dezelfde klasse hebben en één element kan meerdere klassen hebben, gescheiden door spaties. _(bron: 2. Introduction to HTML.pptx, dia 53)_
+  - voorbeelden: `<div class="klasse1 klasse2">tekst</div>`
 - `id=""` — **Unieke naam aan element geven**: Geeft een element een unieke naam (id). Twee elementen mogen niet hetzelfde id hebben en elk element heeft maximaal één id. _(bron: 2. Introduction to HTML.pptx, dia 55)_
 - `style=""` — **CSS op één element**: Met het style-attribuut geef je CSS-opmaak aan één enkel element (inline stijl). _(bron: 2. Introduction to HTML.pptx, dia 58)_
 - `title=""` — **Tooltip bij element**: Geeft extra informatie die als tooltip verschijnt wanneer je met de muis over het element gaat. Niet verwarren met de <title>-tag, die de titel in het browsertabblad zet. _(bron: 2. Introduction to HTML.pptx, dia 59)_
@@ -1020,9 +1129,11 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `<fieldset></fieldset>` — **Kader met zichtbare rand**: Maakt een container met een zichtbare rand rond de inhoud. _(bron: 2. Introduction to HTML.pptx, dia 41)_
   - voorbeelden: `<fieldset id="Paco">`
 - `<legend></legend>` — **Titel op rand van fieldset**: Zet een titel bovenaan op de rand van een <fieldset>. Werkt enkel binnen een fieldset-tag. _(bron: 2. Introduction to HTML.pptx, dia 41)_
-- `<form action="#" method="POST"></form>` — **Formulier voor invoervelden**: Een formulier bevat de invoervelden en bepaalt waar en hoe de gegevens na verzenden naartoe gaan. Alle invoervelden (<input>, <select>, <textarea>) moeten erin staan. _(bron: 5. Dynamic Web Pages.pptx, dia 13)_
+- `<form action="URL" method="POST"></form>` — **Formulier voor invoervelden**: Een formulier bevat de invoervelden en bepaalt waar (action) en hoe (method) de gegevens na verzenden naartoe gaan. Bv. action="#" stuurt naar dezelfde pagina. Alle invoervelden (<input>, <select>, <textarea>) moeten erin staan. _(bron: 5. Dynamic Web Pages.pptx, dia 13)_
+  - voorbeelden: `<form action="#" method="POST"></form>`
 - `<input type="" name="" value="">` — **Invoerveld maken**: De belangrijkste tag voor invoervelden. Via name haal je de ingevulde waarde later op in PHP. _(bron: 5. Dynamic Web Pages.pptx, dia 19)_
-- `<input type="submit" name="submit" value="tekst">` — **Verzendknop voor formulier**: Maakt een knop die het formulier naar de PHP-server stuurt. value bepaalt de tekst op de knop (en de waarde in $_POST/$_GET); zonder value staat er 'Submit Query'. _(bron: 5. Dynamic Web Pages.pptx, dia 20)_
+- `<input type="submit" name="naam" value="tekst">` — **Verzendknop voor formulier**: Maakt een knop die het formulier naar de PHP-server stuurt. value bepaalt de tekst op de knop (en de waarde in $_POST/$_GET); zonder value staat er 'Submit Query'. _(bron: 5. Dynamic Web Pages.pptx, dia 20)_
+  - voorbeelden: `<input type="submit" name="submit" value="tekst">`
 - `<input type="text" name="">` — **Invoerveld voor korte tekst**: Een veld waarin de gebruiker een korte tekst typt. Met value kun je een standaardtekst meegeven. _(bron: 5. Dynamic Web Pages.pptx, dia 21)_
 - `<input type="number" name="">` — **Invoerveld voor getallen**: Een veld waarin alleen getallen ingevuld kunnen worden, bv. een leeftijd. Er bestaan ook min, max en step om het bereik te beperken (buiten de leerstof). _(bron: 5. Dynamic Web Pages.pptx, dia 23)_
 - `<input type="password" name="">` — **Verborgen invoer voor wachtwoorden**: De getypte tekens worden als bolletjes of sterretjes getoond. Gebruik voor gevoelige gegevens altijd method="POST", anders staat de waarde leesbaar in de URL. _(bron: 5. Dynamic Web Pages.pptx, dia 25)_
@@ -1055,62 +1166,91 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 ### Overig
 - `<span title="uitleg.">woord in kwestie</span>` — **Title-attribuut voor mouseover-tooltip**: Het title-attribuut voegt een tooltip toe die verschijnt wanneer je met de muis over het element gaat. Dit is handig om extra uitleg of context te geven zonder de pagina vol tekst te zetten.
 
-## CSS (51)
+## CSS (55)
 
 ### Kleur & achtergrond
-- `background-color` — **Achtergrondkleur instellen**: Stelt de achtergrondkleur van een element in, bv. body { background-color: green; } voor een groene pagina. _(bron: 2. Introduction to HTML.pptx, dia 14)_
+- `background-color: kleur;` — **Achtergrondkleur instellen**: Stelt de achtergrondkleur van een element in, bv. body { background-color: green; } voor een groene pagina. _(bron: 2. Introduction to HTML.pptx, dia 14)_
   - werkt ook: `background: #D73233;` — background: kleur en background-color: kleur geven dezelfde achtergrondkleur.
+  - voorbeelden: `background-color`
 - `color: kleur;` — **Tekstkleur instellen**: De eigenschap color bepaalt de kleur van de tekst in een element. Je kunt een kleurnaam, een hexcode of een RGB-waarde gebruiken. _(bron: 3. Introduction to CSS.pptx, dia 45)_
   - voorbeelden: `color: red;`, `color`
-- `#FF0000 / rgb(255, 0, 0)` — **Kleur als hexcode of RGB**: Behalve met een naam (red, hotpink, tomato …) kun je een kleur geven als hexcode of RGB-waarde. Bij RGB geef je de hoeveelheid rood, groen en blauw, elk van 0 tot 255; een hexcode geeft dezelfde drie getallen in hexadecimale notatie. _(bron: 3. Introduction to CSS.pptx, dia 45)_
+- `#RRGGBB / rgb(rood, groen, blauw)` — **Kleur als hexcode of RGB**: Behalve met een naam (red, hotpink, tomato …) kun je een kleur geven als hexcode of RGB-waarde. Bij RGB geef je de hoeveelheid rood, groen en blauw, elk van 0 tot 255; een hexcode geeft dezelfde drie getallen in hexadecimale notatie. Bv. rood = #FF0000 = rgb(255, 0, 0). _(bron: 3. Introduction to CSS.pptx, dia 45)_
+  - voorbeelden: `#FF0000 / rgb(255, 0, 0)`
 
 ### Selectors
-- `.klasse {…}` — **Elementen met een klasse opmaken**: Een punt voor een naam selecteert alle elementen met die klasse. Zo krijgt .vader {color: red;} alle elementen met class="vader" rode tekst. _(bron: 2. Introduction to HTML.pptx, dia 54)_
-  - voorbeelden: `.TopGun {background: green;}`
-- `#id {…}` — **Element met een id opmaken**: Een hekje (#) voor een naam selecteert het element met dat id. Zo krijgt #kenobi {color: blue;} het element met id="kenobi" blauwe tekst. _(bron: 2. Introduction to HTML.pptx, dia 56)_
-  - voorbeelden: `#Nemo {background: orange;}`
-- `div {background: red;}` — **Elementselector: alle elementen van type**: Een elementselector is gewoon de tagnaam. De stijl geldt voor alle elementen van dat type op de pagina. _(bron: 3. Introduction to CSS.pptx, dia 14)_
-  - voorbeelden: `p {color: red;}`
-- `h1, h4 {background: red;}` — **Selectors groeperen met komma**: Scheid je selectors met een komma, dan geldt de stijl voor alle elementen die aan minstens één van de selectors voldoen. Zo hoef je dezelfde regel niet twee keer te schrijven. _(bron: 3. Introduction to CSS.pptx, dia 17)_
-- `p.BB.JP {background: orange;}` — **Samengestelde selector (zonder spaties)**: Plak je selectors aan elkaar zonder spatie, dan moet een element aan alle delen tegelijk voldoen. p.BB kiest <p>-elementen met klasse BB; p.BB.JP kiest <p>-elementen die zowel klasse BB als JP hebben. _(bron: 3. Introduction to CSS.pptx, dia 19)_
-- `div h3 {background: red;}` — **Afstammelingenselector (spatie)**: Een spatie tussen selectors betekent: het rechtse element moet ergens binnen het linkse element zitten (kind, kleinkind of dieper). Je kunt er meer aan elkaar rijgen, bv. div blockquote h3. _(bron: 3. Introduction to CSS.pptx, dia 22)_
-- `div > h3 {background: red;}` — **Kindselector: enkel directe kinderen**: Met > selecteer je alleen elementen die een direct kind zijn van het linkse element, zonder ander element ertussen. _(bron: 3. Introduction to CSS.pptx, dia 24)_
-- `#Cedric ~ h3 {background: purple;}` — **Siblingselector: latere broers/zussen**: Met ~ selecteer je elementen met dezelfde ouder die ergens ná het linkse element komen, niet noodzakelijk er direct na. _(bron: 3. Introduction to CSS.pptx, dia 26)_
-- `#Cedric + h3 {background: green;}` — **Directe siblingselector (+)**: Met + selecteer je enkel het element dat onmiddellijk ná het linkse element komt en dezelfde ouder heeft. _(bron: 3. Introduction to CSS.pptx, dia 28)_
-- `#Jasper :first-child {background: purple;}` — **Eerste kind binnen een ouder**: :first-child selecteert een element dat het eerste is van zijn siblings. Met de ouder-selector, een spatie en dan :first-child kies je het eerste kind binnen die ouder. _(bron: 3. Introduction to CSS.pptx, dia 32)_
-- `h3:first-child {background: orange;}` — **Elk h3 dat eerste kind is**: Zet je :first-child zonder spatie achter een element- of klasseselector, dan kies je elk element van dat type dat het eerste is tussen zijn siblings. _(bron: 3. Introduction to CSS.pptx, dia 33)_
-- `#Bart :last-child {background: red;}` — **Laatste kind selecteren**: :last-child selecteert het laatste element tussen zijn siblings. Met een spatie (#Bart :last-child) kies je het laatste kind van Bart; zonder spatie (h3:last-child) kies je elke <h3> die het laatste kind is. _(bron: 3. Introduction to CSS.pptx, dia 34)_
-- `ouder :nth-child(n) {…}` — **Het n-de kind selecteren**: :nth-child(n) selecteert het element op positie n tussen zijn siblings (tellen begint bij 1). n kan een getal of een formule zijn. _(bron: 3. Introduction to CSS.pptx, dia 36)_
+- `.klasse {…}` — **Elementen met een klasse opmaken**: Een punt voor een naam selecteert alle elementen met die klasse. Bv. .vader {color: red;} geeft alle elementen met class="vader" rode tekst. _(bron: 2. Introduction to HTML.pptx, dia 54)_
+  - voorbeelden: `.TopGun {background: green;}`, `.informatician {color: green;}`, `.header {background-color: blauw;}`
+- `#id {…}` — **Element met een id opmaken**: Een hekje (#) voor een naam selecteert het element met dat id. Bv. #kenobi {color: blue;} geeft het element met id="kenobi" blauwe tekst. _(bron: 2. Introduction to HTML.pptx, dia 56)_
+  - voorbeelden: `#Nemo {background: orange;}`, `#keanu {color: red;}`
+- `element {…}` — **Elementselector: alle elementen van type**: Een elementselector is gewoon de tagnaam. De stijl geldt voor alle elementen van dat type op de pagina, bv. div {background: red;} kleurt alle <div>-elementen. _(bron: 3. Introduction to CSS.pptx, dia 14)_
+  - voorbeelden: `div {background: red;}`, `p {color: red;}`
+- `selector, selector {…}` — **Selectors groeperen met komma**: Scheid je selectors met een komma, dan geldt de stijl voor alle elementen die aan minstens één van de selectors voldoen. Bv. h1, h4 {background: red;} kleurt alle <h1>- en <h4>-elementen. Zo hoef je dezelfde regel niet twee keer te schrijven. _(bron: 3. Introduction to CSS.pptx, dia 17)_
+  - voorbeelden: `h1, h4 {background: red;}`, `h2, h4 {background-color: groen;}`
+- `element.klasse.klasse {…}` — **Samengestelde selector (zonder spaties)**: Plak je selectors aan elkaar zonder spatie, dan moet één element aan alle delen tegelijk voldoen. Bv. p.BB kiest <p>-elementen met klasse BB; p.BB.JP kiest <p>-elementen die zowel klasse BB als JP hebben. _(bron: 3. Introduction to CSS.pptx, dia 19)_
+  - voorbeelden: `p.BB.JP {background: orange;}`
+- `voorouder element {…}` — **Afstammelingenselector (spatie)**: Een spatie tussen selectors betekent: het rechtse element moet ergens binnen het linkse element zitten (kind, kleinkind of dieper). Bv. div h3 {background: red;} kleurt elke <h3> binnen een <div>. Je kunt er meer aan elkaar rijgen, bv. div blockquote h3. _(bron: 3. Introduction to CSS.pptx, dia 22)_
+  - voorbeelden: `div targetwoord {background: red;}`, `div h3 {background: red;}`, `#Paco div div { background-color: greenyellow; }`
+- `ouder > element {…}` — **Kindselector: enkel directe kinderen**: Met > selecteer je alleen elementen die een direct kind zijn van het linkse element, zonder ander element ertussen. Bv. div > h3 kleurt enkel <h3>-elementen die rechtstreeks in een <div> staan. _(bron: 3. Introduction to CSS.pptx, dia 24)_
+  - voorbeelden: `div > h3 {background: red;}`
+- `selector ~ element {…}` — **Siblingselector: latere broers/zussen**: Met ~ selecteer je elementen met dezelfde ouder die ergens ná het linkse element komen, niet noodzakelijk er direct na. Bv. #Cedric ~ h3 kleurt alle <h3>'s die na #Cedric komen. _(bron: 3. Introduction to CSS.pptx, dia 26)_
+  - voorbeelden: `#Cedric ~ h3 {background: purple;}`
+- `selector + element {…}` — **Directe siblingselector (+)**: Met + selecteer je enkel het element dat onmiddellijk ná het linkse element komt en dezelfde ouder heeft. Bv. #Cedric + h3 kleurt de <h3> direct na #Cedric (als dat een <h3> is). _(bron: 3. Introduction to CSS.pptx, dia 28)_
+  - voorbeelden: `#Cedric + h3 {background: green;}`
+- `ouder :first-child {…}` — **Eerste kind binnen een ouder**: :first-child selecteert een element dat het eerste is van zijn siblings. Met een ouder-selector, een spatie en dan :first-child kies je het eerste kind binnen die ouder, bv. #Jasper :first-child. _(bron: 3. Introduction to CSS.pptx, dia 32)_
+  - voorbeelden: `#Jasper :first-child {background: purple;}`, `div :first-child {background-color: kleur;}`, `#Jasper :first-child {background-color: kleur;}`
+- `element:first-child {…}` — **Elk element dat het eerste kind is**: Zet je :first-child zonder spatie achter een element- of klasseselector, dan kies je elk element van dat type dat het eerste is tussen zijn siblings. Bv. h3:first-child kleurt elke <h3> die eerste kind is. _(bron: 3. Introduction to CSS.pptx, dia 33)_
+  - voorbeelden: `h3:first-child {background: orange;}`, `h3:first-child {background-color: kleur;}`
+- `ouder :last-child {…}` — **Laatste kind selecteren**: :last-child selecteert het laatste element tussen zijn siblings. Met een spatie (bv. #Bart :last-child) kies je het laatste kind binnen die ouder; zonder spatie (bv. h3:last-child) kies je elke <h3> die het laatste kind is. _(bron: 3. Introduction to CSS.pptx, dia 34)_
+  - voorbeelden: `#Bart :last-child {background: red;}`, `div :last-child {background-color: kleur;}`
+- `ouder :nth-child(n) {…}` — **Het n-de kind selecteren**: :nth-child(n) selecteert het element op positie n tussen zijn siblings (tellen begint bij 1). n kan een getal of een formule zijn, bv. #Jasper :nth-child(3) of :nth-child(2n). _(bron: 3. Introduction to CSS.pptx, dia 36)_
   - voorbeelden: `#Jasper :nth-child(3) {background: purple;}`, `#Jasper :nth-child(2n) {background: green;}`, `#Jasper :nth-child(2n+1) {background: red;}`
-- `#Jasper h3:first-of-type {background: red;}` — **Eerste element van een type**: :first-of-type selecteert het eerste element van een bepaald type tussen zijn siblings, ook als er andere elementen vóór staan. Tussen h3 en :first-of-type staat geen spatie. _(bron: 3. Introduction to CSS.pptx, dia 39)_
-- `#Jasper h3:last-of-type {background: red;}` — **Laatste element van een type**: :last-of-type selecteert het laatste element van een bepaald type tussen zijn siblings, ook als er nog andere elementen na komen. _(bron: 3. Introduction to CSS.pptx, dia 40)_
-- `#Paco:hover {background: orange;}` — **Stijl bij muis erover**: :hover past de stijl toe zolang de gebruiker met de muiscursor over het element beweegt. _(bron: 3. Introduction to CSS.pptx, dia 41)_
-- `#Paco:active {background: purple;}` — **Stijl tijdens het klikken**: :active past de stijl toe op het moment dat de gebruiker op het element klikt (de muisknop ingedrukt houdt). _(bron: 3. Introduction to CSS.pptx, dia 42)_
+- `ouder element:first-of-type {…}` — **Eerste element van een type**: :first-of-type selecteert het eerste element van een bepaald type tussen zijn siblings, ook als er andere elementen vóór staan. Bv. #Jasper h3:first-of-type kiest de eerste <h3> binnen #Jasper. Tussen element en :first-of-type staat geen spatie. _(bron: 3. Introduction to CSS.pptx, dia 39)_
+  - voorbeelden: `#Jasper h3:first-of-type {background: red;}`
+- `ouder element:last-of-type {…}` — **Laatste element van een type**: :last-of-type selecteert het laatste element van een bepaald type tussen zijn siblings, ook als er nog andere elementen na komen. Bv. #Jasper h3:last-of-type kiest de laatste <h3> binnen #Jasper. _(bron: 3. Introduction to CSS.pptx, dia 40)_
+  - voorbeelden: `#Jasper h3:last-of-type {background: red;}`, `h3:last-child {background-color: kleur;}`
+- `selector:hover {…}` — **Stijl bij muis erover**: :hover past de stijl toe zolang de gebruiker met de muiscursor over het element beweegt, bv. #Paco:hover {background: orange;}. _(bron: 3. Introduction to CSS.pptx, dia 41)_
+  - voorbeelden: `#Paco:hover {background: orange;}`
+- `selector:active {…}` — **Stijl tijdens het klikken**: :active past de stijl toe op het moment dat de gebruiker op het element klikt (de muisknop ingedrukt houdt), bv. #Paco:active {background: purple;}. _(bron: 3. Introduction to CSS.pptx, dia 42)_
+  - voorbeelden: `#Paco:active {background: purple;}`
 - `a:link / a:visited` — **Onbezochte en bezochte links**: :link geeft een stijl aan links die nog niet bezocht zijn, :visited aan links die je al bezocht hebt. Voorbeeld: a:link {background: white;} en a:visited {background: red;}. _(bron: 3. Introduction to CSS.pptx, dia 43)_
+- `selector {color: kleur;}` — **Tekstkleur van elementen instellen**: Geeft alle elementen die bij de selector passen een tekstkleur. De selector en de kleur kies je zelf. Bv. span {color: red;} maakt alle span-elementen rood.
+  - voorbeelden: `span {color: red;}`
+- `element { border: solid breedte kleur; padding: afstand; }` — **Rand en binnenruimte instellen**: Geeft elementen een doorlopende rand (solid) met een dikte en kleur, en binnenruimte (padding) tussen rand en inhoud. Bv. div { border: solid 1px black; padding: 16px; }.
+  - voorbeelden: `div { border: solid breedte kleur; padding: afstand; }`, `div { border: solid 1px black; padding: 16px; }`
 
 ### Koppelen aan HTML
 - `selector { eigenschap: waarde; }` — **Opbouw van een CSS-regel**: Een CSS-regel bestaat uit een selector en een declaratieblok tussen accolades. Elke declaratie is een eigenschap met een waarde, gevolgd door een puntkomma. Voorbeeld: p { font-size: 1.2em; } geeft alle <p>-elementen een bepaalde lettergrootte. _(bron: 3. Introduction to CSS.pptx, dia 4)_
-- `<p style="color: red; background: green">` — **Inline CSS met style-attribuut**: Met het style-attribuut zet je CSS rechtstreeks op één HTML-element. Meerdere declaraties scheid je met een puntkomma. Handig voor één element, maar onhandig als je later veel elementen moet aanpassen. _(bron: 3. Introduction to CSS.pptx, dia 6)_
-- `<link rel="stylesheet" type="text/css" href="style.css">` — **Extern stylesheet koppelen**: Zet je CSS-regels in een apart .css-bestand en koppel dat met de <link>-tag in de <head>. Zo kunnen meerdere HTML-pagina's dezelfde stijl delen. _(bron: 3. Introduction to CSS.pptx, dia 10)_
+- `<element style="eigenschap: waarde; eigenschap: waarde">` — **Inline CSS met style-attribuut**: Met het style-attribuut zet je CSS rechtstreeks op één HTML-element. Meerdere declaraties scheid je met een puntkomma, bv. <p style="color: red; background: green">. Handig voor één element, maar onhandig als je later veel elementen moet aanpassen. _(bron: 3. Introduction to CSS.pptx, dia 6)_
+  - voorbeelden: `<p style="color: red; background: green">`
+- `<link rel="stylesheet" type="text/css" href="bestand.css">` — **Extern stylesheet koppelen**: Zet je CSS-regels in een apart .css-bestand en koppel dat met de <link>-tag in de <head>. Zo kunnen meerdere HTML-pagina's dezelfde stijl delen. _(bron: 3. Introduction to CSS.pptx, dia 10)_
+  - voorbeelden: `<link rel="stylesheet" type="text/css" href="style.css">`, `<link rel="stylesheet" href="style.css">`
 
 ### Box model
-- `border: 6px solid rgb(64,58,50);` — **Rand rond een element**: border is een shorthand die in één keer de dikte, de stijl en de kleur van de rand instelt (border-width, border-style en border-color). _(bron: 3. Introduction to CSS.pptx, dia 48)_
-- `height: 250px;` — **Breedte en hoogte instellen**: width bepaalt de horizontale grootte van een element, height de verticale. Je kunt verschillende eenheden gebruiken. _(bron: 3. Introduction to CSS.pptx, dia 49)_
+- `border: dikte stijl kleur;` — **Rand rond een element**: border is een shorthand die in één keer de dikte, de stijl en de kleur van de rand instelt (border-width, border-style en border-color), bv. border: 6px solid rgb(64,58,50);. _(bron: 3. Introduction to CSS.pptx, dia 48)_
+  - voorbeelden: `border: 6px solid rgb(64,58,50);`
+- `width: waarde; height: waarde;` — **Breedte en hoogte instellen**: width bepaalt de horizontale grootte van een element, height de verticale. Je kunt verschillende eenheden gebruiken, bv. height: 250px;. _(bron: 3. Introduction to CSS.pptx, dia 49)_
+  - voorbeelden: `height: 250px;`
 - `width: fit-content;` — **Breedte passend bij inhoud**: Met fit-content berekent de browser zelf de breedte (of hoogte) op basis van de inhoud. Zo is een div niet meer standaard even breed als het venster. _(bron: 3. Introduction to CSS.pptx, dia 50)_
-- `padding: 16px;` — **Ruimte binnen de rand**: padding is de ruimte tussen de inhoud van een element en zijn rand. Het is een shorthand voor padding-top, -right, -bottom en -left. Met 1 tot 4 waarden kies je welke kanten welke ruimte krijgen. _(bron: 3. Introduction to CSS.pptx, dia 53)_
-- `margin: 0px 0px 15px 0px;` — **Ruimte buiten de rand**: margin is de ruimte buiten de rand, tussen het element en andere elementen. Het is een shorthand voor margin-top, -right, -bottom en -left; de regels voor 1 tot 4 waarden zijn dezelfde als bij padding. _(bron: 3. Introduction to CSS.pptx, dia 53)_
+- `padding: waarde;` — **Ruimte binnen de rand**: padding is de ruimte tussen de inhoud van een element en zijn rand, bv. padding: 16px;. Het is een shorthand voor padding-top, -right, -bottom en -left. Met 1 tot 4 waarden kies je welke kanten welke ruimte krijgen. _(bron: 3. Introduction to CSS.pptx, dia 53)_
+  - voorbeelden: `padding: 16px;`
+- `margin: boven rechts onder links;` — **Ruimte buiten de rand**: margin is de ruimte buiten de rand, tussen het element en andere elementen, bv. margin: 0px 0px 15px 0px; (enkel 15px onderaan). Het is een shorthand voor margin-top, -right, -bottom en -left; de regels voor 1 tot 4 waarden zijn dezelfde als bij padding. _(bron: 3. Introduction to CSS.pptx, dia 53)_
+  - voorbeelden: `margin: 0px 0px 15px 0px;`
 - `box-sizing: border-box;` — **Padding en rand meetellen**: Standaard (content-box) geldt width/height alleen voor de inhoud; padding en rand komen er nog bij. Met border-box tellen padding en rand mee in de opgegeven breedte en hoogte. _(bron: 3. Introduction to CSS.pptx, dia 55)_
-- `outline: 20px solid yellow;` — **Lijn buiten de rand**: outline tekent een lijn buiten de rand van een element, met dezelfde waarden als border (dikte, stijl, kleur). Anders dan een rand neemt een outline geen plaats in en duwt ze andere elementen niet weg. _(bron: 3. Introduction to CSS.pptx, dia 57)_
+- `outline: dikte stijl kleur;` — **Lijn buiten de rand**: outline tekent een lijn buiten de rand van een element, met dezelfde waarden als border (dikte, stijl, kleur), bv. outline: 20px solid yellow;. Anders dan een rand neemt een outline geen plaats in en duwt ze andere elementen niet weg. _(bron: 3. Introduction to CSS.pptx, dia 57)_
+  - voorbeelden: `outline: 20px solid yellow;`
 
 ### Tekst & lettertype
-- `font-size: 1.2em;` — **Lettergrootte instellen**: font-size bepaalt hoe groot de tekst in een element is. _(bron: 3. Introduction to CSS.pptx, dia 58)_
+- `font-size: waarde;` — **Lettergrootte instellen**: font-size bepaalt hoe groot de tekst in een element is, bv. font-size: 1.2em;. _(bron: 3. Introduction to CSS.pptx, dia 58)_
+  - voorbeelden: `font-size: 1.2em;`
 - `font-weight: bold;` — **Letterdikte (vet) instellen**: font-weight bepaalt hoe dik of vet de tekst is. _(bron: 3. Introduction to CSS.pptx, dia 59)_
 - `font-style: italic;` — **Schuine tekst instellen**: font-style bepaalt of tekst rechtop of schuin staat. _(bron: 3. Introduction to CSS.pptx, dia 60)_
-- `font-family: 'Atkinson Hyperlegible', sans-serif;` — **Lettertype kiezen met reserve**: font-family kiest het lettertype. Je geeft een lijst gescheiden door komma's: lukt het eerste niet, dan gebruikt de browser het volgende. Een naam van meerdere woorden zet je tussen aanhalingstekens. _(bron: 3. Introduction to CSS.pptx, dia 62)_
-  - voorbeelden: `font-family`
+- `font-family: 'lettertype', soort;` — **Lettertype kiezen met reserve**: font-family kiest het lettertype. Je geeft een lijst gescheiden door komma's: lukt het eerste niet, dan gebruikt de browser het volgende. Een naam van meerdere woorden zet je tussen aanhalingstekens, bv. font-family: 'Atkinson Hyperlegible', sans-serif;. _(bron: 3. Introduction to CSS.pptx, dia 62)_
+  - voorbeelden: `font-family: 'Atkinson Hyperlegible', sans-serif;`, `font-family`
 - `font-variant: small-caps;` — **Tekst in kleine hoofdletters**: font-variant voegt een stijleffect toe aan tekst. Met small-caps worden kleine letters getoond als kleinere hoofdletters; normal is de gewone weergave. _(bron: 3. Introduction to CSS.pptx, dia 63)_
-- `letter-spacing: 40px;` — **Ruimte tussen letters**: letter-spacing regelt de afstand tussen de letters. Je kunt px, em, % en andere eenheden gebruiken. _(bron: 3. Introduction to CSS.pptx, dia 64)_
-- `word-spacing: …` — **Ruimte tussen woorden**: word-spacing regelt de afstand tussen woorden, net zoals letter-spacing dat doet tussen letters. Je kunt px, em, % en andere eenheden gebruiken. _(bron: 3. Introduction to CSS.pptx, dia 64)_
+- `letter-spacing: afstand;` — **Ruimte tussen letters**: letter-spacing regelt de afstand tussen de letters, bv. letter-spacing: 40px;. Je kunt px, em, % en andere eenheden gebruiken. _(bron: 3. Introduction to CSS.pptx, dia 64)_
+  - voorbeelden: `letter-spacing: 40px;`
+- `word-spacing: afstand;` — **Ruimte tussen woorden**: word-spacing regelt de afstand tussen woorden, net zoals letter-spacing dat doet tussen letters. Je kunt px, em, % en andere eenheden gebruiken. _(bron: 3. Introduction to CSS.pptx, dia 64)_
+  - voorbeelden: `word-spacing: …`
 - `text-align: center;` — **Tekst horizontaal uitlijnen**: text-align bepaalt hoe tekst horizontaal uitgelijnd wordt binnen een element: links, rechts, gecentreerd of uitgevuld over de hele breedte. _(bron: 3. Introduction to CSS.pptx, dia 65)_
 - `text-decoration: line-through;` — **Lijn onder, boven of door tekst**: text-decoration voegt een lijn toe aan tekst of haalt die weg (bv. de standaard onderstreping van links). _(bron: 3. Introduction to CSS.pptx, dia 66)_
 
@@ -1123,11 +1263,22 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `display: inline-block;` — **Blok- of inline-gedrag wijzigen**: display verandert hoe een element zich gedraagt: als blokelement (eigen regel, breedte/hoogte instelbaar) of als inline-element (op dezelfde regel). inline-block zet elementen naast elkaar maar laat breedte en hoogte toe. _(bron: 3. Introduction to CSS.pptx, dia 72)_
 - `visibility: hidden;` — **Element verbergen, plaats houden**: visibility: hidden maakt een element onzichtbaar, maar het blijft zijn plaats innemen in de layout. visible (standaard) toont het. Bij display: none verdwijnt de plaats wel. _(bron: 3. Introduction to CSS.pptx, dia 73)_
 - `top / bottom / left / right` — **Afstanden voor positionering**: Deze eigenschappen geven de plaats van een element aan met een afstand (px, %, em …). Wat ze precies doen hangt af van de position-waarde; bij position: static (standaard) hebben ze geen effect. _(bron: 3. Introduction to CSS.pptx, dia 74)_
-- `position: relative; top: 50px;` — **Verschuiven t.o.v. normale plaats**: Met position: relative verschuif je een element ten opzichte van zijn normale plaats. top: 50px schuift het 50 pixels naar beneden. De oorspronkelijke ruimte blijft behouden en andere elementen bewegen niet mee. _(bron: 3. Introduction to CSS.pptx, dia 76)_
+- `position: relative; top: afstand;` — **Verschuiven t.o.v. normale plaats**: Met position: relative verschuif je een element ten opzichte van zijn normale plaats. Bv. top: 50px schuift het 50 pixels naar beneden. De oorspronkelijke ruimte blijft behouden en andere elementen bewegen niet mee. _(bron: 3. Introduction to CSS.pptx, dia 76)_
+  - voorbeelden: `position: relative; top: 50px;`
 - `position: fixed;` — **Vast op het scherm plaatsen**: Met position: fixed staat een element vast ten opzichte van het browservenster en blijft het op dezelfde plek, ook bij scrollen. top, bottom, left en right geven de afstand tot de randen van het venster. De oorspronkelijke ruimte blijft niet behouden. _(bron: 3. Introduction to CSS.pptx, dia 78)_
 - `position: absolute;` — **Plaatsen binnen gepositioneerde voorouder**: Met position: absolute plaats je een element ten opzichte van de dichtstbijzijnde voorouder die zelf een position heeft (niet static). Daarom geef je de container vaak position: relative. De oorspronkelijke ruimte blijft niet behouden. _(bron: 3. Introduction to CSS.pptx, dia 80)_
 - `overflow: auto;` — **Wat met te veel inhoud**: overflow bepaalt wat er gebeurt als de inhoud groter is dan het element. _(bron: 3. Introduction to CSS.pptx, dia 81)_
 - `float: right;` — **Element links of rechts laten zweven**: float haalt een element uit de normale volgorde en zet het links of rechts in zijn ouder-element. Tekst en andere elementen lopen er dan omheen. _(bron: 3. Introduction to CSS.pptx, dia 82)_
+
+### Head & koppelingen
+- `<style>
+  selector { eigenschap: waarde; }
+</style>` — **Interne CSS-stijlen in HTML**: De <style>-tag bevat CSS-regels die rechtstreeks in het HTML-document staan, meestal in de <head>. Ze gelden voor die ene pagina. Bv. span {color: red;} maakt alle span-elementen rood.
+  - voorbeelden: `<style>
+         span {color: Bred;}
+       </style>`
+- `<style> element.klasse { eigenschap: waarde; } </style>` — **CSS-stijl voor een klasse in de HTML-pagina**: Je schrijft CSS-regels rechtstreeks in je HTML-bestand, tussen <style>-tags in de <head>. element.klasse kiest alleen elementen van dat type met die klasse. Bv. div.klasse { background-color: kleur; }.
+  - voorbeelden: `<style> div.klasse { background-color: kleur; } </style>`
 
 ## PHP (88)
 
@@ -1141,11 +1292,14 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `echo waarde;` — **Waarde of variabele tonen**: echo toont een waarde of de inhoud van een variabele (in de terminal of later in de browser). Het werkt voor getallen, tekst en booleans. _(bron: 4. Fundamentals of PHP.pptx, dia 17)_
   - werkt ook: `print(waarde);` — echo en print tonen allebei een waarde op het scherm.
 - `echo "tekst", $variabele;` — **Meerdere waarden tegelijk tonen**: Met echo kun je meerdere waarden en variabelen in één keer tonen door ze met komma's te scheiden. Ze worden achter elkaar getoond. _(bron: 4. Fundamentals of PHP.pptx, dia 18)_
-- `<?php echo "<div>...</div>"; ?>` — **PHP in een HTML-pagina**: Je kunt PHP-code tussen <?php en ?> midden in HTML zetten. De server voert de code uit en vervangt ze door de HTML die echo maakt. Een bestand met PHP-code moet altijd de extensie .php hebben, ook als er vooral HTML in staat. _(bron: 5. Dynamic Web Pages.pptx, dia 3)_
-- `php -S localhost:8080` — **Ingebouwde PHP-webserver starten**: Start in de terminal een kleine webserver die je .php-bestanden uitvoert. Voer het uit in de map met je bestanden (de root-map) en open daarna de getoonde URL in de browser; standaard wordt index.php of index.html getoond. Een ander bestand open je door /bestandsnaam achter de URL te zetten (bv. localhost:8080/ABV.php). _(bron: 5. Dynamic Web Pages.pptx, dia 4)_
+- `<?php echo "html"; ?>` — **PHP in een HTML-pagina**: Je kunt PHP-code tussen <?php en ?> midden in HTML zetten. De server voert de code uit en vervangt ze door de HTML die echo maakt, bv. <?php echo "<div>...</div>"; ?>. Een bestand met PHP-code moet altijd de extensie .php hebben, ook als er vooral HTML in staat. _(bron: 5. Dynamic Web Pages.pptx, dia 3)_
+  - voorbeelden: `<?php echo "<div>...</div>"; ?>`
+- `php -S localhost:poort` — **Ingebouwde PHP-webserver starten**: Start in de terminal een kleine webserver die je .php-bestanden uitvoert, bv. php -S localhost:8080. Voer het uit in de map met je bestanden (de root-map) en open daarna de getoonde URL in de browser; standaard wordt index.php of index.html getoond. Een ander bestand open je door /bestandsnaam achter de URL te zetten (bv. localhost:8080/ABV.php). _(bron: 5. Dynamic Web Pages.pptx, dia 4)_
+  - voorbeelden: `php -S localhost:8080`
 - `include('bestand')` — **Ander bestand invoegen**: Voegt de inhoud van een .html- of .php-bestand in op die plek, bv. een header of footer die op veel pagina's terugkomt. Ontbreekt het bestand, dan gaat het script gewoon verder. _(bron: 5. Dynamic Web Pages.pptx, dia 8)_
 - `require('bestand')` — **Bestand invoegen, stoppen als ontbreekt**: Voegt net als include een bestand in, maar stopt het script met een fatale fout als het bestand ontbreekt. Gebruik het voor onderdelen die er zeker moeten zijn. _(bron: 5. Dynamic Web Pages.pptx, dia 9)_
-- `background: <?php echo $kleur; ?>;` — **PHP gebruiken binnen CSS**: PHP kan ook in een <style>-blok staan om een CSS-waarde te kiezen, bv. de achtergrondkleur afhankelijk van wat de gebruiker indiende. In de les: rood als de knop is ingedrukt, anders wit. _(bron: 5. Dynamic Web Pages.pptx, dia 20)_
+- `eigenschap: <?php echo $variabele; ?>;` — **PHP gebruiken binnen CSS**: PHP kan ook in een <style>-blok staan om een CSS-waarde te kiezen, bv. background: <?php echo $kleur; ?>; om de achtergrondkleur te laten afhangen van wat de gebruiker indiende. In de les: rood als de knop is ingedrukt, anders wit. _(bron: 5. Dynamic Web Pages.pptx, dia 20)_
+  - voorbeelden: `background: <?php echo $kleur; ?>;`
 
 ### Strings
 - `preg_replace(patroon, vervanging, $string)` — **Patroon vervangen in een string**: Zoekt een patroon (reguliere expressie) in een string en vervangt het. Met $1, $2 ... verwijs je in de vervanging naar de stukken tussen haakjes in het patroon. _(bron: 4. Fundamentals of PHP.pptx, dia 11)_
@@ -1166,14 +1320,17 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `explode(delimiter, $string)` — **String splitsen in een array**: Knipt een string in stukken telkens waar de delimiter voorkomt en geeft die stukken terug als array. De delimiter zelf verdwijnt. _(bron: 4. Fundamentals of PHP.pptx, dia 87)_
   - voorbeelden: `explode("\n", $tekst)`
 - `implode(delimiter, $array)` — **Array samenvoegen tot string**: Plakt alle elementen van een array aan elkaar tot één string, met de delimiter ertussen. Het omgekeerde van explode(). _(bron: 4. Fundamentals of PHP.pptx, dia 89)_
-- `preg_match('/^>/', $string)` — **Patroon zoeken in een string**: Controleert of een patroon (een reguliere expressie) in een string voorkomt en geeft true (1) of false (0) terug. Het patroon '/^>/' checkt of de string begint met >, handig om de headerregels van een (multi)FASTA-bestand te herkennen. _(bron: 4. Fundamentals of PHP.pptx, dia 90)_
+- `preg_match(patroon, $string)` — **Patroon zoeken in een string**: Controleert of een patroon (een reguliere expressie tussen slashes) in een string voorkomt en geeft 1 (gevonden) of 0 (niet gevonden) terug. Bv. preg_match('/^>/', $regel) checkt of de regel begint met >, handig om de headerregels van een (multi)FASTA-bestand te herkennen. _(bron: 4. Fundamentals of PHP.pptx, dia 90)_
+  - voorbeelden: `preg_match('/^>/', $string)`
 - `trim($string)` — **Witruimte aan begin/einde verwijderen**: Verwijdert spaties, tabs en newlines aan het begin en het einde van een string; witruimte in het midden blijft staan. Handig om ingevoerde gegevens zoals e-mailadressen op te kuisen. _(bron: 4. Fundamentals of PHP.pptx, dia 96)_
   - voorbeelden: `trim($tekst)`
 
 ### Variabelen & types
 - `Scalaire types (integer, float, string, boolean)` — **De vier eenvoudigste datatypes**: Scalaire waarden zijn de eenvoudigste soorten data en stellen één enkele waarde voor. Er zijn vier types: integer (geheel getal, bv. 42), float (kommagetal, bv. 3.14), string (tekst tussen ' ' of " ", bv. "Don't panic") en boolean (true of false). _(bron: 4. Fundamentals of PHP.pptx, dia 14)_
-- `$naam = waarde;` — **Waarde opslaan in een variabele**: Maakt een variabele en geeft ze een waarde, zodat je die later in het script kunt gebruiken. Een variabelenaam begint met $ gevolgd door letters, cijfers of underscores, maar mag niet met een cijfer beginnen (dus $Mona_Lisa mag, $123VanGogh of $Mona-Lisa niet). Een nieuwe waarde toekennen overschrijft de oude. _(bron: 4. Fundamentals of PHP.pptx, dia 15)_
-- `$naam = $naam . " " . $naam;` — **Variabele bijwerken met huidige waarde**: Je kunt een variabele aanpassen op basis van haar huidige waarde: rechts van = wordt eerst de nieuwe waarde berekend met de oude, en die wordt daarna terug in dezelfde variabele gestoken. _(bron: 4. Fundamentals of PHP.pptx, dia 25)_
+- `$variabele = waarde;` — **Waarde opslaan in een variabele**: Maakt een variabele en geeft ze een waarde, zodat je die later in het script kunt gebruiken. De naam kies je zelf (bv. $naam = "Jasper";): $ gevolgd door letters, cijfers of underscores, maar niet met een cijfer beginnen ($Mona_Lisa mag, $123VanGogh of $Mona-Lisa niet). Een nieuwe waarde toekennen overschrijft de oude. _(bron: 4. Fundamentals of PHP.pptx, dia 15)_
+  - voorbeelden: `$naam = waarde;`
+- `$variabele = $variabele . tekst;` — **Variabele bijwerken met huidige waarde**: Je kunt een variabele aanpassen op basis van haar huidige waarde: rechts van = wordt eerst de nieuwe waarde berekend met de oude, en die wordt daarna terug in dezelfde variabele gestoken. Bv. $naam = $naam . " " . $naam; maakt van "Jan" "Jan Jan". _(bron: 4. Fundamentals of PHP.pptx, dia 25)_
+  - voorbeelden: `$naam = $naam . " " . $naam;`
 - `$argv` — **Command-line argumenten uitlezen**: $argv is een ingebouwde array met de argumenten die je bij het starten van het script in de terminal meegeeft. $argv[0] is altijd de naam van het script zelf, $argv[1] het eerste argument, $argv[2] het tweede, enzovoort. _(bron: 4. Fundamentals of PHP.pptx, dia 47)_
 
 ### Operatoren
@@ -1193,11 +1350,13 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `$a xor $b` — **Exclusieve OF**: Geeft true als precies één van de twee voorwaarden waar is, maar niet allebei. _(bron: 4. Fundamentals of PHP.pptx, dia 54)_
 - `!$a` — **Logische NIET (omkeren)**: Keert het resultaat van een voorwaarde om: true wordt false en false wordt true. _(bron: 4. Fundamentals of PHP.pptx, dia 54)_
 - `$a && ($b || $c)` — **Haakjes in samengestelde voorwaarden**: Je mag meerdere logische operatoren combineren. Wat tussen haakjes staat wordt eerst geëvalueerd, zo bepaal je de juiste volgorde. _(bron: 4. Fundamentals of PHP.pptx, dia 56)_
-- `$a ?? 'standaard'` — **Standaardwaarde als iets ontbreekt**: De ??-operator geeft de linkerwaarde als die bestaat (en niet null is), anders de rechterwaarde. Korte vorm van if (isset(...)) ... else .... _(bron: 5. Dynamic Web Pages.pptx, dia 41)_
+- `$a ?? standaardwaarde` — **Standaardwaarde als iets ontbreekt**: De ??-operator geeft de linkerwaarde als die bestaat (en niet null is), anders de rechterwaarde. Bv. $_GET['naam'] ?? 'onbekend'. Korte vorm van if (isset(...)) ... else .... _(bron: 5. Dynamic Web Pages.pptx, dia 41)_
+  - voorbeelden: `$a ?? 'standaard'`
 
 ### Arrays
-- `["a", "b", "c"]` — **Geïndexeerde array (korte syntax)**: Maakt een array met vierkante haken, korter dan array(). In zo'n geïndexeerde array krijgt elke waarde automatisch een nummer (index) als sleutel, te beginnen bij 0. _(bron: 4. Fundamentals of PHP.pptx, dia 34)_
+- `[waarde1, waarde2, waarde3]` — **Geïndexeerde array (korte syntax)**: Maakt een array met vierkante haken, korter dan array(). Je zet de waarden gescheiden door komma's, bv. ["a", "b", "c"]. Elke waarde krijgt automatisch een nummer (index) als sleutel, te beginnen bij 0. _(bron: 4. Fundamentals of PHP.pptx, dia 34)_
   - werkt ook: `array("a", "b", "c")` — [...] en array(...) maken allebei dezelfde array.
+  - voorbeelden: `["a", "b", "c"]`
 - `["sleutel" => waarde]` — **Associatieve array met eigen sleutels**: In een associatieve array kies je zelf de sleutel van elke waarde (een string of een getal). Je schrijft de sleutel, dan =>, dan de waarde. _(bron: 4. Fundamentals of PHP.pptx, dia 35)_
 - `print_r($array);` — **Volledige array tonen**: Toont de hele inhoud van een array, met alle sleutels en waarden. echo en print werken niet voor een volledige array. _(bron: 4. Fundamentals of PHP.pptx, dia 37)_
   - voorbeelden: `print_r($_POST)`
@@ -1224,8 +1383,10 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `while (voorwaarde) { ... }` — **Herhalen zolang voorwaarde waar is**: Een while-lus controleert telkens de voorwaarde en voert het codeblok opnieuw uit zolang die true is. Zodra de voorwaarde false is, stopt de lus. Zorg dat er in de lus iets verandert, anders stopt ze nooit. _(bron: 4. Fundamentals of PHP.pptx, dia 66)_
 - `while (true) { ... }` — **Oneindige lus**: Omdat de voorwaarde altijd true is, stopt deze lus nooit vanzelf. Stop het script in de terminal met Ctrl + C. _(bron: 4. Fundamentals of PHP.pptx, dia 66)_
 - `for (start; voorwaarde; update) { ... }` — **Lus met teller**: Een for-lus heeft drie delen tussen haakjes: een startwaarde voor de lusvariabele, een voorwaarde die bepaalt of de lus doorgaat, en een update die de lusvariabele na elke ronde aanpast (meestal +1 of -1). _(bron: 4. Fundamentals of PHP.pptx, dia 68)_
-- `foreach ($array as $value) { ... }` — **Elke waarde van array overlopen**: Een foreach-lus overloopt elk element van een array: bij elke ronde krijgt $value de volgende waarde uit de array. _(bron: 4. Fundamentals of PHP.pptx, dia 70)_
-- `foreach ($array as $key => $value) { ... }` — **Sleutels en waarden van array overlopen**: Deze foreach-lus overloopt een array en geeft bij elke ronde zowel de sleutel ($key) als de bijhorende waarde ($value). Handig bij associatieve arrays. _(bron: 4. Fundamentals of PHP.pptx, dia 71)_
+- `foreach ($array as $waarde) { ... }` — **Elke waarde van array overlopen**: Een foreach-lus overloopt elk element van een array: bij elke ronde krijgt $waarde de volgende waarde uit de array. De naam na as kies je zelf (vaak $value of bv. $dier). _(bron: 4. Fundamentals of PHP.pptx, dia 70)_
+  - voorbeelden: `foreach ($array as $value) { ... }`
+- `foreach ($array as $sleutel => $waarde) { ... }` — **Sleutels en waarden van array overlopen**: Deze foreach-lus overloopt een array en geeft bij elke ronde zowel de sleutel als de bijhorende waarde. De namen $sleutel en $waarde kies je zelf (vaak $key en $value). Handig bij associatieve arrays. _(bron: 4. Fundamentals of PHP.pptx, dia 71)_
+  - voorbeelden: `foreach ($array as $key => $value) { ... }`
 - `continue;` — **Naar volgende lusronde springen**: continue slaat de rest van de huidige ronde van een lus over en gaat meteen verder met de volgende ronde. _(bron: 4. Fundamentals of PHP.pptx, dia 73)_
 - `break;` — **Lus volledig stoppen**: break stopt de lus meteen; het script gaat verder met de code na de lus. Handig om niet verder te zoeken als je gevonden hebt wat je zocht. _(bron: 4. Fundamentals of PHP.pptx, dia 73)_
 
@@ -1238,9 +1399,13 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `unset($variabele);` — **Variabele verwijderen**: Verwijdert een variabele of een array-element, zodat ze daarna niet meer bestaat. _(bron: 4. Fundamentals of PHP.pptx, dia 97)_
 
 ### Formulieren
-- `$_POST['naam']` — **Formulierwaarde ophalen (POST)**: Ingebouwde array met de gegevens van een formulier met method="POST". De sleutel is de name van het invoerveld, de waarde is wat de gebruiker invulde. _(bron: 5. Dynamic Web Pages.pptx, dia 16)_
-- `if (isset($_POST['submit'])) { }` — **Controleren of formulier verstuurd is**: isset() geeft true als de naam in de array bestaat. Zo voer je de verwerkingscode pas uit nadat op de verzendknop (name="submit") is geklikt, en vermijd je fouten. Ook te gebruiken om te zien of een checkbox aangevinkt is. _(bron: 5. Dynamic Web Pages.pptx, dia 16)_
-- `$_GET['naam']` — **Formulierwaarde ophalen (GET)**: Ingebouwde array met de gegevens van een formulier met method="GET" (de waarden staan ook in de URL). Werkt verder net als $_POST. _(bron: 5. Dynamic Web Pages.pptx, dia 17)_
-- `$_FILES['naam']['tmp_name']` — **Tijdelijke locatie van upload**: Een geüpload bestand wordt eerst op een tijdelijke plaats bewaard. De ingebouwde array $_FILES bevat info over het bestand (naam, type, grootte …); via 'tmp_name' krijg je het pad om het bestand te lezen. _(bron: 5. Dynamic Web Pages.pptx, dia 48)_
+- `$_POST['veldnaam']` — **Formulierwaarde ophalen (POST)**: Ingebouwde array met de gegevens van een formulier met method="POST". De sleutel is de name van het invoerveld (bv. $_POST['naam'] voor <input name="naam">), de waarde is wat de gebruiker invulde. _(bron: 5. Dynamic Web Pages.pptx, dia 16)_
+  - voorbeelden: `$_POST['naam']`
+- `if (isset($_POST['knopnaam'])) { ... }` — **Controleren of formulier verstuurd is**: isset() geeft true als de naam in de array bestaat. Zo voer je de verwerkingscode pas uit nadat op de verzendknop is geklikt (bv. $_POST['submit'] bij <button name="submit">), en vermijd je fouten. Ook te gebruiken om te zien of een checkbox aangevinkt is. _(bron: 5. Dynamic Web Pages.pptx, dia 16)_
+  - voorbeelden: `if (isset($_POST['submit'])) { }`
+- `$_GET['veldnaam']` — **Formulierwaarde ophalen (GET)**: Ingebouwde array met de gegevens van een formulier met method="GET" (de waarden staan ook in de URL). De sleutel is de name van het invoerveld, bv. $_GET['naam']. Werkt verder net als $_POST. _(bron: 5. Dynamic Web Pages.pptx, dia 17)_
+  - voorbeelden: `$_GET['naam']`
+- `$_FILES['veldnaam']['tmp_name']` — **Tijdelijke locatie van upload**: Een geüpload bestand wordt eerst op een tijdelijke plaats bewaard. De ingebouwde array $_FILES bevat info over het bestand (naam, type, grootte …); via 'tmp_name' krijg je het pad om het bestand te lezen. De eerste sleutel is de name van je file-invoerveld (bv. 'naam'), 'tmp_name' is altijd hetzelfde. _(bron: 5. Dynamic Web Pages.pptx, dia 48)_
+  - voorbeelden: `$_FILES['naam']['tmp_name']`
 - `file($bestand)` — **Bestand inlezen als array regels**: Leest een bestand en geeft een array terug met één element per regel. Elke regel bevat nog het regeleinde \n, dus gebruik trim() voor je ermee vergelijkt. _(bron: 5. Dynamic Web Pages.pptx, dia 49)_
 - `file_get_contents($bestand)` — **Hele bestand als één string**: Leest de volledige inhoud van een bestand in als één string. Met explode("\n", ...) splits je die daarna in regels. _(bron: 5. Dynamic Web Pages.pptx, dia 49)_
