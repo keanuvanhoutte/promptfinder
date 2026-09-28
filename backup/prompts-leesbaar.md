@@ -1,5 +1,5 @@
 # PromptFinder – leesbare lijst
-Export: 2026-09-24T14:12:04Z · 939 items
+Export: 2026-09-28T08:50:10Z · 940 items
 
 
 ## Algemeen (143)
@@ -167,7 +167,7 @@ Export: 2026-09-24T14:12:04Z · 939 items
 ### Overig
 - `alt` — **Meerder lijnen tegelijk typen**: Alt ingedrukt houden en elke lijn aanduiden waarin je tegelijk wilt schrijven
 
-## Linux (348)
+## Linux (349)
 
 ### Navigatie
 - `cd ~/projecten` — **Ga naar de map projecten**: Wisselt naar de map 'projecten' in je thuismap. ~ is een afkorting voor je thuismap.
@@ -474,6 +474,7 @@ Export: 2026-09-24T14:12:04Z · 939 items
 - `bunzip2 bestand.bz2` — **bzip2-bestand decomprimeren**: Zet een .bz2-bestand terug om naar het originele bestand. Het gecomprimeerde bestand wordt verwijderd. _(bron: Chapter 6 - The work environment.pptx, dia 29)_
 - `tar -czvf archief.tar.gz map` — **Gecomprimeerd archief maken**: Maakt in één stap een archief én comprimeert het met gzip (optie -z). Zo krijg je een .tar.gz-bestand. _(bron: Chapter 6 - The work environment.pptx, dia 30)_
 - `tar -xzvf bestand.tar.gz` — **Gecomprimeerd archief uitpakken**: Pakt een .tar.gz-archief in één stap uit en decomprimeert het. Wordt bv. gebruikt voor broncode van software. _(bron: Chapter 6 - The work environment.pptx, dia 36)_
+- `unzip bestand.zip` — **Pak een ZIP-archief uit**: Haalt alle bestanden uit een gecomprimeerd ZIP-bestand en plaats ze in de huidige map. Handig om gedownloade of gedeelde bestanden uit te pakken.
 
 ### Pakketten & software
 - `sudo dnf install pakket` — **Software installeren met dnf**: Installeert een programma met dnf, de pakketbeheerder voor RPM-pakketten (Fedora). Je kan een pakketnaam geven of een gedownload .rpm-bestand. sudo is nodig omdat je als beheerder installeert. _(bron: Chapter 6 - The work environment.pptx, dia 33)_
@@ -947,7 +948,7 @@ Export: 2026-09-24T14:12:04Z · 939 items
 - `Sequentie- vs structuurgebaseerde voorspelling` — **Twee manieren om functie te voorspellen**: Sequentiegebaseerd: functie overnemen van gelijkaardige sequenties (>40% identiteit). Structuurgebaseerd: vergelijken met gekende structuren (bv. via CATH, SCOP), zoeken naar gekende structurele motieven, of ab initio analyseren van enkel de structuur (bv. clefts). _(bron: SB-07-structural-functional-assignment.pptx, dia 34)_
 - `Cleft (groeve)` — **Holte waar liganden binden**: Groeve of holte in het eiwitoppervlak. De actieve site of ligandbindingsplaats is vaak de grootste cleft: daar kan het substraat nauwkeurig geplaatst en van het water afgeschermd worden. _(bron: SB-07-structural-functional-assignment.pptx, dia 48)_
 
-## HTML (60)
+## HTML (61)
 
 ### Structuur
 - `<!DOCTYPE html>` — **Documenttype**: Staat helemaal bovenaan elk HTML-bestand en vertelt de browser dat het om moderne HTML gaat.
@@ -998,13 +999,16 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `<a href="info/contact.html"></a>` — **Link naar pagina op eigen site**: Verwijst naar een ander HTML-bestand van je eigen website. Staat het bestand in dezelfde map, dan volstaat de naam (about.html); in een submap zet je de mapnaam ervoor (info/contact.html). _(bron: 2. Introduction to HTML.pptx, dia 28)_
   - voorbeelden: `<a href="pagina2.html">Volgende</a>`
 - `<img src="">` — **Afbeelding tonen**: Voegt een afbeelding in de pagina. Het src-attribuut is verplicht en geeft de locatie: een lokaal pad (bv. Mario.png in dezelfde map) of een volledige URL. _(bron: 2. Introduction to HTML.pptx, dia 37)_
-  - voorbeelden: `<img src="eiwit.png" alt="Eiwitstructuur">`
+  - voorbeelden: `<img src="eiwit.png" alt="Eiwitstructuur">`, `<img width="20px" src="https://ventje.com/wp-content/uploads/2026/05/background-desktop-1.jpg" alt="">`
 - `<a href="#id"></a>` — **Link naar plek op pagina**: Een link met href="#" gevolgd door een id springt naar het element met dat id op dezelfde pagina. Handig voor een inhoudstafel. _(bron: 2. Introduction to HTML.pptx, dia 57)_
+  - voorbeelden: `<a href="#Paco">Paco</a>`
 - `<a href="mailto:adres">tekst</a>` — **Link die e-mail opstelt**: Een link met mailto: opent het e-mailprogramma van de gebruiker met het adres al ingevuld als ontvanger. _(bron: 5. Dynamic Web Pages.pptx, dia 9)_
+  - voorbeelden: `<a href="mailto:paco.hulpiau@howest.be">paco</a>`
 
 ### Attributen
 - `<img src="" alt="">` — **Alternatieve tekst bij afbeelding**: Het alt-attribuut geeft tekst die getoond wordt als de afbeelding niet laadt, bv. door een typfout in het pad. _(bron: 2. Introduction to HTML.pptx, dia 38)_
 - `<img src="" width="500px">` — **Breedte of hoogte van afbeelding**: Met width en height stel je de afmetingen van een afbeelding in (in pixels). Geef je enkel de breedte of enkel de hoogte, dan past de andere zich aan zodat de afbeelding niet vervormt. _(bron: 2. Introduction to HTML.pptx, dia 39)_
+  - voorbeelden: `<img src="bit-lecturers/Paco.jpg" alt="" width="200">`
 - `class=""` — **Klasse (label) aan element geven**: Geeft een element een label (klasse) zodat je het kan aanspreken, bv. met CSS. Meerdere elementen mogen dezelfde klasse hebben en één element kan meerdere klassen hebben, gescheiden door spaties. _(bron: 2. Introduction to HTML.pptx, dia 53)_
 - `id=""` — **Unieke naam aan element geven**: Geeft een element een unieke naam (id). Twee elementen mogen niet hetzelfde id hebben en elk element heeft maximaal één id. _(bron: 2. Introduction to HTML.pptx, dia 55)_
 - `style=""` — **CSS op één element**: Met het style-attribuut geef je CSS-opmaak aan één enkel element (inline stijl). _(bron: 2. Introduction to HTML.pptx, dia 58)_
@@ -1014,6 +1018,7 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 
 ### Formulieren
 - `<fieldset></fieldset>` — **Kader met zichtbare rand**: Maakt een container met een zichtbare rand rond de inhoud. _(bron: 2. Introduction to HTML.pptx, dia 41)_
+  - voorbeelden: `<fieldset id="Paco">`
 - `<legend></legend>` — **Titel op rand van fieldset**: Zet een titel bovenaan op de rand van een <fieldset>. Werkt enkel binnen een fieldset-tag. _(bron: 2. Introduction to HTML.pptx, dia 41)_
 - `<form action="#" method="POST"></form>` — **Formulier voor invoervelden**: Een formulier bevat de invoervelden en bepaalt waar en hoe de gegevens na verzenden naartoe gaan. Alle invoervelden (<input>, <select>, <textarea>) moeten erin staan. _(bron: 5. Dynamic Web Pages.pptx, dia 13)_
 - `<input type="" name="" value="">` — **Invoerveld maken**: De belangrijkste tag voor invoervelden. Via name haal je de ingevulde waarde later op in PHP. _(bron: 5. Dynamic Web Pages.pptx, dia 19)_
@@ -1047,7 +1052,10 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 - `<td></td>` — **Cel in een tabelrij**: Maakt één gewone cel in een tabelrij. Voeg meer td-tags toe voor meer cellen (kolommen) in de rij. _(bron: 2. Introduction to HTML.pptx, dia 47)_
 - `<th></th>` — **Kopcel in een tabel**: Maakt een kopcel, meestal om kolommen of rijen te benoemen. Browsers tonen die standaard vet en gecentreerd. _(bron: 2. Introduction to HTML.pptx, dia 48)_
 
-## CSS (52)
+### Overig
+- `<span title="uitleg.">woord in kwestie</span>` — **Title-attribuut voor mouseover-tooltip**: Het title-attribuut voegt een tooltip toe die verschijnt wanneer je met de muis over het element gaat. Dit is handig om extra uitleg of context te geven zonder de pagina vol tekst te zetten.
+
+## CSS (51)
 
 ### Kleur & achtergrond
 - `background-color` — **Achtergrondkleur instellen**: Stelt de achtergrondkleur van een element in, bv. body { background-color: green; } voor een groene pagina. _(bron: 2. Introduction to HTML.pptx, dia 14)_
@@ -1083,7 +1091,6 @@ Vergelijking: Gelijkaardig aan <div> en <p> maar met meer ruimte rond. _(bron: 2
 ### Koppelen aan HTML
 - `selector { eigenschap: waarde; }` — **Opbouw van een CSS-regel**: Een CSS-regel bestaat uit een selector en een declaratieblok tussen accolades. Elke declaratie is een eigenschap met een waarde, gevolgd door een puntkomma. Voorbeeld: p { font-size: 1.2em; } geeft alle <p>-elementen een bepaalde lettergrootte. _(bron: 3. Introduction to CSS.pptx, dia 4)_
 - `<p style="color: red; background: green">` — **Inline CSS met style-attribuut**: Met het style-attribuut zet je CSS rechtstreeks op één HTML-element. Meerdere declaraties scheid je met een puntkomma. Handig voor één element, maar onhandig als je later veel elementen moet aanpassen. _(bron: 3. Introduction to CSS.pptx, dia 6)_
-- `<style> span {color: red;} </style>` — **Interne CSS in style-tag**: Met de <style>-tag in de <head> schrijf je CSS-regels die gelden voor meerdere elementen in hetzelfde HTML-document. Zo pas je een stijl op één plaats aan in plaats van bij elk element apart. _(bron: 3. Introduction to CSS.pptx, dia 8)_
 - `<link rel="stylesheet" type="text/css" href="style.css">` — **Extern stylesheet koppelen**: Zet je CSS-regels in een apart .css-bestand en koppel dat met de <link>-tag in de <head>. Zo kunnen meerdere HTML-pagina's dezelfde stijl delen. _(bron: 3. Introduction to CSS.pptx, dia 10)_
 
 ### Box model

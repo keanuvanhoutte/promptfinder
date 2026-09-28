@@ -1,7 +1,7 @@
 {
  "app": "PromptFinder",
  "version": 1,
- "exportedAt": "2026-09-24T14:12:04Z",
+ "exportedAt": "2026-09-28T08:50:10Z",
  "tabs": [
   {
    "color": "#5A6874",
@@ -12073,10 +12073,22 @@
      "note": "Afbeelding tonen",
      "output": "",
      "source": "voorbeeld"
+    },
+    {
+     "command": "<img width=\"20px\" src=\"https://ventje.com/wp-content/uploads/2026/05/background-desktop-1.jpg\" alt=\"\">",
+     "date": 1790262971821,
+     "img": {
+      "id": "7b657576e455869cb1586cd119ee4a4e",
+      "kind": "asset"
+     },
+     "note": "De afbeelding van background-desktop-1.jpg wordt weergegeven met een breedte van 20 pixels.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": "Voegt een afbeelding in de pagina. Het src-attribuut is verplicht en geeft de locatie: een lokaal pad (bv. Mario.png in dezelfde map) of een volledige URL.",
    "group": "Links & media",
+   "lastSeen": 1790262971821,
    "parts": [
     {
      "m": "afbeeldingstag; geen sluitingstag",
@@ -12096,8 +12108,8 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Afbeelding tonen",
-   "updatedAt": 1790260000000,
-   "uses": 1,
+   "updatedAt": 1790262971821,
+   "uses": 2,
    "id": "les_0446"
   },
   {
@@ -12127,8 +12139,22 @@
   {
    "command": "<img src=\"\" width=\"500px\">",
    "createdAt": 1790250000447,
+   "examples": [
+    {
+     "command": "<img src=\"bit-lecturers/Paco.jpg\" alt=\"\" width=\"200\">",
+     "date": 1790261987736,
+     "img": {
+      "id": "ea83dff7d4b058a8a36031fdba3d4759",
+      "kind": "asset"
+     },
+     "note": "Dit voorbeeld toont hoe je een afbeelding met een vaste breedte inlaadt.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "Met width en height stel je de afmetingen van een afbeelding in (in pixels). Geef je enkel de breedte of enkel de hoogte, dan past de andere zich aan zodat de afbeelding niet vervormt.",
    "group": "Attributen",
+   "lastSeen": 1790261987736,
    "parts": [
     {
      "m": "breedte van 500 pixels (width=\"500\" is de officiële schrijfwijze)",
@@ -12144,8 +12170,8 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Breedte of hoogte van afbeelding",
-   "updatedAt": 1790250000447,
-   "uses": 1,
+   "updatedAt": 1790261987736,
+   "uses": 2,
    "id": "les_0448"
   },
   {
@@ -12166,8 +12192,33 @@
   {
    "command": "<fieldset></fieldset>",
    "createdAt": 1790250000449,
+   "examples": [
+    {
+     "command": "<fieldset></fieldset>",
+     "date": 1790261987480,
+     "img": {
+      "id": "ea83dff7d4b058a8a36031fdba3d4759",
+      "kind": "asset"
+     },
+     "note": "Dit voorbeeld toont hoe <fieldset> formulieronderdelen visueel samenbindt.",
+     "output": "",
+     "source": "screenshot"
+    },
+    {
+     "command": "<fieldset id=\"Paco\">",
+     "date": 1790262513109,
+     "img": {
+      "id": "70cfa76085c1c0366f379748f9899d0d",
+      "kind": "asset"
+     },
+     "note": "De fieldset krijgt een id zodat je vanuit andere delen van de pagina ernaar kunt linken.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "Maakt een container met een zichtbare rand rond de inhoud.",
    "group": "Formulieren",
+   "lastSeen": 1790262513109,
    "parts": [
     {
      "m": "openingstag",
@@ -12183,8 +12234,8 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Kader met zichtbare rand",
-   "updatedAt": 1790250000449,
-   "uses": 1,
+   "updatedAt": 1790262513109,
+   "uses": 3,
    "id": "les_0450"
   },
   {
@@ -12611,8 +12662,22 @@
   {
    "command": "<a href=\"#id\"></a>",
    "createdAt": 1790250000463,
+   "examples": [
+    {
+     "command": "<a href=\"#Paco\">Paco</a>",
+     "date": 1790262512804,
+     "img": {
+      "id": "70cfa76085c1c0366f379748f9899d0d",
+      "kind": "asset"
+     },
+     "note": "De tekst 'Paco' wordt een klikbare link die naar het element met id=\"Paco\" springt.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
    "explanation": "Een link met href=\"#\" gevolgd door een id springt naar het element met dat id op dezelfde pagina. Handig voor een inhoudstafel.",
    "group": "Links & media",
+   "lastSeen": 1790262512804,
    "parts": [
     {
      "m": "ga naar het element met id=\"Jasper\"",
@@ -12628,8 +12693,8 @@
    "sourceName": "2. Introduction to HTML.pptx",
    "tab": "html",
    "title": "Link naar plek op pagina",
-   "updatedAt": 1790250000463,
-   "uses": 1,
+   "updatedAt": 1790262512804,
+   "uses": 2,
    "id": "les_0464"
   },
   {
@@ -12799,49 +12864,6 @@
    "updatedAt": 1790250000470,
    "uses": 1,
    "id": "les_0471"
-  },
-  {
-   "command": "<style> span {color: red;} </style>",
-   "createdAt": 1790250000471,
-   "examples": [
-    {
-     "command": "<style> span {color: red;} </style>",
-     "date": 1790250000000,
-     "note": "Alle <span>-elementen in de vlindertekst worden rood met één enkele regel.",
-     "output": "",
-     "slide": 8,
-     "source": "les",
-     "sourceName": "3. Introduction to CSS.pptx"
-    }
-   ],
-   "explanation": "Met de <style>-tag in de <head> schrijf je CSS-regels die gelden voor meerdere elementen in hetzelfde HTML-document. Zo pas je een stijl op één plaats aan in plaats van bij elk element apart.",
-   "group": "Koppelen aan HTML",
-   "parts": [
-    {
-     "m": "tag in de <head> waarin CSS-regels staan",
-     "t": "<style>"
-    },
-    {
-     "m": "selector: alle <span>-elementen",
-     "t": "span"
-    },
-    {
-     "m": "declaratieblok: tekst rood maken",
-     "t": "{color: red;}"
-    },
-    {
-     "m": "sluit de style-tag",
-     "t": "</style>"
-    }
-   ],
-   "slide": 8,
-   "source": "les",
-   "sourceName": "3. Introduction to CSS.pptx",
-   "tab": "css",
-   "title": "Interne CSS in style-tag",
-   "updatedAt": 1790250000471,
-   "uses": 1,
-   "id": "les_0472"
   },
   {
    "command": "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">",
@@ -17540,10 +17562,22 @@
      "slide": 9,
      "source": "les",
      "sourceName": "5. Dynamic Web Pages.pptx"
+    },
+    {
+     "command": "<a href=\"mailto:paco.hulpiau@howest.be\">paco</a>",
+     "date": 1790259707978,
+     "img": {
+      "id": "6d1a208ee0cfa9d1884ca90dcafe596f",
+      "kind": "asset"
+     },
+     "note": "Dit concrete voorbeeld maakt 'paco' aanklikbaar en opent als je klikt op het e-mailprogramma voor paco.hulpiau@howest.be.",
+     "output": "",
+     "source": "screenshot"
     }
    ],
    "explanation": "Een link met mailto: opent het e-mailprogramma van de gebruiker met het adres al ingevuld als ontvanger.",
    "group": "Links & media",
+   "lastSeen": 1790259707978,
    "parts": [
     {
      "m": "doel van de link",
@@ -17563,8 +17597,8 @@
    "sourceName": "5. Dynamic Web Pages.pptx",
    "tab": "html",
    "title": "Link die e-mail opstelt",
-   "updatedAt": 1790250000619,
-   "uses": 1,
+   "updatedAt": 1790259707978,
+   "uses": 3,
    "id": "les_0620"
   },
   {
@@ -23377,6 +23411,78 @@
    "title": "Meerder lijnen tegelijk typen",
    "updatedAt": 1790255573488,
    "id": "p_mufjy19sqxr6a"
+  },
+  {
+   "alts": [],
+   "command": "<span title=\"uitleg.\">woord in kwestie</span>",
+   "createdAt": 1790260653960,
+   "examples": [
+    {
+     "command": "<span title=\"uitleg.\">woord in kwestie</span>",
+     "date": 1790584934876,
+     "img": {
+      "id": "a65951a3780f306273c627740fddca9e",
+      "kind": "asset"
+     },
+     "note": "Dit voorbeeld laat zien hoe je een tooltip aan een woord kunt toevoegen die alleen verschijnt als je erover beweegt.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
+   "explanation": "Het title-attribuut voegt een tooltip toe die verschijnt wanneer je met de muis over het element gaat. Dit is handig om extra uitleg of context te geven zonder de pagina vol tekst te zetten.",
+   "group": "",
+   "lastSeen": 1790584934876,
+   "parts": [
+    {
+     "m": "attribuut dat de tooltip-tekst definieert",
+     "t": "title=\"uitleg.\""
+    },
+    {
+     "m": "inline element om tekst op te maken",
+     "t": "<span>"
+    }
+   ],
+   "source": "manual",
+   "tab": "html",
+   "title": "Title-attribuut voor mouseover-tooltip",
+   "updatedAt": 1790584934876,
+   "uses": 2,
+   "id": "p_mufmyxe0lvcrl"
+  },
+  {
+   "command": "unzip bestand.zip",
+   "createdAt": 1790261419458,
+   "examples": [
+    {
+     "command": "unzip bestand.zip",
+     "date": 1790261419458,
+     "img": {
+      "id": "f45dabcb3068dcb90d08d4373fd015f7",
+      "kind": "asset"
+     },
+     "note": "Dit commando pakt het ZIP-archief 'bit_lecturers.zip' uit en maakt alle bestanden ervan beschikbaar in de huidige map.",
+     "output": "",
+     "source": "screenshot"
+    }
+   ],
+   "explanation": "Haalt alle bestanden uit een gecomprimeerd ZIP-bestand en plaats ze in de huidige map. Handig om gedownloade of gedeelde bestanden uit te pakken.",
+   "group": "Archieven & compressie",
+   "parts": [
+    {
+     "m": "commando om ZIP-bestanden uit te pakken",
+     "t": "unzip"
+    },
+    {
+     "m": "de naam van het ZIP-archief dat je wilt uitpakken",
+     "t": "bestand.zip"
+    }
+   ],
+   "source": "screenshot",
+   "tab": "linux",
+   "title": "Pak een ZIP-archief uit",
+   "updatedAt": 1790261419458,
+   "uses": 1,
+   "id": "p_mufnfc1uazsx0"
   },
   {
    "command": "ls",
