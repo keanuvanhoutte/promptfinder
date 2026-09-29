@@ -17,7 +17,6 @@ De pagina leest `backup/promptfinder-backup.json`. Wordt die back-up hier vernie
 |---|---|
 | `index.html` | De openbare leesversie (GitHub Pages). |
 | `app/index.html` | Broncode van de app (zoals gepubliceerd op claude.ai). |
-| `app/promptfinder-default.html` | Losse leesversie om door te sturen (momentopname, werkt zonder internet). |
 | `app/eng-traineddata.gz.b64.txt` | Taalbestand voor de lokale tekstherkenning (reserve als Claude niet beschikbaar is). |
 | `backup/promptfinder-backup.json` | Volledige back-up van alle tabs en prompts. Terug te zetten in de app. |
 | `backup/prompts-leesbaar.md` | Dezelfde data als leesbare lijst, handig om op GitHub te bekijken. |
